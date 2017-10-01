@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppLayoutComponent } from './layouts/app-layout.component';
+import { AuthGuard } from './_guards/auth.guard';
+import { AppLayoutComponent } from './_layouts/app-layout.component';
+import { AppSimpleLayoutComponent } from './_layouts/app-simple-layout.component';
+import { AuthComponent } from './auth';
 
 export const routes: Routes = [
+  {
+    path: 'auth',
+    component: AuthComponent
+  },
   {
     path: '',
     redirectTo: 'home',
@@ -12,6 +19,7 @@ export const routes: Routes = [
   {
     path: '',
     component: AppLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'home',
@@ -30,11 +38,15 @@ export const routes: Routes = [
         loadChildren: './company/company.module#CompanyModule'
       }       
     ]
+  },  
+  {
+    path: '**',
+    redirectTo: 'home'
   }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes, { enableTracing: true }) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

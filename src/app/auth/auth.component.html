@@ -1,0 +1,68 @@
+<header>
+  <nav class="navbar navbar-inverse bg-light justify-content-between" style="width:100%;float:none;position:relative;">    
+    <a class="navbar-brand">Network of Education</a>
+    <form class="form-inline" name="form" (ngSubmit)="signin()" #f="ngForm" novalidate>
+      <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="Email" name="email" [(ngModel)]="modelSignin.email" #email="ngModel" required>
+      <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" name="password" [(ngModel)]="modelSignin.password" #password="ngModel" required>
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Sign in</button>
+      <a href="#" style="padding: 4px 16px">Forgot password?</a>
+    </form>
+  </nav>
+</header>
+
+<!-- Main content -->
+<main class="main">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-auto" style="width: 400px; margin: 2rem">
+        <div class="card">
+          <div class="card-header" style="font-size: 1.35rem; text-align: center;">
+            Join us for help            
+          </div>          
+          <div class="card-body">
+            <form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" name="firstname" [(ngModel)]="modelSignup.firstname" #firstname="ngModel" required />
+                <div *ngIf="f.submitted && !firstname.valid" class="help-block">First Name is required</div>
+              </div>
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" name="lastname" [(ngModel)]="modelSignup.lastname" #lastname="ngModel" required />
+                <div *ngIf="f.submitted && !lastname.valid" class="help-block">Last Name is required</div>
+              </div>
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" [(ngModel)]="modelSignup.email" #email="ngModel" required />
+                <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+              </div>
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" name="phone" [(ngModel)]="modelSignup.phone" #phone="ngModel" required />
+                <div *ngIf="f.submitted && !phone.valid" class="help-block">Phone number is required</div>
+              </div>       
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="modelSignup.password" #password="ngModel" required />
+                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+              </div>
+              <div class="">
+                <p style="font-size: 0.8rem; text-align: center;">By clicking Join now, you agree to the Noe <a href="#">User Agreement</a>, <a href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a>.</p>
+              </div>
+              <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary btn-block" type="submit">Join now</button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>      
+    </div>   
+  </div>
+</main>
+
+<footer class="app-footer">
+  <a href="#">Network Of Education</a> &copy; 2017 NOE.
+  <span class="float-right">Powered by <a href="#">NOE</a></span>
+</footer>
