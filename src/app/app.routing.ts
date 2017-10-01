@@ -4,12 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './_guards/auth.guard';
 import { AppLayoutComponent } from './_layouts/app-layout.component';
 import { AppSimpleLayoutComponent } from './_layouts/app-simple-layout.component';
-import { AuthComponent } from './auth';
+import { AuthComponent, LogoutComponent } from './auth';
 
 export const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent
   },
   {
     path: '',

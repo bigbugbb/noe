@@ -27,6 +27,8 @@ export class UserService {
   }
 
   update(user: User) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
     return this.http.put(`${environment.apiEndpoint}/users/${user.id}`, user, this.jwt()).map((response: Response) => response.json());
   }
 

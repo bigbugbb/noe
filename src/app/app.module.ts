@@ -16,13 +16,14 @@ import { AuthGuard } from './_guards/auth.guard';
 
 // Layouts
 import { AppLayoutComponent } from './_layouts/app-layout.component';
-import { AuthComponent } from './auth';
+import { AuthComponent, LogoutComponent } from './auth';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppLayoutComponent,
-    AuthComponent
+    AuthComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

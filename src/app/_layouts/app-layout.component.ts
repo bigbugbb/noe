@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthenticationService } from '../_services/index';
+
 @Component({
   selector: 'app-layout',
   templateUrl: './app-layout.component.html'
@@ -19,5 +21,11 @@ export class AppLayoutComponent implements OnInit {
     this.status.isopen = !this.status.isopen;
   }
 
+  constructor(private authenticationService: AuthenticationService) {}
+
   ngOnInit(): void {}
+
+  public signout() {
+    this.authenticationService.signout();
+  }
 }
