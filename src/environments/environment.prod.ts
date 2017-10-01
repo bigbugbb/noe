@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'http://localhost:3000/api/v1'
+  apiEndpoint: 'https://fast-ocean-42635.herokuapp.com/api/v1'
 };
