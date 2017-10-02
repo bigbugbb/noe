@@ -35,9 +35,23 @@
   background: url("../../img/auth_cover.jpg") center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 47.5em;
-  margin-top: 0;
-  padding: 0;
+  height: 51em;  
+}
+
+.min-input-text {
+  min-width: 12rem;
+  margin-right: 4px;
+}
+
+.min-forgot-password {
+  min-width: 10rem;
+  margin-left: 1rem;
+  text-align: left;
+}
+
+.card {
+  width: 400px; 
+  margin: 3.8rem 0 0 0;
 }
 
 img.center {
