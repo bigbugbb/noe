@@ -14,14 +14,14 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 import { AppRoutingModule } from './app.routing';
 
 // Services
-import { AlertService, AuthenticationService, UserService } from './_services/index';
+import { AlertService, UserService } from './_services/index';
 
 // Guards
 import { AuthGuard } from './_guards/auth.guard';
 
 // Layouts
 import { AppLayoutComponent } from './_layouts/app-layout.component';
-import { AuthComponent, LogoutComponent } from './auth';
+import { AuthComponent } from './auth';
 
 import { AppComponent } from './app.component';
 
@@ -30,11 +30,10 @@ import { AppComponent } from './app.component';
     AppComponent,
     AppLayoutComponent,
     AuthComponent,
-    LogoutComponent,
     NAV_DROPDOWN_DIRECTIVES,
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective,
+    AsideToggleDirective
   ],
   imports: [
     BrowserModule,
@@ -46,9 +45,8 @@ import { AppComponent } from './app.component';
     BsDropdownModule.forRoot()
   ],
   providers: [
-    AuthGuard, 
-    AlertService, 
-    AuthenticationService,
+    AuthGuard,
+    AlertService,
     UserService
   ],
   bootstrap: [AppComponent]

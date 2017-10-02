@@ -4,16 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './_guards/auth.guard';
 import { AppLayoutComponent } from './_layouts/app-layout.component';
 import { AppSimpleLayoutComponent } from './_layouts/app-simple-layout.component';
-import { AuthComponent, LogoutComponent } from './auth';
+import { AuthComponent } from './auth';
 
 export const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent
-  },
-  {
-    path: 'logout',
-    component: LogoutComponent
   },
   {
     path: '',
@@ -28,7 +24,7 @@ export const routes: Routes = [
       {
         path: 'home',
         loadChildren: './home/home.module#HomeModule'
-      }, 
+      },
       {
         path: 'student',
         loadChildren: './student/student.module#StudentModule'
@@ -40,9 +36,9 @@ export const routes: Routes = [
       {
         path: 'company',
         loadChildren: './company/company.module#CompanyModule'
-      }       
+      }
     ]
-  },  
+  },
   {
     path: '**',
     redirectTo: 'home'

@@ -1,4 +1,4 @@
-<header class="app-header nav navbar navbar-expand sticky-top">   
+<header class="app-header nav navbar navbar-expand sticky-top">
   <ul class="navbar-nav navbar-expand">
     <a class="navbar navbar-brand" href="#"></a>
   </ul>
@@ -14,10 +14,10 @@
               <a href="#" class="min-forgot-password">Forgot password?</a>
             </div>
           </div>
-        </div>        
+        </div>
       </form>
-    </li>       
-  </ul>  
+    </li>
+  </ul>
 </header>
 
 <!-- Main content -->
@@ -26,8 +26,8 @@
     <div class="row justify-content-center">
       <div class="card">
         <div class="card-header" style="font-size: 1.35rem; text-align: center;">
-          Join us for help            
-        </div>          
+          Join us for help
+        </div>
         <div class="card-body">
           <form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
@@ -49,7 +49,7 @@
               <label for="phone">Phone</label>
               <input type="text" class="form-control" name="phone" [(ngModel)]="modelSignup.phone" #phone="ngModel" required />
               <div *ngIf="f.submitted && !phone.valid" class="help-block">Phone number is required</div>
-            </div>       
+            </div>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
               <label for="password">Password</label>
               <input type="password" class="form-control" name="password" [(ngModel)]="modelSignup.password" #password="ngModel" required />
@@ -66,7 +66,7 @@
           </form>
         </div>
       </div>
-    </div>   
+    </div>
   </div>
 </main>
 

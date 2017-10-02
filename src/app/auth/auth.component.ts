@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AlertService, AuthenticationService } from '../_services/index';
+import { AlertService, UserService } from '../_services/index';
 
 @Component({
   templateUrl: 'auth.component.html',
@@ -16,12 +16,12 @@ export class AuthComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService,
+    private userService: UserService,
     private alertService: AlertService) { }
 
   ngOnInit() {
     // reset login status
-    this.authenticationService.signout();
+    this.userService.signout();
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -29,7 +29,7 @@ export class AuthComponent implements OnInit {
 
   signup() {
     this.loading = true;
-    this.authenticationService.signup(this.modelSignup).subscribe(data => {
+    this.userService.signup(this.modelSignup).subscribe(data => {
       // set success message and pass true paramater to persist the message after redirecting to the login page
       this.alertService.success('Signup successful', true);
       this.router.navigate(['/']);
@@ -42,7 +42,7 @@ export class AuthComponent implements OnInit {
   signin() {
     this.loading = true;
     const {email, password} = this.modelSignin;
-    this.authenticationService.signin(email, password).subscribe(data => {
+    this.userService.signin(email, password).subscribe(data => {
       this.router.navigate([this.returnUrl]);
     }, error => {
       this.alertService.error(error);
