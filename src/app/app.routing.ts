@@ -21,9 +21,14 @@ export const routes: Routes = [
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      // main sections
       {
         path: 'home',
         loadChildren: './home/home.module#HomeModule'
+      },
+      {
+        path: 'profile',
+        loadChildren: './profile/profile.module#ProfileModule'
       },
       {
         path: 'student',
@@ -36,6 +41,28 @@ export const routes: Routes = [
       {
         path: 'company',
         loadChildren: './company/company.module#CompanyModule'
+      },
+      {
+        path: 'messaging',
+        loadChildren: './messaging/messaging.module#MessagingModule'
+      },
+      // account sections
+      {
+        path: 'settings',
+        loadChildren: './settings/settings.module#SettingsModule'
+      },
+      {
+        path: 'notifications',
+        loadChildren: './notifications/notifications.module#NotificationsModule'
+      },
+      {
+        path: 'questions',
+        loadChildren: './questions/questions.module#QuestionsModule'
+      },
+      // manage sections
+      {
+        path: 'payments',
+        loadChildren: './payments/payments.module#PaymentsModule'
       }
     ]
   },

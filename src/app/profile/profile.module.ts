@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { SchoolComponent } from './school.component';
-import { SchoolRoutingModule } from './school-routing.module';
+import { ProfileComponent } from './profile.component';
+import { ProfileRoutingModule } from './profile-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SchoolRoutingModule
+    ProfileRoutingModule
   ],
   declarations: [
-    SchoolComponent
+    ProfileComponent
   ]
 })
-export class SchoolModule { }
+export class ProfileModule {}
