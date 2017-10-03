@@ -5,7 +5,7 @@ import { AlertService, UserService } from '../_services/index';
 
 @Component({
   templateUrl: 'auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
   modelSignin: any = {};
