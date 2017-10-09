@@ -1,0 +1,71 @@
+<header class="app-header nav navbar navbar-expand sticky-top">
+  <ul class="navbar-nav navbar-expand">
+    <a class="navbar navbar-brand" href="#"></a>
+    <li class="nav-item">
+      <form action="" method="post" class="form-horizontal">
+        <div class="form-group row search-tool">
+          <div class="col-md-12">
+            <div class="input-group">
+              <input type="text" id="search" name="search" class="form-control" placeholder="Search">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-primary"><i class="fa fa-search fa-lg"></i></button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link" href="/home">Home</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link" href="/profile">Profile</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link" href="/student">Student</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link" href="/school">School</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link" href="/company">Company</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link" href="/messaging">Messaging</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav navbar-expand ml-auto mr-sm-3">
+    <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+      <a href class="nav-link dropdown-toggle user-profile" dropdownToggle (click)="false">
+        <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="user@gmail.com">
+        <span class="d-md-down-none">{{username()}}</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <div class="dropdown-header text-left"><strong>Account</strong></div>
+
+        <a class="dropdown-item" href="/settings"><i class="fa fa-wrench"></i>Settings</a>
+        <a class="dropdown-item" href="/notifications"><i class="fa fa-envelope-o"></i>Notifications</a>
+        <a class="dropdown-item" href="/questions"><i class="fa fa-question"></i>Questions</a>
+
+        <div class="dropdown-header text-left"><strong>Manage</strong></div>
+
+        <a class="dropdown-item" href="/payments"><i class="fa fa-usd"></i>Payments</a>
+        <a class="dropdown-item" href="#" (click)="signout($event)"><i class="fa fa-lock"></i>Logout</a>
+      </div>
+    </li>
+  </ul>
+</header>
+
+<div class="app-body">
+  <!-- Main content -->
+  <main class="main">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
+
+<footer class="app-footer">
+  <a href="#">Network Of Education</a> &copy; 2017 NOE.
+  <span class="float-right">Powered by <a href="#">NOE</a></span>
+</footer>

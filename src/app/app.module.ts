@@ -3,37 +3,19 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
-import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
-import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
-import { AsideToggleDirective } from './shared/aside.directive';
-import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
 // Routing
 import { AppRoutingModule } from './app.routing';
 
-// Services
-import { AlertService, UserService } from './_services/index';
-
-// Guards
-import { AuthGuard } from './_guards/auth.guard';
-
-// Layouts
-import { AppLayoutComponent } from './_layouts/app-layout.component';
-import { AuthComponent } from './auth';
+import { CoreModule } from './core';
+import { SharedModule } from './shared'
+import { FeaturesSharedModule } from './features-shared';
 
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AppLayoutComponent,
-    AuthComponent,
-    NAV_DROPDOWN_DIRECTIVES,
-    BreadcrumbsComponent,
-    SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -41,13 +23,12 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    TabsModule.forRoot(),
-    BsDropdownModule.forRoot()
+    CoreModule,
+    SharedModule,
+    FeaturesSharedModule,
+    TabsModule.forRoot()
   ],
   providers: [
-    AuthGuard,
-    AlertService,
-    UserService
   ],
   bootstrap: [AppComponent]
 })

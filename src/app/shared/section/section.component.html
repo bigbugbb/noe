@@ -1,0 +1,13 @@
+<div>
+  <div class="row">
+    <div class="ml-auto">
+      <a *ngIf="showAdd" class="btn-add-edit" href (click)="add($event)">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </a>
+      <a *ngIf="showEdit" class="btn-add-edit" href (click)="edit($event)">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+  <ng-content></ng-content>
+</div>

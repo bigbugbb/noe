@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from './_guards/auth.guard';
-import { AppLayoutComponent } from './_layouts/app-layout.component';
-import { AppSimpleLayoutComponent } from './_layouts/app-simple-layout.component';
-import { AuthComponent } from './auth';
+import { AuthGuard } from '@app/core';
+import { AppLayoutComponent } from '@app/features-shared';
 
 export const routes: Routes = [
   {
     path: 'auth',
-    component: AuthComponent
+    loadChildren: './features/auth/auth.module#AuthModule'
   },
   {
     path: '',
@@ -24,45 +22,45 @@ export const routes: Routes = [
       // main sections
       {
         path: 'home',
-        loadChildren: './home/home.module#HomeModule'
+        loadChildren: './features/home/home.module#HomeModule'
       },
       {
         path: 'profile',
-        loadChildren: './profile/profile.module#ProfileModule'
+        loadChildren: './features/profile/profile.module#ProfileModule'
       },
       {
         path: 'student',
-        loadChildren: './student/student.module#StudentModule'
+        loadChildren: './features/student/student.module#StudentModule'
       },
       {
         path: 'school',
-        loadChildren: './school/school.module#SchoolModule'
+        loadChildren: './features/school/school.module#SchoolModule'
       },
       {
         path: 'company',
-        loadChildren: './company/company.module#CompanyModule'
+        loadChildren: './features/company/company.module#CompanyModule'
       },
       {
         path: 'messaging',
-        loadChildren: './messaging/messaging.module#MessagingModule'
+        loadChildren: './features/messaging/messaging.module#MessagingModule'
       },
       // account sections
       {
         path: 'settings',
-        loadChildren: './settings/settings.module#SettingsModule'
+        loadChildren: './features/settings/settings.module#SettingsModule'
       },
       {
         path: 'notifications',
-        loadChildren: './notifications/notifications.module#NotificationsModule'
+        loadChildren: './features/notifications/notifications.module#NotificationsModule'
       },
       {
         path: 'questions',
-        loadChildren: './questions/questions.module#QuestionsModule'
+        loadChildren: './features/questions/questions.module#QuestionsModule'
       },
       // manage sections
       {
         path: 'payments',
-        loadChildren: './payments/payments.module#PaymentsModule'
+        loadChildren: './features/payments/payments.module#PaymentsModule'
       }
     ]
   },
@@ -73,7 +71,10 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, { enableTracing: true }) ],
+  imports: [ RouterModule.forRoot(
+    routes,
+    { enableTracing: false }
+  ) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}
