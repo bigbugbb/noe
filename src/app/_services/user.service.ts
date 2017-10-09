@@ -62,7 +62,8 @@ export class UserService {
 
   public signout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    return this.http.delete(`${this.apiEndpoint}/users/me/token`, this.jwtToken())
+      .map((response: Response) => localStorage.removeItem('currentUser'));
   }
 
   // utils methods

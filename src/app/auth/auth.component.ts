@@ -20,9 +20,6 @@ export class AuthComponent implements OnInit {
     private alertService: AlertService) { }
 
   ngOnInit() {
-    // reset login status
-    this.userService.signout();
-
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }

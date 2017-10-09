@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
@@ -14,11 +15,24 @@ export class AppLayoutComponent implements OnInit {
   public disabled = false;
   public status: {isopen: boolean} = {isopen: false};
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {
     this.user = userService.currentUser().user;
   }
 
   ngOnInit(): void {}
+
+  public signout(event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.userService.signout()
+      .subscribe(() => {
+        console.log('login status has been reset');        
+        this.router.navigate(['/auth']);
+      });
+  }
 
   public username(): string {
     const {firstname, lastname} = this.user;
