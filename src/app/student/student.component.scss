@@ -1,0 +1,43 @@
+.top-margin {
+  margin-top: 2rem;
+}
+
+.student-avatar {
+  width: 140px;
+  height: 140px;
+}
+
+.student-avatar-background {
+  width: 150px;
+  height: 150px
+}
+
+.student-name {
+  text-align: center;
+  padding: 1rem 0 0 0;
+}
+
+.current-grade {
+  color: gray;
+  text-align: center;
+  padding: 0.25rem 0 0 0;
+}
+
+.current-school-name {
+  color: gray;
+  text-align: center;
+  padding: 0.25rem 0 0 0;
+}
+
+.row-fluid{
+  white-space: nowrap;
+}
+.row-fluid .col-lg-4 {
+  display: inline-block;
+}
+
+.show-more {
+  text-align: center;
+  text-decoration: none;
+}
+
