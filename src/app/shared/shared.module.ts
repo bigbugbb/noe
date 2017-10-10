@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 /* our own custom components */
+import { DialogComponent } from './dialog/dialog.component';
 import { SectionComponent } from './section/section.component';
 
 @NgModule({
@@ -12,6 +13,7 @@ import { SectionComponent } from './section/section.component';
     FormsModule
   ],
   declarations: [
+    DialogComponent,
     SectionComponent
   ],
   exports: [
@@ -19,7 +21,10 @@ import { SectionComponent } from './section/section.component';
     CommonModule,
     FormsModule,
     /* our own custom components */
+    DialogComponent,
     SectionComponent
+  ],
+  providers: [
   ]
 })
 export class SharedModule {}

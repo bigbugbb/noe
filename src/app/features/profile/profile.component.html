@@ -1,9 +1,9 @@
 <div>
   <div class="top-margin"></div>
 
-  <div class="card" style="padding: 0 1rem 0 1rem">
+  <div class="card">
     <div class="card-block">
-      <app-section [showAdd]="false" (onEdit)="onEditBasicProfile()">
+      <app-section [showAdd]="false" (onEdit)="onEditIntro()">
         <div class="row">
           <div class="col">
             <img class="rounded-circle profile-avatar mx-auto d-block" src="https://www.sideshowtoy.com/photo_902622_thumb.jpg"/>
@@ -53,7 +53,11 @@
         </div>
       </app-section>
     </div>
+
+    <intro-dialog #introDialog></intro-dialog>
   </div>
+
+
 
 </div>
 

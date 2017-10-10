@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { IntroDialogComponent } from './dialogs';
 
 @Component({
   selector: 'app-profile',
@@ -8,12 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileComponent implements OnInit {
   private profile: any = {};
 
+  @ViewChild('introDialog')
+  private introDialog: IntroDialogComponent;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  public onEditBasicProfile() {
-    console.log("onEditBasicProfile");
+  public onEditIntro() {
+    console.log("onEditIntro");
+    this.introDialog.show();
   }
 }

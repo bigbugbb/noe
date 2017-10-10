@@ -7,17 +7,21 @@ import { AuthGuard } from './auth/auth.guard';
 // Services
 import { AlertService } from './alert/alert.service';
 import { UserService } from './user/user.service';
+import { ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
     HttpModule,
+    ModalModule.forRoot()
   ],
   declarations: [
   ],
   providers: [
     AuthGuard,
     AlertService,
-    UserService
+    UserService,
+    BsModalRef,
+    BsModalService
   ]
 })
 export class CoreModule {

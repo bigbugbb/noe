@@ -6,6 +6,7 @@ import { SharedModule } from '@app/shared';
 import { ProfileRoutingModule } from './profile.routing';
 
 import { ProfileComponent } from './profile.component';
+import { IntroDialogComponent } from './dialogs';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ProfileComponent } from './profile.component';
     ProfileRoutingModule
   ],
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    IntroDialogComponent
   ]
 })
 export class ProfileModule {}
