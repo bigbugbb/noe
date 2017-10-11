@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from '@app/models';
-import { UserService } from '@app/core';
+import { UserService, StorageService } from '@app/core';
 
 @Component({
   selector: 'app-layout',
@@ -11,16 +11,14 @@ import { UserService } from '@app/core';
 })
 export class AppLayoutComponent implements OnInit {
 
-  public user: User;
   public disabled = false;
   public status: {isopen: boolean} = {isopen: false};
 
   constructor(
     private userService: UserService,
+    private storageService: StorageService,
     private router: Router
-  ) {
-    this.user = userService.currentUser().user;
-  }
+  ) {}
 
   ngOnInit(): void {}
 
@@ -29,13 +27,14 @@ export class AppLayoutComponent implements OnInit {
     event.stopPropagation();
     this.userService.signout()
       .subscribe(() => {
-        console.log('login status has been reset');
         this.router.navigate(['/auth']);
       });
   }
 
   public username(): string {
-    const {firstname, lastname} = this.user;
+    let profile = this.storageService.getProfile();
+    let firstname = profile.firstname || 'New';
+    let lastname = profile.lastname || 'User'
     return `${firstname} ${lastname}`;
   }
 

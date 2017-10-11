@@ -2,6 +2,8 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 import { DialogComponent } from '@app/shared';
 
+import { ProfileService } from '@app/core';
+
 @Component({
   selector: 'intro-dialog',
   templateUrl: 'intro-dialog.component.html',
@@ -17,7 +19,9 @@ export class IntroDialogComponent implements OnInit {
 
   public loading = false;
 
-  constructor() {}
+  constructor(
+    private profileService: ProfileService
+  ) {}
 
   ngOnInit() {}
 

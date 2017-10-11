@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from '@app/core';
-import { AppLayoutComponent } from '@app/features-shared';
+import { AppLayoutComponent } from '@app/features/shared';
 
 export const routes: Routes = [
   {
