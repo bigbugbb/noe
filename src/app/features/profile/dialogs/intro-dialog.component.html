@@ -4,16 +4,98 @@
   </div>
   <div dialog-body>
     <form (ngSubmit)="onSubmit()" #introForm="ngForm">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name"
-                required
-                [(ngModel)]="model.name" name="name"
-                #name="ngModel">
-        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-          Name is required
+      <!-- firstname and lastname -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="firstname">Firstname</label>
+          <input type="text" class="form-control" id="firstname"
+                  required
+                  [(ngModel)]="model.firstname" name="firstname"
+                  #firstname="ngModel">
+          <div [hidden]="firstname.valid || firstname.pristine" class="alert alert-danger">
+            Firstname is required
+          </div>
+        </div>
+        <div class="col">
+          <label for="lastname">Lastname</label>
+          <input type="text" class="form-control" id="lastname"
+                  required
+                  [(ngModel)]="model.lastname" name="lastname"
+                  #lastname="ngModel">
+          <div [hidden]="lastname.valid || lastname.pristine" class="alert alert-danger">
+            Lastname is required
+          </div>
         </div>
       </div>
+
+      <!-- email and phone -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email"
+                  required
+                  [(ngModel)]="model.email" name="email"
+                  #email="ngModel">
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            Email is required
+          </div>
+        </div>
+        <div class="col">
+          <label for="phone">Phone</label>
+          <input type="text" class="form-control" id="phone"
+                  required
+                  [(ngModel)]="model.phone" name="phone"
+                  #phone="ngModel">
+          <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+            Phone is required
+          </div>
+        </div>
+      </div>
+
+      <!-- dob, gender and nationality -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="birthday">Birthday</label>
+          <input type="text" class="form-control" id="birthday"
+                  required
+                  bsDatepicker [bsConfig]="bsConfig"
+                  [(ngModel)]="model.birthday" name="birthday"
+                  #birthday="ngModel">
+          <div [hidden]="birthday.valid || birthday.pristine" class="alert alert-danger">
+            Birthday is required
+          </div>
+        </div>
+        <div class="col-3">
+          <label for="gender">Gender</label>
+          <select class="form-control" id="gender"
+                  required
+                  [(ngModel)]="model.gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="nationality">Nationality</label>
+          <select class="form-control" id="nationality"
+                  [(ngModel)]="model.nationality" name="nationality"
+                  #nationality="ngModel">
+            <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- introduction -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="introduction">Introduction</label>
+          <textarea id="introduction" class="form-control" rows="8"
+                  required
+                  [(ngModel)]="model.introduction" name="introduction"
+                  placeholder="Enter your self-introduction...">
+          </textarea>
+        </div>
+      </div>
+
     </form>
   </div>
   <div dialog-footer>

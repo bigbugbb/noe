@@ -5,10 +5,12 @@ export class Student {
     public userId: string,
     public firstname: string,
     public lastname: string,
+    public email: string,
+    public phone: string,
     public avatar: string,
-    public nationality: string,
-    public dob: Date,
+    public birthday: Date,
     public gender: string,
-    public phone: string
+    public nationality: string,
+    public introduction: string
   ) {}
 }

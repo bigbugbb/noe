@@ -38,9 +38,7 @@ export class AuthComponent implements OnInit {
       const data = _.pick(this.modelSignup, ['email', 'phone', 'firstname', 'lastname']);
       data['userId'] = user._id;
       return this.profileService.createProfile(this.modelSignup.role, data);
-    }).subscribe(profile => {
-      // set profile data so the top-right dropdown area can display correctly
-      this.storageService.setProfile(profile);
+    }).subscribe(() => {
       // set success message and pass true paramater to persist the message after redirecting to the login page
       this.alertService.success('Signup successful', true);
       this.router.navigate(['/']);
@@ -55,9 +53,7 @@ export class AuthComponent implements OnInit {
     const { email, password } = this.modelSignin;
     this.userService.signin(email, password).flatMap((user: User) => {
       return this.profileService.fetchProfile(user);
-    }).subscribe(profile => {
-      // set profile data so the top-right dropdown area can display correctly
-      this.storageService.setProfile(profile);
+    }).subscribe(() => {
       // redirect to the wanted page
       this.router.navigate([this.returnUrl]);
     }, error => {

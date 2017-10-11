@@ -21,9 +21,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     let user = this.storageService.getUser();
-    this.profileService.fetchProfile(user).subscribe(profile => {
-      this.storageService.setProfile(profile);
-    });
+    this.profileService.fetchProfile(user).subscribe();
   }
 
   public onEditIntro() {
