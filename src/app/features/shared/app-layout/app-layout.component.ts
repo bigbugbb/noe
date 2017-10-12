@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from '@app/models';
-import { UserService, StorageService } from '@app/core';
+import { UserService, ProfileService } from '@app/core';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-layout',
@@ -11,16 +12,20 @@ import { UserService, StorageService } from '@app/core';
 })
 export class AppLayoutComponent implements OnInit {
 
+  private profile;
+
   public disabled = false;
   public status: {isopen: boolean} = {isopen: false};
 
   constructor(
     private userService: UserService,
-    private storageService: StorageService,
+    private profileService: ProfileService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.profileService.getProfile().subscribe(profile => this.profile = profile);
+  }
 
   public signout(event): void {
     event.preventDefault();
@@ -32,9 +37,8 @@ export class AppLayoutComponent implements OnInit {
   }
 
   public username(): string {
-    let profile = this.storageService.getProfile();
-    let firstname = profile.firstname || 'New';
-    let lastname = profile.lastname || 'User'
+    let firstname = this.profile.firstname || 'New';
+    let lastname = this.profile.lastname || 'User'
     return `${firstname} ${lastname}`;
   }
 

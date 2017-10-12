@@ -3,32 +3,28 @@ import { Injectable } from '@angular/core';
 import { Student } from '@app/models';
 import { StudentService } from '@app/core/api/student/student.service';
 import { StorageService } from '@app/core/storage/storage.service';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class ProfileService {
-  private profile;
+  private subject: BehaviorSubject<object>;
 
   constructor(
     private studentService: StudentService,
     private storageService: StorageService
-  ) {}
+  ) {
+    this.subject = new BehaviorSubject(this.storageService.getProfile());
+  }
 
   public getProfile() {
-    if (this.profile) {
-      return this.profile;
-    } else {
-      this.profile = this.storageService.getProfile();
-      return this.profile;
-    }
+    return this.subject.asObservable();
   }
 
   public fetchProfile(user) {
     switch (user.role) {
       case 'student': {
         return this.studentService.getAll({ userId: user._id }).map(result => {
-          this.profile = result.students[0];
-          this.storageService.setProfile(this.profile);
-          return this.profile;
+          this.onProfileUpdated(result.students[0]);
         });
       }
       case 'school': {
@@ -46,9 +42,8 @@ export class ProfileService {
   public createProfile(role, payload) {
     if (role === 'student') {
       return this.studentService.create(payload as Student).map(profile => {
-        this.profile = profile;
-        this.storageService.setProfile(this.profile);
-        return this.profile;
+        this.onProfileUpdated(profile);
+        return profile;
       });
     } else if (role === 'school') {
 
@@ -62,9 +57,7 @@ export class ProfileService {
   public updateProfile(role, payload) {
     if (role === 'student') {
       return this.studentService.update(payload as Student).map(result => {
-        this.profile = result.student;
-        this.storageService.setProfile(this.profile);
-        return this.profile;
+        this.onProfileUpdated(result.student);
       });
     } else if (role === 'school') {
 
@@ -72,6 +65,13 @@ export class ProfileService {
 
     } else {
 
+    }
+  }
+
+  private onProfileUpdated(profile) {
+    if (profile) {
+      this.storageService.setProfile(profile);
+      this.subject.next(profile);
     }
   }
 }

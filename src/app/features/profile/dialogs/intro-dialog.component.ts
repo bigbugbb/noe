@@ -21,6 +21,7 @@ export class IntroDialogComponent implements OnInit {
 
   public bsConfig: Partial<BsDatepickerConfig>;
   public countries: Observable<object[]>;
+  public educationLevels: Observable<string[]>;
   public loading = false;
 
   public model;
@@ -32,9 +33,11 @@ export class IntroDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.model = this.profileService.getProfile();
     this.bsConfig = Object.assign({}, {containerClass: 'theme-blue'});
+    this.profileService.getProfile().subscribe(profile => this.model = profile);
     this.countries = this.http.get('@app/../assets/data/countries.json')
+      .map((res: Response) => res.json());
+    this.educationLevels = this.http.get('@app/../assets/data/education-levels.json')
       .map((res: Response) => res.json());
   }
 
@@ -44,8 +47,7 @@ export class IntroDialogComponent implements OnInit {
 
   public onSubmit() {
     const user = this.storageService.getUser();
-    this.profileService.updateProfile(user.role, this.model).subscribe((profile) => {
-      this.model = profile;
+    this.profileService.updateProfile(user.role, this.model).subscribe(() => {
       this.dialog.hide();
     });
   }

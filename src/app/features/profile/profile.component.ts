@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 
 import { IntroDialogComponent } from './dialogs';
 
@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
   @ViewChild('introDialog')
   private introDialog: IntroDialogComponent;
 
+  public profile;
+
   constructor(
     private profileService: ProfileService,
     private storageService: StorageService
@@ -22,9 +24,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     let user = this.storageService.getUser();
     this.profileService.fetchProfile(user).subscribe();
+    this.profileService.getProfile().subscribe(profile => this.profile = profile);
   }
 
   public onEditIntro() {
     this.introDialog.show();
   }
+
+  // TODO: Remove this when we're done
+  get diagnostic() { return JSON.stringify(this.profile); }
 }

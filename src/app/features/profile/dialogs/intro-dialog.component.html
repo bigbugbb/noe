@@ -29,6 +29,32 @@
         </div>
       </div>
 
+      <!-- current education and school  -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="education">Current education</label>
+          <select class="form-control" id="education"
+                  required
+                  [(ngModel)]="model.education" name="education"
+                  #education="ngModel">
+            <option *ngFor="let level of educationLevels | async" [value]="level">{{level}}</option>
+          </select>
+          <div [hidden]="education.valid || education.pristine" class="alert alert-danger">
+            Current education is required
+          </div>
+        </div>
+        <div class="col">
+          <label for="school">Current school</label>
+          <input type="text" class="form-control" id="school"
+                  required
+                  [(ngModel)]="model.school" name="school"
+                  #school="ngModel">
+          <div [hidden]="school.valid || school.pristine" class="alert alert-danger">
+            Current school is required
+          </div>
+        </div>
+      </div>
+
       <!-- email and phone -->
       <div class="form-group row">
         <div class="col">
@@ -66,7 +92,7 @@
             Birthday is required
           </div>
         </div>
-        <div class="col-3">
+        <div class="col">
           <label for="gender">Gender</label>
           <select class="form-control" id="gender"
                   required

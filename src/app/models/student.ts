@@ -5,6 +5,8 @@ export class Student {
     public userId: string,
     public firstname: string,
     public lastname: string,
+    public education: string,
+    public school: string,
     public email: string,
     public phone: string,
     public avatar: string,
