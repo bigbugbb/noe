@@ -3,6 +3,7 @@
     Edit intro
   </div>
   <div dialog-body>
+    {{ diagnostic }}
     <form (ngSubmit)="onSubmit()" #introForm="ngForm">
       <!-- firstname and lastname -->
       <div class="form-group row">
@@ -75,11 +76,11 @@
           </select>
         </div>
         <div class="col">
-          <label for="nationality">Nationality</label>
-          <select class="form-control" id="nationality"
-                  [(ngModel)]="model.nationality" name="nationality"
+          <label for="country">Country</label>
+          <select class="form-control" id="country"
+                  [(ngModel)]="model.country" name="country"
                   #nationality="ngModel">
-            <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+            <option *ngFor="let country of countries | async" [value]="country.name">{{country.name}}</option>
           </select>
         </div>
       </div>
@@ -99,6 +100,10 @@
     </form>
   </div>
   <div dialog-footer>
-    <button type="submit" class="btn btn-primary" [disabled]="!introForm.form.valid">Save</button>
+    <button type="submit" class="btn btn-primary"
+            [disabled]="!introForm.form.valid"
+            (click)="introForm.ngSubmit.emit()">
+      Save
+    </button>
   </div>
 </dialog>

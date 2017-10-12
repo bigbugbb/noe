@@ -10,7 +10,7 @@ export class Student {
     public avatar: string,
     public birthday: Date,
     public gender: string,
-    public nationality: string,
+    public country: string,
     public introduction: string
   ) {}
 }

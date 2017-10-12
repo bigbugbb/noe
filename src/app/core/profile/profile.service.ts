@@ -43,10 +43,26 @@ export class ProfileService {
     }
   }
 
-  public createProfile(role: string, data: object) {
+  public createProfile(role, payload) {
     if (role === 'student') {
-      return this.studentService.create(data as Student).map(profile => {
+      return this.studentService.create(payload as Student).map(profile => {
         this.profile = profile;
+        this.storageService.setProfile(this.profile);
+        return this.profile;
+      });
+    } else if (role === 'school') {
+
+    } else if (role === 'company') {
+
+    } else {
+
+    }
+  }
+
+  public updateProfile(role, payload) {
+    if (role === 'student') {
+      return this.studentService.update(payload as Student).map(result => {
+        this.profile = result.student;
         this.storageService.setProfile(this.profile);
         return this.profile;
       });

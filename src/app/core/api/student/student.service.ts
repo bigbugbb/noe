@@ -49,7 +49,7 @@ export class StudentService extends ApiBase {
   }
 
   public update(student: Student) {
-    return this.http.put(`${this.apiEndpoint}/students/${student._id}`, student, this.optionsWithJWT())
+    return this.http.patch(`${this.apiEndpoint}/students/${student._id}`, student, this.optionsWithJWT())
       .map(this.extractData)
       .catch(this.handleError);
   }

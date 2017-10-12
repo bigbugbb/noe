@@ -2,9 +2,9 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { DialogComponent } from '@app/shared';
-import { ProfileService } from '@app/core';
-
+import { ProfileService, StorageService } from '@app/core';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'intro-dialog',
@@ -20,33 +20,36 @@ export class IntroDialogComponent implements OnInit {
   public editAdd = true;
 
   public bsConfig: Partial<BsDatepickerConfig>;
-  public countries = [];
+  public countries: Observable<object[]>;
   public loading = false;
 
   public model;
 
   constructor(
     private http: Http,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit() {
     this.model = this.profileService.getProfile();
     this.bsConfig = Object.assign({}, {containerClass: 'theme-blue'});
-    this.http.get('@app/../assets/data/countries.json').subscribe((res: Response) => {
-      this.countries = res.json()
-    });
+    this.countries = this.http.get('@app/../assets/data/countries.json')
+      .map((res: Response) => res.json());
   }
 
   public show() {
     this.dialog.show();
   }
 
-  public delete() {
-    this.dialog.hide();
+  public onSubmit() {
+    const user = this.storageService.getUser();
+    this.profileService.updateProfile(user.role, this.model).subscribe((profile) => {
+      this.model = profile;
+      this.dialog.hide();
+    });
   }
 
-  public save() {
-    this.dialog.hide();
-  }
+  // TODO: Remove this when we're done
+  get diagnostic() { return JSON.stringify(this.model); }
 }
