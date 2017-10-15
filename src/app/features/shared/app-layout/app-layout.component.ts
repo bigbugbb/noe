@@ -11,9 +11,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./app-layout.component.scss']
 })
 export class AppLayoutComponent implements OnInit {
-
-  private profile;
-
+  public profile;
   public disabled = false;
   public status: {isopen: boolean} = {isopen: false};
 
@@ -36,7 +34,7 @@ export class AppLayoutComponent implements OnInit {
       });
   }
 
-  public username(): string {
+  get username(): string {
     let firstname = this.profile.firstname || 'New';
     let lastname = this.profile.lastname || 'User'
     return `${firstname} ${lastname}`;
