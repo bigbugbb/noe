@@ -3,14 +3,14 @@ export class Student {
 
   constructor(
     public userId: string,
+    public avatar: string,
     public firstname: string,
     public lastname: string,
     public education: string,
     public school: string,
     public email: string,
     public phone: string,
-    public avatar: string,
-    public birthday: Date,
+    public birthday: string,
     public gender: string,
     public country: string,
     public introduction: string

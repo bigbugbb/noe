@@ -3,8 +3,17 @@
     Edit intro
   </div>
   <div dialog-body>
-    {{ diagnostic }}
     <form (ngSubmit)="onSubmit()" #introForm="ngForm">
+      <div class="row">
+        <div class="col">
+          <input #avatarInput id="avatar-input" type="file" accept="image/*" (change)="avatarFileSelected($event)">
+          <img-cropper #cropper id="img-cropper" [image]="data" [settings]="cropperSettings"></img-cropper><br>
+          <a class="pointer" (click)="selectImage()">
+            <img #avatar class="rounded-circle profile-avatar mx-auto d-block" [src]="imageData" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+          </a>
+        </div>
+      </div>
+
       <!-- firstname and lastname -->
       <div class="form-group row">
         <div class="col">

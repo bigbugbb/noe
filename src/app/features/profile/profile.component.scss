@@ -40,6 +40,19 @@
   display: inline-block;
 }
 
+.borderless td, .borderless th {
+  border: none;
+}
+
+.intro-property {
+  min-width: 100px;
+}
+
+.intro-property-title {
+  font-weight: bold;
+  padding-right: 1rem;
+}
+
 .show-more {
   text-align: center;
   text-decoration: none;

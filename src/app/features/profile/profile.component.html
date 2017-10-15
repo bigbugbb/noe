@@ -8,39 +8,66 @@
       <app-section [showAdd]="false" (onEdit)="onEditIntro()">
         <div class="row">
           <div class="col">
-            <img class="rounded-circle profile-avatar mx-auto d-block" src="https://www.sideshowtoy.com/photo_902622_thumb.jpg"/>
+            <img class="rounded-circle profile-avatar mx-auto d-block" [src]="profile.avatar"/>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <h4 class="profile-name">Bin Bo</h4>
+            <h4 class="profile-name">{{ profile.firstname }} {{ profile.lastname }}</h4>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <h6 class="current-grade">Graduate Student</h6>
+            <h6 class="current-grade">{{ profile.education }} student</h6>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <h6 class="current-school-name">Northeastern University</h6>
+            <h6 class="current-school-name">{{ profile.school }}</h6>
           </div>
+        </div>
+
+        <hr class="mt-3">
+
+        <div class="table-responsive">
+          <table class="table borderless">
+            <tbody>
+              <tr>
+                <td class="intro-property">
+                  <span class="intro-property-title">Email:</span>{{ profile.email }}
+                </td>
+                <td class="intro-property">
+                  <span class="intro-property-title">Phone:</span>{{ profile.phone }}
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="intro-property">
+                  <span class="intro-property-title">Birthday:</span>{{ profile.birthday | date:'shortDate' }}
+                </td>
+                <td><span class="intro-property-title">Gender:</span>{{ profile.gender }}</td>
+                <td class="intro-property">
+                  <span class="intro-property-title">Country:</span>{{ profile.country }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <hr class="mt-3">
 
         <div class="row">
           <div class="col">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ad, numquam, magnam nihil, necessitatibus minima fuga ab veniam harum animi doloribus sapiente recusandae illo eveniet in voluptatibus voluptate voluptatum deseruntLorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ad, numquam, magnam nihil, necessitatibus minima fuga ab veniam harum animi doloribus sapiente recusandae illo eveniet in voluptatibus voluptate voluptatum deserunt?</p>
+            <p>{{ profile.introduction }}</p>
           </div>
         </div>
 
-        <p>
+        <!-- <p>
           <a class="show-more" data-toggle="collapse" href="#collapseMedia" aria-expanded="false" aria-controls="collapseMedia">
             <h6>Show more <i class="fa fa-chevron-down" aria-hidden="true"></i></h6>
           </a>
-        </p>
-        <div class="collapse" id="collapseMedia">
+        </p> -->
+        <!-- <div class="collapse" id="collapseMedia">
           <div style="overflow: auto">
             <div class="row-fluid">
                 <div class="col-lg-4">media</div>
@@ -52,7 +79,7 @@
                 <div class="col-lg-4">media</div>
             </div>
           </div>
-        </div>
+        </div> -->
       </app-section>
     </div>
 

@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile.component';
 import { IntroDialogComponent } from './dialogs';
 
 import { ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { ImageCropperComponent } from 'ng2-img-cropper';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
   ],
   declarations: [
     ProfileComponent,
-    IntroDialogComponent
+    IntroDialogComponent,
+    ImageCropperComponent
   ]
 })
 export class ProfileModule {}
