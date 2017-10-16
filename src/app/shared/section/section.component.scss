@@ -1,11 +1,19 @@
+.section-header {
+  font-size: 1.35em;
+  margin: 0 0.85rem;
+  font-weight: 600;
+  align-self: center;
+}
+
 .btn-add-edit {
   color: gray;
   font-size: 1.75em;
   margin: 0 0.85rem;
   text-decoration: none;
+  align-self: center;
 }
 
 .btn-add-edit:hover {
   color: rgb(1, 189, 247);
-  transition: 0.5s;
+  transition: 0.75s;
 }

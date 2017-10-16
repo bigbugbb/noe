@@ -41,15 +41,15 @@
       <!-- current education and school  -->
       <div class="form-group row">
         <div class="col">
-          <label for="education">Current education</label>
-          <select class="form-control" id="education"
+          <label for="grade">Current grade</label>
+          <select class="form-control" id="grade"
                   required
-                  [(ngModel)]="model.education" name="education"
-                  #education="ngModel">
-            <option *ngFor="let level of educationLevels | async" [value]="level">{{level}}</option>
+                  [(ngModel)]="model.grade" name="grade"
+                  #grade="ngModel">
+            <option *ngFor="let grade of grades | async" [value]="grade">{{grade}}</option>
           </select>
-          <div [hidden]="education.valid || education.pristine" class="alert alert-danger">
-            Current education is required
+          <div [hidden]="grade.valid || grade.pristine" class="alert alert-danger">
+            Current grade is required
           </div>
         </div>
         <div class="col">
@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <!-- email and phone -->
+      <!-- email, phone, applying -->
       <div class="form-group row">
         <div class="col">
           <label for="email">Email</label>
@@ -86,9 +86,21 @@
             Phone is required
           </div>
         </div>
+        <div class="col">
+          <label for="applying">Applying</label>
+          <select class="form-control" id="applying"
+                  required
+                  [(ngModel)]="model.applying" name="applying"
+                  #applying="ngModel">
+            <option *ngFor="let grade of grades | async" [value]="grade">{{grade}}</option>
+          </select>
+          <div [hidden]="applying.valid || applying.pristine" class="alert alert-danger">
+            Applying grade is required
+          </div>
+        </div>
       </div>
 
-      <!-- dob, gender and nationality -->
+      <!-- dob, gender and country -->
       <div class="form-group row">
         <div class="col">
           <label for="birthday">Birthday</label>
@@ -114,9 +126,22 @@
           <label for="country">Country</label>
           <select class="form-control" id="country"
                   [(ngModel)]="model.country" name="country"
-                  #nationality="ngModel">
+                  #country="ngModel">
             <option *ngFor="let country of countries | async" [value]="country.name">{{country.name}}</option>
           </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-4">
+          <label for="budget">Annual budget</label>
+          <input type="number" class="form-control" id="budget"
+                  required
+                  [(ngModel)]="model.budget" name="budget"
+                  #budget="ngModel">
+          <div [hidden]="budget.valid || budget.pristine" class="alert alert-danger">
+            Annual budget is required
+          </div>
         </div>
       </div>
 

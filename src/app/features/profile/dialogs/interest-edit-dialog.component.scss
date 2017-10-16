@@ -1,0 +1,29 @@
+.dialog {
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.remove-btn {
+  color: rgb(168, 167, 167);
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.remove-btn:hover {
+  color: gray;
+  transition: 0.75s;
+}
+
+.profile-interest {
+  margin: 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  font-weight: 500;
+  border-radius: 0.4rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+  box-shadow: 1px 1px 1px gray;
+}
+

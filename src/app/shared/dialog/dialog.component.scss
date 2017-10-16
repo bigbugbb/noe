@@ -6,7 +6,10 @@
 }
 
 .modal-dialog {
-  overflow-y: initial !important
+  overflow-y: initial !important;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
 .modal-body{
   max-height: 650px;

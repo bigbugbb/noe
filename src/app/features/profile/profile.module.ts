@@ -5,10 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@app/shared';
 import { ProfileRoutingModule } from './profile.routing';
-
 import { ProfileComponent } from './profile.component';
-import { IntroDialogComponent } from './dialogs';
-
+import * as Dialogs from './dialogs';
 import { ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ImageCropperComponent } from 'ng2-img-cropper';
 
@@ -24,7 +22,12 @@ import { ImageCropperComponent } from 'ng2-img-cropper';
   ],
   declarations: [
     ProfileComponent,
-    IntroDialogComponent,
+    Dialogs.IntroDialogComponent,
+    Dialogs.SchoolPreferredDialogComponent,
+    Dialogs.SkillAddDialogComponent,
+    Dialogs.SkillEditDialogComponent,
+    Dialogs.InterestAddDialogComponent,
+    Dialogs.InterestEditDialogComponent,
     ImageCropperComponent
   ]
 })

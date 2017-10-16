@@ -1,0 +1,26 @@
+<dialog class="dialog" #dialog [staticModal]="staticModal" [large]="false">
+  <div dialog-title>
+    Add interest
+  </div>
+  <div dialog-body>
+    <div class="row">
+      <!-- Add new interest -->
+      <div class="col">
+        <span class="title">New interest</span>
+        <input class="new-input" type="text" [(ngModel)]="newInterest">
+        <a class="new-btn" href (click)="addNewInterest($event)">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <br>
+    <!-- Current interests -->
+    <div class="row">
+      <div class="col-auto profile-interest" *ngFor="let interest of interests">{{ interest }}</div>
+      <div class="col-auto" *ngIf="interests.length === 0">No interests data available.</div>
+    </div>
+  </div>
+  <div dialog-footer>
+    <button class="btn btn-primary" [disabled]="!added" (click)="onSave()">Save</button>
+  </div>
+</dialog>

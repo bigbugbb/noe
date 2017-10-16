@@ -1,12 +1,11 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { DatePipe } from '@angular/common'
 import { Http, Response } from '@angular/http';
 
-import { DialogComponent } from '@app/shared';
 import { ProfileService, StorageService } from '@app/core';
+import { DialogComponent } from '@app/shared';
+import { Observable } from 'rxjs/Observable';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
-import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 @Component({
@@ -25,18 +24,13 @@ export class IntroDialogComponent implements OnInit {
   @ViewChild('avatarInput')
   public avatarInput: ElementRef;
 
-  @Input()
-  public editAdd = true;
-
-  public bsConfig: Partial<BsDatepickerConfig>;
+  public grades: Observable<string[]>;
   public countries: Observable<object[]>;
-  public educationLevels: Observable<string[]>;
-  public loading = false;
+  public bsConfig: Partial<BsDatepickerConfig>;
+  public model: any;
 
-  public model;
-
-  data: any;
-  cropperSettings: CropperSettings;
+  public data: any;
+  public cropperSettings: CropperSettings;
 
   constructor(
     private http: Http,
@@ -58,9 +52,13 @@ export class IntroDialogComponent implements OnInit {
 
   ngOnInit() {
     this.bsConfig = Object.assign({}, {containerClass: 'theme-blue'});
+
+    // get profile and make a deep copy of it
     this.profileService.getProfile().subscribe(profile => this.model = JSON.parse(JSON.stringify(profile)));
+
+    // load static resources for input tag
+    this.grades = this.http.get('@app/../assets/data/grades.json').map((res: Response) => res.json());
     this.countries = this.http.get('@app/../assets/data/countries.json').map((res: Response) => res.json());
-    this.educationLevels = this.http.get('@app/../assets/data/education-levels.json').map((res: Response) => res.json());
   }
 
   get imageData() {

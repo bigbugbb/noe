@@ -1,0 +1,27 @@
+<dialog class="dialog" #dialog [staticModal]="staticModal" [large]="false">
+  <div dialog-title>
+    Add skill
+  </div>
+  <div dialog-body>
+    <div class="row">
+      <!-- Add new skill -->
+      <div class="col">
+        <span class="title">New skill</span>
+        <input class="new-input" type="text" [(ngModel)]="newSkill">
+        <!-- <button class="btn btn-primary new-skill-btn pull-right" (click)="addNewSkill()">Add</button> -->
+        <a class="new-btn" href (click)="addNewSkill($event)">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <br>
+    <!-- Current skills -->
+    <div class="row">
+      <div class="col-auto profile-skill" *ngFor="let skill of skills">{{ skill }}</div>
+      <div class="col-auto" *ngIf="skills.length === 0">No skills data available.</div>
+    </div>
+  </div>
+  <div dialog-footer>
+    <button class="btn btn-primary" [disabled]="!added" (click)="onSave()">Save</button>
+  </div>
+</dialog>

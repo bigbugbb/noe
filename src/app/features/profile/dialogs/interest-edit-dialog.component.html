@@ -1,0 +1,19 @@
+<dialog class="dialog" #dialog [staticModal]="staticModal" [large]="false">
+  <div dialog-title>
+    Edit interest
+  </div>
+  <div dialog-body>
+    <div class="row">
+      <div class="col-auto profile-interest" *ngFor="let interest of interests">
+        {{ interest }}
+        <a class="remove-btn" href (click)="removeInterest($event, interest)">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </a>
+      </div>
+      <div class="col-auto" *ngIf="interests.length === 0">No interests data available.</div>
+    </div>
+  </div>
+  <div dialog-footer>
+    <button class="btn btn-primary" [disabled]="!edited" (click)="onSave()">Save</button>
+  </div>
+</dialog>

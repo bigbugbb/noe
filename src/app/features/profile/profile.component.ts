@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 
-import { IntroDialogComponent } from './dialogs';
-
 import { ProfileService, StorageService } from '@app/core';
+import * as Dialogs from './dialogs';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +12,22 @@ import { ProfileService, StorageService } from '@app/core';
 export class ProfileComponent implements OnInit {
 
   @ViewChild('introDialog')
-  private introDialog: IntroDialogComponent;
+  private introDialog: Dialogs.IntroDialogComponent;
+
+  @ViewChild('schoolPreferredDialog')
+  private schoolPreferredDialog: Dialogs.SchoolPreferredDialogComponent;
+
+  @ViewChild('skillAddDialog')
+  private skillAddDialog: Dialogs.SkillAddDialogComponent;
+
+  @ViewChild('skillEditDialog')
+  private skillEditDialog: Dialogs.SkillEditDialogComponent;
+
+  @ViewChild('interestAddDialog')
+  private interestAddDialog: Dialogs.InterestAddDialogComponent;
+
+  @ViewChild('interestEditDialog')
+  private interestEditDialog: Dialogs.InterestEditDialogComponent;
 
   public profile;
 
@@ -27,8 +42,36 @@ export class ProfileComponent implements OnInit {
     this.profileService.getProfile().subscribe(profile => this.profile = profile);
   }
 
+  get hasSkills() {
+    return !_.isEmpty(this.profile.skills);
+  }
+
+  get hasInterests() {
+    return !_.isEmpty(this.profile.interests);
+  }
+
   public onEditIntro() {
     this.introDialog.show();
+  }
+
+  public onEditSchoolPreferred() {
+    this.schoolPreferredDialog.show();
+  }
+
+  public onAddNewSkill() {
+    this.skillAddDialog.show();
+  }
+
+  public onEditSkills() {
+    this.skillEditDialog.show();
+  }
+
+  public onAddNewInterest() {
+    this.interestAddDialog.show();
+  }
+
+  public onEditInterests() {
+    this.interestEditDialog.show();
   }
 
   // TODO: Remove this when we're done

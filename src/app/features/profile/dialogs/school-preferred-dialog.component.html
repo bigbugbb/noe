@@ -1,0 +1,71 @@
+<dialog class="dialog" #dialog [staticModal]="staticModal">
+  <div dialog-title>
+    Edit school preferred
+  </div>
+  <div dialog-body>
+    <form (ngSubmit)="onSubmit()" #schoolPreferredForm="ngForm">
+      <!-- preferred location and type -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="preferredSchoolLocation">Location</label>
+          <select class="form-control" id="preferredSchoolLocation"
+                  required
+                  [(ngModel)]="model.preferredSchoolLocation" name="preferredSchoolLocation"
+                  #preferredSchoolLocation="ngModel">
+            <option *ngFor="let state of states | async" [value]="state.name">{{state.name}}</option>
+          </select>
+          <div [hidden]="preferredSchoolLocation.valid || preferredSchoolLocation.pristine" class="alert alert-danger">
+            Preferred school location is required
+          </div>
+        </div>
+        <div class="col">
+          <label for="preferredSchoolType">Type</label>
+          <select class="form-control" id="preferredSchoolType"
+                required
+                [(ngModel)]="model.preferredSchoolType" name="preferredSchoolType"
+                #preferredSchoolType="ngModel">
+          <option *ngFor="let type of types | async" [value]="type">{{type}}</option>
+        </select>
+          <div [hidden]="preferredSchoolType.valid || preferredSchoolType.pristine" class="alert alert-danger">
+              Preferred school type is required
+          </div>
+        </div>
+      </div>
+
+      <!-- preferred religion and accommodation  -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="preferredReligion">Religion</label>
+          <select class="form-control" id="preferredReligion"
+                  required
+                  [(ngModel)]="model.preferredReligion" name="preferredReligion"
+                  #preferredReligion="ngModel">
+            <option *ngFor="let religion of religions | async" [value]="religion">{{religion}}</option>
+          </select>
+          <div [hidden]="preferredReligion.valid || preferredReligion.pristine" class="alert alert-danger">
+            Preferred religion is required
+          </div>
+        </div>
+        <div class="col">
+          <label for="preferredAccommodation">Accommodation</label>
+          <select class="form-control" id="preferredAccommodation"
+                  required
+                  [(ngModel)]="model.preferredAccommodation" name="preferredAccommodation"
+                  #preferredAccommodation="ngModel">
+            <option *ngFor="let accommodation of accommodations | async" [value]="accommodation">{{accommodation}}</option>
+          </select>
+          <div [hidden]="preferredAccommodation.valid || preferredAccommodation.pristine" class="alert alert-danger">
+            Preferred accommodation is required
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div dialog-footer>
+    <button type="submit" class="btn btn-primary"
+            [disabled]="!schoolPreferredForm.form.valid"
+            (click)="schoolPreferredForm.ngSubmit.emit()">
+      Save
+    </button>
+  </div>
+</dialog>

@@ -1,0 +1,41 @@
+.dialog {
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.title {
+  font-weight: 600;
+  padding-right: 1rem;
+  vertical-align: middle;
+}
+
+.new-input {
+  min-width: 13rem;
+  vertical-align: middle;
+}
+
+.new-btn {
+  color: gray;
+  font-size: 1.25em;
+  margin-left: 0.75rem;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.new-btn:hover {
+  color: rgb(1, 189, 247);
+  transition: 0.75s;
+}
+
+.profile-interest {
+  margin: 0.5rem;
+  padding: 0.25rem 1rem 0.25rem 1rem;
+  font-weight: 500;
+  border-radius: 0.4rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+  box-shadow: 1px 1px 1px gray;
+}

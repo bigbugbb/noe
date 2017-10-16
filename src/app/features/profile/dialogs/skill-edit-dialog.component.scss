@@ -1,0 +1,27 @@
+.dialog {
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.remove-btn {
+  color: rgb(168, 167, 167);
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.remove-btn:hover {
+  color: gray;
+  transition: 0.75s;
+}
+
+.profile-skill {
+  margin: 0.5rem;
+  padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+  font-weight: 500;
+  border-radius: 0.4rem;
+  background-color: lightgray;
+  box-shadow: 1px 1px 1px gray;
+}
+

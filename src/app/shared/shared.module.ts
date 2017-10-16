@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-/* our own custom components */
+/* our own custom components and pipes */
 import { DialogComponent } from './dialog/dialog.component';
 import { SectionComponent } from './section/section.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { SectionComponent } from './section/section.component';
   ],
   declarations: [
     DialogComponent,
-    SectionComponent
+    SectionComponent,
+    CapitalizePipe
   ],
   exports: [
     /* angular stuff */
@@ -22,7 +24,8 @@ import { SectionComponent } from './section/section.component';
     FormsModule,
     /* our own custom components */
     DialogComponent,
-    SectionComponent
+    SectionComponent,
+    CapitalizePipe
   ],
   providers: [
   ]
