@@ -74,6 +74,14 @@ export class ProfileComponent implements OnInit {
     this.interestEditDialog.show();
   }
 
+  public onAddTravalDoc() {
+    console.log('onAddTravalDoc');
+  }
+
+  public onEditTravalDoc() {
+    console.log('onEditTravalDoc');
+  }
+
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.profile); }
 }

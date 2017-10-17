@@ -58,6 +58,9 @@
                 <td class="profile-property">
                   <span class="property-title">Annual budget:</span>${{ profile.budget }}
                 </td>
+                <td class="profile-property">
+                  <span class="property-title">GPA:</span>{{ profile.gpa }}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -97,7 +100,7 @@
 
   <div class="card">
     <div class="card-block">
-      <app-section [header]="'School preferred'" [showAdd]="false" (onEdit)="onEditSchoolPreferred()">
+      <app-section [header]="'School Preferred'" [showAdd]="false" (onEdit)="onEditSchoolPreferred()">
         <hr class="mt-3">
 
         <div class="table-responsive">
@@ -157,6 +160,22 @@
 
       <interest-add-dialog #interestAddDialog></interest-add-dialog>
       <interest-edit-dialog #interestEditDialog></interest-edit-dialog>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-block">
+      <app-section [header]="'International Traval Documents'" [showAdd]="true" (onAdd)="onAddTravalDoc()" (onEdit)="onEditTravalDoc()">
+        <hr class="mt-3">
+
+        <div class="row">
+          <div class="col-auto profile-traval-doc" *ngFor="let travalDoc of profile.interests">{{ interest }}</div>
+          <div class="col-auto" *ngIf="!hasInterests">No available traval documents.</div>
+        </div>
+      </app-section>
+
+      <!-- <interest-add-dialog #interestAddDialog></interest-add-dialog>
+      <interest-edit-dialog #interestEditDialog></interest-edit-dialog> -->
     </div>
   </div>
 

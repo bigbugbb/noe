@@ -143,6 +143,16 @@
             Annual budget is required
           </div>
         </div>
+        <div class="col-4">
+          <label for="gpa">GPA</label>
+          <input type="number" class="form-control" id="gpa"
+                  required
+                  [(ngModel)]="model.gpa" name="gpa"
+                  #gpa="ngModel">
+          <div [hidden]="gpa.valid || gpa.pristine" class="alert alert-danger">
+            GPA is required
+          </div>
+        </div>
       </div>
 
       <!-- introduction -->
