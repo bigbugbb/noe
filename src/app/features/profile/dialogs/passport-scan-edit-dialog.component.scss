@@ -1,0 +1,30 @@
+.dialog {
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+
+#passport-scan-input {
+  display: none;
+}
+
+.remove-btn {
+  color: rgb(168, 167, 167);
+  font-size: 1.1rem;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.remove-btn:hover {
+  color: gray;
+  transition: 0.75s;
+}
+
+.passport-scan {
+  width: inherit;
+  height: 160px;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+

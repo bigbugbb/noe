@@ -17,9 +17,9 @@ export class SkillAddDialogComponent implements OnInit {
   private dialog: DialogComponent;
 
   public added: Boolean = false;
-  public newSkill: String = "";
+  public newSkill: string = "";
   public model: any;
-  public skills: String[];
+  public skills: Array<string>;
 
   constructor(
     private http: Http,
@@ -45,7 +45,7 @@ export class SkillAddDialogComponent implements OnInit {
       this.skills.push(this.newSkill);
       this.skills = _.uniq(this.skills);
       this.newSkill = "";
-      this.added = oldSize < this.skills.length;
+      this.added = this.added || oldSize < this.skills.length;
     }
   }
 

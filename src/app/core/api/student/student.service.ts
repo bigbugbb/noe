@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 @Injectable()
 export class StudentService extends ApiBase {
 
-  private apiEndpoint: String = environment.apiEndpoint;
+  private apiEndpoint: string = environment.apiEndpoint;
 
   constructor(
     private http: Http,

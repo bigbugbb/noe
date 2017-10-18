@@ -1,0 +1,25 @@
+<dialog class="dialog" #dialog [staticModal]="staticModal" [large]="false">
+  <div dialog-title>
+    Edit passport scans
+  </div>
+  <div dialog-body>
+    <div class="row">
+      <div class="col-auto">
+        <button class="btn btn-primary" (click)="addPassportScans()">Add passport scan</button>
+        <input #passportScanInput id="passport-scan-input" type="file" accept="image/*" (change)="passportScansSelected($event)">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto" *ngFor="let passportScan of passportScans">
+        <img [src]="fileUrlFrom(passportScan)" class="passport-scan rounded" alt="Passport Scan">
+        <a class="btn btn-danger" href (click)="removePassportScan($event, passportScan)">
+          Remove
+        </a>
+      </div>
+      <div class="col-auto" *ngIf="passportScans.length === 0">No passport scan available.</div>
+    </div>
+  </div>
+  <div dialog-footer>
+    <button class="btn btn-primary" (click)="onClose()">Close</button>
+  </div>
+</dialog>

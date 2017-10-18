@@ -17,9 +17,9 @@ export class InterestAddDialogComponent implements OnInit {
   private dialog: DialogComponent;
 
   public added: Boolean = false;
-  public newInterest: String = "";
+  public newInterest: string = "";
   public model: any;
-  public interests: String[];
+  public interests: Array<string>;
 
   constructor(
     private http: Http,

@@ -4,7 +4,6 @@ import { Http, Response } from '@angular/http';
 import { ProfileService, StorageService } from '@app/core';
 import { DialogComponent } from '@app/shared';
 import { Observable } from 'rxjs/Observable';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'skill-edit-dialog',
@@ -18,7 +17,7 @@ export class SkillEditDialogComponent implements OnInit {
 
   public edited: Boolean = false;
   public model: any;
-  public skills: String[];
+  public skills: Array<string>;
 
   constructor(
     private http: Http,

@@ -5,5 +5,8 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://localhost:3000/api/v1'
+  apiEndpoint: 'http://localhost:3000/api/v1',
+  noeFilesUpload: 'noe-files-upload',
+  bucketRegion: 'us-east-1',
+  identityPoolId: 'us-east-1:e823abf1-6888-4ec2-9d2e-b150c28921a4'
 };

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 
-import { ProfileService, StorageService } from '@app/core';
+import { ProfileService, StorageService, ApplicationChecklistService } from '@app/core';
+import { environment } from '@env/environment';
 import * as Dialogs from './dialogs';
 import * as _ from 'lodash';
 
@@ -29,17 +30,27 @@ export class ProfileComponent implements OnInit {
   @ViewChild('interestEditDialog')
   private interestEditDialog: Dialogs.InterestEditDialogComponent;
 
+  @ViewChild('passportScanEditDialog')
+  private passportScanEditDialog: Dialogs.PassportScanEditDialogComponent;
+
   public profile;
+  public passportScans;
+
+  private fileBaseUrl: string;
 
   constructor(
     private profileService: ProfileService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private applicationChecklistService: ApplicationChecklistService
   ) { }
 
   ngOnInit() {
     let user = this.storageService.getUser();
+    this.fileBaseUrl = `https://s3.amazonaws.com/${environment.noeFilesUpload}`;
     this.profileService.fetchProfile(user).subscribe();
     this.profileService.getProfile().subscribe(profile => this.profile = profile);
+    this.applicationChecklistService.fetchPassportScans().subscribe();
+    this.applicationChecklistService.getPassportScans().subscribe(passportScans => this.passportScans = passportScans);
   }
 
   get hasSkills() {
@@ -48,6 +59,14 @@ export class ProfileComponent implements OnInit {
 
   get hasInterests() {
     return !_.isEmpty(this.profile.interests);
+  }
+
+  get hasPassportScans() {
+    return !_.isEmpty(this.passportScans);
+  }
+
+  public fileUrlFrom(object) {
+    return this.fileBaseUrl + '/' + object.Key;
   }
 
   public onEditIntro() {
@@ -74,12 +93,8 @@ export class ProfileComponent implements OnInit {
     this.interestEditDialog.show();
   }
 
-  public onAddTravalDoc() {
-    console.log('onAddTravalDoc');
-  }
-
-  public onEditTravalDoc() {
-    console.log('onEditTravalDoc');
+  public onEditPassportScans() {
+    this.passportScanEditDialog.show();
   }
 
   // TODO: Remove this when we're done

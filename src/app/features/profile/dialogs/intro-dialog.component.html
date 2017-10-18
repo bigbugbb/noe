@@ -9,7 +9,7 @@
           <input #avatarInput id="avatar-input" type="file" accept="image/*" (change)="avatarFileSelected($event)">
           <img-cropper #cropper id="img-cropper" [image]="data" [settings]="cropperSettings"></img-cropper><br>
           <a class="pointer" (click)="selectImage()">
-            <img #avatar class="rounded-circle profile-avatar mx-auto d-block" [src]="imageData" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+            <img #avatar class="rounded-circle profile-avatar img-thumbnail mx-auto d-block" [src]="imageData" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
           </a>
         </div>
       </div>

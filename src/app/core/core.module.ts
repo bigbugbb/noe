@@ -1,16 +1,17 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
-// Guards
 import { AuthGuard } from './auth/auth.guard';
-
-// Services
 import { AlertService } from './alert/alert.service';
 import { UserService } from './api/user/user.service';
 import { StudentService } from './api/student/student.service';
 import { ProfileService } from './profile/profile.service';
 import { StorageService } from './storage/storage.service';
+import { S3Service } from './s3/s3.service';
+import { ApplicationChecklistService } from './s3/application-checklist.service';
 import { ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { environment } from '@env/environment';
+import * as AWS from 'aws-sdk';
 
 @NgModule({
   imports: [
@@ -26,6 +27,8 @@ import { ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
     ProfileService,
     StudentService,
     StorageService,
+    S3Service,
+    ApplicationChecklistService,
     BsModalRef,
     BsModalService
   ]
@@ -35,6 +38,8 @@ export class CoreModule {
   constructor (
     @Optional() @SkipSelf() parentModule: CoreModule
   ) {
+
+
     if (parentModule) {
       throw new Error('CoreModule is already loaded. Import only in AppModule');
     }

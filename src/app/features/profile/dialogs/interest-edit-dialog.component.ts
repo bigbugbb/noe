@@ -17,7 +17,7 @@ export class InterestEditDialogComponent implements OnInit {
 
   public edited: Boolean = false;
   public model: any;
-  public interests: String[];
+  public interests: Array<string>;
 
   constructor(
     private http: Http,

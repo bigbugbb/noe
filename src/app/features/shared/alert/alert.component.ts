@@ -9,7 +9,7 @@ import { AlertService } from '@app/core';
   templateUrl: 'alert.component.html'
 })
 export class AlertComponent implements OnDestroy {
-  public message: String;
+  public message: string;
   private subscription: Subscription;
 
   constructor(private alertService: AlertService) {

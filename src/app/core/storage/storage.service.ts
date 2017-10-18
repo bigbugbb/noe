@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { User } from '@app/models';
+
 @Injectable()
 export class StorageService {
 
@@ -13,12 +15,12 @@ export class StorageService {
     return JSON.parse(localStorage.getItem('user_and_token'));
   }
 
-  public getUser() {
+  public getUser(): User {
     let userAndToken = JSON.parse(localStorage.getItem('user_and_token'));
     return userAndToken ? userAndToken.user : null;
   }
 
-  public getToken() {
+  public getToken(): string {
     let userAndToken = JSON.parse(localStorage.getItem('user_and_token'));
     return userAndToken ? userAndToken.token : null;
   }

@@ -28,6 +28,7 @@ import { ImageCropperComponent } from 'ng2-img-cropper';
     Dialogs.SkillEditDialogComponent,
     Dialogs.InterestAddDialogComponent,
     Dialogs.InterestEditDialogComponent,
+    Dialogs.PassportScanEditDialogComponent,
     ImageCropperComponent
   ]
 })

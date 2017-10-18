@@ -11,7 +11,7 @@ import { ApiBase } from '../api-base';
 @Injectable()
 export class UserService extends ApiBase {
 
-  private apiEndpoint: String = environment.apiEndpoint;
+  private apiEndpoint: string = environment.apiEndpoint;
 
   constructor(
     private http: Http,

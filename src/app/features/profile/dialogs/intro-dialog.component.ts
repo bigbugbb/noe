@@ -19,10 +19,10 @@ export class IntroDialogComponent implements OnInit {
   private dialog: DialogComponent;
 
   @ViewChild('cropper', undefined)
-  public cropper: ImageCropperComponent;
+  private cropper: ImageCropperComponent;
 
   @ViewChild('avatarInput')
-  public avatarInput: ElementRef;
+  private avatarInput: ElementRef;
 
   public grades: Observable<string[]>;
   public countries: Observable<object[]>;
@@ -81,10 +81,10 @@ export class IntroDialogComponent implements OnInit {
   }
 
   public avatarFileSelected(event) {
-    var image: any = new Image();
-    var file: File = event.target.files[0];
-    var myReader: FileReader = new FileReader();
-    var that = this;
+    let image: any = new Image();
+    let file: File = event.target.files[0];
+    let myReader: FileReader = new FileReader();
+    let that = this;
     myReader.onloadend = function (loadEvent: any) {
       image.src = loadEvent.target.result;
       that.cropper.setImage(image);
