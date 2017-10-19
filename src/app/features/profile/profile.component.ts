@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 
-import { ProfileService, StorageService, ApplicationChecklistService } from '@app/core';
+import { ProfileService, StorageService, ApplyingFileService } from '@app/core';
 import { environment } from '@env/environment';
 import * as Dialogs from './dialogs';
 import * as _ from 'lodash';
@@ -33,24 +33,56 @@ export class ProfileComponent implements OnInit {
   @ViewChild('passportScanEditDialog')
   private passportScanEditDialog: Dialogs.PassportScanEditDialogComponent;
 
+  @ViewChild('recommendationEditDialog')
+  private recommendationEditDialog: Dialogs.ApplyingFileEditDialogComponent;
+
+  @ViewChild('transcriptEditDialog')
+  private transcriptEditDialog: Dialogs.ApplyingFileEditDialogComponent;
+
+  @ViewChild('financialInfoDocEditDialog')
+  private financialInfoDocEditDialog: Dialogs.ApplyingFileEditDialogComponent;
+
+  @ViewChild('supplementEditDialog')
+  private supplementEditDialog: Dialogs.ApplyingFileEditDialogComponent;
+
   public profile;
   public passportScans;
+  public recommendations;
+  public transcripts;
+  public financialInfoDocs;
+  public supplements;
 
   private fileBaseUrl: string;
 
   constructor(
     private profileService: ProfileService,
     private storageService: StorageService,
-    private applicationChecklistService: ApplicationChecklistService
+    private applyingFileService: ApplyingFileService
   ) { }
 
   ngOnInit() {
     let user = this.storageService.getUser();
     this.fileBaseUrl = `https://s3.amazonaws.com/${environment.noeFilesUpload}`;
+
     this.profileService.fetchProfile(user).subscribe();
     this.profileService.getProfile().subscribe(profile => this.profile = profile);
-    this.applicationChecklistService.fetchPassportScans().subscribe();
-    this.applicationChecklistService.getPassportScans().subscribe(passportScans => this.passportScans = passportScans);
+
+    const Types = ApplyingFileService.ApplyingFileTypes;
+
+    this.applyingFileService.fetchApplyingFiles(Types.PassportScans).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.PassportScans).subscribe(passportScans => this.passportScans = passportScans);
+
+    this.applyingFileService.fetchApplyingFiles(Types.Recommendations).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.Recommendations).subscribe(recommendations => this.recommendations = recommendations);
+
+    this.applyingFileService.fetchApplyingFiles(Types.Transcripts).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.Transcripts).subscribe(transcripts => this.transcripts = transcripts);
+
+    this.applyingFileService.fetchApplyingFiles(Types.FiancialInfo).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.FiancialInfo).subscribe(financialInfoDocs => this.financialInfoDocs = financialInfoDocs);
+
+    this.applyingFileService.fetchApplyingFiles(Types.Supplements).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.Supplements).subscribe(supplements => this.supplements = supplements);
   }
 
   get hasSkills() {
@@ -65,8 +97,28 @@ export class ProfileComponent implements OnInit {
     return !_.isEmpty(this.passportScans);
   }
 
+  get hasRecommendations() {
+    return !_.isEmpty(this.recommendations);
+  }
+
+  get hasTranscripts() {
+    return !_.isEmpty(this.transcripts);
+  }
+
+  get hasFinancialInfoDocs() {
+    return !_.isEmpty(this.financialInfoDocs);
+  }
+
+  get hasSupplements() {
+    return !_.isEmpty(this.supplements);
+  }
+
   public fileUrlFrom(object) {
     return this.fileBaseUrl + '/' + object.Key;
+  }
+
+  public filenameFrom(object) {
+    return object.Key.split('/').pop();
   }
 
   public onEditIntro() {
@@ -95,6 +147,22 @@ export class ProfileComponent implements OnInit {
 
   public onEditPassportScans() {
     this.passportScanEditDialog.show();
+  }
+
+  public onEditRecommendations() {
+    this.recommendationEditDialog.show();
+  }
+
+  public onEditTranscripts() {
+    this.transcriptEditDialog.show();
+  }
+
+  public onEditFinancialInfoDocs() {
+    this.financialInfoDocEditDialog.show();
+  }
+
+  public onEditSupplements() {
+    this.supplementEditDialog.show();
   }
 
   // TODO: Remove this when we're done

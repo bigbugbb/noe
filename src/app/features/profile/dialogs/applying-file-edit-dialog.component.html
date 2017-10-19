@@ -1,12 +1,12 @@
 <dialog class="dialog" #dialog [staticModal]="staticModal" [large]="false">
   <div dialog-title>
-    Edit passport scans
+    {{ title }}
   </div>
   <div dialog-body>
     <div class="row">
       <div class="col-auto">
-        <button class="btn btn-primary" (click)="addPassportScans()">Add passport scan</button>
-        <input #passportScanInput id="passport-scan-input" type="file" multiple accept="image/*" (change)="passportScansSelected($event)">
+        <button class="btn btn-primary" (click)="addApplyingFiles()">{{ addButtonText }}</button>
+        <input #applyingFileInput id="applying-file-input" type="file" multiple (change)="applyingFilesSelected($event)">
       </div>
     </div>
     <div class="table-responsive">
@@ -25,12 +25,12 @@
               </a>
             </td>
           </tr>
-          <tr *ngFor="let passportScan of passportScans">
+          <tr *ngFor="let applyingFile of applyingFiles">
             <td width="75%">
-              <img [src]="fileUrlFrom(passportScan)" class="passport-scan rounded" alt="Passport Scan">
+              <a [attr.href]="fileUrlFrom(applyingFile)" class="applying-file-link">{{ filenameFrom(applyingFile) }}</a>
             </td>
             <td width="25%">
-              <a class="btn btn-danger remove-btn" href (click)="removePassportScan($event, passportScan)">
+              <a class="btn btn-danger remove-btn pull-right" href (click)="removeApplyingFile($event, applyingFile)">
                 Remove
               </a>
             </td>
@@ -38,7 +38,7 @@
         </tbody>
       </table>
     </div>
-    <div *ngIf="!hasPassport()">No passport scan available.</div>
+    <div *ngIf="!hasApplyingFile()">No {{ type }} available.</div>
   </div>
   <div dialog-footer>
     <button class="btn btn-primary" (click)="onClose()">Close</button>

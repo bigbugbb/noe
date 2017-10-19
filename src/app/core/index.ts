@@ -6,4 +6,4 @@ export * from './api/user/user.service';
 export * from './api/student/student.service';
 export * from './storage/storage.service';
 export * from './s3/s3.service';
-export * from './s3/application-checklist.service';
+export * from './s3/applying-file.service';

@@ -8,7 +8,7 @@ import { StudentService } from './api/student/student.service';
 import { ProfileService } from './profile/profile.service';
 import { StorageService } from './storage/storage.service';
 import { S3Service } from './s3/s3.service';
-import { ApplicationChecklistService } from './s3/application-checklist.service';
+import { ApplyingFileService } from './s3/applying-file.service';
 import { ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { environment } from '@env/environment';
 import * as AWS from 'aws-sdk';
@@ -28,7 +28,7 @@ import * as AWS from 'aws-sdk';
     StudentService,
     StorageService,
     S3Service,
-    ApplicationChecklistService,
+    ApplyingFileService,
     BsModalRef,
     BsModalService
   ]

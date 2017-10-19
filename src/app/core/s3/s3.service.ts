@@ -19,7 +19,33 @@ export class S3Service {
     });
   }
 
-  public listObjects(prefix: string = ''): Observable<Response> {
+  public listObjects(prefix: string = '', callback?: (err, data) => void) {
+    const params = {
+      Prefix: prefix,
+      Bucket: environment.noeFilesUpload
+    };
+    return this.s3.listObjectsV2(params, callback);
+  }
+
+  public putObject(file, key, acl, callback?: (err, data) => void) {
+    const params = {
+      Body: file,
+      Key: key,
+      ACL: acl,
+      Bucket: environment.noeFilesUpload
+    };
+    return this.s3.putObject(params, callback);
+  }
+
+  public deleteObject(key, callback?: (err, data) => void) {
+    const params = {
+      Key: key,
+      Bucket: environment.noeFilesUpload
+    };
+    return this.s3.deleteObject(params, callback);
+  }
+
+  public listObjectsObservable(prefix: string = ''): Observable<Response> {
     const params = {
       Prefix: prefix
     };
@@ -29,11 +55,7 @@ export class S3Service {
     return listObjectsObservable(params);
   }
 
-  public getObject(key) {
-
-  }
-
-  public putObject(file, key, acl): Observable<Response> {
+  public putObjectObservable(file, key, acl): Observable<Response> {
     const params = {
       Body: file,
       Key: key,
@@ -45,7 +67,7 @@ export class S3Service {
     return putObjectObservable(params);
   }
 
-  public deleteObject(key): Observable<Response> {
+  public deleteObjectObservable(key): Observable<Response> {
     const params = {
       Key: key
     };

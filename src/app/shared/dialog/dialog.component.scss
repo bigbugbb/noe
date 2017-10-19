@@ -1,3 +1,9 @@
+.modal-container {
+  overflow-y: initial !important;
+  overflow-y: scroll;
+  max-height: 95%;
+}
+
 .modal-header,
 .modal-body,
 .modal-footer {

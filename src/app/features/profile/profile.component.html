@@ -178,6 +178,83 @@
 
       <passport-scan-edit-dialog #passportScanEditDialog></passport-scan-edit-dialog>
     </div>
+
+    <div class="card-block">
+      <app-section [header]="'Recommendations'" [showAdd]="false" (onEdit)="onEditRecommendations()">
+        <hr class="mt-3">
+
+        <div class="row">
+          <div class="col-auto" *ngFor="let recommendation of recommendations">
+            <a [attr.href]="fileUrlFrom(recommendation)" class="">{{ filenameFrom(recommendation) }}</a>
+          </div>
+          <div class="col" *ngIf="!hasRecommendations">Recommendations are required.</div>
+        </div>
+      </app-section>
+
+      <applying-file-edit-dialog #recommendationEditDialog
+              [title]="'Edit recommendations'"
+              [type]="'recommendations'"
+              [addButtonText]="'Add recommendation'">
+      </applying-file-edit-dialog>
+    </div>
+
+    <div class="card-block">
+      <app-section [header]="'Transcripts'" [showAdd]="false" (onEdit)="onEditTranscripts()">
+        <hr class="mt-3">
+
+        <div class="row">
+          <div class="col-auto" *ngFor="let transcript of transcripts">
+            <a [attr.href]="fileUrlFrom(transcript)" class="">{{ filenameFrom(transcript) }}</a>
+          </div>
+          <div class="col" *ngIf="!hasTranscripts">Transcripts are required.</div>
+        </div>
+      </app-section>
+
+      <applying-file-edit-dialog #transcriptEditDialog
+              [title]="'Edit transcripts'"
+              [type]="'transcripts'"
+              [addButtonText]="'Add transcript'">
+      </applying-file-edit-dialog>
+    </div>
+
+    <div class="card-block">
+      <app-section [header]="'Financial Info Documents'" [showAdd]="false" (onEdit)="onEditFinancialInfoDocs()">
+        <hr class="mt-3">
+
+        <div class="row">
+          <div class="col-auto" *ngFor="let financialInfoDoc of financialInfoDocs">
+            <a [attr.href]="fileUrlFrom(financialInfoDoc)" class="">{{ filenameFrom(financialInfoDoc) }}</a>
+          </div>
+          <div class="col" *ngIf="!hasFinancialInfoDocs">Financial info documents are required.</div>
+        </div>
+      </app-section>
+
+      <applying-file-edit-dialog #financialInfoDocEditDialog
+              [title]="'Edit financial info documents'"
+              [type]="'financial-info-docs'"
+              [addButtonText]="'Add financial info document'">
+      </applying-file-edit-dialog>
+    </div>
+
+    <div class="card-block">
+      <app-section [header]="'Supplements'" [showAdd]="false" (onEdit)="onEditSupplements()">
+        <hr class="mt-3">
+
+        <div class="row">
+          <div class="col-auto" *ngFor="let supplement of supplements">
+            <a [attr.href]="fileUrlFrom(supplement)" class="">{{ filenameFrom(supplement) }}</a>
+          </div>
+          <div class="col" *ngIf="!hasSupplements">You can add application supplements (If needed). </div>
+        </div>
+      </app-section>
+
+      <applying-file-edit-dialog #supplementEditDialog
+              [title]="'Edit supplements'"
+              [type]="'supplements'"
+              [addButtonText]="'Add supplement'">
+      </applying-file-edit-dialog>
+    </div>
   </div>
+
 
 </div>

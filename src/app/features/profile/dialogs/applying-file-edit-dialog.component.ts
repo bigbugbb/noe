@@ -8,35 +8,40 @@ import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'passport-scan-edit-dialog',
-  templateUrl: 'passport-scan-edit-dialog.component.html',
-  styleUrls: ['passport-scan-edit-dialog.component.scss']
+  selector: 'applying-file-edit-dialog',
+  templateUrl: 'applying-file-edit-dialog.component.html',
+  styleUrls: ['applying-file-edit-dialog.component.scss']
 })
-export class PassportScanEditDialogComponent implements OnInit {
+export class ApplyingFileEditDialogComponent implements OnInit {
+  @Input('title')
+  public title = '';
+
+  @Input('type')
+  public type = '';
+
+  @Input('addButtonText')
+  public addButtonText = '';
+
   @ViewChild('dialog')
   private dialog: DialogComponent;
 
-  @ViewChild('passportScanInput')
-  private passportScanInput: ElementRef;
-
-  private type = '';
+  @ViewChild('applyingFileInput')
+  private applyingFileInput: ElementRef;
 
   public fileBaseUrl: string;
-  public passportScans: Array<object>;
+  public applyingFiles: Array<object>;
   public uploadings = [];
 
   constructor(
     private http: Http,
     private storageService: StorageService,
     private applyingFileService: ApplyingFileService
-  ) {
-    this.type = ApplyingFileService.ApplyingFileTypes.PassportScans;
-  }
+  ) { }
 
   ngOnInit() {
-    this.fileBaseUrl = `https://s3.amazonaws.com/${environment.noeFilesUpload}`;
-    this.applyingFileService.getApplyingFiles(this.type).subscribe(passportScans => {
-      this.passportScans = passportScans;
+    this.fileBaseUrl = 'https://s3.amazonaws.com/' + environment.noeFilesUpload;
+    this.applyingFileService.getApplyingFiles(this.type).subscribe(applyingFiles => {
+      this.applyingFiles = applyingFiles;
     });
   }
 
@@ -44,11 +49,11 @@ export class PassportScanEditDialogComponent implements OnInit {
     this.dialog.show();
   }
 
-  public addPassportScans() {
-    this.passportScanInput.nativeElement.click();
+  public addApplyingFiles() {
+    this.applyingFileInput.nativeElement.click();
   }
 
-  public passportScansSelected(event) {
+  public applyingFilesSelected(event) {
     Array.from(event.target.files).forEach((file: File) => {
       const filename = file.name;
 
@@ -74,18 +79,22 @@ export class PassportScanEditDialogComponent implements OnInit {
     uploading.request.abort();
   }
 
-  public removePassportScan(event, passportScan) {
+  public removeApplyingFile(event, applyingFile) {
     event.preventDefault();
     event.stopPropagation();
-    this.applyingFileService.deleteApplyingFile(this.type, passportScan.Key).subscribe();
+    this.applyingFileService.deleteApplyingFile(this.type, applyingFile.Key).subscribe();
   }
 
-  public hasPassport() {
-    return this.passportScans.length > 0 || this.uploadings.length > 0;
+  public hasApplyingFile() {
+    return this.applyingFiles.length > 0 || this.uploadings.length > 0;
   }
 
-  public fileUrlFrom(passportScan) {
-    return this.fileBaseUrl + '/' + passportScan.Key;
+  public fileUrlFrom(applyingFile) {
+    return this.fileBaseUrl + '/' + applyingFile.Key;
+  }
+
+  public filenameFrom(object) {
+    return object.Key.split('/').pop();
   }
 
   public onClose() {

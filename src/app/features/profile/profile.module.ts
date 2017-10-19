@@ -6,9 +6,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared';
 import { ProfileRoutingModule } from './profile.routing';
 import { ProfileComponent } from './profile.component';
-import * as Dialogs from './dialogs';
-import { ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { ModalModule, ProgressbarModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ImageCropperComponent } from 'ng2-img-cropper';
+import * as Dialogs from './dialogs';
 
 @NgModule({
   imports: [
@@ -18,6 +18,7 @@ import { ImageCropperComponent } from 'ng2-img-cropper';
     ReactiveFormsModule,
     ProfileRoutingModule,
     ModalModule.forRoot(),
+    ProgressbarModule.forRoot(),
     BsDatepickerModule.forRoot()
   ],
   declarations: [
@@ -29,6 +30,7 @@ import { ImageCropperComponent } from 'ng2-img-cropper';
     Dialogs.InterestAddDialogComponent,
     Dialogs.InterestEditDialogComponent,
     Dialogs.PassportScanEditDialogComponent,
+    Dialogs.ApplyingFileEditDialogComponent,
     ImageCropperComponent
   ]
 })
