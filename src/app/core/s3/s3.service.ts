@@ -23,7 +23,7 @@ export class S3Service {
     const params = {
       Prefix: prefix
     };
-    let listObjectsObservable = Observable.bindNodeCallback<AWS.S3.ListObjectsV2Request>(
+    const listObjectsObservable = Observable.bindNodeCallback<AWS.S3.ListObjectsV2Request>(
       this.s3.listObjectsV2
     ).bind(this.s3);
     return listObjectsObservable(params);
@@ -39,7 +39,7 @@ export class S3Service {
       Key: key,
       ACL: acl
     };
-    let putObjectObservable = Observable.bindNodeCallback<AWS.S3.PutObjectRequest>(
+    const putObjectObservable = Observable.bindNodeCallback<AWS.S3.PutObjectRequest>(
       this.s3.putObject
     ).bind(this.s3);
     return putObjectObservable(params);
@@ -49,7 +49,7 @@ export class S3Service {
     const params = {
       Key: key
     };
-    let deleteObjectObservable = Observable.bindNodeCallback<AWS.S3.DeleteObjectRequest>(
+    const deleteObjectObservable = Observable.bindNodeCallback<AWS.S3.DeleteObjectRequest>(
       this.s3.deleteObject
     ).bind(this.s3);
     return deleteObjectObservable(params);

@@ -17,7 +17,7 @@ export class SkillAddDialogComponent implements OnInit {
   private dialog: DialogComponent;
 
   public added: Boolean = false;
-  public newSkill: string = "";
+  public newSkill = '';
   public model: any;
   public skills: Array<string>;
 
@@ -41,17 +41,17 @@ export class SkillAddDialogComponent implements OnInit {
 
     this.newSkill = this.newSkill.trim();
     if (!_.isEmpty(this.newSkill)) {
-      let oldSize = this.skills.length;
+      const oldSize = this.skills.length;
       this.skills.push(this.newSkill);
       this.skills = _.uniq(this.skills);
-      this.newSkill = "";
+      this.newSkill = '';
       this.added = this.added || oldSize < this.skills.length;
     }
   }
 
   public show() {
     this.added = false;
-    this.newSkill = "";
+    this.newSkill = '';
     this.skills = JSON.parse(JSON.stringify(this.model.skills));
     this.dialog.show();
   }

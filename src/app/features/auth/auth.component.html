@@ -62,7 +62,7 @@
               <select class="form-control form-control-md" id="role"
                       required
                       [(ngModel)]="modelSignup.role" name="role">
-                <option *ngFor="let role of roles" [value]="role">{{role}}</option>
+                <option *ngFor="let role of roles" [value]="role">{{ role | capitalize }}</option>
               </select>
             </div>
             <div class="">

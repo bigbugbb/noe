@@ -26,12 +26,5 @@ export class Student {
     // skills and interests
     public skills: Array<string>,
     public interests: Array<string>,
-    // application checklist
-    // public passportScans: Array<Resource>,
-    // public recommendations: Array<Resource>,
-    // public transcripts: Array<Resource>,
-    // public stdTestScores: Array<Resource>,
-    // public financialInfo: Array<Resource>,
-    // public supplements: Array<Resource>
   ) {}
 }

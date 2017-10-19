@@ -16,12 +16,12 @@ export class StorageService {
   }
 
   public getUser(): User {
-    let userAndToken = JSON.parse(localStorage.getItem('user_and_token'));
+    const userAndToken = JSON.parse(localStorage.getItem('user_and_token'));
     return userAndToken ? userAndToken.user : null;
   }
 
   public getToken(): string {
-    let userAndToken = JSON.parse(localStorage.getItem('user_and_token'));
+    const userAndToken = JSON.parse(localStorage.getItem('user_and_token'));
     return userAndToken ? userAndToken.token : null;
   }
 
@@ -30,14 +30,26 @@ export class StorageService {
   }
 
   public setProfile(profile) {
-    localStorage.setItem('profile', JSON.stringify(profile));
+    this.setItem('profile', profile);
   }
 
   public getProfile() {
-    return JSON.parse(localStorage.getItem('profile'));
+    return this.getItem('profile');
   }
 
   public removeProfile() {
-    localStorage.removeItem('profile');
+    this.removeItem('profile');
+  }
+
+  public setItem(name, item) {
+    localStorage.setItem(name, JSON.stringify(item));
+  }
+
+  public getItem(name) {
+    return JSON.parse(localStorage.getItem(name));
+  }
+
+  public removeItem(name) {
+    localStorage.removeItem(name);
   }
 }
