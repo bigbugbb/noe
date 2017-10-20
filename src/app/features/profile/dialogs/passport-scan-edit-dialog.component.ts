@@ -34,7 +34,7 @@ export class PassportScanEditDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fileBaseUrl = `https://s3.amazonaws.com/${environment.noeFilesUpload}`;
+    this.fileBaseUrl = `https://s3.${environment.bucketRegion}.amazonaws.com/${environment.noeFilesUpload}`;
     this.applyingFileService.getApplyingFiles(this.type).subscribe(passportScans => {
       this.passportScans = passportScans;
     });

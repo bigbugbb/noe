@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     let user = this.storageService.getUser();
-    this.fileBaseUrl = `https://s3.amazonaws.com/${environment.noeFilesUpload}`;
+    this.fileBaseUrl = `https://s3.${environment.bucketRegion}.amazonaws.com/${environment.noeFilesUpload}`;
 
     this.profileService.fetchProfile(user).subscribe();
     this.profileService.getProfile().subscribe(profile => this.profile = profile);
@@ -185,6 +185,10 @@ export class ProfileComponent implements OnInit {
 
   public onEditOptionalMaterial() {
     this.optionalMaterilaEditDialog.show();
+  }
+
+  public trackByKey(index, item) {
+    return item.Key;
   }
 
   // TODO: Remove this when we're done

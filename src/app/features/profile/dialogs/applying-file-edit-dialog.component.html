@@ -25,7 +25,7 @@
               </a>
             </td>
           </tr>
-          <tr *ngFor="let applyingFile of applyingFiles">
+          <tr *ngFor="let applyingFile of applyingFiles; trackBy: trackByKey">
             <td width="75%">
               <a [attr.href]="fileUrlFrom(applyingFile)" class="applying-file-link">{{ filenameFrom(applyingFile) }}</a>
             </td>

@@ -39,7 +39,7 @@ export class ApplyingFileEditDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.fileBaseUrl = 'https://s3.amazonaws.com/' + environment.noeFilesUpload;
+    this.fileBaseUrl = `https://s3.${environment.bucketRegion}.amazonaws.com/${environment.noeFilesUpload}`;
     this.applyingFileService.getApplyingFiles(this.type).subscribe(applyingFiles => {
       this.applyingFiles = applyingFiles;
     });
@@ -102,6 +102,10 @@ export class ApplyingFileEditDialogComponent implements OnInit {
 
   public filenameFrom(object) {
     return object.Key.split('/').pop();
+  }
+
+  public trackByKey(index, item) {
+    return item.Key;
   }
 
   public onClose() {

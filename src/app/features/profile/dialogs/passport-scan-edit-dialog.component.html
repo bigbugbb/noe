@@ -12,7 +12,7 @@
     <div class="table-responsive">
       <table class="table" style="margin-top: 0.75rem">
         <tbody>
-          <tr *ngFor="let uploading of uploadings">
+          <tr *ngFor="let uploading of uploadings; trackBy: index">
             <td width="75%">
               <small>{{ uploading.filename }}</small>
               <progressbar class="progress-striped active" [value]="uploading.progress" type="success">
@@ -25,7 +25,7 @@
               </a>
             </td>
           </tr>
-          <tr *ngFor="let passportScan of passportScans">
+          <tr *ngFor="let passportScan of passportScans; trackBy: trackByKey">
             <td width="75%">
               <img [src]="fileUrlFrom(passportScan)" class="passport-scan rounded" alt="Passport Scan">
             </td>

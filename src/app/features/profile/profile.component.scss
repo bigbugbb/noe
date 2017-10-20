@@ -91,3 +91,17 @@ td {
   height: 160px;
   margin: 0.5rem;
 }
+
+.pdf-viewer-container {
+  border: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  border-color: lightgray;
+  padding: 1px;
+  margin: 8px 0;
+}
+
+.pdf-viewer {
+  display: block;
+  width: 160px;
+}

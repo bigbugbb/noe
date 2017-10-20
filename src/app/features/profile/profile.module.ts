@@ -8,6 +8,7 @@ import { ProfileRoutingModule } from './profile.routing';
 import { ProfileComponent } from './profile.component';
 import { ModalModule, ProgressbarModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ImageCropperComponent } from 'ng2-img-cropper';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import * as Dialogs from './dialogs';
 
 @NgModule({
@@ -32,7 +33,8 @@ import * as Dialogs from './dialogs';
     Dialogs.InterestEditDialogComponent,
     Dialogs.PassportScanEditDialogComponent,
     Dialogs.ApplyingFileEditDialogComponent,
-    ImageCropperComponent
+    ImageCropperComponent,
+    PdfViewerComponent
   ]
 })
 export class ProfileModule {}
