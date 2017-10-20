@@ -13,7 +13,8 @@ export class ApplyingFileService {
     Recommendations: 'recommendations',
     Transcripts: 'transcripts',
     FiancialInfo: 'financial-info-docs',
-    Supplements: 'supplements'
+    Supplements: 'supplements',
+    OptionalMaterials: 'optional-materials'
   };
 
   private subjects = {};

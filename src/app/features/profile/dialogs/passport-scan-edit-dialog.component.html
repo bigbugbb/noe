@@ -5,7 +5,7 @@
   <div dialog-body>
     <div class="row">
       <div class="col-auto">
-        <button class="btn btn-primary" (click)="addPassportScans()">Add passport scan</button>
+        <button class="btn btn-primary" (click)="addPassportScans()">Upload</button>
         <input #passportScanInput id="passport-scan-input" type="file" multiple accept="image/*" (change)="passportScansSelected($event)">
       </div>
     </div>
@@ -16,7 +16,7 @@
             <td width="75%">
               <small>{{ uploading.filename }}</small>
               <progressbar class="progress-striped active" [value]="uploading.progress" type="success">
-                <b>{{ uploading.progress }}%</b>
+                <b>{{ uploadingProgress(uploading) }}</b>
               </progressbar>
             </td>
             <td width="25%">

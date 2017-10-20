@@ -18,6 +18,14 @@ export class Student {
     public budget: Number,
     public gpa: Number,
     public introduction: string,
+    // standardized test scores
+    public itep: Number,
+    public slep: Number,
+    public toeflJr: Number,
+    public toefl: Number,
+    public ssat: Number,
+    public gre: Number,
+    public gmat: Number,
     // school preferred
     public preferredSchoolType: string,
     public preferredSchoolLocation: string,

@@ -15,6 +15,9 @@ export class ProfileComponent implements OnInit {
   @ViewChild('introDialog')
   private introDialog: Dialogs.IntroDialogComponent;
 
+  @ViewChild('stdTestScoreDialog')
+  private stdTestScoreDialog: Dialogs.StdTestScoreDialogComponent;
+
   @ViewChild('schoolPreferredDialog')
   private schoolPreferredDialog: Dialogs.SchoolPreferredDialogComponent;
 
@@ -45,12 +48,16 @@ export class ProfileComponent implements OnInit {
   @ViewChild('supplementEditDialog')
   private supplementEditDialog: Dialogs.ApplyingFileEditDialogComponent;
 
+  @ViewChild('optionalMaterialEditDialog')
+  private optionalMaterilaEditDialog: Dialogs.ApplyingFileEditDialogComponent;
+
   public profile;
   public passportScans;
   public recommendations;
   public transcripts;
   public financialInfoDocs;
   public supplements;
+  public optionalMaterials;
 
   private fileBaseUrl: string;
 
@@ -83,6 +90,9 @@ export class ProfileComponent implements OnInit {
 
     this.applyingFileService.fetchApplyingFiles(Types.Supplements).subscribe();
     this.applyingFileService.getApplyingFiles(Types.Supplements).subscribe(supplements => this.supplements = supplements);
+
+    this.applyingFileService.fetchApplyingFiles(Types.OptionalMaterials).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.OptionalMaterials).subscribe(optionalMaterials => this.optionalMaterials = optionalMaterials);
   }
 
   get hasSkills() {
@@ -113,6 +123,10 @@ export class ProfileComponent implements OnInit {
     return !_.isEmpty(this.supplements);
   }
 
+  get hasOptionalMaterials() {
+    return !_.isEmpty(this.optionalMaterials);
+  }
+
   public fileUrlFrom(object) {
     return this.fileBaseUrl + '/' + object.Key;
   }
@@ -123,6 +137,10 @@ export class ProfileComponent implements OnInit {
 
   public onEditIntro() {
     this.introDialog.show();
+  }
+
+  public onEditStdTestScores() {
+    this.stdTestScoreDialog.show();
   }
 
   public onEditSchoolPreferred() {
@@ -163,6 +181,10 @@ export class ProfileComponent implements OnInit {
 
   public onEditSupplements() {
     this.supplementEditDialog.show();
+  }
+
+  public onEditOptionalMaterial() {
+    this.optionalMaterilaEditDialog.show();
   }
 
   // TODO: Remove this when we're done

@@ -68,6 +68,13 @@ export class PassportScanEditDialogComponent implements OnInit {
     });
   }
 
+  public uploadingProgress(uploading) {
+    if (uploading.progress === 100) {
+      return 'processing';
+    }
+    return `${uploading.progress}%`;
+  }
+
   public cancelUploading(event, uploading) {
     event.preventDefault();
     event.stopPropagation();

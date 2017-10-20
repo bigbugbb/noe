@@ -19,8 +19,8 @@ export class ApplyingFileEditDialogComponent implements OnInit {
   @Input('type')
   public type = '';
 
-  @Input('addButtonText')
-  public addButtonText = '';
+  @Input('uploadBtnText')
+  public uploadBtnText = '';
 
   @ViewChild('dialog')
   private dialog: DialogComponent;
@@ -49,7 +49,7 @@ export class ApplyingFileEditDialogComponent implements OnInit {
     this.dialog.show();
   }
 
-  public addApplyingFiles() {
+  public selectApplyingFiles() {
     this.applyingFileInput.nativeElement.click();
   }
 
@@ -71,6 +71,13 @@ export class ApplyingFileEditDialogComponent implements OnInit {
 
       this.uploadings.push({ filename, request, progress: 0 });
     });
+  }
+
+  public uploadingProgress(uploading) {
+    if (uploading.progress === 100) {
+      return 'processing';
+    }
+    return `${uploading.progress}%`;
   }
 
   public cancelUploading(event, uploading) {

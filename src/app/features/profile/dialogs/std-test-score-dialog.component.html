@@ -1,0 +1,69 @@
+<dialog class="dialog" #dialog [staticModal]="staticModal">
+  <div dialog-title>
+    Edit standardized test score
+  </div>
+  <div dialog-body>
+    <form (ngSubmit)="onSubmit()" #stdTestScoreForm="ngForm">
+      <!-- iTep, SLEP, TOEFL Jr. -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="itep">iTep</label>
+          <input type="number" class="form-control" id="itep"
+            [(ngModel)]="model.itep" name="itep"
+            #itep="ngModel">
+        </div>
+        <div class="col">
+          <label for="slep">SLEP</label>
+          <input type="number" class="form-control" id="slep"
+            [(ngModel)]="model.slep" name="slep"
+            #slep="ngModel">
+        </div>
+        <div class="col">
+          <label for="toeflJr">TOEFL Jr.</label>
+          <input type="number" class="form-control" id="toeflJr"
+            [(ngModel)]="model.toeflJr" name="toeflJr"
+            #toeflJr="ngModel">
+        </div>
+      </div>
+
+      <!-- TOEFL, SSAT, GRE -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="toefl">TOEFL</label>
+          <input type="number" class="form-control" id="toefl"
+            [(ngModel)]="model.toefl" name="toefl"
+            #toefl="ngModel">
+        </div>
+        <div class="col">
+          <label for="ssat">SSAT</label>
+          <input type="number" class="form-control" id="ssat"
+            [(ngModel)]="model.ssat" name="ssat"
+            #ssat="ngModel">
+        </div>
+        <div class="col">
+          <label for="gre">GRE</label>
+          <input type="number" class="form-control" id="gre"
+            [(ngModel)]="model.gre" name="gre"
+            #gre="ngModel">
+        </div>
+      </div>
+
+      <!-- GMAT -->
+      <div class="form-group row">
+        <div class="col-4">
+          <label for="gmat">GMAT</label>
+          <input type="number" class="form-control" id="gmat"
+            [(ngModel)]="model.gmat" name="gmat"
+            #gmat="ngModel">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div dialog-footer>
+    <button type="submit" class="btn btn-primary"
+            [disabled]="stdTestScoreForm.form.pristine"
+            (click)="stdTestScoreForm.ngSubmit.emit()">
+      Save
+    </button>
+  </div>
+</dialog>

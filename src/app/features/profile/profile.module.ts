@@ -24,6 +24,7 @@ import * as Dialogs from './dialogs';
   declarations: [
     ProfileComponent,
     Dialogs.IntroDialogComponent,
+    Dialogs.StdTestScoreDialogComponent,
     Dialogs.SchoolPreferredDialogComponent,
     Dialogs.SkillAddDialogComponent,
     Dialogs.SkillEditDialogComponent,
