@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from '@app/models';
-import { UserService, ProfileService } from '@app/core';
+import { UserService, ProfileService, StorageService } from '@app/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -18,6 +18,7 @@ export class AppLayoutComponent implements OnInit {
   constructor(
     private userService: UserService,
     private profileService: ProfileService,
+    private storageService: StorageService,
     private router: Router
   ) {}
 
@@ -31,12 +32,13 @@ export class AppLayoutComponent implements OnInit {
     this.userService.signout()
       .subscribe(() => {
         this.router.navigate(['/auth']);
+        this.storageService.clear();
       });
   }
 
   get username(): string {
-    let firstname = this.profile.firstname || 'New';
-    let lastname = this.profile.lastname || 'User'
+    const firstname = this.profile.firstname || 'New';
+    const lastname = this.profile.lastname || 'User';
     return `${firstname} ${lastname}`;
   }
 

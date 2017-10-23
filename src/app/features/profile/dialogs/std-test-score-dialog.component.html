@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <!-- TOEFL, SSAT, GRE -->
+      <!-- TOEFL, SSAT, IELTS -->
       <div class="form-group row">
         <div class="col">
           <label for="toefl">TOEFL</label>
@@ -41,15 +41,21 @@
             #ssat="ngModel">
         </div>
         <div class="col">
+          <label for="ssat">IELTS</label>
+          <input type="number" class="form-control" id="ielts"
+            [(ngModel)]="model.ielts" name="ielts"
+            #ielts="ngModel">
+        </div>
+      </div>
+
+      <!-- GRE, GMAT -->
+      <div class="form-group row">
+        <div class="col-4">
           <label for="gre">GRE</label>
           <input type="number" class="form-control" id="gre"
             [(ngModel)]="model.gre" name="gre"
             #gre="ngModel">
         </div>
-      </div>
-
-      <!-- GMAT -->
-      <div class="form-group row">
         <div class="col-4">
           <label for="gmat">GMAT</label>
           <input type="number" class="form-control" id="gmat"

@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let user = this.storageService.getUser();
+    const user = this.storageService.getUser();
     this.fileBaseUrl = `https://s3.${environment.bucketRegion}.amazonaws.com/${environment.noeFilesUpload}`;
 
     this.profileService.fetchProfile(user).subscribe();

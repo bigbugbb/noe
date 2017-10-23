@@ -51,9 +51,8 @@ export class AuthComponent implements OnInit {
   signin() {
     this.loading = true;
     const { email, password } = this.modelSignin;
-    this.userService.signin(email, password).flatMap((user: User) => {
-      return this.profileService.fetchProfile(user);
-    }).subscribe(() => {
+    this.userService.signin(email, password).subscribe((user: User) => {
+      this.profileService.updateWithExistingProfile(user.profile);
       // redirect to the wanted page
       this.router.navigate([this.returnUrl]);
     }, error => {

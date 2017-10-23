@@ -23,7 +23,7 @@ export class ApiBase {
 
   protected headersWithJWT(headers: Headers): Headers {
     // create authorization header with jwt token
-    let token = this.storageService.getToken();
+    const token = this.storageService.getToken();
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);
     }
@@ -35,17 +35,17 @@ export class ApiBase {
   }
 
   protected optionsWithJWT(): RequestOptions {
-    let headers = this.headersWithJWT(this.defaultHeaders());
+    const headers = this.headersWithJWT(this.defaultHeaders());
     return new RequestOptions({ headers });
   }
 
   protected extractData(response: Response, index: number) {
-    let body = response.json();
+    const body = response.json();
     return body || {};
   }
 
   protected handleError(error: any) {
-    let errMsg = (error.message) ? error.message :
+    const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg);
     return Observable.throw(errMsg);

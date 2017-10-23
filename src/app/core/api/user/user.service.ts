@@ -52,8 +52,8 @@ export class UserService extends ApiBase {
     return this.http.post(`${this.apiEndpoint}/users/login`, {email, password}, this.defaultOptions())
       .map((response: Response) => {
         // login successfully if there's a jwt token in the response
-        let user = response.json();
-        let token = response.headers.get('x-auth');
+        const user = response.json();
+        const token = response.headers.get('x-auth');
         if (user && token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.storageService.setUserAndToken(user, token);

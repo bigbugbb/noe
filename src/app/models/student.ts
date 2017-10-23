@@ -24,6 +24,7 @@ export class Student {
     public toeflJr: Number,
     public toefl: Number,
     public ssat: Number,
+    public ielts: Number,
     public gre: Number,
     public gmat: Number,
     // school preferred

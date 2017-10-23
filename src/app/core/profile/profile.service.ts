@@ -21,7 +21,7 @@ export class ProfileService {
   }
 
   public fetchProfile(user) {
-    switch (user.role) {
+    switch (user.role.toLowerCase()) {
       case 'student': {
         return this.studentService.getAll({ userId: user._id }).map(result => {
           this.onProfileUpdated(result.students[0]);
@@ -40,32 +40,46 @@ export class ProfileService {
   }
 
   public createProfile(role, payload) {
-    if (role === 'student') {
-      return this.studentService.create(payload as Student).map(profile => {
-        this.onProfileUpdated(profile);
-        return profile;
-      });
-    } else if (role === 'school') {
+    switch (role.toLowerCase()) {
+      case 'student': {
+        return this.studentService.create(payload as Student).map(profile => {
+          this.onProfileUpdated(profile);
+          return profile;
+        });
+      }
+      case 'school': {
 
-    } else if (role === 'company') {
+      }
+      case 'company': {
 
-    } else {
+      }
+      default: {
 
+      }
     }
   }
 
   public updateProfile(role, payload) {
-    if (role === 'student') {
-      return this.studentService.update(payload as Student).map(result => {
-        this.onProfileUpdated(result.student);
-      });
-    } else if (role === 'school') {
+    switch (role.toLowerCase()) {
+      case 'student': {
+        return this.studentService.update(payload as Student).map(result => {
+          this.onProfileUpdated(result.student);
+        });
+      }
+      case 'school': {
 
-    } else if (role === 'company') {
+      }
+      case 'company': {
 
-    } else {
+      }
+      default: {
 
+      }
     }
+  }
+
+  public updateWithExistingProfile(profile) {
+    this.onProfileUpdated(profile);
   }
 
   private onProfileUpdated(profile) {
