@@ -1,3 +1,35 @@
-<p>
-  student works!
-</p>
+<div class="row page-size">
+  <div class="list-container">
+    <div class="card">
+
+    </div>
+  </div>
+  <div class="filter-container">
+    <div class="filter-container-title">Filter student by</div>
+    <div id="student-filters" data-children=".item">
+      <div class="item">
+        <a class="row filter-head" data-toggle="collapse" data-parent="#student-filters" href="#applying" aria-expanded="true" aria-controls="applying">
+          <div class="col filter-title">Applying</div>
+          <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        </a>
+        <div id="applying" class="collapse show" role="tabpanel">
+          <p class="mb-3">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium lorem non vestibulum scelerisque. Proin a vestibulum sem, eget tristique massa. Aliquam lacinia rhoncus nibh quis ornare.
+          </p>
+        </div>
+        <hr class="mt-3">
+      </div>
+      <div class="item">
+        <a data-toggle="collapse" data-parent="#student-filters" href="#keywords" aria-expanded="false" aria-controls="keywords">
+          <div>Keywords</div>
+        </a>
+        <div id="keywords" class="collapse" role="tabpanel">
+          <p class="mb-3">
+            Donec at ipsum dignissim, rutrum turpis scelerisque, tristique lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus nec dui turpis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+          </p>
+        </div>
+        <hr class="mt-3">
+      </div>
+    </div>
+  </div>
+</div>

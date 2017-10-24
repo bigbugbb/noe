@@ -28,10 +28,11 @@ app-root {
   flex-direction: row;
   flex-grow: 1;
   overflow-x: hidden;
+  justify-content: center;
 
   .main {
     flex: 1;
-    min-width: 0;
+    min-width: 0px;
   }
 
   .sidebar {

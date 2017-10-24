@@ -1,368 +1,365 @@
-<div>
-  <div class="top-margin"></div>
+<div class="top-margin"></div>
 
-  <!-- {{ diagnostic }} -->
+<!-- {{ diagnostic }} -->
 
-  <div class="card">
-    <div class="card-block">
-      <app-section [showAdd]="false" (onEdit)="onEditIntro()">
-        <div class="row">
-          <div class="col">
-            <img class="rounded-circle profile-avatar img-thumbnail mx-auto d-block" [src]="profile.avatar" />
+<div class="card">
+  <div class="card-block">
+    <app-section [showAdd]="false" (onEdit)="onEditIntro()">
+      <div class="row">
+        <div class="col">
+          <img class="rounded-circle profile-avatar img-thumbnail mx-auto d-block" [src]="profile.avatar" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h4 class="profile-name">{{ profile.firstname }} {{ profile.lastname }}</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h6 class="current-grade">{{ profile.grade }} Student</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h6 class="current-school-name">{{ profile.school }}</h6>
+        </div>
+      </div>
+
+      <hr class="mt-3">
+
+      <div class="table-responsive">
+        <table class="table borderless">
+          <tbody>
+            <tr>
+              <td class="profile-property">
+                <span class="property-title">Email:</span>{{ profile.email }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">Phone:</span>{{ profile.phone }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">Applying:</span>{{ profile.applying }}
+              </td>
+            </tr>
+            <tr>
+              <td class="profile-property">
+                <span class="property-title">Birthday:</span>{{ profile.birthday | date:'shortDate' }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">Gender:</span>{{ profile.gender | capitalize }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">Country:</span>{{ profile.country }}
+              </td>
+            </tr>
+            <tr>
+              <td class="profile-property">
+                <span class="property-title">Annual budget:</span>${{ profile.budget }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">GPA:</span>{{ profile.gpa }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="mt-3">
+
+      <div class="row">
+        <div class="col">
+          <p>{{ profile.introduction }}</p>
+        </div>
+      </div>
+
+      <!-- <p>
+        <a class="show-more" data-toggle="collapse" href="#collapseMedia" aria-expanded="false" aria-controls="collapseMedia">
+          <h6>Show more <i class="fa fa-chevron-down" aria-hidden="true"></i></h6>
+        </a>
+      </p> -->
+      <!-- <div class="collapse" id="collapseMedia">
+        <div style="overflow: auto">
+          <div class="row-fluid">
+              <div class="col-lg-4">media</div>
+              <div class="col-lg-4">media</div>
+              <div class="col-lg-4">media</div>
+              <div class="col-lg-4">media</div>
+              <div class="col-lg-4">media</div>
+              <div class="col-lg-4">media</div>
+              <div class="col-lg-4">media</div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <h4 class="profile-name">{{ profile.firstname }} {{ profile.lastname }}</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <h6 class="current-grade">{{ profile.grade }} Student</h6>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <h6 class="current-school-name">{{ profile.school }}</h6>
-          </div>
-        </div>
-
-        <hr class="mt-3">
-
-        <div class="table-responsive">
-          <table class="table borderless">
-            <tbody>
-              <tr>
-                <td class="profile-property">
-                  <span class="property-title">Email:</span>{{ profile.email }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">Phone:</span>{{ profile.phone }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">Applying:</span>{{ profile.applying }}
-                </td>
-              </tr>
-              <tr>
-                <td class="profile-property">
-                  <span class="property-title">Birthday:</span>{{ profile.birthday | date:'shortDate' }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">Gender:</span>{{ profile.gender | capitalize }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">Country:</span>{{ profile.country }}
-                </td>
-              </tr>
-              <tr>
-                <td class="profile-property">
-                  <span class="property-title">Annual budget:</span>${{ profile.budget }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">GPA:</span>{{ profile.gpa }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <hr class="mt-3">
-
-        <div class="row">
-          <div class="col">
-            <p>{{ profile.introduction }}</p>
-          </div>
-        </div>
-
-        <!-- <p>
-          <a class="show-more" data-toggle="collapse" href="#collapseMedia" aria-expanded="false" aria-controls="collapseMedia">
-            <h6>Show more <i class="fa fa-chevron-down" aria-hidden="true"></i></h6>
-          </a>
-        </p> -->
-        <!-- <div class="collapse" id="collapseMedia">
-          <div style="overflow: auto">
-            <div class="row-fluid">
-                <div class="col-lg-4">media</div>
-                <div class="col-lg-4">media</div>
-                <div class="col-lg-4">media</div>
-                <div class="col-lg-4">media</div>
-                <div class="col-lg-4">media</div>
-                <div class="col-lg-4">media</div>
-                <div class="col-lg-4">media</div>
-            </div>
-          </div>
-        </div> -->
-      </app-section>
-    </div>
-
-    <intro-dialog #introDialog></intro-dialog>
+      </div> -->
+    </app-section>
   </div>
 
-  <div class="card">
-    <div class="card-block">
-      <app-section [header]="'More Self Introduction'" [showAdd]="false" (onEdit)="onEditOptionalMaterial()">
-        <hr class="mt-3">
+  <intro-dialog #introDialog></intro-dialog>
+</div>
 
-        <div class="row">
-          <div class="col">
-            <div *ngFor="let optionalMaterial of optionalMaterials">
-              <img [src]="fileUrlFrom(optionalMaterial)" class="passport-scan rounded pull-left" alt="Optional Material">
-            </div>
-            <div *ngIf="!hasOptionalMaterials">Add or link media materials for self introduction.</div>
+<div class="card">
+  <div class="card-block">
+    <app-section [header]="'More Self Introduction'" [showAdd]="false" (onEdit)="onEditOptionalMaterial()">
+      <hr class="mt-3">
+
+      <div class="row">
+        <div class="col">
+          <div *ngFor="let optionalMaterial of optionalMaterials">
+            <img [src]="fileUrlFrom(optionalMaterial)" class="passport-scan rounded pull-left" alt="Optional Material">
           </div>
+          <div *ngIf="!hasOptionalMaterials">Add or link media materials for self introduction.</div>
         </div>
-      </app-section>
+      </div>
+    </app-section>
 
-      <applying-file-edit-dialog #optionalMaterialEditDialog
-            [title]="'Edit more materials'"
-            [type]="'optional-materials'">
-      </applying-file-edit-dialog>
-    </div>
+    <applying-file-edit-dialog #optionalMaterialEditDialog
+          [title]="'Edit more materials'"
+          [type]="'optional-materials'">
+    </applying-file-edit-dialog>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-block">
+    <app-section [header]="'School Preferred'" [showAdd]="false" (onEdit)="onEditSchoolPreferred()">
+      <hr class="mt-3">
+
+      <div class="table-responsive">
+        <table class="table borderless">
+          <tbody>
+            <tr>
+              <td class="profile-property">
+                <span class="property-title">Location:</span>{{ profile.preferredSchoolLocation }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">Type:</span>{{ profile.preferredSchoolType }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">Religion:</span>{{ profile.preferredReligion }}
+              </td>
+            </tr>
+            <tr>
+              <td class="profile-property">
+                <span class="property-title">Accommodation:</span>{{ profile.preferredAccommodation }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-section>
   </div>
 
-  <div class="card">
-    <div class="card-block">
-      <app-section [header]="'School Preferred'" [showAdd]="false" (onEdit)="onEditSchoolPreferred()">
-        <hr class="mt-3">
+  <school-preferred-dialog #schoolPreferredDialog></school-preferred-dialog>
+</div>
 
-        <div class="table-responsive">
-          <table class="table borderless">
-            <tbody>
-              <tr>
-                <td class="profile-property">
-                  <span class="property-title">Location:</span>{{ profile.preferredSchoolLocation }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">Type:</span>{{ profile.preferredSchoolType }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">Religion:</span>{{ profile.preferredReligion }}
-                </td>
-              </tr>
-              <tr>
-                <td class="profile-property">
-                  <span class="property-title">Accommodation:</span>{{ profile.preferredAccommodation }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </app-section>
-    </div>
+<div class="card">
+  <div class="card-block">
+    <app-section [header]="'Standardized Test Scores'" [showAdd]="false" (onEdit)="onEditStdTestScores()">
+      <hr class="mt-3">
 
-    <school-preferred-dialog #schoolPreferredDialog></school-preferred-dialog>
+      <div class="table-responsive">
+        <table class="table borderless">
+          <tbody>
+            <tr>
+              <td class="profile-property">
+                <span class="property-title">iTep:</span>{{ profile.itep }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">SLEP:</span>{{ profile.slep }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">TOEFL Jr.:</span>{{ profile.toeflJr }}
+              </td>
+            </tr>
+            <tr>
+              <td class="profile-property">
+                <span class="property-title">TOEFL:</span>{{ profile.toefl }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">SSAT:</span>{{ profile.ssat }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">IELTS:</span>{{ profile.ielts }}
+              </td>
+            </tr>
+            <tr>
+              <td class="profile-property">
+                <span class="property-title">GRE:</span>{{ profile.gre }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">GMAT:</span>{{ profile.gmat }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-section>
   </div>
 
-  <div class="card">
-    <div class="card-block">
-      <app-section [header]="'Standardized Test Scores'" [showAdd]="false" (onEdit)="onEditStdTestScores()">
-        <hr class="mt-3">
+  <std-test-score-dialog #stdTestScoreDialog></std-test-score-dialog>
+</div>
 
-        <div class="table-responsive">
-          <table class="table borderless">
-            <tbody>
-              <tr>
-                <td class="profile-property">
-                  <span class="property-title">iTep:</span>{{ profile.itep }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">SLEP:</span>{{ profile.slep }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">TOEFL Jr.:</span>{{ profile.toeflJr }}
-                </td>
-              </tr>
-              <tr>
-                <td class="profile-property">
-                  <span class="property-title">TOEFL:</span>{{ profile.toefl }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">SSAT:</span>{{ profile.ssat }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">IELTS:</span>{{ profile.ielts }}
-                </td>
-              </tr>
-              <tr>
-                <td class="profile-property">
-                  <span class="property-title">GRE:</span>{{ profile.gre }}
-                </td>
-                <td class="profile-property">
-                  <span class="property-title">GMAT:</span>{{ profile.gmat }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </app-section>
-    </div>
+<div class="card">
+  <div class="card-block">
+    <app-section [header]="'Skills'" [showAdd]="true" (onAdd)="onAddNewSkill()" (onEdit)="onEditSkills()">
+      <hr class="mt-3">
 
-    <std-test-score-dialog #stdTestScoreDialog></std-test-score-dialog>
+      <div class="row">
+        <div class="col-auto profile-skill" *ngFor="let skill of profile.skills">{{ skill }}</div>
+        <div class="col-auto" *ngIf="!hasSkills">No skills data available.</div>
+      </div>
+    </app-section>
   </div>
 
-  <div class="card">
-    <div class="card-block">
-      <app-section [header]="'Skills'" [showAdd]="true" (onAdd)="onAddNewSkill()" (onEdit)="onEditSkills()">
-        <hr class="mt-3">
+  <skill-add-dialog #skillAddDialog></skill-add-dialog>
+  <skill-edit-dialog #skillEditDialog></skill-edit-dialog>
 
-        <div class="row">
-          <div class="col-auto profile-skill" *ngFor="let skill of profile.skills">{{ skill }}</div>
-          <div class="col-auto" *ngIf="!hasSkills">No skills data available.</div>
+  <div class="card-block">
+    <app-section [header]="'Interests'" [showAdd]="true" (onAdd)="onAddNewInterest()" (onEdit)="onEditInterests()">
+      <hr class="mt-3">
+
+      <div class="row">
+        <div class="col-auto profile-interest" *ngFor="let interest of profile.interests">{{ interest }}</div>
+        <div class="col-auto" *ngIf="!hasInterests">No interests data available.</div>
+      </div>
+    </app-section>
+
+    <interest-add-dialog #interestAddDialog></interest-add-dialog>
+    <interest-edit-dialog #interestEditDialog></interest-edit-dialog>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-block">
+    <app-section [header]="'Passport Scans'" [showAdd]="false" (onEdit)="onEditPassportScans()">
+      <hr class="mt-3">
+
+      <div class="row">
+        <div class="col">
+          <div *ngFor="let passportScan of passportScans; trackBy: trackByKey">
+            <img [src]="fileUrlFrom(passportScan)" class="passport-scan rounded pull-left" alt="Passport Scan">
+          </div>
+          <div class="required-materials" *ngIf="!hasPassportScans">Passport scans are required.</div>
         </div>
-      </app-section>
-    </div>
+      </div>
+    </app-section>
 
-    <skill-add-dialog #skillAddDialog></skill-add-dialog>
-    <skill-edit-dialog #skillEditDialog></skill-edit-dialog>
-
-    <div class="card-block">
-      <app-section [header]="'Interests'" [showAdd]="true" (onAdd)="onAddNewInterest()" (onEdit)="onEditInterests()">
-        <hr class="mt-3">
-
-        <div class="row">
-          <div class="col-auto profile-interest" *ngFor="let interest of profile.interests">{{ interest }}</div>
-          <div class="col-auto" *ngIf="!hasInterests">No interests data available.</div>
-        </div>
-      </app-section>
-
-      <interest-add-dialog #interestAddDialog></interest-add-dialog>
-      <interest-edit-dialog #interestEditDialog></interest-edit-dialog>
-    </div>
+    <passport-scan-edit-dialog #passportScanEditDialog></passport-scan-edit-dialog>
   </div>
 
-  <div class="card">
-    <div class="card-block">
-      <app-section [header]="'Passport Scans'" [showAdd]="false" (onEdit)="onEditPassportScans()">
-        <hr class="mt-3">
+  <div class="card-block">
+    <app-section [header]="'Recommend Letters'" [showAdd]="false" (onEdit)="onEditRecommendations()">
+      <hr class="mt-3">
 
-        <div class="row">
-          <div class="col">
-            <div *ngFor="let passportScan of passportScans; trackBy: trackByKey">
-              <img [src]="fileUrlFrom(passportScan)" class="passport-scan rounded pull-left" alt="Passport Scan">
-            </div>
-            <div class="required-materials" *ngIf="!hasPassportScans">Passport scans are required.</div>
+      <div class="row">
+        <div class="col-auto" *ngFor="let recommendation of recommendations; trackBy: trackByKey">
+          <a [attr.href]="fileUrlFrom(recommendation)" class="">{{ filenameFrom(recommendation) }}</a>
+          <div class="pdf-viewer-container">
+            <pdf-viewer class="pdf-viewer"
+                        [src]="fileUrlFrom(recommendation)"
+                        [page]="1"
+                        [stick-to-page]="true"
+                        [show-all]="false"
+                        [render-text]="false"
+                        [original-size]="false"
+                        [external-link-target]="'blank'">
+            </pdf-viewer>
           </div>
         </div>
-      </app-section>
+        <div class="col required-materials" *ngIf="!hasRecommendations">Recommend letters are required.</div>
+      </div>
+    </app-section>
 
-      <passport-scan-edit-dialog #passportScanEditDialog></passport-scan-edit-dialog>
-    </div>
-
-    <div class="card-block">
-      <app-section [header]="'Recommend Letters'" [showAdd]="false" (onEdit)="onEditRecommendations()">
-        <hr class="mt-3">
-
-        <div class="row">
-          <div class="col-auto" *ngFor="let recommendation of recommendations; trackBy: trackByKey">
-            <a [attr.href]="fileUrlFrom(recommendation)" class="">{{ filenameFrom(recommendation) }}</a>
-            <div class="pdf-viewer-container">
-              <pdf-viewer class="pdf-viewer"
-                          [src]="fileUrlFrom(recommendation)"
-                          [page]="1"
-                          [stick-to-page]="true"
-                          [show-all]="false"
-                          [render-text]="false"
-                          [original-size]="false"
-                          [external-link-target]="'blank'">
-              </pdf-viewer>
-            </div>
-          </div>
-          <div class="col required-materials" *ngIf="!hasRecommendations">Recommend letters are required.</div>
-        </div>
-      </app-section>
-
-      <applying-file-edit-dialog #recommendationEditDialog
-              [title]="'Edit recommend letter'"
-              [type]="'recommendations'">
-      </applying-file-edit-dialog>
-    </div>
-
-    <div class="card-block">
-      <app-section [header]="'Transcripts'" [showAdd]="false" (onEdit)="onEditTranscripts()">
-        <hr class="mt-3">
-
-        <div class="row">
-          <div class="col-auto" *ngFor="let transcript of transcripts; trackBy: trackByKey">
-            <a [attr.href]="fileUrlFrom(transcript)" class="">{{ filenameFrom(transcript) }}</a>
-            <div class="pdf-viewer-container">
-              <pdf-viewer class="pdf-viewer"
-                          [src]="fileUrlFrom(transcript)"
-                          [page]="1"
-                          [stick-to-page]="true"
-                          [show-all]="false"
-                          [render-text]="false"
-                          [original-size]="false"
-                          [external-link-target]="'blank'">
-              </pdf-viewer>
-            </div>
-          </div>
-          <div class="col required-materials" *ngIf="!hasTranscripts">Transcripts are required.</div>
-        </div>
-      </app-section>
-
-      <applying-file-edit-dialog #transcriptEditDialog
-              [title]="'Edit transcripts'"
-              [type]="'transcripts'">
-      </applying-file-edit-dialog>
-    </div>
-
-    <div class="card-block">
-      <app-section [header]="'Financial Info Documents'" [showAdd]="false" (onEdit)="onEditFinancialInfoDocs()">
-        <hr class="mt-3">
-
-        <div class="row">
-          <div class="col-auto" *ngFor="let financialInfoDoc of financialInfoDocs; trackBy: trackByKey">
-            <a [attr.href]="fileUrlFrom(financialInfoDoc)" class="">{{ filenameFrom(financialInfoDoc) }}</a>
-            <div class="pdf-viewer-container">
-              <pdf-viewer class="pdf-viewer"
-                          [src]="fileUrlFrom(financialInfoDoc)"
-                          [page]="1"
-                          [stick-to-page]="true"
-                          [show-all]="false"
-                          [render-text]="false"
-                          [original-size]="false"
-                          [external-link-target]="'blank'">
-              </pdf-viewer>
-            </div>
-          </div>
-          <div class="col required-materials" *ngIf="!hasFinancialInfoDocs">Financial info documents are required.</div>
-        </div>
-      </app-section>
-
-      <applying-file-edit-dialog #financialInfoDocEditDialog
-              [title]="'Edit financial info documents'"
-              [type]="'financial-info-docs'">
-      </applying-file-edit-dialog>
-    </div>
-
-    <div class="card-block">
-      <app-section [header]="'Supplements'" [showAdd]="false" (onEdit)="onEditSupplements()">
-        <hr class="mt-3">
-
-        <div class="row">
-          <div class="col-auto" *ngFor="let supplement of supplements; trackBy: trackByKey">
-            <a [attr.href]="fileUrlFrom(supplement)" class="">{{ filenameFrom(supplement) }}</a>
-            <div class="pdf-viewer-container">
-              <pdf-viewer class="pdf-viewer"
-                          [src]="fileUrlFrom(supplement)"
-                          [page]="1"
-                          [stick-to-page]="true"
-                          [show-all]="false"
-                          [render-text]="false"
-                          [original-size]="false"
-                          [external-link-target]="'blank'">
-              </pdf-viewer>
-            </div>
-          </div>
-          <div class="col" *ngIf="!hasSupplements">Add more application supplements (If needed). </div>
-        </div>
-      </app-section>
-
-      <applying-file-edit-dialog #supplementEditDialog
-              [title]="'Edit supplements'"
-              [type]="'supplements'">
-      </applying-file-edit-dialog>
-    </div>
+    <applying-file-edit-dialog #recommendationEditDialog
+            [title]="'Edit recommend letter'"
+            [type]="'recommendations'">
+    </applying-file-edit-dialog>
   </div>
 
+  <div class="card-block">
+    <app-section [header]="'Transcripts'" [showAdd]="false" (onEdit)="onEditTranscripts()">
+      <hr class="mt-3">
+
+      <div class="row">
+        <div class="col-auto" *ngFor="let transcript of transcripts; trackBy: trackByKey">
+          <a [attr.href]="fileUrlFrom(transcript)" class="">{{ filenameFrom(transcript) }}</a>
+          <div class="pdf-viewer-container">
+            <pdf-viewer class="pdf-viewer"
+                        [src]="fileUrlFrom(transcript)"
+                        [page]="1"
+                        [stick-to-page]="true"
+                        [show-all]="false"
+                        [render-text]="false"
+                        [original-size]="false"
+                        [external-link-target]="'blank'">
+            </pdf-viewer>
+          </div>
+        </div>
+        <div class="col required-materials" *ngIf="!hasTranscripts">Transcripts are required.</div>
+      </div>
+    </app-section>
+
+    <applying-file-edit-dialog #transcriptEditDialog
+            [title]="'Edit transcripts'"
+            [type]="'transcripts'">
+    </applying-file-edit-dialog>
+  </div>
+
+  <div class="card-block">
+    <app-section [header]="'Financial Info Documents'" [showAdd]="false" (onEdit)="onEditFinancialInfoDocs()">
+      <hr class="mt-3">
+
+      <div class="row">
+        <div class="col-auto" *ngFor="let financialInfoDoc of financialInfoDocs; trackBy: trackByKey">
+          <a [attr.href]="fileUrlFrom(financialInfoDoc)" class="">{{ filenameFrom(financialInfoDoc) }}</a>
+          <div class="pdf-viewer-container">
+            <pdf-viewer class="pdf-viewer"
+                        [src]="fileUrlFrom(financialInfoDoc)"
+                        [page]="1"
+                        [stick-to-page]="true"
+                        [show-all]="false"
+                        [render-text]="false"
+                        [original-size]="false"
+                        [external-link-target]="'blank'">
+            </pdf-viewer>
+          </div>
+        </div>
+        <div class="col required-materials" *ngIf="!hasFinancialInfoDocs">Financial info documents are required.</div>
+      </div>
+    </app-section>
+
+    <applying-file-edit-dialog #financialInfoDocEditDialog
+            [title]="'Edit financial info documents'"
+            [type]="'financial-info-docs'">
+    </applying-file-edit-dialog>
+  </div>
+
+  <div class="card-block">
+    <app-section [header]="'Supplements'" [showAdd]="false" (onEdit)="onEditSupplements()">
+      <hr class="mt-3">
+
+      <div class="row">
+        <div class="col-auto" *ngFor="let supplement of supplements; trackBy: trackByKey">
+          <a [attr.href]="fileUrlFrom(supplement)" class="">{{ filenameFrom(supplement) }}</a>
+          <div class="pdf-viewer-container">
+            <pdf-viewer class="pdf-viewer"
+                        [src]="fileUrlFrom(supplement)"
+                        [page]="1"
+                        [stick-to-page]="true"
+                        [show-all]="false"
+                        [render-text]="false"
+                        [original-size]="false"
+                        [external-link-target]="'blank'">
+            </pdf-viewer>
+          </div>
+        </div>
+        <div class="col" *ngIf="!hasSupplements">Add more application supplements (If needed). </div>
+      </div>
+    </app-section>
+
+    <applying-file-edit-dialog #supplementEditDialog
+            [title]="'Edit supplements'"
+            [type]="'supplements'">
+    </applying-file-edit-dialog>
+  </div>
 </div>

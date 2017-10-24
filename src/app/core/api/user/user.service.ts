@@ -59,7 +59,7 @@ export class UserService extends ApiBase {
       .catch(this.handleError);
   }
 
-  private handleAuthorized(response: Response) {
+  private handleAuthorized = (response: Response) => {
     const user = response.json();
     const token = response.headers.get('x-auth');
     if (user && token) {
