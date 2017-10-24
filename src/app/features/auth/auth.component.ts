@@ -3,8 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from '@app/models';
 import { AlertService, UserService, ProfileService, StorageService } from '@app/core';
-
-import * as _ from "lodash";
+import * as _ from 'lodash';
 
 @Component({
   templateUrl: 'auth.component.html',
@@ -13,7 +12,7 @@ import * as _ from "lodash";
 export class AuthComponent implements OnInit {
   public modelSignin: any = {};
   public modelSignup: any = {};
-  public roles = ['student', 'school', 'company'];
+  public roles = ['Student', 'School', 'Company'];
   public loading = false;
   public returnUrl: string;
 
@@ -33,14 +32,8 @@ export class AuthComponent implements OnInit {
 
   signup() {
     this.loading = true;
-    this.userService.signup(this.modelSignup).flatMap((user: User) => {
-      // create a new user profile based on the user role
-      const data = _.pick(this.modelSignup, ['email', 'phone', 'firstname', 'lastname']);
-      data['userId'] = user._id;
-      return this.profileService.createProfile(this.modelSignup.role, data);
-    }).subscribe(() => {
-      // set success message and pass true paramater to persist the message after redirecting to the login page
-      this.alertService.success('Signup successful', true);
+    this.userService.signup(this.modelSignup).subscribe((user: User) => {
+      this.profileService.setProfile(user.profile);
       this.router.navigate(['/']);
     }, error => {
       this.alertService.error(error);
@@ -52,7 +45,7 @@ export class AuthComponent implements OnInit {
     this.loading = true;
     const { email, password } = this.modelSignin;
     this.userService.signin(email, password).subscribe((user: User) => {
-      this.profileService.updateWithExistingProfile(user.profile);
+      this.profileService.setProfile(user.profile);
       // redirect to the wanted page
       this.router.navigate([this.returnUrl]);
     }, error => {

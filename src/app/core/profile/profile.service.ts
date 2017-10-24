@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Student } from '@app/models';
 import { StudentService } from '@app/core/api/student/student.service';
 import { StorageService } from '@app/core/storage/storage.service';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable()
 export class ProfileService {
@@ -20,39 +20,26 @@ export class ProfileService {
     return this.subject.asObservable();
   }
 
-  public fetchProfile(user) {
-    switch (user.role.toLowerCase()) {
-      case 'student': {
-        return this.studentService.getAll({ userId: user._id }).map(result => {
-          this.onProfileUpdated(result.students[0]);
-        });
-      }
-      case 'school': {
-
-      }
-      case 'company': {
-
-      }
-      default: {
-
-      }
+  public setProfile(profile) {
+    if (profile) {
+      this.storageService.setProfile(profile);
+      this.subject.next(profile);
     }
   }
 
-  public createProfile(role, payload) {
-    switch (role.toLowerCase()) {
-      case 'student': {
-        return this.studentService.create(payload as Student).map(profile => {
-          this.onProfileUpdated(profile);
-          return profile;
+  public fetchProfile(user) {
+    switch (user.role) {
+      case 'Student': {
+        return this.studentService.getAll({ userId: user._id }).map(result => {
+          this.setProfile(result.students[0]);
         });
       }
-      case 'school': {
+      case 'School': {
 
-      }
-      case 'company': {
+      } break;
+      case 'Company': {
 
-      }
+      } break;
       default: {
 
       }
@@ -60,32 +47,21 @@ export class ProfileService {
   }
 
   public updateProfile(role, payload) {
-    switch (role.toLowerCase()) {
-      case 'student': {
+    switch (role) {
+      case 'Student': {
         return this.studentService.update(payload as Student).map(result => {
-          this.onProfileUpdated(result.student);
+          this.setProfile(result.student);
         });
       }
-      case 'school': {
+      case 'School': {
 
-      }
-      case 'company': {
+      } break;
+      case 'Company': {
 
-      }
+      } break;
       default: {
 
       }
-    }
-  }
-
-  public updateWithExistingProfile(profile) {
-    this.onProfileUpdated(profile);
-  }
-
-  private onProfileUpdated(profile) {
-    if (profile) {
-      this.storageService.setProfile(profile);
-      this.subject.next(profile);
     }
   }
 }

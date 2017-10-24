@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
+import { ApiBase } from '../api-base';
 import { User } from '@app/models';
 import { environment } from '@env/environment';
 import { StorageService } from '@app/core/storage/storage.service';
 import 'rxjs/add/operator/map';
-
-import { ApiBase } from '../api-base';
 
 @Injectable()
 export class UserService extends ApiBase {
@@ -49,37 +48,28 @@ export class UserService extends ApiBase {
   // authorization operations
 
   public signin(email: string, password: string) {
-    return this.http.post(`${this.apiEndpoint}/users/login`, {email, password}, this.defaultOptions())
-      .map((response: Response) => {
-        // login successfully if there's a jwt token in the response
-        const user = response.json();
-        const token = response.headers.get('x-auth');
-        if (user && token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          this.storageService.setUserAndToken(user, token);
-        }
-        return user;
-      })
+    return this.http.post(`${this.apiEndpoint}/users/login`, { email, password }, this.defaultOptions())
+      .map(this.handleAuthorized)
       .catch(this.handleError);
   }
 
   public signup(user: User) {
     return this.http.post(`${this.apiEndpoint}/users`, user, this.defaultOptions())
-      .map((response: Response) => {
-        // register successfully if there's a jwt token in the response
-        let user = response.json();
-        let token = response.headers.get('x-auth');
-        if (user && token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          this.storageService.setUserAndToken(user, token);
-        }
-        return user;
-      })
+      .map(this.handleAuthorized)
       .catch(this.handleError);
   }
 
+  private handleAuthorized(response: Response) {
+    const user = response.json();
+    const token = response.headers.get('x-auth');
+    if (user && token) {
+      this.storageService.setUserAndToken(user, token);
+    }
+    return user;
+  }
+
   public signout() {
-    let options = this.optionsWithJWT();
+    const options = this.optionsWithJWT();
 
     // remove user from local storage to log user out
     this.storageService.removeUserAndToken();
