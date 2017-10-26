@@ -1,0 +1,28 @@
+.vspace {
+  display: block;
+  height: 0.6rem;
+}
+
+.hspace {
+  display: block;
+  width: 1rem;
+}
+
+.score-range {
+  display: flex;
+  flex-direction: column;
+}
+
+.range-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkbox-indicator {
+  border: solid 1px darkgray;
+}
+
+.custom-control-input:focus~.custom-control-indicator {
+  -webkit-box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
+  box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
+}

@@ -1,0 +1,30 @@
+<div class="score-range">
+  <input type="checkbox" class="custom-control-input"
+          data-toggle="collapse" [attr.data-target]="dataTarget"
+          aria-expanded="false" [attr.aria-controls]="stdTest"
+          name="checked"
+          ngModel
+          required>
+  <span class="custom-control-indicator checkbox-indicator"></span>
+  <span class="custom-control-description">{{ stdTest }}</span>
+
+  <div class="collapse" id="{{ stdTest }}">
+    <span class="vspace"></span>
+
+    <div class="range-container w-100">
+      <input type="number" class="form-control" id="min"
+        name="min"
+        placeholder="Min"
+        ngModel
+        required>
+
+      <span class="hspace"></span>
+
+      <input type="number" class="form-control" id="max"
+        name="max"
+        placeholder="Max"
+        ngModel
+        required>
+    </div>
+  </div>
+</div>

@@ -18,7 +18,11 @@ import * as Filters from './filters';
   declarations: [
     StudentComponent,
     Filters.ApplyingFilterComponent,
+    Filters.KeywordsFilterComponent,
+    Filters.GpaFilterComponent,
     Filters.GradeFilterComponent,
+    Filters.StdTestScoreRangeComponent,
+    Filters.StdTestScoreFilterComponent,
     Filters.SchoolPreferredFilterComponent
   ]
 })

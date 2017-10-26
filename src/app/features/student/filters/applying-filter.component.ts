@@ -6,6 +6,12 @@ import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-student-applying-filter',
+  styles: [`
+    .custom-control-input:focus~.custom-control-indicator {
+      -webkit-box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
+      box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
+    }
+  `],
   template: `
     <app-collapse-filter class="item" [filterId]="'applying'" [title]="'Applying'">
       <div filter-body style="padding-top: 1rem;">

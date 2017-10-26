@@ -35,23 +35,13 @@
       <!-- Applying -->
       <app-student-applying-filter (filterChanged)="onFilterChanged()"></app-student-applying-filter>
       <!-- Keywords -->
-      <app-collapse-filter class="item" [filterId]="'keywords'" [title]="'Keywords'">
-        <div filter-body>
-          <p class="mb-3">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium lorem non vestibulum scelerisque. Proin a vestibulum sem, eget tristique massa. Aliquam lacinia rhoncus nibh quis ornare.
-          </p>
-        </div>
-      </app-collapse-filter>
+      <app-student-keywords-filter (filterChanged)="onFilterChanged()"></app-student-keywords-filter>
       <!-- Current grade -->
       <app-grade-filter (filterChanged)="onFilterChanged()"></app-grade-filter>
+      <!-- GPA -->
+      <app-gpa-filter (filterChanged)="onFilterChanged()"></app-gpa-filter>
       <!-- Standardized Test Scores -->
-      <app-collapse-filter class="item" [filterId]="'std-test-scores'" [title]="'Standardized test scores'">
-        <div filter-body>
-          <p class="mb-3">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium lorem non vestibulum scelerisque. Proin a vestibulum sem, eget tristique massa. Aliquam lacinia rhoncus nibh quis ornare.
-          </p>
-        </div>
-      </app-collapse-filter>
+      <app-std-test-scores-filter (filterChanged)="onFilterChanged()"></app-std-test-scores-filter>
       <!-- School Preferred -->
       <app-school-preferred-filter (filterChanged)="onFilterChanged()"></app-school-preferred-filter>
     </form>
