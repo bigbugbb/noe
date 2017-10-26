@@ -5,7 +5,7 @@ import { Student } from '@app/models';
 import { environment } from '@env/environment';
 import { ApiBase } from '../api-base';
 import { StorageService } from '@app/core/storage/storage.service';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 import * as _ from 'lodash';
 
@@ -24,7 +24,7 @@ export class StudentService extends ApiBase {
   // basic rest operations
 
   public getAll(params: object) {
-    let options = this.optionsWithJWT();
+    const options = this.optionsWithJWT();
 
     options.params = new URLSearchParams();
     _.forOwn(params, (val, param) => {

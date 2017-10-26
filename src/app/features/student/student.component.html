@@ -1,35 +1,59 @@
-<div class="row page-size">
-  <div class="list-container">
-    <div class="card">
-
-    </div>
+<div class="row">
+  <div class="card list-container">
+    <p>
+      Angular is a framework for building client applications in HTML and either JavaScript or a language like TypeScript that compiles to JavaScript.
+      The framework consists of several libraries, some of them core and some optional.
+      You write Angular applications by composing HTML templates with Angularized markup, writing component classes to manage those templates, adding application logic in services, and boxing components and services in modules.
+      Then you launch the app by bootstrapping the root module. Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you've provided.
+      Of course, there is more to it than this. You'll learn the details in the pages that follow. For now, focus on the big picture.
+      Angular is a framework for building client applications in HTML and either JavaScript or a language like TypeScript that compiles to JavaScript.
+      The framework consists of several libraries, some of them core and some optional.
+      You write Angular applications by composing HTML templates with Angularized markup, writing component classes to manage those templates, adding application logic in services, and boxing components and services in modules.
+      Then you launch the app by bootstrapping the root module. Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you've provided.
+      Of course, there is more to it than this. You'll learn the details in the pages that follow. For now, focus on the big picture.
+      Angular is a framework for building client applications in HTML and either JavaScript or a language like TypeScript that compiles to JavaScript.
+      The framework consists of several libraries, some of them core and some optional.
+      You write Angular applications by composing HTML templates with Angularized markup, writing component classes to manage those templates, adding application logic in services, and boxing components and services in modules.
+      Then you launch the app by bootstrapping the root module. Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you've provided.
+      Of course, there is more to it than this. You'll learn the details in the pages that follow. For now, focus on the big picture.
+      Angular is a framework for building client applications in HTML and either JavaScript or a language like TypeScript that compiles to JavaScript.
+      The framework consists of several libraries, some of them core and some optional.
+      You write Angular applications by composing HTML templates with Angularized markup, writing component classes to manage those templates, adding application logic in services, and boxing components and services in modules.
+      Then you launch the app by bootstrapping the root module. Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you've provided.
+      Of course, there is more to it than this. You'll learn the details in the pages that follow. For now, focus on the big picture.
+      Angular is a framework for building client applications in HTML and either JavaScript or a language like TypeScript that compiles to JavaScript.
+      The framework consists of several libraries, some of them core and some optional.
+      You write Angular applications by composing HTML templates with Angularized markup, writing component classes to manage those templates, adding application logic in services, and boxing components and services in modules.
+      Then you launch the app by bootstrapping the root module. Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you've provided.
+      Of course, there is more to it than this. You'll learn the details in the pages that follow. For now, focus on the big picture.
+    </p>
   </div>
   <div class="filter-container">
     <div class="filter-container-title">Filter student by</div>
-    <div id="student-filters" data-children=".item">
-      <div class="item">
-        <a class="row filter-head" data-toggle="collapse" data-parent="#student-filters" href="#applying" aria-expanded="true" aria-controls="applying">
-          <div class="col filter-title">Applying</div>
-          <i class="fa fa-chevron-down" aria-hidden="true"></i>
-        </a>
-        <div id="applying" class="collapse show" role="tabpanel">
+    <pre>{{ filterForm.value | json }}</pre>
+    <form #filterForm="ngForm">
+      <!-- Applying -->
+      <app-student-applying-filter (filterChanged)="onFilterChanged()"></app-student-applying-filter>
+      <!-- Keywords -->
+      <app-collapse-filter class="item" [filterId]="'keywords'" [title]="'Keywords'">
+        <div filter-body>
           <p class="mb-3">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium lorem non vestibulum scelerisque. Proin a vestibulum sem, eget tristique massa. Aliquam lacinia rhoncus nibh quis ornare.
           </p>
         </div>
-        <hr class="mt-3">
-      </div>
-      <div class="item">
-        <a data-toggle="collapse" data-parent="#student-filters" href="#keywords" aria-expanded="false" aria-controls="keywords">
-          <div>Keywords</div>
-        </a>
-        <div id="keywords" class="collapse" role="tabpanel">
+      </app-collapse-filter>
+      <!-- Current grade -->
+      <app-grade-filter (filterChanged)="onFilterChanged()"></app-grade-filter>
+      <!-- Standardized Test Scores -->
+      <app-collapse-filter class="item" [filterId]="'std-test-scores'" [title]="'Standardized test scores'">
+        <div filter-body>
           <p class="mb-3">
-            Donec at ipsum dignissim, rutrum turpis scelerisque, tristique lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus nec dui turpis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium lorem non vestibulum scelerisque. Proin a vestibulum sem, eget tristique massa. Aliquam lacinia rhoncus nibh quis ornare.
           </p>
         </div>
-        <hr class="mt-3">
-      </div>
-    </div>
+      </app-collapse-filter>
+      <!-- School Preferred -->
+      <app-school-preferred-filter (filterChanged)="onFilterChanged()"></app-school-preferred-filter>
+    </form>
   </div>
 </div>

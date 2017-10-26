@@ -1,5 +1,5 @@
 import { Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Rx';
 
 import { StorageService } from '@app/core/storage/storage.service';
 
@@ -46,7 +46,7 @@ export class ApiBase {
 
   protected handleError(error: any) {
     const errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg);
     return Observable.throw(errMsg);
   }

@@ -12,4 +12,7 @@ export class StudentComponent implements OnInit {
   ngOnInit() {
   }
 
+  onFilterChanged() {
+    console.log('onFilterChanged');
+  }
 }

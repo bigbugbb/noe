@@ -4,8 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@app/shared';
 import { StudentRoutingModule } from './student.routing';
-
 import { StudentComponent } from './student.component';
+import * as Filters from './filters';
 
 @NgModule({
   imports: [
@@ -16,7 +16,10 @@ import { StudentComponent } from './student.component';
     StudentRoutingModule
   ],
   declarations: [
-    StudentComponent
+    StudentComponent,
+    Filters.ApplyingFilterComponent,
+    Filters.GradeFilterComponent,
+    Filters.SchoolPreferredFilterComponent
   ]
 })
 export class StudentModule { }

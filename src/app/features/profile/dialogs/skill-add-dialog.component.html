@@ -1,4 +1,4 @@
-<dialog class="dialog" #dialog [staticModal]="staticModal" [large]="false">
+<app-dialog class="dialog" #dialog [staticModal]="staticModal" [large]="false">
   <div dialog-title>
     Add skill
   </div>
@@ -24,4 +24,4 @@
   <div dialog-footer>
     <button class="btn btn-primary" [disabled]="!added" (click)="onSave()">Save</button>
   </div>
-</dialog>
+</app-dialog>

@@ -15,8 +15,8 @@ export class SkillEditDialogComponent implements OnInit {
   @ViewChild('dialog')
   private dialog: DialogComponent;
 
-  public edited: Boolean = false;
-  public model: any;
+  public edited = false;
+  public model;
   public skills: Array<string>;
 
   constructor(

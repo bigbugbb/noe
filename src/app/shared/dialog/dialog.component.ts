@@ -1,26 +1,26 @@
-import { Component, EventEmitter, Input, Output, ViewChild, TemplateRef } from '@angular/core';
-import { BsModalRef, BsModalService } from "ngx-bootstrap";
-import { Subscription } from "rxjs/Subscription";
+import { Component, EventEmitter, OnInit, OnDestroy, Input, Output, ViewChild, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { Subscription } from 'rxjs/Rx';
 
 @Component({
-  selector: 'dialog',
+  selector: 'app-dialog',
   templateUrl: 'dialog.component.html',
   styleUrls: ['dialog.component.scss']
 })
-export class DialogComponent {
-  @ViewChild("template")
-	template: TemplateRef<any>;
+export class DialogComponent implements OnInit, OnDestroy {
+  @ViewChild('template')
+  template: TemplateRef<any>;
 
   private modalRef: BsModalRef;
 
   @Input()
-	private large = true;
+  private large = true;
 
-	@Input()
-	private staticModal = false;
+  @Input()
+  private staticModal = false;
 
-	@Input()
-	private showHide = true;
+  @Input()
+  private showHide = true;
 
 	@Input()
 	private preventEscape = false;
@@ -28,9 +28,9 @@ export class DialogComponent {
 	@Output()
 	onHide: EventEmitter<void> = new EventEmitter<void>();
 
-	private onHideSubscription: Subscription;
+  private onHideSubscription: Subscription;
 
-	private modalsCountOnOpen: number;
+  private modalsCountOnOpen: number;
 
   constructor(private modalService: BsModalService) {}
 
@@ -59,13 +59,13 @@ export class DialogComponent {
   private getConfig() {
 		const config: any = {};
 		if (this.staticModal) {
-			config.backdrop = "static";
+			config.backdrop = 'static';
 		}
 		if (this.preventEscape) {
 			config.keyboard = false;
 		}
 		if (this.large) {
-			config.class = "modal-lg";
+			config.class = 'modal-lg';
     }
     // ignoreBackdropClick
 		return config;

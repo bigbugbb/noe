@@ -1,0 +1,11 @@
+<div class="item">
+  <a class="row filter-head" (click)="toggleCollapse()" data-toggle="collapse" href="#{{ filterId }}" aria-expanded="false" aria-controls="collapse-filter">
+    <div class="col filter-title">{{ title }}</div>
+    <i class="fa fa-chevron-down filter-title-icon" *ngIf="collapse" aria-hidden="true"></i>
+    <i class="fa fa-chevron-up filter-title-icon" *ngIf="!collapse" aria-hidden="true"></i>
+  </a>
+  <div id="{{ filterId }}" class="collapse" role="tabpanel">
+    <ng-content select="[filter-body]"></ng-content>
+  </div>
+  <hr class="mt-3">
+</div>

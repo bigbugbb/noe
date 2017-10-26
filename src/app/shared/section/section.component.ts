@@ -6,11 +6,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['section.component.scss']
 })
 export class SectionComponent implements OnInit {
-  @Input() header: string;
-  @Input() showAdd: Boolean = true;
-  @Input() showEdit: Boolean = true;
-  @Output() onAdd: EventEmitter<any> = new EventEmitter();
-  @Output() onEdit: EventEmitter<any> = new EventEmitter();
+  @Input() header = '';
+  @Input() showAdd = true;
+  @Input() showEdit = true;
+  @Output() onAdd = new EventEmitter();
+  @Output() onEdit = new EventEmitter();
 
   ngOnInit() {}
 

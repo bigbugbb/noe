@@ -15,8 +15,8 @@ export class InterestEditDialogComponent implements OnInit {
   @ViewChild('dialog')
   private dialog: DialogComponent;
 
-  public edited: Boolean = false;
-  public model: any;
+  public edited = false;
+  public model;
   public interests: Array<string>;
 
   constructor(
