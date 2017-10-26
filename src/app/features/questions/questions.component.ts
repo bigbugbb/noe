@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-questions',
+  selector: 'noe-questions',
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.scss']
 })

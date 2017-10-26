@@ -3,7 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Subscription } from 'rxjs/Rx';
 
 @Component({
-  selector: 'app-dialog',
+  selector: 'noe-dialog',
   templateUrl: 'dialog.component.html',
   styleUrls: ['dialog.component.scss']
 })

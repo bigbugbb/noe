@@ -1,4 +1,4 @@
-<app-dialog class="dialog" #dialog [staticModal]="staticModal">
+<noe-dialog class="dialog" #dialog [staticModal]="staticModal">
   <div dialog-title>
     Edit school preferred
   </div>
@@ -24,8 +24,8 @@
                 required
                 [(ngModel)]="model.preferredSchoolType" name="preferredSchoolType"
                 #preferredSchoolType="ngModel">
-          <option *ngFor="let type of types | async" [value]="type">{{type}}</option>
-        </select>
+            <option *ngFor="let type of types | async" [value]="type">{{type}}</option>
+          </select>
           <div [hidden]="preferredSchoolType.valid || preferredSchoolType.pristine" class="alert alert-danger">
               Preferred school type is required
           </div>
@@ -68,4 +68,4 @@
       Save
     </button>
   </div>
-</app-dialog>
+</noe-dialog>

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'passport-scan-edit-dialog',
+  selector: 'noe-passport-scan-edit-dialog',
   templateUrl: 'passport-scan-edit-dialog.component.html',
   styleUrls: ['passport-scan-edit-dialog.component.scss']
 })

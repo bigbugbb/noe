@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-collapse-filter',
+  selector: 'noe-collapse-filter',
   templateUrl: 'collapse-filter.component.html',
   styleUrls: ['collapse-filter.component.scss']
 })

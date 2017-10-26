@@ -6,7 +6,7 @@ import * as Dialogs from './dialogs';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'noe-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })

@@ -5,7 +5,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
-  selector: 'app-school-preferred-filter',
+  selector: 'noe-school-preferred-filter',
   styles: [`
     .space {
       display:block;
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Rx';
     }
   `],
   template: `
-    <app-collapse-filter class="item" [filterId]="'schoolPreferred'" [title]="'School preferred'">
+    <noe-collapse-filter class="item" [filterId]="'schoolPreferred'" [title]="'School preferred'">
       <div filter-body style="padding: 1rem 2rem 0 0">
         <label for="preferredSchoolLocation">Location</label>
         <select class="form-control" id="preferredSchoolLocation"
@@ -57,7 +57,7 @@ import { Observable } from 'rxjs/Rx';
           <option *ngFor="let accommodation of accommodations | async" [value]="accommodation">{{accommodation}}</option>
         </select>
       </div>
-    </app-collapse-filter>
+    </noe-collapse-filter>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })

@@ -5,7 +5,7 @@ import { AlertService } from '@app/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'alert',
+  selector: 'noe-alert',
   templateUrl: 'alert.component.html'
 })
 export class AlertComponent implements OnDestroy {

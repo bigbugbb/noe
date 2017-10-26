@@ -5,7 +5,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
-  selector: 'app-std-test-scores-filter',
+  selector: 'noe-std-test-scores-filter',
   styles: [`
     .space {
       display:block;
@@ -13,12 +13,12 @@ import { Observable } from 'rxjs/Rx';
     }
   `],
   template: `
-    <app-collapse-filter class="item" [filterId]="'stdTestScores'" [title]="'Standard test scores'">
+    <noe-collapse-filter class="item" [filterId]="'stdTestScores'" [title]="'Standard test scores'">
       <div filter-body style="padding: 1rem 2rem 0 0;">
         <label *ngFor="let stdTest of stdTests | async;"
                 ngModelGroup="{{ stdTest }}"
                 class="w-100 custom-control custom-checkbox">
-          <app-std-test-score-range [stdTest]="stdTest"></app-std-test-score-range>
+          <noe-std-test-score-range [stdTest]="stdTest"></noe-std-test-score-range>
         </label>
 
         <span class="space"></span>
@@ -27,7 +27,7 @@ import { Observable } from 'rxjs/Rx';
           <button class="btn btn-sm btn-primary" (click)="filterChanged.emit()">Update</button>
         </div>
       </div>
-    </app-collapse-filter>
+    </noe-collapse-filter>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })

@@ -2,9 +2,9 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-student-keywords-filter',
+  selector: 'noe-student-keywords-filter',
   styles: [`
-    .space {
+    .vspace {
       display: block;
       height: 0.6rem;
     }
@@ -16,49 +16,27 @@ import { ControlContainer, NgForm } from '@angular/forms';
     }
   `],
   template: `
-    <app-collapse-filter class="item" [filterId]="'keywords'" [title]="'Keywords'">
+    <noe-collapse-filter class="item" [filterId]="'keywords'" [title]="'Keywords'">
       <div filter-body style="padding: 1rem 2rem 0 0">
-        <label for="firstname">Firstname</label>
-        <input type="text" class="form-control" id="firstname"
-                name="firstname"
-                ngModel
-                required>
-
-        <span style="display:block; height: 0.6rem;"></span>
-
-        <label for="lastname">Lastname</label>
-        <input type="text" class="form-control" id="lastname"
-                name="lastname"
-                ngModel
-                required>
-
-        <span style="display:block; height: 0.6rem;"></span>
-
-        <label for="email">Email</label>
-        <input type="text" class="form-control" id="email"
-                name="email"
-                ngModel
-                required>
-
-        <span style="display:block; height: 0.6rem;"></span>
-
-        <label for="school">School</label>
-        <input type="text" class="form-control" id="school"
-                name="school"
-                ngModel
-                required>
-
-        <span class="space"></span>
-
+        <div *ngFor="let keyword of keywords;">
+          <label for="{{ keyword }}">{{ keyword | capitalize }}</label>
+          <input type="text" class="form-control" id="{{ keyword }}"
+                  name="{{ keyword }}"
+                  ngModel
+                  required>
+          <span class="vspace"></span>
+        </div>
         <div class="update">
           <button class="btn btn-sm btn-primary" (click)="filterChanged.emit()">Update</button>
         </div>
       </div>
-    </app-collapse-filter>
+    </noe-collapse-filter>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class KeywordsFilterComponent {
   @Output()
   private filterChanged: EventEmitter<any> = new EventEmitter();
+
+  private keywords = ['firstname', 'lastname', 'email', 'school'];
 }

@@ -6,7 +6,7 @@ import { UserService, ProfileService, StorageService } from '@app/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-layout',
+  selector: 'noe-app-layout',
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.scss']
 })

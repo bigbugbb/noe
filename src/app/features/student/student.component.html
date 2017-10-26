@@ -33,17 +33,17 @@
     <pre>{{ filterForm.value | json }}</pre>
     <form #filterForm="ngForm">
       <!-- Applying -->
-      <app-student-applying-filter (filterChanged)="onFilterChanged()"></app-student-applying-filter>
+      <noe-student-applying-filter (filterChanged)="onFilterChanged()"></noe-student-applying-filter>
       <!-- Keywords -->
-      <app-student-keywords-filter (filterChanged)="onFilterChanged()"></app-student-keywords-filter>
+      <noe-student-keywords-filter (filterChanged)="onFilterChanged()"></noe-student-keywords-filter>
       <!-- Current grade -->
-      <app-grade-filter (filterChanged)="onFilterChanged()"></app-grade-filter>
+      <noe-grade-filter (filterChanged)="onFilterChanged()"></noe-grade-filter>
       <!-- GPA -->
-      <app-gpa-filter (filterChanged)="onFilterChanged()"></app-gpa-filter>
+      <noe-gpa-filter (filterChanged)="onFilterChanged()"></noe-gpa-filter>
       <!-- Standardized Test Scores -->
-      <app-std-test-scores-filter (filterChanged)="onFilterChanged()"></app-std-test-scores-filter>
+      <noe-std-test-scores-filter (filterChanged)="onFilterChanged()"></noe-std-test-scores-filter>
       <!-- School Preferred -->
-      <app-school-preferred-filter (filterChanged)="onFilterChanged()"></app-school-preferred-filter>
+      <noe-school-preferred-filter (filterChanged)="onFilterChanged()"></noe-school-preferred-filter>
     </form>
   </div>
 </div>

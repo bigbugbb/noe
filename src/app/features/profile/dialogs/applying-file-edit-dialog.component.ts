@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'applying-file-edit-dialog',
+  selector: 'noe-applying-file-edit-dialog',
   templateUrl: 'applying-file-edit-dialog.component.html',
   styleUrls: ['applying-file-edit-dialog.component.scss']
 })

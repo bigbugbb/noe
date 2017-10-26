@@ -17,7 +17,7 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "noe",
       "styles": [
         "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
         "assets/scss/styles.scss"

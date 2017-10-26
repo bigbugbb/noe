@@ -6,7 +6,7 @@ import { DialogComponent } from '@app/shared';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'std-test-score-dialog',
+  selector: 'noe-std-test-score-dialog',
   templateUrl: 'std-test-score-dialog.component.html',
   styleUrls: ['std-test-score-dialog.component.scss']
 })

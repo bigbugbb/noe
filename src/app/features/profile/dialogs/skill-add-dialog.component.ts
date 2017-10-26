@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'skill-add-dialog',
+  selector: 'noe-skill-add-dialog',
   templateUrl: 'skill-add-dialog.component.html',
   styleUrls: ['skill-add-dialog.component.scss']
 })

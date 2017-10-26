@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-notifications',
+  selector: 'noe-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss']
 })

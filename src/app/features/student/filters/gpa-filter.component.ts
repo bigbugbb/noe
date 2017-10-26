@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-gpa-filter',
+  selector: 'noe-gpa-filter',
   styles: [`
     .hspace {
       display: block;
@@ -26,7 +26,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
     }
   `],
   template: `
-    <app-collapse-filter ngModelGroup="gpa" class="item" [filterId]="'gpa'" [title]="'GPA'">
+    <noe-collapse-filter ngModelGroup="gpa" class="item" [filterId]="'gpa'" [title]="'GPA'">
       <div filter-body style="padding: 1rem 2rem 0 0;">
         <div class="gpa-container w-100">
           <input type="number" class="form-control" id="min"
@@ -50,7 +50,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
           <button class="btn btn-sm btn-primary" (click)="filterChanged.emit()">Update</button>
         </div>
       </div>
-    </app-collapse-filter>
+    </noe-collapse-filter>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })

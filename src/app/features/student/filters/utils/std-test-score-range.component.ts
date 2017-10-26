@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core'
 import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-std-test-score-range',
+  selector: 'noe-std-test-score-range',
   templateUrl: './std-test-score-range.component.html',
   styleUrls: ['./std-test-score-range.component.scss'],
   viewProviders: [

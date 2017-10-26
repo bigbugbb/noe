@@ -1,12 +1,13 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { AlertService } from './_services/alert.service';
+
+import { AlertService } from '@app/core';
 
 // mock the service
 class MockAlertService extends AlertService {
   // mock everything used by the component
-};
+}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {

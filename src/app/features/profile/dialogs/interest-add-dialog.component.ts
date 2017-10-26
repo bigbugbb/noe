@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'interest-add-dialog',
+  selector: 'noe-interest-add-dialog',
   templateUrl: 'interest-add-dialog.component.html',
   styleUrls: ['interest-add-dialog.component.scss']
 })

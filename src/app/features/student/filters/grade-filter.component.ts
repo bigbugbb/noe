@@ -5,7 +5,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
-  selector: 'app-grade-filter',
+  selector: 'noe-grade-filter',
   styles: [`
     .custom-control-input:focus~.custom-control-indicator {
       -webkit-box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Rx';
     }
   `],
   template: `
-    <app-collapse-filter class="item" [filterId]="'grade'" [title]="'Current grade'">
+    <noe-collapse-filter class="item" [filterId]="'grade'" [title]="'Current grade'">
       <div filter-body style="padding-top: 1rem;">
         <label *ngFor="let grade of grades | async" class="w-100 custom-control custom-radio">
           <input type="radio" class="custom-control-input"
@@ -26,7 +26,7 @@ import { Observable } from 'rxjs/Rx';
           <span class="custom-control-description">{{ grade }}</span>
         </label>
       </div>
-    </app-collapse-filter>
+    </noe-collapse-filter>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })

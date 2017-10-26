@@ -6,7 +6,7 @@ import { DialogComponent } from '@app/shared';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'skill-edit-dialog',
+  selector: 'noe-skill-edit-dialog',
   templateUrl: 'skill-edit-dialog.component.html',
   styleUrls: ['skill-edit-dialog.component.scss']
 })

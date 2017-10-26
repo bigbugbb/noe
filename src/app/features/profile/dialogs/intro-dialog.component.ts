@@ -9,7 +9,7 @@ import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'intro-dialog',
+  selector: 'noe-intro-dialog',
   templateUrl: 'intro-dialog.component.html',
   styleUrls: ['intro-dialog.component.scss']
 })

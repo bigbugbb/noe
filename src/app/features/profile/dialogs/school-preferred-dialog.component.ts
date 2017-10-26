@@ -6,7 +6,7 @@ import { DialogComponent } from '@app/shared';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'school-preferred-dialog',
+  selector: 'noe-school-preferred-dialog',
   templateUrl: 'school-preferred-dialog.component.html',
   styleUrls: ['school-preferred-dialog.component.scss']
 })

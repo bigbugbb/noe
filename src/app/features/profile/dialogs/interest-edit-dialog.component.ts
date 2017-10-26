@@ -6,7 +6,7 @@ import { DialogComponent } from '@app/shared';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'interest-edit-dialog',
+  selector: 'noe-interest-edit-dialog',
   templateUrl: 'interest-edit-dialog.component.html',
   styleUrls: ['interest-edit-dialog.component.scss']
 })
