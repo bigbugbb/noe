@@ -29,19 +29,19 @@ export const routes: Routes = [
         loadChildren: './features/profile/profile.module#ProfileModule'
       },
       {
-        path: 'student',
+        path: 'students',
         loadChildren: './features/student/student.module#StudentModule'
       },
       {
-        path: 'school',
+        path: 'schools',
         loadChildren: './features/school/school.module#SchoolModule'
       },
       {
-        path: 'company',
+        path: 'companies',
         loadChildren: './features/company/company.module#CompanyModule'
       },
       {
-        path: 'messaging',
+        path: 'messagings',
         loadChildren: './features/messaging/messaging.module#MessagingModule'
       },
       // account sections

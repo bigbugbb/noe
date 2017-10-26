@@ -21,7 +21,7 @@ export class Student {
     // standardized test scores
     public itep: Number,
     public slep: Number,
-    public toeflJr: Number,
+    public toefljr: Number,
     public toefl: Number,
     public ssat: Number,
     public ielts: Number,

@@ -31,6 +31,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
         <div class="gpa-container w-100">
           <input type="number" class="form-control" id="min"
             name="min"
+            value="0"
             placeholder="Min"
             ngModel
             required>
@@ -39,6 +40,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 
           <input type="number" class="form-control" id="max"
             name="max"
+            value="100"
             placeholder="Max"
             ngModel
             required>
