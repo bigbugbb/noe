@@ -1,0 +1,57 @@
+{
+  "firstname": "",
+  "lastname": "",
+  "email": "",
+  "school": "",
+  "gender": "",
+  "gpa": {
+    "min": "",
+    "max": ""
+  },
+  "preferredSchoolLocation": "",
+  "preferredSchoolType": "",
+  "preferredReligion": "",
+  "preferredAccommodation": "",
+  "applying": "",
+  "grade": "",
+  "itep": {
+    "checked": "",
+    "min": "",
+    "max": ""
+  },
+  "slep": {
+    "checked": "",
+    "min": "",
+    "max": ""
+  },
+  "toefl-jr": {
+    "checked": "",
+    "min": "",
+    "max": ""
+  },
+  "toefl": {
+    "checked": "",
+    "min": "",
+    "max": ""
+  },
+  "ssat": {
+    "checked": "",
+    "min": "",
+    "max": ""
+  },
+  "ielts": {
+    "checked": "",
+    "min": "",
+    "max": ""
+  },
+  "gre": {
+    "checked": "",
+    "min": "",
+    "max": ""
+  },
+  "gmat": {
+    "checked": "",
+    "min": "",
+    "max": ""
+  }
+}

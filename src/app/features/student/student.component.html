@@ -1,49 +1,25 @@
 <div class="row">
   <div class="card list-container">
-    <p>
-      Angular is a framework for building client applications in HTML and either JavaScript or a language like TypeScript that compiles to JavaScript.
-      The framework consists of several libraries, some of them core and some optional.
-      You write Angular applications by composing HTML templates with Angularized markup, writing component classes to manage those templates, adding application logic in services, and boxing components and services in modules.
-      Then you launch the app by bootstrapping the root module. Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you've provided.
-      Of course, there is more to it than this. You'll learn the details in the pages that follow. For now, focus on the big picture.
-      Angular is a framework for building client applications in HTML and either JavaScript or a language like TypeScript that compiles to JavaScript.
-      The framework consists of several libraries, some of them core and some optional.
-      You write Angular applications by composing HTML templates with Angularized markup, writing component classes to manage those templates, adding application logic in services, and boxing components and services in modules.
-      Then you launch the app by bootstrapping the root module. Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you've provided.
-      Of course, there is more to it than this. You'll learn the details in the pages that follow. For now, focus on the big picture.
-      Angular is a framework for building client applications in HTML and either JavaScript or a language like TypeScript that compiles to JavaScript.
-      The framework consists of several libraries, some of them core and some optional.
-      You write Angular applications by composing HTML templates with Angularized markup, writing component classes to manage those templates, adding application logic in services, and boxing components and services in modules.
-      Then you launch the app by bootstrapping the root module. Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you've provided.
-      Of course, there is more to it than this. You'll learn the details in the pages that follow. For now, focus on the big picture.
-      Angular is a framework for building client applications in HTML and either JavaScript or a language like TypeScript that compiles to JavaScript.
-      The framework consists of several libraries, some of them core and some optional.
-      You write Angular applications by composing HTML templates with Angularized markup, writing component classes to manage those templates, adding application logic in services, and boxing components and services in modules.
-      Then you launch the app by bootstrapping the root module. Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you've provided.
-      Of course, there is more to it than this. You'll learn the details in the pages that follow. For now, focus on the big picture.
-      Angular is a framework for building client applications in HTML and either JavaScript or a language like TypeScript that compiles to JavaScript.
-      The framework consists of several libraries, some of them core and some optional.
-      You write Angular applications by composing HTML templates with Angularized markup, writing component classes to manage those templates, adding application logic in services, and boxing components and services in modules.
-      Then you launch the app by bootstrapping the root module. Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you've provided.
-      Of course, there is more to it than this. You'll learn the details in the pages that follow. For now, focus on the big picture.
-    </p>
+    <noe-student-list [students]="students"></noe-student-list>
   </div>
   <div class="filter-container">
     <div class="filter-container-title">Filter student by</div>
     <pre>{{ filterForm.value | json }}</pre>
     <form #filterForm="ngForm">
       <!-- Applying -->
-      <noe-student-applying-filter (filterChanged)="onFilterChanged()"></noe-student-applying-filter>
+      <noe-student-applying-filter [filters]="filters" (filterChanged)="onFilterChanged()"></noe-student-applying-filter>
       <!-- Keywords -->
-      <noe-student-keywords-filter (filterChanged)="onFilterChanged()"></noe-student-keywords-filter>
+      <noe-student-keywords-filter [filters]="filters" (filterChanged)="onFilterChanged()"></noe-student-keywords-filter>
+      <!-- Gender -->
+      <noe-student-gender-filter [filters]="filters" (filterChanged)="onFilterChanged()"></noe-student-gender-filter>
       <!-- Current grade -->
-      <noe-grade-filter (filterChanged)="onFilterChanged()"></noe-grade-filter>
+      <noe-grade-filter [filters]="filters" (filterChanged)="onFilterChanged()"></noe-grade-filter>
       <!-- GPA -->
-      <noe-gpa-filter (filterChanged)="onFilterChanged()"></noe-gpa-filter>
+      <noe-gpa-filter [filters]="filters" (filterChanged)="onFilterChanged()"></noe-gpa-filter>
       <!-- Standardized Test Scores -->
-      <noe-std-test-scores-filter (filterChanged)="onFilterChanged()"></noe-std-test-scores-filter>
+      <noe-std-test-scores-filter [filters]="filters" (filterChanged)="onFilterChanged()"></noe-std-test-scores-filter>
       <!-- School Preferred -->
-      <noe-school-preferred-filter (filterChanged)="onFilterChanged()"></noe-school-preferred-filter>
+      <noe-school-preferred-filter [filters]="filters" (filterChanged)="onFilterChanged()"></noe-school-preferred-filter>
     </form>
   </div>
 </div>

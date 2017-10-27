@@ -1,5 +1,7 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
+
+import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-gpa-filter',
@@ -7,11 +9,6 @@ import { ControlContainer, NgForm } from '@angular/forms';
     .hspace {
       display: block;
       width: 1rem;
-    }
-
-    .vspace {
-      display: block;
-      height: 0.6rem;
     }
 
     .gpa-container {
@@ -33,7 +30,8 @@ import { ControlContainer, NgForm } from '@angular/forms';
             name="min"
             value="0"
             placeholder="Min"
-            ngModel
+            (keyup.enter)="filterChanged.emit()"
+            [ngModel]="getMin()"
             required>
 
           <span class="hspace"></span>
@@ -42,14 +40,9 @@ import { ControlContainer, NgForm } from '@angular/forms';
             name="max"
             value="100"
             placeholder="Max"
-            ngModel
+            (keyup.enter)="filterChanged.emit()"
+            [ngModel]="getMax()"
             required>
-        </div>
-
-        <span class="vspace"></span>
-
-        <div class="update">
-          <button class="btn btn-sm btn-primary" (click)="filterChanged.emit()">Update</button>
         </div>
       </div>
     </noe-collapse-filter>
@@ -57,7 +50,18 @@ import { ControlContainer, NgForm } from '@angular/forms';
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class GpaFilterComponent {
+  @Input()
+  private filters: { [key: string]: any };
+
   @Output()
   private filterChanged: EventEmitter<any> = new EventEmitter();
+
+  public getMin() {
+    return _.get(this.filters, 'gpa.min', 0);
+  }
+
+  public getMax() {
+    return _.get(this.filters, 'gpa.max', 0);
+  }
 }
 

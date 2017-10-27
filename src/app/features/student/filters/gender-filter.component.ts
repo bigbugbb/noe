@@ -1,12 +1,11 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { ControlContainer, NgForm } from '@angular/forms';
 
 import { Observable } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'noe-student-applying-filter',
+  selector: 'noe-student-gender-filter',
   styles: [`
     .custom-control-input:focus~.custom-control-indicator {
       -webkit-box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
@@ -14,41 +13,37 @@ import * as _ from 'lodash';
     }
   `],
   template: `
-    <noe-collapse-filter class="item" [filterId]="'applying'" [title]="'Applying'">
+    <noe-collapse-filter class="item" [filterId]="'gender'" [title]="'Gender'">
       <div filter-body style="padding-top: 1rem;">
-        <label *ngFor="let grade of grades | async" class="w-100 custom-control custom-radio">
+        <label *ngFor="let genderType of genderTypes" class="w-100 custom-control custom-radio">
           <input type="radio" class="custom-control-input"
-                  name="applying"
-                  value="{{ grade }}"
+                  name="gender"
+                  value="{{ genderType.toLowerCase() }}"
                   (change)="filterChanged.emit()"
-                  [ngModel]="getApplying()"
+                  [ngModel]="getGender()"
                   required>
           <span class="custom-control-indicator"></span>
-          <span class="custom-control-description">{{ grade }}</span>
+          <span class="custom-control-description">{{ genderType }}</span>
         </label>
       </div>
     </noe-collapse-filter>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
-export class ApplyingFilterComponent implements OnInit {
+export class GenderFilterComponent implements OnInit {
   @Input()
   private filters: { [key: string]: any };
 
   @Output()
   private filterChanged: EventEmitter<any> = new EventEmitter();
 
-  private grades: Observable<string[]>;
-
-  constructor(
-    private http: Http
-  ) {}
+  private genderTypes = ['Male', 'Female'];
 
   ngOnInit() {
-    this.grades = this.http.get('@app/../assets/data/grades.json').map((res: Response) => res.json());
+    console.log('gender', this.filters);
   }
 
-  public getApplying() {
-    return _.get(this.filters, 'applying', '');
+  public getGender() {
+    return _.get(this.filters, 'gender', '');
   }
 }

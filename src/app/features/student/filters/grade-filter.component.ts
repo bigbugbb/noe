@@ -1,8 +1,9 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ControlContainer, NgForm } from '@angular/forms';
 
 import { Observable } from 'rxjs/Rx';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-grade-filter',
@@ -20,7 +21,7 @@ import { Observable } from 'rxjs/Rx';
                   name="grade"
                   value="{{ grade }}"
                   (change)="filterChanged.emit()"
-                  ngModel
+                  [ngModel]="getGrade()"
                   required>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">{{ grade }}</span>
@@ -31,6 +32,9 @@ import { Observable } from 'rxjs/Rx';
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class GradeFilterComponent implements OnInit {
+  @Input()
+  private filters: { [key: string]: any };
+
   @Output()
   private filterChanged: EventEmitter<any> = new EventEmitter();
 
@@ -42,5 +46,9 @@ export class GradeFilterComponent implements OnInit {
 
   ngOnInit() {
     this.grades = this.http.get('@app/../assets/data/grades.json').map((res: Response) => res.json());
+  }
+
+  public getGrade() {
+    return _.get(this.filters, 'grade', '');
   }
 }

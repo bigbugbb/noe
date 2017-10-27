@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared';
 import { StudentRoutingModule } from './student.routing';
 import { StudentComponent } from './student.component';
+import { StudentListComponent } from './student-list.component';
 import * as Filters from './filters';
 
 @NgModule({
@@ -17,8 +18,10 @@ import * as Filters from './filters';
   ],
   declarations: [
     StudentComponent,
+    StudentListComponent,
     Filters.ApplyingFilterComponent,
     Filters.KeywordsFilterComponent,
+    Filters.GenderFilterComponent,
     Filters.GpaFilterComponent,
     Filters.GradeFilterComponent,
     Filters.StdTestScoreRangeComponent,

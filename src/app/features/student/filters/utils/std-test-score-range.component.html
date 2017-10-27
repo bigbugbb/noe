@@ -1,9 +1,11 @@
 <div class="score-range">
   <input type="checkbox" class="custom-control-input"
+          id="{{ stdTest }}-checkbox"
           data-toggle="collapse" [attr.data-target]="dataTarget"
           aria-expanded="false" [attr.aria-controls]="stdTest"
+          (change)="rangeChanged.emit()"
           name="checked"
-          ngModel
+          [ngModel]="range.checked"
           required>
   <span class="custom-control-indicator checkbox-indicator"></span>
   <span class="custom-control-description">{{ stdTest }}</span>
@@ -15,7 +17,8 @@
       <input type="number" class="form-control" id="min"
         name="min"
         placeholder="Min"
-        ngModel
+        (keyup.enter)="rangeChanged.emit()"
+        [ngModel]="range.min"
         required>
 
       <span class="hspace"></span>
@@ -23,7 +26,8 @@
       <input type="number" class="form-control" id="max"
         name="max"
         placeholder="Max"
-        ngModel
+        (keyup.enter)="rangeChanged.emit()"
+        [ngModel]="range.max"
         required>
     </div>
   </div>

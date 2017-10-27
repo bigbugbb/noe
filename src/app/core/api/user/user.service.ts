@@ -49,17 +49,17 @@ export class UserService extends ApiBase {
 
   public signin(email: string, password: string) {
     return this.http.post(`${this.apiEndpoint}/users/login`, { email, password }, this.defaultOptions())
-      .map(this.handleAuthorized)
+      .map(this.handleAuthorized.bind(this))
       .catch(this.handleError);
   }
 
   public signup(user: User) {
     return this.http.post(`${this.apiEndpoint}/users`, user, this.defaultOptions())
-      .map(this.handleAuthorized)
+      .map(this.handleAuthorized.bind(this))
       .catch(this.handleError);
   }
 
-  private handleAuthorized = (response: Response) => {
+  private handleAuthorized(response: Response) {
     const user = response.json();
     const token = response.headers.get('x-auth');
     if (user && token) {

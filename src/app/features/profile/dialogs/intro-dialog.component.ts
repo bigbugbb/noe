@@ -81,16 +81,14 @@ export class IntroDialogComponent implements OnInit {
   }
 
   public avatarFileSelected(event) {
-    let image: any = new Image();
-    let file: File = event.target.files[0];
-    let myReader: FileReader = new FileReader();
-    let that = this;
-    myReader.onloadend = function (loadEvent: any) {
+    const image: any = new Image();
+    const file: File = event.target.files[0];
+    const fileReader: FileReader = new FileReader();
+    fileReader.onloadend = (loadEvent: any) => {
       image.src = loadEvent.target.result;
-      that.cropper.setImage(image);
+      this.cropper.setImage(image);
     };
-
-    myReader.readAsDataURL(file);
+    fileReader.readAsDataURL(file);
   }
 
   public selectImage() {

@@ -2,7 +2,6 @@ export class Student {
   public _id: string;
 
   constructor(
-    public userId: string,
     // basic intro
     public avatar: string,
     public firstname: string,
