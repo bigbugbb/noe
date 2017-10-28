@@ -1,5 +1,5 @@
 <div style="padding: 1rem">
   <div *ngFor="let student of students; trackBy: idOfStudent(student);">
-    <div style="padding: 0.5rem">{{ student | json }}</div>
+    <noe-student-item [item]="student"></noe-student-item>
   </div>
 </div>

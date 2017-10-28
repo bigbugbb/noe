@@ -6,6 +6,7 @@ import { SharedModule } from '@app/shared';
 import { StudentRoutingModule } from './student.routing';
 import { StudentComponent } from './student.component';
 import { StudentListComponent } from './student-list.component';
+import { StudentItemComponent } from './student-item.component';
 import { CollapseFilterComponent } from './filters/collapse-filter.component';
 import * as Filters from './filters';
 
@@ -20,6 +21,7 @@ import * as Filters from './filters';
   declarations: [
     StudentComponent,
     StudentListComponent,
+    StudentItemComponent,
     CollapseFilterComponent,
     Filters.ApplyingFilterComponent,
     Filters.KeywordsFilterComponent,

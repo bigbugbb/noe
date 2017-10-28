@@ -1,0 +1,21 @@
+<div class="item-container">
+  <a [routerLink]="['students', item._id, 'details']">
+    <img [src]="item.avatar" class="img-avatar student-avatar" alt="item.email">
+  </a>
+  <div class="info-container">
+    <div class="row info">
+      <div class="col">
+        <a class="student-name" [routerLink]="['students', item._id, 'details']">
+          {{ item.firstname }} {{ item.lastname }}
+        </a>
+        <div class="grade-and-school">{{ item.grade }} student at {{ item.school }}</div>
+        <div class="student-country">{{ item.country }}</div>
+        <div class="applying">Applying: {{ item.applying }}</div>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-default connect-btn">Connect</button>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>
