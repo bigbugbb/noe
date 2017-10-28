@@ -20,8 +20,7 @@ import * as _ from 'lodash';
         <select class="form-control" id="preferredSchoolLocation"
                 name="preferredSchoolLocation"
                 (change)="filterChanged.emit()"
-                [ngModel]="getPreferredSchoolLocation()"
-                required>
+                [ngModel]="getPreferredSchoolLocation()">
           <option *ngFor="let state of states | async" [value]="state.name">{{state.name}}</option>
         </select>
 
@@ -31,8 +30,7 @@ import * as _ from 'lodash';
         <select class="form-control" id="preferredSchoolType"
                 name="preferredSchoolType"
                 (change)="filterChanged.emit()"
-                [ngModel]="getPreferredSchoolType()"
-                required>
+                [ngModel]="getPreferredSchoolType()">
           <option *ngFor="let type of types | async" [value]="type">{{type}}</option>
         </select>
 
@@ -42,8 +40,7 @@ import * as _ from 'lodash';
         <select class="form-control" id="preferredReligion"
                 name="preferredReligion"
                 (change)="filterChanged.emit()"
-                [ngModel]="getPreferredReligion()"
-                required>
+                [ngModel]="getPreferredReligion()">
           <option *ngFor="let religion of religions | async" [value]="religion">{{religion}}</option>
         </select>
 
@@ -53,8 +50,7 @@ import * as _ from 'lodash';
         <select class="form-control" id="preferredAccommodation"
                 name="preferredAccommodation"
                 (change)="filterChanged.emit()"
-                [ngModel]="getPreferredAccommodation()"
-                required>
+                [ngModel]="getPreferredAccommodation()">
           <option *ngFor="let accommodation of accommodations | async" [value]="accommodation">{{accommodation}}</option>
         </select>
       </div>

@@ -16,7 +16,7 @@ declare var $: any;
 })
 export class StdTestScoreRangeComponent implements AfterViewInit {
   @Input()
-  public stdTest = '';
+  public stdTest;
 
   @Input()
   public range: { [key: string]: any };
@@ -25,15 +25,15 @@ export class StdTestScoreRangeComponent implements AfterViewInit {
   private rangeChanged: EventEmitter<any> = new EventEmitter();
 
   ngAfterViewInit() {
-    // $(`#${this.stdTest}`).collapse(
-    //   _.isNumber(this.range.min) || _.isNumber(this.range.max) ? 'show' : 'hide'
-    // );
-    // if ( _.isNumber(this.range.min) || _.isNumber(this.range.max)) {
-      $(`#${this.stdTest}-checkbox`).prop('checked', true);
-    // }
+    if (_.isNumber(this.range.min) || _.isNumber(this.range.max)) {
+      setTimeout(() => {
+        $(`#${this.stdTest.key}-checkbox`).prop('checked', true);
+        $(`#${this.stdTest.key}`).collapse('show');
+      }, 750);
+    }
   }
 
   get dataTarget() {
-    return `#${this.stdTest}`;
+    return `#${this.stdTest.key}`;
   }
 }

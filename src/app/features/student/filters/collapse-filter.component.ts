@@ -27,7 +27,9 @@ export class CollapseFilterComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    $(`#${this.filterId}`).collapse(this.collapse ? 'hide' : 'show');
+    setTimeout(() => {
+      $(`#${this.filterId}`).collapse(this.collapse ? 'hide' : 'show');
+    }, 750);
   }
 
   public toggleCollapse() {

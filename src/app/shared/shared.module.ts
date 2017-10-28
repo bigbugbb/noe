@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 /* our own custom components and pipes */
 import { DialogComponent } from './dialog/dialog.component';
 import { SectionComponent } from './section/section.component';
-import { CollapseFilterComponent } from './filter/collapse-filter.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
   declarations: [
     DialogComponent,
     SectionComponent,
-    CollapseFilterComponent,
     CapitalizePipe
   ],
   exports: [
@@ -27,7 +25,6 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     /* our own custom components */
     DialogComponent,
     SectionComponent,
-    CollapseFilterComponent,
     CapitalizePipe
   ],
   providers: [

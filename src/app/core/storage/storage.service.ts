@@ -41,6 +41,18 @@ export class StorageService {
     this.removeItem('profile');
   }
 
+  public setStudentQueryParams(params) {
+    this.setItem('students_query_params', params);
+  }
+
+  public getStudentQueryParams() {
+    return this.getItem('students_query_params');
+  }
+
+  public removeStudentQueryParams() {
+    this.removeItem('students_query_params');
+  }
+
   public setItem(name, item) {
     localStorage.setItem(name, JSON.stringify(item));
   }

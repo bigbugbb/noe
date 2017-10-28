@@ -17,7 +17,7 @@ import * as _ from 'lodash';
     <noe-collapse-filter class="item" [filterId]="'stdTestScores'" [title]="'Standard test scores'">
       <div filter-body style="padding: 1rem 2rem 0 0;">
         <label *ngFor="let stdTest of stdTests | async;"
-                ngModelGroup="{{ stdTest.toLowerCase() }}"
+                ngModelGroup="{{ stdTest.key }}"
                 class="w-100 custom-control custom-checkbox">
           <noe-std-test-score-range
                   [stdTest]="stdTest"
@@ -37,7 +37,7 @@ export class StdTestScoreFilterComponent implements OnInit {
   @Output()
   private filterChanged: EventEmitter<any> = new EventEmitter();
 
-  private stdTests: Observable<string>;
+  private stdTests;
 
   constructor(
     private http: Http
@@ -48,6 +48,6 @@ export class StdTestScoreFilterComponent implements OnInit {
   }
 
   public range(stdTest) {
-    return _.get(this.filters, [stdTest.toLowerCase()]);
+    return _.get(this.filters, [stdTest.key]);
   }
 }

@@ -22,11 +22,11 @@ export class DialogComponent implements OnInit, OnDestroy {
   @Input()
   private showHide = true;
 
-	@Input()
-	private preventEscape = false;
+  @Input()
+  private preventEscape = false;
 
-	@Output()
-	onHide: EventEmitter<void> = new EventEmitter<void>();
+  @Output()
+  onHide: EventEmitter<void> = new EventEmitter<void>();
 
   private onHideSubscription: Subscription;
 

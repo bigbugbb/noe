@@ -75,6 +75,9 @@ export class UserService extends ApiBase {
     this.storageService.removeUserAndToken();
     this.storageService.removeProfile();
 
+    // remove other application data
+    this.storageService.removeStudentQueryParams();
+
     return this.http.delete(`${this.apiEndpoint}/users/me/token`, options)
       .catch(this.handleError);
   }

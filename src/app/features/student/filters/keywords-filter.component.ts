@@ -25,8 +25,7 @@ import * as _ from 'lodash';
           <input type="text" class="form-control" id="{{ keyword }}"
                   name="{{ keyword }}"
                   (keyup.enter)="filterChanged.emit()"
-                  [ngModel]="getKeyword(keyword)"
-                  required>
+                  [ngModel]="getKeyword(keyword)">
           <span class="vspace"></span>
         </div>
       </div>

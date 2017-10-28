@@ -20,8 +20,7 @@ import * as _ from 'lodash';
                   name="gender"
                   value="{{ genderType.toLowerCase() }}"
                   (change)="filterChanged.emit()"
-                  [ngModel]="getGender()"
-                  required>
+                  [ngModel]="getGender()">
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">{{ genderType }}</span>
         </label>

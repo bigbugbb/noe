@@ -21,8 +21,7 @@ import * as _ from 'lodash';
                   name="grade"
                   value="{{ grade }}"
                   (change)="filterChanged.emit()"
-                  [ngModel]="getGrade()"
-                  required>
+                  [ngModel]="getGrade()">
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">{{ grade }}</span>
         </label>

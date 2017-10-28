@@ -31,8 +31,7 @@ import * as _ from 'lodash';
             value="0"
             placeholder="Min"
             (keyup.enter)="filterChanged.emit()"
-            [ngModel]="getMin()"
-            required>
+            [ngModel]="getMin()">
 
           <span class="hspace"></span>
 
@@ -41,8 +40,7 @@ import * as _ from 'lodash';
             value="100"
             placeholder="Max"
             (keyup.enter)="filterChanged.emit()"
-            [ngModel]="getMax()"
-            required>
+            [ngModel]="getMax()">
         </div>
       </div>
     </noe-collapse-filter>

@@ -4,8 +4,8 @@
   </div>
   <div class="filter-container">
     <div class="filter-container-title">Filter student by</div>
-    <pre>{{ filterForm.value | json }}</pre>
-    <form #filterForm="ngForm">
+    <!-- <pre>{{ filterForm.value | json }}</pre> -->
+    <form novalidate #filterForm="ngForm">
       <!-- Applying -->
       <noe-student-applying-filter [filters]="filters" (filterChanged)="onFilterChanged()"></noe-student-applying-filter>
       <!-- Keywords -->
