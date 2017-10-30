@@ -8,17 +8,11 @@ import * as _ from 'lodash';
   templateUrl: './pagination.component.html'
 })
 export class PaginationComponent {
-  private total: number;
-  private pages = [];
-
-  @Input('totalPages')
-  set totalPages(value: number) {
-    this.total = value;
-    this.pages = _.range(1, value + 1);
-  }
+  @Input()
+  private total = 0;
 
   @Input()
-  private currentPage = 1;
+  private page = 1;
 
   @Input()
   private window = 10;
@@ -26,22 +20,39 @@ export class PaginationComponent {
   @Output()
   public select: EventEmitter<number> = new EventEmitter<number>();
 
+  get pages() {
+    if (this.total <= 0 || this.window <= 0) {
+      return [];
+    }
+
+    if (this.window >= this.total) {
+      return _.range(1, this.total + 1);
+    }
+
+    let start = Math.max(this.page - _.floor((this.window - 1) / 2), 1);
+    const end = Math.min(start + this.window, this.total + 1);
+    if (end - start < this.window) {
+      start = end - this.window;
+    }
+    return _.range(start, end);
+  }
+
   selectPage(event, nextPage) {
     event.preventDefault();
     event.stopPropagation();
     this.select.emit(nextPage);
-    this.currentPage = Math.max(1, Math.min(nextPage, this.total));
+    this.page = Math.max(1, Math.min(nextPage, this.total));
   }
 
   isPageSelected(page) {
-    return this.currentPage === page;
+    return this.page === page;
   }
 
   hidePrevious() {
-    return this.currentPage <= 1;
+    return this.page <= 1;
   }
 
   hideNext() {
-    return this.currentPage >= this.total;
+    return this.page >= this.total;
   }
 }

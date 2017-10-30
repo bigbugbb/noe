@@ -7,8 +7,8 @@
   <div>
     <noe-pagination
             (select)="selectPage.emit($event)"
-            [totalPages]="totalPages"
-            [currentPage]="currentPage"
+            [total]="totalPages"
+            [page]="currentPage"
             [window]="3">
     </noe-pagination>
   </div>

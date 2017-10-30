@@ -1,7 +1,7 @@
 <div class="row pagination-container">
   <a href class="col-auto pagination-nav"
           [ngClass]="{ 'hidden': hidePrevious() }"
-          (click)="selectPage($event, currentPage - 1)">
+          (click)="selectPage($event, page - 1)">
     <span><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</span>
   </a>
   <ol class="col-auto">
@@ -12,7 +12,7 @@
   </ol>
   <a href class="col-auto pagination-nav"
           [ngClass]="{ 'hidden': hideNext() }"
-          (click)="selectPage($event, currentPage + 1)">
+          (click)="selectPage($event, page + 1)">
     <span>Next <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
   </a>
 </div>
