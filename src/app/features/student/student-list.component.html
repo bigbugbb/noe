@@ -1,5 +1,15 @@
 <div style="padding: 1rem">
-  <div *ngFor="let student of students; trackBy: idOfStudent(student);">
-    <noe-student-item [item]="student"></noe-student-item>
+  <div class="listitems">
+    <noe-student-item *ngFor="let student of students; let i = index;"
+      [item]="student" [showDivider]="showDivider(i)">
+    </noe-student-item>
+  </div>
+  <div>
+    <noe-pagination
+            (select)="selectPage.emit($event)"
+            [totalPages]="totalPages"
+            [currentPage]="currentPage"
+            [window]="3">
+    </noe-pagination>
   </div>
 </div>

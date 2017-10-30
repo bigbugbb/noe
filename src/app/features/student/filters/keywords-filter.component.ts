@@ -5,23 +5,12 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-student-keywords-filter',
-  styles: [`
-    .vspace {
-      display: block;
-      height: 0.6rem;
-    }
-
-    .update {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-    }
-  `],
+  styleUrls: ['./filter-common-styles.scss'],
   template: `
     <noe-collapse-filter class="item" [filterId]="'keywords'" [title]="'Keywords'">
       <div filter-body style="padding: 1rem 2rem 0 0">
         <div *ngFor="let keyword of keywords;">
-          <label for="{{ keyword }}">{{ keyword | capitalize }}</label>
+          <label class="filter-text" for="{{ keyword }}">{{ keyword | capitalize }}</label>
           <input type="text" class="form-control" id="{{ keyword }}"
                   name="{{ keyword }}"
                   (keyup.enter)="filterChanged.emit()"

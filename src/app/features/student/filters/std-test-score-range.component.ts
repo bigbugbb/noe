@@ -8,7 +8,7 @@ declare var $: any;
 @Component({
   selector: 'noe-std-test-score-range',
   templateUrl: './std-test-score-range.component.html',
-  styleUrls: ['./std-test-score-range.component.scss'],
+  styleUrls: ['./std-test-score-range.component.scss', './filter-common-styles.scss'],
   viewProviders: [
     { provide: ControlContainer, useExisting: NgForm },
     { provide: ControlContainer, useExisting: NgModelGroup }

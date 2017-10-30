@@ -7,16 +7,11 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-school-preferred-filter',
-  styles: [`
-    .space {
-      display:block;
-      height: 0.6rem;
-    }
-  `],
+  styleUrls: ['./filter-common-styles.scss'],
   template: `
     <noe-collapse-filter class="item" [filterId]="'schoolPreferred'" [title]="'School preferred'">
       <div filter-body style="padding: 1rem 2rem 0 0">
-        <label for="preferredSchoolLocation">Location</label>
+        <label for="preferredSchoolLocation filter-text">Location</label>
         <select class="form-control" id="preferredSchoolLocation"
                 name="preferredSchoolLocation"
                 (change)="filterChanged.emit()"
@@ -24,9 +19,9 @@ import * as _ from 'lodash';
           <option *ngFor="let state of states | async" [value]="state.name">{{state.name}}</option>
         </select>
 
-        <span class="space"></span>
+        <span class="vspace"></span>
 
-        <label for="preferredSchoolType">Type</label>
+        <label for="preferredSchoolType filter-text">Type</label>
         <select class="form-control" id="preferredSchoolType"
                 name="preferredSchoolType"
                 (change)="filterChanged.emit()"
@@ -34,9 +29,9 @@ import * as _ from 'lodash';
           <option *ngFor="let type of types | async" [value]="type">{{type}}</option>
         </select>
 
-        <span class="space"></span>
+        <span class="vspace"></span>
 
-        <label for="preferredReligion">Religion</label>
+        <label for="preferredReligion filter-text">Religion</label>
         <select class="form-control" id="preferredReligion"
                 name="preferredReligion"
                 (change)="filterChanged.emit()"
@@ -44,9 +39,9 @@ import * as _ from 'lodash';
           <option *ngFor="let religion of religions | async" [value]="religion">{{religion}}</option>
         </select>
 
-        <span class="space"></span>
+        <span class="vspace"></span>
 
-        <label for="preferredAccommodation">Accommodation</label>
+        <label for="preferredAccommodation filter-text">Accommodation</label>
         <select class="form-control" id="preferredAccommodation"
                 name="preferredAccommodation"
                 (change)="filterChanged.emit()"

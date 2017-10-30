@@ -1,6 +1,6 @@
 .student-avatar {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
 }
 
 .item-container {
@@ -12,6 +12,10 @@
 .info-container {
   flex-grow: 1;
   margin-left: 20px;
+}
+
+.info {
+  min-height: 48px;
 }
 
 .student-name {

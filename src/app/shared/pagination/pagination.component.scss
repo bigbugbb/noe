@@ -1,0 +1,49 @@
+.pagination-container {
+  padding: 1rem 0;
+  justify-content: space-between;
+}
+
+.pagination-nav {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #678898;
+  text-decoration: none;
+}
+
+.pagination-nav:hover {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #20a8d8;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.fa {
+  font-size: 0.9rem;
+}
+
+ol {
+  margin: 0;
+}
+
+ol li {
+  display: inline;
+  font-weight: 600;
+  margin: 0 4px;
+}
+
+.page-number {
+  text-decoration: none;
+  padding: 4px 4px;
+  color: #678898;
+}
+
+.page-number-selected {
+  color: #20a8d8;
+  cursor: text;
+  border-bottom: 2px solid #20a8d8;
+}

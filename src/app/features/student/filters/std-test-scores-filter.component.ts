@@ -7,18 +7,13 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-std-test-scores-filter',
-  styles: [`
-    .space {
-      display:block;
-      height: 0.6rem;
-    }
-  `],
+  styleUrls: ['./filter-common-styles.scss'],
   template: `
     <noe-collapse-filter class="item" [filterId]="'stdTestScores'" [title]="'Standard test scores'">
       <div filter-body style="padding: 1rem 2rem 0 0;">
         <label *ngFor="let stdTest of stdTests | async;"
                 ngModelGroup="{{ stdTest.key }}"
-                class="w-100 custom-control custom-checkbox">
+                class="w-100 custom-control custom-checkbox filter-text">
           <noe-std-test-score-range
                   [stdTest]="stdTest"
                   [range]="range(stdTest)"

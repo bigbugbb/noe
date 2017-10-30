@@ -21,7 +21,10 @@ export class StudentComponent implements OnInit, OnDestroy {
 
   private sub: Subscription;
 
-  private students: Student[];
+  private page = 1;
+  private limit = 3;
+
+  private result: { [key: string]: any };
 
   constructor(
     private router: Router,
@@ -34,9 +37,7 @@ export class StudentComponent implements OnInit, OnDestroy {
     this.sub = this.route.queryParams.subscribe(queryParams => {
       this.studentService.cacheQueryParams(_.get(queryParams, 'params'));
       this.studentService.filtersFromCachedQueryParams().subscribe(filters => this.filters = filters);
-      this.studentService.getAll(queryParams).subscribe(result => {
-        this.students = result.students;
-      });
+      this.studentService.getAll(queryParams).subscribe(result => this.result = result);
     });
   }
 
@@ -45,12 +46,18 @@ export class StudentComponent implements OnInit, OnDestroy {
   }
 
   onFilterChanged() {
-    const params = this.studentService.simplifyQueryParams(this.filterForm.value);
+    this.triggerStudentsQuery();
+  }
 
-    this.router.navigate(['/students'], {
-      queryParams: {
-        params: JSON.stringify([ params ])
-      }
-    });
+  onPageSelected(page: number) {
+    this.page = page;
+    this.triggerStudentsQuery();
+  }
+
+  triggerStudentsQuery() {
+    const { page, limit } = this;
+    const params = this.studentService.simplifyQueryParams(this.filterForm.value);
+    const queryParams = { page, limit, params: JSON.stringify([ params ]) };
+    this.router.navigate(['/students'], { queryParams });
   }
 }

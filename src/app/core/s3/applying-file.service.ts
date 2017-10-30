@@ -47,7 +47,7 @@ export class ApplyingFileService {
     const key = prefix + '/' + encodeURIComponent(file.name);
     const acl = 'public-read';
     const request = this.s3Service.putObject(file, key, acl, (err, data) => {
-      if (err && onError) onError(err);
+      if (err && onError) { onError(err); }
       onSuccess(data);
     });
     request.on('httpUploadProgress', (progress) => {

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="card list-container">
-    <noe-student-list [students]="students"></noe-student-list>
+    <noe-student-list [data]="result" (selectPage)="onPageSelected($event)"></noe-student-list>
   </div>
   <div class="filter-container">
     <div class="filter-container-title">Filter student by</div>

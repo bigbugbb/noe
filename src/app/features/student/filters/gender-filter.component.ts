@@ -6,16 +6,11 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-student-gender-filter',
-  styles: [`
-    .custom-control-input:focus~.custom-control-indicator {
-      -webkit-box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
-      box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
-    }
-  `],
+  styleUrls: ['./filter-common-styles.scss'],
   template: `
     <noe-collapse-filter class="item" [filterId]="'gender'" [title]="'Gender'">
       <div filter-body style="padding-top: 1rem;">
-        <label *ngFor="let genderType of genderTypes" class="w-100 custom-control custom-radio">
+        <label *ngFor="let genderType of genderTypes" class="w-100 custom-control custom-radio filter-text">
           <input type="radio" class="custom-control-input"
                   name="gender"
                   value="{{ genderType.toLowerCase() }}"

@@ -15,12 +15,6 @@ import * as _ from 'lodash';
       display: flex;
       flex-direction: row;
     }
-
-    .update {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-    }
   `],
   template: `
     <noe-collapse-filter ngModelGroup="gpa" class="item" [filterId]="'gpa'" [title]="'GPA'">

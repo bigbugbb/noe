@@ -6,16 +6,16 @@
     <div class="row info">
       <div class="col">
         <a class="student-name" [routerLink]="['students', item._id, 'details']">
-          {{ item.firstname }} {{ item.lastname }}
+          {{ studentName }}
         </a>
-        <div class="grade-and-school">{{ item.grade }} student at {{ item.school }}</div>
-        <div class="student-country">{{ item.country }}</div>
-        <div class="applying">Applying: {{ item.applying }}</div>
+        <div class="grade-and-school">{{ grade }} {{ school }}</div>
+        <div class="student-country">{{ country }}</div>
+        <div class="applying">{{ applying }}</div>
       </div>
       <div class="col-auto">
         <button class="btn btn-default connect-btn">Connect</button>
       </div>
     </div>
-    <hr>
+    <hr *ngIf="showDivider">
   </div>
 </div>

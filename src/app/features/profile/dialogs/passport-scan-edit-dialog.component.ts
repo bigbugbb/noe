@@ -21,7 +21,7 @@ export class PassportScanEditDialogComponent implements OnInit {
 
   private type = '';
 
-  public fileBaseUrl: string;
+  public fileBaseUrl: String;
   public passportScans: Array<object>;
   public uploadings = [];
 

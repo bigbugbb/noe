@@ -7,16 +7,11 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-student-applying-filter',
-  styles: [`
-    .custom-control-input:focus~.custom-control-indicator {
-      -webkit-box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
-      box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
-    }
-  `],
+  styleUrls: ['./filter-common-styles.scss'],
   template: `
     <noe-collapse-filter class="item" [filterId]="'applying'" [title]="'Applying'">
       <div filter-body style="padding-top: 1rem;">
-        <label *ngFor="let grade of grades | async" class="w-100 custom-control custom-radio">
+        <label *ngFor="let grade of grades | async" class="w-100 custom-control custom-radio filter-text">
           <input type="radio" class="custom-control-input"
                   name="applying"
                   value="{{ grade }}"
