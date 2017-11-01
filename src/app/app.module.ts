@@ -8,7 +8,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AppRoutingModule } from './app.routing';
 
 import { CoreModule } from './core';
-import { SharedModule } from './shared'
+import { SharedModule } from './shared';
 import { FeaturesSharedModule } from '@app/features/shared';
 
 import { AppComponent } from './app.component';

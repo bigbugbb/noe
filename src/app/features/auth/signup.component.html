@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="card-header">
+    Join us for help
+  </div>
+  <div class="card-body">
+    <form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
+      <div class="row">
+        <div class="form-group col" [ngClass]="{ 'has-error': f.submitted && !firstname.valid }">
+          <label for="firstname">First name</label>
+          <input type="text" class="form-control"
+                  name="firstname"
+                  ngModel
+                  #firstname="ngModel"
+                  required />
+          <div *ngIf="f.submitted && !firstname.valid" class="alert alert-danger">First name is required</div>
+        </div>
+        <div class="form-group col" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
+          <label for="lastname">Last name</label>
+          <input type="text" class="form-control"
+                  name="lastname"
+                  ngModel
+                  #lastname="ngModel"
+                  required />
+          <div *ngIf="f.submitted && !lastname.valid" class="alert alert-danger">Last name is required</div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+        <label for="email">Email</label>
+        <input type="text" class="form-control"
+                name="email"
+                ngModel
+                #email="ngModel"
+                required />
+        <div *ngIf="f.submitted && !email.valid" class="alert alert-danger">Email is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control"
+                name="phone"
+                ngModel
+                #phone="ngModel"
+                required />
+        <div *ngIf="f.submitted && !phone.valid" class="alert alert-danger">Phone number is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <label for="password">Password</label>
+        <input type="password" class="form-control"
+                name="password"
+                ngModel
+                #password="ngModel"
+                required />
+        <div *ngIf="f.submitted && !password.valid" class="alert alert-danger">Password is required</div>
+      </div>
+      <div class="form-group">
+        <label for="role">Choose your role</label>
+        <select class="form-control form-control-md" id="role"
+                name="role"
+                ngModel
+                required>
+          <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+        </select>
+      </div>
+      <div class="">
+        <p style="font-size: 0.8rem; text-align: center;">By clicking Join now, you agree to the Noe <a href="#">User Agreement</a>, <a href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a>.</p>
+      </div>
+      <div class="form-group">
+        <button *ngIf="!loading" class="btn btn-primary btn-block" type="submit">Join now</button>
+        <img class="mx-auto d-block" *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+      </div>
+    </form>
+  </div>
+</div>

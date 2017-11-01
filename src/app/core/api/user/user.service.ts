@@ -81,4 +81,17 @@ export class UserService extends ApiBase {
     return this.http.delete(`${this.apiEndpoint}/users/me/token`, options)
       .catch(this.handleError);
   }
+
+  // forgot & reset password
+
+  public forgotPassword(email: string) {
+    return this.http.post(`${this.apiEndpoint}/users/forgot-password`, { email }, this.defaultOptions())
+      .catch(this.handleError);
+  }
+
+  public resetPassword(password: string, token: string) {
+    return this.http.post(`${this.apiEndpoint}/users/reset-password/${token}`, { password }, this.defaultOptions())
+      .map(this.handleAuthorized.bind(this))
+      .catch(this.handleError);
+  }
 }
