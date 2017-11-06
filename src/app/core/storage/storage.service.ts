@@ -53,6 +53,30 @@ export class StorageService {
     this.removeItem('students_query_params');
   }
 
+  public setSchoolQueryParams(params) {
+    this.setItem('schools_query_params', params);
+  }
+
+  public getSchoolQueryParams() {
+    return this.getItem('schools_query_params');
+  }
+
+  public removeSchoolQueryParams() {
+    this.removeItem('schools_query_params');
+  }
+
+  public setActivityQueryParams(params) {
+    this.setItem('activities_query_params', params);
+  }
+
+  public getActivityQueryParams() {
+    return this.getItem('activities_query_params');
+  }
+
+  public removeActivityQueryParams() {
+    this.removeItem('activities_query_params');
+  }
+
   public setItem(name, item) {
     localStorage.setItem(name, JSON.stringify(item));
   }
