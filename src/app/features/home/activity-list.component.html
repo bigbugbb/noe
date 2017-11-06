@@ -1,0 +1,15 @@
+<div style="padding: 1rem">
+  <div class="listitems">
+    <noe-activity-item *ngFor="let activity of activities; let i = index;"
+      [item]="activity" [showDivider]="showDivider(i)">
+    </noe-activity-item>
+  </div>
+  <div>
+    <noe-pagination
+            (select)="selectPage.emit($event)"
+            [total]="totalPages"
+            [page]="currentPage"
+            [window]="3">
+    </noe-pagination>
+  </div>
+</div>

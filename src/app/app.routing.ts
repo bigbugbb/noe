@@ -25,8 +25,16 @@ export const routes: Routes = [
         loadChildren: './features/home/home.module#HomeModule'
       },
       {
-        path: 'profile',
-        loadChildren: './features/profile/profile.module#ProfileModule'
+        path: 'profile-student',
+        loadChildren: './features/profile-student/profile.module#ProfileModule'
+      },
+      {
+        path: 'profile-school',
+        loadChildren: './features/profile-school/profile.module#ProfileModule'
+      },
+      {
+        path: 'profile-company',
+        loadChildren: './features/profile-company/profile.module#ProfileModule'
       },
       {
         path: 'students',

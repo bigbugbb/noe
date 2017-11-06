@@ -1,4 +1,4 @@
-export class Activity {
+export class Service {
   public _id: string;
   public ownerId: string;
 
@@ -9,9 +9,6 @@ export class Activity {
     public summary: string,
     public media: string[],
     public price: Number,
-    public startTime: Date,
-    public stopTime: Date,
-    public itinerary: string,
     public email: string,
     public phone: string
   ) {}

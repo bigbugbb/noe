@@ -59,13 +59,13 @@ export class ApplyingFileEditDialogComponent implements OnInit {
 
       const request = this.applyingFileService.putApplyingFile(this.type, file, data => {
         this.applyingFileService.fetchApplyingFiles(this.type).subscribe(() => {
-          this.uploadings = this.uploadings.filter(uploading => uploading.filename !== filename);
+          this.uploadings = this.uploadings.filter(item => item.filename !== filename);
         });
       }, error => {
-        this.uploadings = this.uploadings.filter(uploading => uploading.filename !== filename);
+        this.uploadings = this.uploadings.filter(item => item.filename !== filename);
         // TODO: show some alert
       }, (loaded, total) => {
-        let uploading = this.uploadings.find(uploading => uploading.filename === filename);
+        const uploading = this.uploadings.find(item => item.filename === filename);
         uploading.progress = Math.ceil(loaded / total * 100);
       });
 

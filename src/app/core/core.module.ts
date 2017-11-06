@@ -5,6 +5,9 @@ import { AuthGuard } from './auth/auth.guard';
 import { AlertService } from './alert/alert.service';
 import { UserService } from './api/user/user.service';
 import { StudentService } from './api/student/student.service';
+import { SchoolService } from './api/school/school.service';
+import { CompanyService } from './api/company/company.service';
+import { ActivityService } from './api/activity/activity.service';
 import { ProfileService } from './profile/profile.service';
 import { StorageService } from './storage/storage.service';
 import { S3Service } from './s3/s3.service';
@@ -26,6 +29,9 @@ import * as AWS from 'aws-sdk';
     UserService,
     ProfileService,
     StudentService,
+    SchoolService,
+    CompanyService,
+    ActivityService,
     StorageService,
     S3Service,
     ApplyingFileService,

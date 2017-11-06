@@ -1,0 +1,107 @@
+.top-margin {
+  margin-top: 1rem;
+}
+
+.card {
+  padding: 0 1rem 0 1rem;
+}
+
+table {
+  table-layout: fixed;
+}
+
+td {
+  width: 33%;
+}
+
+.profile-avatar {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 1.25rem;
+}
+
+.profile-name {
+  text-align: center;
+}
+
+.current-grade {
+  color: gray;
+  text-align: center;
+  padding: 0.3rem 0 0 0;
+}
+
+.current-school-name {
+  color: gray;
+  text-align: center;
+  padding: 0.1rem 0 0 0;
+}
+
+.row-fluid{
+  white-space: nowrap;
+}
+.row-fluid .col-lg-4 {
+  display: inline-block;
+}
+
+.borderless td, .borderless th {
+  border: none;
+}
+
+.profile-property {
+  min-width: 160px;
+}
+
+.property-title {
+  font-weight: 600;
+  padding-right: 0.75rem;
+}
+
+.show-more {
+  text-align: center;
+  text-decoration: none;
+}
+
+.profile-skill {
+  margin: 0.5rem;
+  padding: 0.25rem 1rem 0.25rem 1rem;
+  font-weight: 500;
+  border-radius: 0.4rem;
+  background-color: lightgray;
+  box-shadow: 1px 1px 1px gray;
+}
+
+.profile-interest {
+  margin: 0.5rem;
+  padding: 0.25rem 1rem 0.25rem 1rem;
+  font-weight: 500;
+  border-radius: 0.4rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+  box-shadow: 1px 1px 1px gray;
+}
+
+.required-materials {
+  color: red;
+  font-weight: 500;
+}
+
+.passport-scan {
+  width: inherit;
+  height: 160px;
+  margin: 0.5rem;
+}
+
+.pdf-viewer-container {
+  border: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  border-color: lightgray;
+  padding: 1px;
+  margin: 8px 0;
+}
+
+.pdf-viewer {
+  display: block;
+  width: 160px;
+}

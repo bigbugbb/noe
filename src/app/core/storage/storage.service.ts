@@ -65,6 +65,18 @@ export class StorageService {
     this.removeItem('schools_query_params');
   }
 
+  public setCompanyQueryParams(params) {
+    this.setItem('companies_query_params', params);
+  }
+
+  public getCompanyQueryParams() {
+    return this.getItem('companies_query_params');
+  }
+
+  public removeCompanyQueryParams() {
+    this.removeItem('companies_query_params');
+  }
+
   public setActivityQueryParams(params) {
     this.setItem('activities_query_params', params);
   }

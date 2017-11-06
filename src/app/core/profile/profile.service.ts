@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { Student } from '@app/models';
+import { Student, School, Company } from '@app/models';
+import { UserService } from '@app/core/api/user/user.service';
 import { StudentService } from '@app/core/api/student/student.service';
+import { SchoolService } from '@app/core/api/school/school.service';
+import { CompanyService } from '@app/core/api/company/company.service';
 import { StorageService } from '@app/core/storage/storage.service';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
@@ -10,7 +13,10 @@ export class ProfileService {
   private subject: BehaviorSubject<object>;
 
   constructor(
+    private userService: UserService,
     private studentService: StudentService,
+    private schoolService: SchoolService,
+    private companyService: CompanyService,
     private storageService: StorageService
   ) {
     this.subject = new BehaviorSubject(this.storageService.getProfile());
@@ -28,22 +34,9 @@ export class ProfileService {
   }
 
   public fetchProfile(user) {
-    switch (user.role) {
-      case 'Student': {
-        return this.studentService.getAll({ userId: user._id }).map(result => {
-          this.setProfile(result.students[0]);
-        });
-      }
-      case 'School': {
-
-      } break;
-      case 'Company': {
-
-      } break;
-      default: {
-
-      }
-    }
+    return this.userService.getById(user._id).map(result => {
+      this.setProfile(result.user.profile);
+    });
   }
 
   public updateProfile(role, payload) {
