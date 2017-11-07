@@ -1,7 +1,8 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
-import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { ProfileGuard } from './guards/profile.guard';
 import { AlertService } from './alert/alert.service';
 import { UserService } from './api/user/user.service';
 import { StudentService } from './api/student/student.service';
@@ -25,6 +26,7 @@ import * as AWS from 'aws-sdk';
   ],
   providers: [
     AuthGuard,
+    ProfileGuard,
     AlertService,
     UserService,
     ProfileService,

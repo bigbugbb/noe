@@ -1,5 +1,6 @@
 export * from './core.module';
-export * from './auth/auth.guard';
+export * from './guards/auth.guard';
+export * from './guards/profile.guard';
 export * from './alert/alert.service';
 export * from './profile/profile.service';
 export * from './api/user/user.service';

@@ -1,14 +1,23 @@
+$navbar-height:                       55px !default;
+$footer-height:                       50px !default;
+
 .main {
   background: url("../../../assets/img/auth_cover.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 100vh;
+  height: calc(100vh - #{$navbar-height} - #{$footer-height});
+}
+
+.main-size {
+  min-width: 960px;
+  max-width: 1280px;
 }
 
 .forgot-password {
   min-width: 8rem;
   margin: 0 0.25rem;
   text-align: left;
+  text-decoration: none;
 }

@@ -27,4 +27,4 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     PdfViewerComponent
   ]
 })
-export class ProfileModule {}
+export default class ProfileModule {}

@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header">
+    What is your name?
+  </div>
+  <div class="card-body">
+    <form name="form" (ngSubmit)="f.form.valid && next()" #f="ngForm" novalidate>
+      <div class="row">
+        <div class="form-group col" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+          <label for="name">Company name</label>
+          <input type="text" class="form-control"
+                  name="name"
+                  [(ngModel)]="profile.name"
+                  #name="ngModel"
+                  required />
+          <div *ngIf="f.submitted && !name.valid" class="alert alert-danger">Company name is required</div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button type="button"
+            class="btn btn-primary pull-right"
+            [disabled]="!f.form.valid"
+            (click)="f.ngSubmit.emit()">
+      Next
+    </button>
+  </div>
+</div>

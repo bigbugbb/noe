@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-header">
+      When is your birthday?
+    </div>
+    <div class="card-body">
+      <form name="form" (ngSubmit)="f.form.valid && next()" #f="ngForm" novalidate>
+        <div class="form-group row">
+          <div class="col" [ngClass]="{ 'has-error': f.submitted && !birthday.valid }">
+            <label for="birthday">Birthday</label>
+            <input type="text" class="form-control" id="birthday"
+                    bsDatepicker [bsConfig]="bsConfig"
+                    name="birthday"
+                    [(ngModel)]="profile.birthday"
+                    #birthday="ngModel"
+                    required>
+            <div *ngIf="f.submitted && !birthday.valid" class="alert alert-danger">
+              Birthday is required
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer">
+      <button type="button"
+              class="btn btn-outline-primary pull-left"
+              (click)="previous()">
+        Previous
+      </button>
+      <button type="button"
+              class="btn btn-primary pull-right"
+              [disabled]="!f.form.valid"
+              (click)="f.ngSubmit.emit()">
+        Next
+      </button>
+    </div>
+  </div>

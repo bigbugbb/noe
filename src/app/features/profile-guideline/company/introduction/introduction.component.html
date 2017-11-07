@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-header">
+    Please add your company introduction
+  </div>
+  <div class="card-body">
+    <form name="form" (ngSubmit)="f.form.valid && next()" #f="ngForm" novalidate>
+      <div class="row">
+        <div class="form-group col" [ngClass]="{ 'has-error': f.submitted && !introduction.valid }">
+          <label for="introduction">Company introduction</label>
+          <input type="text" class="form-control"
+                  name="introduction"
+                  [(ngModel)]="profile.introduction"
+                  #introduction="ngModel"
+                  required />
+          <div *ngIf="f.submitted && !introduction.valid" class="alert alert-danger">Company introduction is required</div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button type="button"
+            class="btn btn-outline-primary pull-left"
+            (click)="previous()">
+      Previous
+    </button>
+    <button type="button"
+            class="btn btn-primary pull-right"
+            [disabled]="!f.form.valid"
+            (click)="f.ngSubmit.emit()">
+      Submit
+    </button>
+  </div>
+</div>

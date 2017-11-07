@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-header">
+      Are you male or female?
+    </div>
+    <div class="card-body">
+      <form name="form" (ngSubmit)="f.form.valid && next()" #f="ngForm" novalidate>
+        <div class="form-group row">
+          <div class="col" [ngClass]="{ 'has-error': f.submitted && !gender.valid }">
+            <label for="gender">Gender</label>
+            <select class="form-control"
+                    id="gender"
+                    name="gender"
+                    [(ngModel)]="profile.gender"
+                    required>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer">
+      <button type="button"
+              class="btn btn-outline-primary pull-left"
+              (click)="previous()">
+        Previous
+      </button>
+      <button type="button"
+              class="btn btn-primary pull-right"
+              [disabled]="!f.form.valid"
+              (click)="f.ngSubmit.emit()">
+        Next
+      </button>
+    </div>
+  </div>

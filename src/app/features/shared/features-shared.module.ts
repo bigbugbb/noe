@@ -8,6 +8,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 /* our own custom components */
 import { AlertComponent } from './alert/alert.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
+import { ProfileGuidelineLayoutComponent } from './profile-guideline-layout/profile-guideline-layout.component';
 
 import { NAV_DROPDOWN_DIRECTIVES } from './app-layout/nav-dropdown.directive';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './app-layout/sidebar.directive';
@@ -24,6 +25,7 @@ import { AsideToggleDirective } from './app-layout/aside.directive';
   declarations: [
     AlertComponent,
     AppLayoutComponent,
+    ProfileGuidelineLayoutComponent,
     NAV_DROPDOWN_DIRECTIVES,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective
@@ -31,7 +33,8 @@ import { AsideToggleDirective } from './app-layout/aside.directive';
   exports: [
     /* our own custom components */
     AlertComponent,
-    AppLayoutComponent
+    AppLayoutComponent,
+    ProfileGuidelineLayoutComponent
   ]
 })
 export class FeaturesSharedModule {}

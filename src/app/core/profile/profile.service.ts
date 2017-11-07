@@ -26,6 +26,10 @@ export class ProfileService {
     return this.subject.asObservable();
   }
 
+  public getCachedProfile() {
+    return this.storageService.getProfile();
+  }
+
   public setProfile(profile) {
     if (profile) {
       this.storageService.setProfile(profile);
@@ -47,11 +51,15 @@ export class ProfileService {
         });
       }
       case 'School': {
-
-      } break;
+        return this.schoolService.update(payload as School).map(result => {
+          this.setProfile(result.school);
+        });
+      }
       case 'Company': {
-
-      } break;
+        return this.companyService.update(payload as Company).map(result => {
+          this.setProfile(result.company);
+        });
+      }
       default: {
 
       }

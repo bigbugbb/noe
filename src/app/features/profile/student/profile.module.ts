@@ -37,4 +37,4 @@ import * as Dialogs from './dialogs';
     PdfViewerComponent
   ]
 })
-export class ProfileModule {}
+export default class ProfileModule {}

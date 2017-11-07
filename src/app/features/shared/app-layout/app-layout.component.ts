@@ -37,9 +37,20 @@ export class AppLayoutComponent implements OnInit {
   }
 
   get username(): string {
-    const firstname = this.profile.firstname || 'New';
-    const lastname = this.profile.lastname || 'User';
-    return `${firstname} ${lastname}`;
+    const user = this.storageService.getUser();
+    switch (user.role) {
+      case 'Student': {
+        const firstname = this.profile.firstname || 'New';
+        const lastname = this.profile.lastname || 'User';
+        return `${firstname} ${lastname}`;
+      }
+      case 'School': {
+        return this.profile.name || 'New school';
+      }
+      case 'Company': {
+        return this.profile.name || 'New company';
+      }
+    }
   }
 
   public toggled(open: boolean): void {
@@ -59,13 +70,13 @@ export class AppLayoutComponent implements OnInit {
     const user = this.storageService.getUser();
     switch (user.role) {
       case 'Student': {
-        return this.router.navigate(['/profile-student']);
+        return this.router.navigate(['/profile/student']);
       }
       case 'School': {
-        return this.router.navigate(['/profile-school']);
+        return this.router.navigate(['/profile/school']);
       }
       case 'Company': {
-        return this.router.navigate(['/profile-company']);
+        return this.router.navigate(['/profile/company']);
       }
       default: {
         console.error('Invalid user role', user.role);

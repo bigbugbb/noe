@@ -1,0 +1,10 @@
+$navbar-height:                       55px !default;
+$footer-height:                       50px !default;
+
+.guideline-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  height: calc(100vh - #{$navbar-height} - #{$footer-height});
+}

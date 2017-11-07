@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">
+    Which country does your company belong to?
+  </div>
+  <div class="card-body">
+    <form name="form" (ngSubmit)="f.form.valid && next()" #f="ngForm" novalidate>
+      <div class="form-group row">
+        <div class="col" [ngClass]="{ 'has-error': f.submitted && !country.valid }">
+          <label for="country">Country</label>
+          <select class="form-control"
+                  id="country"
+                  name="country"
+                  [(ngModel)]="profile.country"
+                  #country="ngModel"
+                  required>
+            <option *ngFor="let country of countries | async" [value]="country.name">
+              {{country.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button type="button"
+            class="btn btn-outline-primary pull-left"
+            (click)="previous()">
+      Previous
+    </button>
+    <button type="button"
+            class="btn btn-primary pull-right"
+            [disabled]="!f.form.valid"
+            (click)="f.ngSubmit.emit()">
+      Next
+    </button>
+  </div>
+</div>

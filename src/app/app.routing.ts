@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from '@app/core';
-import { AppLayoutComponent } from '@app/features/shared';
+import { AuthGuard, ProfileGuard } from '@app/core';
+import { AppLayoutComponent, ProfileGuidelineLayoutComponent } from '@app/features/shared';
 
 export const routes: Routes = [
   {
@@ -17,7 +17,7 @@ export const routes: Routes = [
   {
     path: '',
     component: AppLayoutComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, ProfileGuard],
     children: [
       // main sections
       {
@@ -25,16 +25,16 @@ export const routes: Routes = [
         loadChildren: './features/home/home.module#HomeModule'
       },
       {
-        path: 'profile-student',
-        loadChildren: './features/profile-student/profile.module#ProfileModule'
+        path: 'profile/student',
+        loadChildren: './features/profile/student/profile.module'
       },
       {
-        path: 'profile-school',
-        loadChildren: './features/profile-school/profile.module#ProfileModule'
+        path: 'profile/school',
+        loadChildren: './features/profile/school/profile.module'
       },
       {
-        path: 'profile-company',
-        loadChildren: './features/profile-company/profile.module#ProfileModule'
+        path: 'profile/company',
+        loadChildren: './features/profile/company/profile.module'
       },
       {
         path: 'students',
@@ -70,6 +70,25 @@ export const routes: Routes = [
         path: 'payments',
         loadChildren: './features/payments/payments.module#PaymentsModule'
       }
+    ]
+  },
+  {
+    path: 'profile-guideline',
+    component: ProfileGuidelineLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'student',
+        loadChildren: './features/profile-guideline/student/profile-guideline.module'
+      },
+      {
+        path: 'school',
+        loadChildren: './features/profile-guideline/school/profile-guideline.module'
+      },
+      {
+        path: 'company',
+        loadChildren: './features/profile-guideline/company/profile-guideline.module'
+      },
     ]
   },
   {
