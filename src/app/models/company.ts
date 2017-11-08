@@ -1,9 +1,9 @@
 import { Activity } from './activity';
-import { Service } from './service';
-import { BasicInfoChecker } from './interfaces/basic-info-checker';
+import { Business } from './business';
+import { BasicProfileInfoChecker } from './interfaces/basic-profile-info-checker';
 import * as _ from 'lodash';
 
-export class Company implements BasicInfoChecker {
+export class Company implements BasicProfileInfoChecker {
   public _id: string;
 
   // basic info
@@ -15,13 +15,13 @@ export class Company implements BasicInfoChecker {
   public phone: string;
   public country: string;
   public activities: Activity[];
-  public services: Service[];
+  public businesses: Business[];
 
   constructor(company: Company) {
     Object.assign(this, company);
   }
 
-  hasValidBasicInfo() {
+  hasBasicProfileInfo() {
     return !_.isEmpty(this.name) && !_.isEmpty(this.country) && !_.isEmpty(this.introduction);
   }
 }

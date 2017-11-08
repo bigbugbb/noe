@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { StorageService } from '@app/core/storage/storage.service';
-import { Student, School, Company, BasicInfoChecker } from '@app/models';
+import { Student, School, Company, BasicProfileInfoChecker } from '@app/models';
 
 @Injectable()
 export class ProfileGuard implements CanActivate {
@@ -15,7 +15,7 @@ export class ProfileGuard implements CanActivate {
     const RoleClass = { Student, School, Company };
     const profile = new RoleClass[user.role](this.storageService.getProfile());
 
-    if (profile.hasValidBasicInfo()) {
+    if (profile.hasBasicProfileInfo()) {
       return true;
     }
 

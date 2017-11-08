@@ -8,7 +8,9 @@ import { ProfileRoutingModule } from './profile.routing';
 import { ProfileComponent } from './profile.component';
 import { IntroDialogComponent } from './dialogs/intro-dialog.component';
 import { ActivityListComponent } from './activities/activity-list.component';
-import { ServiceListComponent } from './services/service-list.component';
+import { ActivityItemComponent } from './activities/activity-item.component';
+import { BusinessListComponent } from './businesses/business-list.component';
+import { BusinessItemComponent } from './businesses/business-item.component';
 import { ModalModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ImageCropperComponent } from 'ng2-img-cropper';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
@@ -28,7 +30,9 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     ProfileComponent,
     IntroDialogComponent,
     ActivityListComponent,
-    ServiceListComponent,
+    ActivityItemComponent,
+    BusinessListComponent,
+    BusinessItemComponent,
     ImageCropperComponent,
     PdfViewerComponent
   ]

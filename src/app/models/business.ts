@@ -1,4 +1,4 @@
-export class Service {
+export class Business {
   public _id: string;
   public ownerId: string;
 

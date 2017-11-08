@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public showServices() {
-    this.router.navigate(['./services'], { relativeTo: this.route });
+    this.router.navigate(['./businesses'], { relativeTo: this.route });
   }
 
   public fileUrlFrom(object) {

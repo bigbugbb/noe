@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileComponent } from './profile.component';
 import { ActivityListComponent } from './activities/activity-list.component';
-import { ServiceListComponent } from './services/service-list.component';
+import { BusinessListComponent } from './businesses/business-list.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'activities', pathMatch: 'full' },
       { path: 'activities', component: ActivityListComponent },
-      { path: 'services', component: ServiceListComponent },
+      { path: 'businesses', component: BusinessListComponent },
     ]
   }
 ];

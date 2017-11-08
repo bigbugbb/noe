@@ -1,0 +1,14 @@
+<div class="row header">
+  <p *ngIf="businesses.length === 0" class="header-text col">
+    Your company hasn't created any business yet.
+  </p>
+  <button class="btn btn-outline-primary col-auto pull-right"
+          (click)="createBusiness()">
+    Create Business
+  </button>
+</div>
+<div class="listitems">
+  <noe-business-item *ngFor="let business of businesses; let i = index;"
+    [item]="business" [showDivider]="showDivider(i)">
+  </noe-business-item>
+</div>

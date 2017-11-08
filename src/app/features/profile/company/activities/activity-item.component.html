@@ -1,0 +1,15 @@
+<div class="item-container">
+  <a [routerLink]="['activities', item._id, 'details']">
+    <img [src]="item.avatar" class="img-avatar item-avatar" alt="item.email">
+  </a>
+  <div class="info-container">
+    <div class="row info">
+      <div class="col">
+        <a class="item-name" [routerLink]="['activities', item._id, 'details']">
+          {{ item.name }}
+        </a>
+      </div>
+    </div>
+    <hr *ngIf="showDivider">
+  </div>
+</div>

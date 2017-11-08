@@ -1,0 +1,25 @@
+.item-avatar {
+  width: 80px;
+  height: 60px;
+}
+
+.item-container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.info-container {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.info {
+  min-height: 48px;
+}
+
+.item-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #20a8d8;
+}

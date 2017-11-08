@@ -1,7 +1,7 @@
-import { BasicInfoChecker } from './interfaces/basic-info-checker';
+import { BasicProfileInfoChecker } from './interfaces/basic-profile-info-checker';
 import * as _ from 'lodash';
 
-export class Student implements BasicInfoChecker {
+export class Student implements BasicProfileInfoChecker {
   public _id: string;
 
   // basic intro
@@ -44,7 +44,7 @@ export class Student implements BasicInfoChecker {
     Object.assign(this, student);
   }
 
-  hasValidBasicInfo() {
+  hasBasicProfileInfo() {
     return !_.isEmpty(this.firstname) && !_.isEmpty(this.lastname) &&
         !_.isEmpty(this.gender) && !_.isEmpty(this.birthday) && !_.isEmpty(this.country) &&
         !_.isEmpty(this.grade) && !_.isEmpty(this.school);
