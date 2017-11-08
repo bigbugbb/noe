@@ -101,7 +101,7 @@ export class ApplyingFileEditDialogComponent implements OnInit {
   }
 
   public filenameFrom(object) {
-    return object.Key.split('/').pop();
+    return decodeURIComponent(object.Key.split('/').pop());
   }
 
   public trackByKey(index, item) {

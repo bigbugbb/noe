@@ -1,0 +1,90 @@
+<noe-dialog class="dialog" #dialog [staticModal]="staticModal">
+  <div dialog-title>
+    Edit intro
+  </div>
+  <div dialog-body>
+    <form (ngSubmit)="onSubmit()" #introForm="ngForm">
+      <div class="row">
+        <div class="col">
+          <input #avatarInput id="avatar-input" type="file" accept="image/*" (change)="avatarFileSelected($event)">
+          <img-cropper #cropper id="img-cropper" [image]="data" [settings]="cropperSettings"></img-cropper><br>
+          <a class="pointer" (click)="selectImage()">
+            <img #avatar class="rounded-circle profile-avatar img-thumbnail mx-auto d-block" [src]="imageData" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+          </a>
+        </div>
+      </div>
+
+      <!-- firstname and lastname -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name"
+                  name="name"
+                  [(ngModel)]="model.name"
+                  #name="ngModel"
+                  required>
+          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            Company name is required
+          </div>
+        </div>
+      </div>
+
+      <!-- email, phone, country -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email"
+                  required
+                  [(ngModel)]="model.email" name="email"
+                  #email="ngModel">
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            Email is required
+          </div>
+        </div>
+        <div class="col">
+          <label for="phone">Phone</label>
+          <input type="text" class="form-control" id="phone"
+                  required
+                  [(ngModel)]="model.phone" name="phone"
+                  #phone="ngModel">
+          <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+            Phone is required
+          </div>
+        </div>
+        <div class="col">
+          <label for="country">Country</label>
+          <select class="form-control" id="country"
+                  [(ngModel)]="model.country" name="country"
+                  #country="ngModel"
+                  required>
+            <option *ngFor="let country of countries | async" [value]="country.name">{{country.name}}</option>
+          </select>
+          <div [hidden]="country.valid || country.pristine" class="alert alert-danger">
+            Country is required
+          </div>
+        </div>
+      </div>
+
+      <!-- introduction -->
+      <div class="form-group row">
+        <div class="col">
+          <label for="introduction">Introduction</label>
+          <textarea id="introduction" class="form-control" rows="8"
+                  name="introduction"
+                  [(ngModel)]="model.introduction"
+                  placeholder="Write something to introduce your company..."
+                  required>
+          </textarea>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div dialog-footer>
+    <button type="submit" class="btn btn-primary"
+            [disabled]="!introForm.form.valid"
+            (click)="introForm.ngSubmit.emit()">
+      Save
+    </button>
+  </div>
+</noe-dialog>

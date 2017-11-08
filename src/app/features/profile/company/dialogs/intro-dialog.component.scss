@@ -1,0 +1,23 @@
+.dialog {
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-avatar {
+  width: 140px;
+  height: 140px;
+  margin: 0 0 2rem 0;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+#avatar-input, #img-cropper {
+  display: none;
+}
+
+label {
+  font-weight: 600;
+}

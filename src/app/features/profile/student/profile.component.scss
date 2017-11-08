@@ -92,6 +92,10 @@ td {
   margin: 0.5rem;
 }
 
+.preview-container {
+  max-width: 220px;
+}
+
 .pdf-viewer-container {
   border: solid;
   border-width: 1px;
@@ -103,5 +107,5 @@ td {
 
 .pdf-viewer {
   display: block;
-  width: 160px;
+  width: 180px;
 }

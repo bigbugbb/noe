@@ -4,9 +4,67 @@
 
 <div class="card">
   <div class="card-block">
-    <p>company profile</p>
+    <noe-section [showAdd]="false" (onEdit)="onEditIntro()">
+      <div class="row">
+        <div class="col">
+          <img class="rounded-circle profile-avatar img-thumbnail mx-auto d-block" [src]="profile.avatar" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h4 class="profile-name">{{ profile.name }}</h4>
+        </div>
+      </div>
+
+      <hr class="mt-3">
+
+      <div class="table-responsive">
+        <table class="table borderless">
+          <tbody>
+            <tr>
+              <td class="profile-property">
+                <span class="property-title">Email:</span>{{ profile.email }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">Phone:</span>{{ profile.phone }}
+              </td>
+              <td class="profile-property">
+                <span class="property-title">Country:</span>{{ profile.country }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="mt-3">
+
+      <div class="row">
+        <div class="col">
+          <p>{{ profile.introduction }}</p>
+        </div>
+      </div>
+    </noe-section>
   </div>
 
-  <!-- <noe-intro-dialog #introDialog></noe-intro-dialog> -->
+  <noe-intro-dialog #introDialog></noe-intro-dialog>
+</div>
+
+<div class="card">
+  <div class="card-block">
+    <tabset #staticTabs>
+      <tab>
+        <ng-template tabHeading>
+          <span class="tab-heading" (click)="showActivities()">Activities</span>
+        </ng-template>
+        <router-outlet></router-outlet>
+      </tab>
+      <tab>
+        <ng-template tabHeading>
+          <span class="tab-heading" (click)="showServices()">Services</span>
+        </ng-template>
+        <router-outlet></router-outlet>
+      </tab>
+    </tabset>
+  </div>
 </div>
 

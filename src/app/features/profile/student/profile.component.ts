@@ -76,27 +76,33 @@ export class ProfileComponent implements OnInit {
 
     const Types = ApplyingFileService.ApplyingFileTypes;
 
-    this.applyingFileService.fetchApplyingFiles(Types.PassportScans).subscribe(passportScans => {
+    this.applyingFileService.fetchApplyingFiles(Types.PassportScans).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.PassportScans).subscribe(passportScans => {
       this.passportScans = passportScans;
     });
 
-    this.applyingFileService.fetchApplyingFiles(Types.Recommendations).subscribe(recommendations => {
+    this.applyingFileService.fetchApplyingFiles(Types.Recommendations).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.Recommendations).subscribe(recommendations => {
       this.recommendations = recommendations;
     });
 
-    this.applyingFileService.fetchApplyingFiles(Types.Transcripts).subscribe(transcripts => {
+    this.applyingFileService.fetchApplyingFiles(Types.Transcripts).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.Transcripts).subscribe(transcripts => {
       this.transcripts = transcripts;
     });
 
-    this.applyingFileService.fetchApplyingFiles(Types.FiancialInfo).subscribe(financialInfoDocs => {
+    this.applyingFileService.fetchApplyingFiles(Types.FiancialInfo).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.FiancialInfo).subscribe(financialInfoDocs => {
       this.financialInfoDocs = financialInfoDocs;
     });
 
-    this.applyingFileService.fetchApplyingFiles(Types.Supplements).subscribe(supplements => {
+    this.applyingFileService.fetchApplyingFiles(Types.Supplements).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.Supplements).subscribe(supplements => {
       this.supplements = supplements;
     });
 
-    this.applyingFileService.fetchApplyingFiles(Types.OptionalMaterials).subscribe(optionalMaterials => {
+    this.applyingFileService.fetchApplyingFiles(Types.OptionalMaterials).subscribe();
+    this.applyingFileService.getApplyingFiles(Types.OptionalMaterials).subscribe(optionalMaterials => {
       this.optionalMaterials = optionalMaterials;
     });
   }
@@ -134,11 +140,11 @@ export class ProfileComponent implements OnInit {
   }
 
   public fileUrlFrom(object) {
-    return this.fileBaseUrl + '/' + object.Key;
+    return this.fileBaseUrl + '/' + encodeURIComponent(object.Key);
   }
 
   public filenameFrom(object) {
-    return object.Key.split('/').pop();
+    return decodeURIComponent(object.Key.split('/').pop());
   }
 
   public onEditIntro() {

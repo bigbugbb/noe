@@ -233,7 +233,7 @@
       <hr class="mt-3">
 
       <div class="row">
-        <div class="col-auto" *ngFor="let recommendation of recommendations; trackBy: trackByKey">
+        <div class="col-auto preview-container" *ngFor="let recommendation of recommendations; trackBy: trackByKey">
           <a [attr.href]="fileUrlFrom(recommendation)" class="">{{ filenameFrom(recommendation) }}</a>
           <div class="pdf-viewer-container">
             <pdf-viewer class="pdf-viewer"

@@ -6,7 +6,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared';
 import { ProfileRoutingModule } from './profile.routing';
 import { ProfileComponent } from './profile.component';
-import { ModalModule, ProgressbarModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { IntroDialogComponent } from './dialogs/intro-dialog.component';
+import { ActivityListComponent } from './activities/activity-list.component';
+import { ServiceListComponent } from './services/service-list.component';
+import { ModalModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ImageCropperComponent } from 'ng2-img-cropper';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
@@ -18,11 +21,14 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     ReactiveFormsModule,
     ProfileRoutingModule,
     ModalModule.forRoot(),
-    ProgressbarModule.forRoot(),
+    TabsModule.forRoot(),
     BsDatepickerModule.forRoot()
   ],
   declarations: [
     ProfileComponent,
+    IntroDialogComponent,
+    ActivityListComponent,
+    ServiceListComponent,
     ImageCropperComponent,
     PdfViewerComponent
   ]

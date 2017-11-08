@@ -31,8 +31,9 @@ export class AppLayoutComponent implements OnInit {
     event.stopPropagation();
     this.userService.signout()
       .subscribe(() => {
-        this.router.navigate(['/auth']);
         this.storageService.clear();
+        // use the old way to avoid ngx-bootstrap refreshing bug
+        window.location.href = '/auth';
       });
   }
 

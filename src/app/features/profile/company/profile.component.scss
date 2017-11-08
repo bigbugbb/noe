@@ -24,18 +24,6 @@ td {
   text-align: center;
 }
 
-.current-grade {
-  color: gray;
-  text-align: center;
-  padding: 0.3rem 0 0 0;
-}
-
-.current-school-name {
-  color: gray;
-  text-align: center;
-  padding: 0.1rem 0 0 0;
-}
-
 .row-fluid{
   white-space: nowrap;
 }
@@ -56,52 +44,8 @@ td {
   padding-right: 0.75rem;
 }
 
-.show-more {
-  text-align: center;
-  text-decoration: none;
-}
-
-.profile-skill {
-  margin: 0.5rem;
-  padding: 0.25rem 1rem 0.25rem 1rem;
+.tab-heading {
+  font-size: 1rem;
   font-weight: 500;
-  border-radius: 0.4rem;
-  background-color: lightgray;
-  box-shadow: 1px 1px 1px gray;
-}
-
-.profile-interest {
-  margin: 0.5rem;
-  padding: 0.25rem 1rem 0.25rem 1rem;
-  font-weight: 500;
-  border-radius: 0.4rem;
-  border-width: 1px;
-  border-style: solid;
-  border-color: lightgray;
-  box-shadow: 1px 1px 1px gray;
-}
-
-.required-materials {
-  color: red;
-  font-weight: 500;
-}
-
-.passport-scan {
-  width: inherit;
-  height: 160px;
-  margin: 0.5rem;
-}
-
-.pdf-viewer-container {
-  border: solid;
-  border-width: 1px;
-  border-radius: 4px;
-  border-color: lightgray;
-  padding: 1px;
-  margin: 8px 0;
-}
-
-.pdf-viewer {
-  display: block;
-  width: 160px;
+  padding: 1rem;
 }

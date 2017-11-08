@@ -13,23 +13,23 @@
       <table class="table" style="margin-top: 0.75rem">
         <tbody>
           <tr *ngFor="let uploading of uploadings">
-            <td width="75%">
-              <small>{{ uploading.filename }}</small>
+            <td width="75vw">
+              <small>{{ decodeURIComponent(uploading.filename) }}</small>
               <progressbar class="progress-striped active" [value]="uploading.progress" type="success">
                 <b>{{ uploadingProgress(uploading) }}</b>
               </progressbar>
             </td>
-            <td width="25%">
+            <td width="25vw">
               <a class="btn btn-default cancel-btn pull-right" href (click)="cancelUploading($event, uploading)">
                 Cancel
               </a>
             </td>
           </tr>
           <tr *ngFor="let applyingFile of applyingFiles; trackBy: trackByKey">
-            <td width="75%">
+            <td width="75vw">
               <a [attr.href]="fileUrlFrom(applyingFile)" class="applying-file-link">{{ filenameFrom(applyingFile) }}</a>
             </td>
-            <td width="25%">
+            <td width="25vw">
               <a class="btn btn-danger remove-btn pull-right" href (click)="removeApplyingFile($event, applyingFile)">
                 Remove
               </a>

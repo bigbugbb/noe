@@ -36,7 +36,7 @@
   </ul>
   <ul class="navbar-nav navbar-expand ml-auto mr-sm-3">
     <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
-      <a href class="nav-link dropdown-toggle user-profile" dropdownToggle (click)="false">
+      <a href class="nav-link truncate dropdown-toggle" dropdownToggle (click)="false">
         <img [src]="profile.avatar" class="img-avatar" alt="user@gmail.com">
         <span class="d-md-down-none">{{ username }}</span>
       </a>
