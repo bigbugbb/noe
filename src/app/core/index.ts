@@ -7,7 +7,7 @@ export * from './api/user/user.service';
 export * from './api/student/student.service';
 export * from './api/school/school.service';
 export * from './api/company/company.service';
-export * from './api/activity/activity.service';
+export * from './api/business/business.service';
 export * from './storage/storage.service';
 export * from './s3/s3.service';
 export * from './s3/applying-file.service';

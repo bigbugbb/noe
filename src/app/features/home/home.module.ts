@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared';
 import { HomeRoutingModule } from './home.routing';
 import { HomeComponent } from './home.component';
-import { ActivityListComponent } from './activity-list.component';
-import { ActivityItemComponent } from './activity-item.component';
+import { BusinessListComponent } from './business-list.component';
+import { BusinessItemComponent } from './business-item.component';
 
 @NgModule({
   imports: [
@@ -17,8 +17,8 @@ import { ActivityItemComponent } from './activity-item.component';
   ],
   declarations: [
     HomeComponent,
-    ActivityListComponent,
-    ActivityItemComponent
+    BusinessListComponent,
+    BusinessItemComponent
   ]
 })
 export class HomeModule { }

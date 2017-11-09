@@ -4,6 +4,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 import { ProfileGuidelineService } from '../profile-guideline.service';
 import { Student } from '@app/models';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-profile-birthday',
@@ -23,7 +24,7 @@ export class BirthdayComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bsConfig = Object.assign({}, {containerClass: 'theme-blue'});
+    this.bsConfig = _.assign({}, {containerClass: 'theme-blue'});
   }
 
   public previous() {

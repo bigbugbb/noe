@@ -26,7 +26,7 @@ export class School implements BasicProfileInfoChecker {
   public country: string;
 
   constructor(school: School) {
-    Object.assign(this, school);
+    _.assign(this, school);
   }
 
   hasBasicProfileInfo() {

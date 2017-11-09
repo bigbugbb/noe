@@ -2,9 +2,14 @@
   <p *ngIf="businesses.length === 0" class="header-text col">
     Your company hasn't created any business yet.
   </p>
-  <button class="btn btn-outline-primary col-auto pull-right"
+  <p *ngIf="businesses.length > 0" class="header-text col">
+    Your company has {{ businesses.length }} businesses.
+  </p>
+  <button class="btn btn-outline-primary ml-auto col-auto pull-right"
           (click)="createBusiness()">
-    Create Business
+    <span class="create-text">
+      <i class="fa fa-plus create-plus" aria-hidden="true"></i>Create
+    </span>
   </button>
 </div>
 <div class="listitems">

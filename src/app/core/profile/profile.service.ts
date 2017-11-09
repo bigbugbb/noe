@@ -26,10 +26,6 @@ export class ProfileService {
     return this.subject.asObservable();
   }
 
-  public getCachedProfile() {
-    return this.storageService.getProfile();
-  }
-
   public setProfile(profile) {
     if (profile) {
       this.storageService.setProfile(profile);

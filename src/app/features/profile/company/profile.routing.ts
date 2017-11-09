@@ -2,18 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileComponent } from './profile.component';
-import { ActivityListComponent } from './activities/activity-list.component';
-import { BusinessListComponent } from './businesses/business-list.component';
+import { BusinessListComponent } from './business/business-list.component';
+import { BusinessEditComponent } from './business/business-edit.component';
 
 const routes: Routes = [
-  {
-    path: '', component: ProfileComponent,
-    children: [
-      { path: '', redirectTo: 'activities', pathMatch: 'full' },
-      { path: 'activities', component: ActivityListComponent },
-      { path: 'businesses', component: BusinessListComponent },
-    ]
-  }
+  { path: '', component: ProfileComponent },
+  { path: 'businesses/:id', component: BusinessEditComponent },
 ];
 
 @NgModule({

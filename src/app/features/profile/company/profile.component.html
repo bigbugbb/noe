@@ -54,15 +54,9 @@
     <tabset #staticTabs>
       <tab>
         <ng-template tabHeading>
-          <span class="tab-heading" (click)="showActivities()">Activities</span>
+          <span class="tab-heading">Businesses</span>
         </ng-template>
-        <router-outlet></router-outlet>
-      </tab>
-      <tab>
-        <ng-template tabHeading>
-          <span class="tab-heading" (click)="showServices()">Services</span>
-        </ng-template>
-        <router-outlet></router-outlet>
+        <noe-business-list [businesses]="profile.businesses"></noe-business-list>
       </tab>
     </tabset>
   </div>

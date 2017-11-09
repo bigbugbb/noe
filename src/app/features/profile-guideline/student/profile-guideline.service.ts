@@ -10,7 +10,7 @@ export class ProfileGuidelineService {
   constructor(
     private profileService: ProfileService
   ) {
-    this.profile = this.profileService.getCachedProfile();
+    this.profileService.getProfile().subscribe((profile: Student) => this.profile = profile);
   }
 
   public getProfile() {

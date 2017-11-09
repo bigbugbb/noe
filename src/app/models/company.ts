@@ -1,4 +1,3 @@
-import { Activity } from './activity';
 import { Business } from './business';
 import { BasicProfileInfoChecker } from './interfaces/basic-profile-info-checker';
 import * as _ from 'lodash';
@@ -14,11 +13,10 @@ export class Company implements BasicProfileInfoChecker {
   public email: string;
   public phone: string;
   public country: string;
-  public activities: Activity[];
   public businesses: Business[];
 
   constructor(company: Company) {
-    Object.assign(this, company);
+    _.assign(this, company);
   }
 
   hasBasicProfileInfo() {

@@ -41,7 +41,7 @@ export class Student implements BasicProfileInfoChecker {
   public interests: Array<string>;
 
   constructor(student: Student) {
-    Object.assign(this, student);
+    _.assign(this, student);
   }
 
   hasBasicProfileInfo() {

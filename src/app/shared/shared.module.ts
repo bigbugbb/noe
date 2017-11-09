@@ -8,6 +8,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { SectionComponent } from './section/section.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     DialogComponent,
     SectionComponent,
     PaginationComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    SafeHtmlPipe
   ],
   exports: [
     /* angular stuff */
@@ -30,7 +32,8 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     DialogComponent,
     SectionComponent,
     PaginationComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    SafeHtmlPipe
   ],
   providers: [
   ]

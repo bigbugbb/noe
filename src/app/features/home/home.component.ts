@@ -4,8 +4,8 @@ import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Rx';
 
-import { ActivityService } from '@app/core';
-import { Activity } from '@app/models';
+import { BusinessService } from '@app/core';
+import { Business } from '@app/models';
 import * as _ from 'lodash';
 
 @Component({
@@ -21,20 +21,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   private page = 1;
   private limit = 20;
 
-  private result: { [key: string]: any };
+  private businesses: { [key: string]: any };
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private http: Http,
-    private activityService: ActivityService
+    private businessService: BusinessService
   ) {}
 
   ngOnInit() {
     this.sub = this.route.queryParams.subscribe(queryParams => {
-      this.activityService.cacheQueryParams(_.get(queryParams, 'params'));
-      this.activityService.filtersFromCachedQueryParams().subscribe(filters => this.filters = filters);
-      this.activityService.getAll(queryParams).subscribe(result => this.result = result);
+      this.businessService.cacheQueryParams(_.get(queryParams, 'params'));
+      this.businessService.filtersFromCachedQueryParams().subscribe(filters => this.filters = filters);
+      this.businessService.getAll(queryParams).subscribe(result => this.businesses = result.businesses);
     });
   }
 
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   triggerActivitiesQuery() {
     const { page, limit } = this;
-    // const params = this.activityService.simplifyQueryParams(this.filterForm.value);
+    // const params business.simplifyQueryParams(this.filterForm.value);
     const queryParams = { page, limit, params: JSON.stringify([{}]) };
     this.router.navigate(['/home'], { queryParams });
   }

@@ -1,0 +1,28 @@
+<div class="top-margin"></div>
+
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-9">
+
+      </div>
+      <div class="col-3">
+      </div>
+    </div>
+
+    <div class="row">
+      <noe-section class="col" [showAdd]="false" (onEdit)="onEditCustomContent()">
+        <ckeditor
+          [(ngModel)]="model.content"
+          [readonly]="false"
+          (change)="onChange($event)"
+          (ready)="onReady($event)"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          debounce="500">
+        </ckeditor>
+        <div [innerHTML]="model.content | safeHtml"></div>
+      </noe-section>
+    </div>
+  </div>
+</div>

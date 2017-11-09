@@ -8,7 +8,7 @@ import { UserService } from './api/user/user.service';
 import { StudentService } from './api/student/student.service';
 import { SchoolService } from './api/school/school.service';
 import { CompanyService } from './api/company/company.service';
-import { ActivityService } from './api/activity/activity.service';
+import { BusinessService } from './api/business/business.service';
 import { ProfileService } from './profile/profile.service';
 import { StorageService } from './storage/storage.service';
 import { S3Service } from './s3/s3.service';
@@ -33,7 +33,7 @@ import * as AWS from 'aws-sdk';
     StudentService,
     SchoolService,
     CompanyService,
-    ActivityService,
+    BusinessService,
     StorageService,
     S3Service,
     ApplyingFileService,

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 
-import { ProfileService, StorageService, ApplyingFileService } from '@app/core';
+import { ProfileService, StorageService, CompanyService } from '@app/core';
+import { Company } from '@app/models';
 import { environment } from '@env/environment';
 import * as Dialogs from './dialogs';
 import * as _ from 'lodash';
@@ -16,32 +16,29 @@ export class ProfileComponent implements OnInit {
   @ViewChild('introDialog')
   private introDialog: Dialogs.IntroDialogComponent;
 
-  public profile;
+  public profile = { businesses: [] };
 
   private fileBaseUrl: string;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private profileService: ProfileService,
     private storageService: StorageService,
-    private applyingFileService: ApplyingFileService
+    private companyService: CompanyService
   ) { }
 
   ngOnInit() {
     const user = this.storageService.getUser();
     this.fileBaseUrl = `https://s3.${environment.bucketRegion}.amazonaws.com/${environment.noeFilesUpload}`;
-
-    this.profileService.fetchProfile(user).subscribe();
-    this.profileService.getProfile().subscribe(profile => this.profile = profile);
+    this.profileService.fetchProfile(user).subscribe(() => this.populateProfile());
   }
 
-  public showActivities() {
-    this.router.navigate(['./activities'], { relativeTo: this.route });
-  }
-
-  public showServices() {
-    this.router.navigate(['./businesses'], { relativeTo: this.route });
+  private populateProfile() {
+    this.profileService.getProfile().subscribe((profile: Company) => {
+      _.assign(this.profile, profile);
+      this.companyService.getById(profile._id).subscribe(result => {
+        this.profile = result.company; // with activities and businesses populated
+      });
+    });
   }
 
   public fileUrlFrom(object) {

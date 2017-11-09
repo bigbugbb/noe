@@ -1,14 +1,14 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Activity } from '@app/models';
+import { Business } from '@app/models';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'noe-activity-list',
-  templateUrl: './activity-list.component.html',
-  styleUrls: ['./activity-list.component.scss']
+  selector: 'noe-business-list',
+  templateUrl: './business-list.component.html',
+  styleUrls: ['./business-list.component.scss']
 })
-export class ActivityListComponent {
+export class BusinessListComponent {
   @Input()
   private data: { [key: string]: any };
 
@@ -29,11 +29,11 @@ export class ActivityListComponent {
     return _.ceil(_.get(this.data, 'total', 0) / this.sizePerPage);
   }
 
-  get activities(): Activity[] {
-    return _.get(this.data, 'activities', []);
+  get businesses(): Business[] {
+    return _.get(this.data, 'businesses', []);
   }
 
   showDivider(index) {
-    return index !== this.activities.length - 1;
+    return index !== this.businesses.length - 1;
   }
 }

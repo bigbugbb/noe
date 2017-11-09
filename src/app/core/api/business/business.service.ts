@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, URLSearchParams, Response } from '@angular/http';
 
-import { Activity } from '@app/models';
+import { Business, Company } from '@app/models';
 import { environment } from '@env/environment';
 import { ApiBase } from '../api-base';
+import { ProfileService } from '@app/core/profile/profile.service';
 import { StorageService } from '@app/core/storage/storage.service';
 import { Observable } from 'rxjs/Rx';
 
 import * as _ from 'lodash';
 
 @Injectable()
-export class ActivityService extends ApiBase {
+export class BusinessService extends ApiBase {
 
   private apiEndpoint: string = environment.apiEndpoint;
 
@@ -18,6 +19,7 @@ export class ActivityService extends ApiBase {
 
   constructor(
     private http: Http,
+    private profileService: ProfileService,
     protected storageService: StorageService
   ) {
     super(storageService);
@@ -33,33 +35,45 @@ export class ActivityService extends ApiBase {
       options.params.set(param, val);
     });
 
-    return this.http.get(`${this.apiEndpoint}/activities`, options)
+    return this.http.get(`${this.apiEndpoint}/businesses`, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   public getById(id: string) {
-    return this.http.get(`${this.apiEndpoint}/activities/${id}`, this.optionsWithJWT())
+    return this.http.get(`${this.apiEndpoint}/businesses/${id}`, this.optionsWithJWT())
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public create(activity: Activity) {
-    return this.http.post(`${this.apiEndpoint}/activities`, activity, this.optionsWithJWT())
+  public create(business: Business) {
+    return this.http.post(`${this.apiEndpoint}/businesses`, business, this.optionsWithJWT())
       .map(this.extractData)
+      .flatMap(this.updateProfile.bind(this))
       .catch(this.handleError);
   }
 
-  public update(activity: Activity) {
-    return this.http.patch(`${this.apiEndpoint}/activities/${activity._id}`, activity, this.optionsWithJWT())
+  public update(business: Business) {
+    return this.http.patch(`${this.apiEndpoint}/businesses/${business._id}`, business, this.optionsWithJWT())
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   public delete(id: string) {
-    return this.http.delete(`${this.apiEndpoint}/activities/${id}`, this.optionsWithJWT())
+    return this.http.delete(`${this.apiEndpoint}/businesses/${id}`, this.optionsWithJWT())
       .map(this.extractData)
+      .flatMap(this.updateProfile.bind(this))
       .catch(this.handleError);
+  }
+
+  // update the associated profile after create or delete operation
+
+  private updateProfile(business: Business) {
+    const company: Company = this.storageService.getProfile();
+    company.businesses.push(business);
+    return this.profileService.updateProfile('Company', company).map(() => {
+      return business;
+    });
   }
 
   // utils methods
@@ -81,8 +95,8 @@ export class ActivityService extends ApiBase {
   public filtersFromCachedQueryParams() {
     const params = this.storageService.getStudentQueryParams() || {};
     if (_.isEmpty(this.templateQueryParams)) {
-      // TODO: update template json when there are enough activities
-      return this.http.get('@app/../assets/data/activities-query-params.json').map(res => {
+      // TODO: update template json when there are enough businesses
+      return this.http.get('@app/../assets/data/businesses-query-params.json').map(res => {
         this.templateQueryParams = res.json();
         const templateQueryParams = JSON.parse(JSON.stringify(this.templateQueryParams));
         return _.assign(templateQueryParams, params);

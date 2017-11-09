@@ -51,7 +51,7 @@ export class IntroDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bsConfig = Object.assign({}, {containerClass: 'theme-blue'});
+    this.bsConfig = _.assign({}, {containerClass: 'theme-blue'});
 
     // get profile and make a deep copy of it
     this.profileService.getProfile().subscribe(profile => this.model = JSON.parse(JSON.stringify(profile)));
