@@ -3,5 +3,69 @@
 }
 
 .card {
-  padding: 0 1rem 0 1rem;
+  padding: 0 0.75rem;
+  min-width: 960px;
+  max-width: 1280px;
+}
+
+.table {
+  margin-top: 0.5rem;
+}
+
+.td-no-border {
+  padding: 0;
+  border-top: none;
+}
+
+.business-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 360px;
+  padding: 0.75rem 0 0.75rem 1.5rem;
+}
+
+.business-img {
+  border: solid 1px gray;
+  border-radius: 4px;
+}
+
+.location {
+  font-weight: 500;
+}
+
+.summary {
+  margin: 1rem 0;
+  color: #29363d;
+}
+
+.business-price-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: lightgray;
+  margin: 1rem 0 1.5rem 0;
+  width: 300px;
+  border-radius: 2px;
+  padding: 0.5rem 1rem;
+
+  .price-title {
+    font-size: 1rem;
+    font-weight: 500;
+    padding-left: 1rem;
+    color: #29363d;
+  }
+
+  .price {
+    font-size: 2rem;
+    font-weight: 500;
+    padding-left: 2rem;
+    color: red;
+  }
+}
+
+.btn-book {
+  font-size: 1.3rem;
+  font-weight: 600;
+  width: 8rem;
 }

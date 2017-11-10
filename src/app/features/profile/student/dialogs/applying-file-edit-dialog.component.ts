@@ -13,11 +13,14 @@ import * as _ from 'lodash';
   styleUrls: ['applying-file-edit-dialog.component.scss']
 })
 export class ApplyingFileEditDialogComponent implements OnInit {
-  @Input('title')
+  @Input()
   public title = '';
 
-  @Input('type')
+  @Input()
   public type = '';
+
+  @Input()
+  public accept = 'application/pdf';
 
   @Input('uploadBtnText')
   public uploadBtnText = '';
@@ -43,6 +46,14 @@ export class ApplyingFileEditDialogComponent implements OnInit {
     this.applyingFileService.getApplyingFiles(this.type).subscribe(applyingFiles => {
       this.applyingFiles = applyingFiles;
     });
+  }
+
+  get acceptPdf() {
+    return this.accept === 'application/pdf';
+  }
+
+  get acceptImage() {
+    return this.accept === 'image/*';
   }
 
   public show() {
@@ -100,8 +111,12 @@ export class ApplyingFileEditDialogComponent implements OnInit {
     return this.fileBaseUrl + '/' + applyingFile.Key;
   }
 
-  public filenameFrom(object) {
+  public nameOfApplyingFile(object) {
     return decodeURIComponent(object.Key.split('/').pop());
+  }
+
+  public uploadingFilename(uploading) {
+    return decodeURIComponent(uploading.filename);
   }
 
   public trackByKey(index, item) {

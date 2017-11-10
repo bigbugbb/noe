@@ -225,7 +225,11 @@
       </div>
     </noe-section>
 
-    <noe-passport-scan-edit-dialog #passportScanEditDialog></noe-passport-scan-edit-dialog>
+    <noe-applying-file-edit-dialog #passportScanEditDialog
+        [title]="'Edit passport scans'"
+        [type]="'passport-scans'"
+        [accept]="'image/*'">
+    </noe-applying-file-edit-dialog>
   </div>
 
   <div class="card-block">
@@ -234,7 +238,7 @@
 
       <div class="row">
         <div class="col-auto preview-container" *ngFor="let recommendation of recommendations; trackBy: trackByKey">
-          <a [attr.href]="fileUrlFrom(recommendation)" class="">{{ filenameFrom(recommendation) }}</a>
+          <a [attr.href]="fileUrlFrom(recommendation)" class="">{{ nameOfApplyingFile(recommendation) }}</a>
           <div class="pdf-viewer-container">
             <pdf-viewer class="pdf-viewer"
                         [src]="fileUrlFrom(recommendation)"
@@ -263,7 +267,7 @@
 
       <div class="row">
         <div class="col-auto" *ngFor="let transcript of transcripts; trackBy: trackByKey">
-          <a [attr.href]="fileUrlFrom(transcript)" class="">{{ filenameFrom(transcript) }}</a>
+          <a [attr.href]="fileUrlFrom(transcript)" class="">{{ nameOfApplyingFile(transcript) }}</a>
           <div class="pdf-viewer-container">
             <pdf-viewer class="pdf-viewer"
                         [src]="fileUrlFrom(transcript)"
@@ -292,7 +296,7 @@
 
       <div class="row">
         <div class="col-auto" *ngFor="let financialInfoDoc of financialInfoDocs; trackBy: trackByKey">
-          <a [attr.href]="fileUrlFrom(financialInfoDoc)" class="">{{ filenameFrom(financialInfoDoc) }}</a>
+          <a [attr.href]="fileUrlFrom(financialInfoDoc)" class="">{{ nameOfApplyingFile(financialInfoDoc) }}</a>
           <div class="pdf-viewer-container">
             <pdf-viewer class="pdf-viewer"
                         [src]="fileUrlFrom(financialInfoDoc)"
@@ -321,7 +325,7 @@
 
       <div class="row">
         <div class="col-auto" *ngFor="let supplement of supplements; trackBy: trackByKey">
-          <a [attr.href]="fileUrlFrom(supplement)" class="">{{ filenameFrom(supplement) }}</a>
+          <a [attr.href]="fileUrlFrom(supplement)" class="">{{ nameOfApplyingFile(supplement) }}</a>
           <div class="pdf-viewer-container">
             <pdf-viewer class="pdf-viewer"
                         [src]="fileUrlFrom(supplement)"

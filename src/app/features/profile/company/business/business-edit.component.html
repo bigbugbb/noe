@@ -2,13 +2,29 @@
 
 <div class="card">
   <div class="card-block">
-    <div class="row">
-      <div class="col-9">
-
-      </div>
-      <div class="col-3">
-      </div>
-    </div>
+    <noe-section class="col" [header]="'Edit Business Info'" [showAdd]="false" (onEdit)="onEditBusinessInfo()">
+      <hr class="mt-3">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td width="40%" class="td-no-border">
+              <img class="business-img mx-auto d-block" [src]="model.avatar"/>
+            </td>
+            <td width="60%" class="td-no-border business-info">
+              <h4>{{ model.name }}</h4>
+              <div class="location"><i class="fa fa-location-arrow" aria-hidden="true"></i>
+                {{ location }}</div>
+              <div class="summary">{{ model.summary }}</div>
+              <div class="business-price-container">
+                <span class="price-title">Price</span>
+                <span class="price">${{ model.price }}</span>
+              </div>
+              <button class="btn btn-primary btn-book">Book</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </noe-section>
 
     <div class="row">
       <noe-section class="col" [showAdd]="false" (onEdit)="onEditCustomContent()">

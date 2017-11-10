@@ -31,7 +31,6 @@ import * as Dialogs from './dialogs';
     Dialogs.SkillEditDialogComponent,
     Dialogs.InterestAddDialogComponent,
     Dialogs.InterestEditDialogComponent,
-    Dialogs.PassportScanEditDialogComponent,
     Dialogs.ApplyingFileEditDialogComponent,
     ImageCropperComponent,
     PdfViewerComponent

@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
   private interestEditDialog: Dialogs.InterestEditDialogComponent;
 
   @ViewChild('passportScanEditDialog')
-  private passportScanEditDialog: Dialogs.PassportScanEditDialogComponent;
+  private passportScanEditDialog: Dialogs.ApplyingFileEditDialogComponent;
 
   @ViewChild('recommendationEditDialog')
   private recommendationEditDialog: Dialogs.ApplyingFileEditDialogComponent;
@@ -143,7 +143,7 @@ export class ProfileComponent implements OnInit {
     return this.fileBaseUrl + '/' + encodeURIComponent(object.Key);
   }
 
-  public filenameFrom(object) {
+  public nameOfApplyingFile(object) {
     return decodeURIComponent(object.Key.split('/').pop());
   }
 
