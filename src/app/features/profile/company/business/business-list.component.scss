@@ -5,3 +5,24 @@
 .create-text {
   font-weight: 500;
 }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .item {
+    width: 30%;
+  }
+
+  @media (min-width: 1200px) {
+    .item {
+      width: 25%;
+    }
+  }
+}
+
+.grid:after {
+  content: "";
+  flex: auto;
+}

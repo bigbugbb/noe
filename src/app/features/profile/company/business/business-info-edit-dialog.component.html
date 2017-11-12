@@ -1,0 +1,104 @@
+<noe-dialog class="dialog" #dialog [staticModal]="staticModal">
+    <div dialog-title>
+      Edit business info
+    </div>
+    <div dialog-body>
+      <form (ngSubmit)="onSubmit()" #infoForm="ngForm">
+        <div class="row">
+          <div class="col">
+            <input #avatarInput id="avatar-input" type="file" accept="image/*" (change)="avatarFileSelected($event)">
+            <img-cropper #cropper id="img-cropper" [image]="data" [settings]="cropperSettings"></img-cropper><br>
+            <a class="pointer" (click)="selectImage()">
+              <img #avatar class="business-avatar mx-auto d-block" [src]="imageData" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+            </a>
+          </div>
+        </div>
+
+        <!-- name, type -->
+        <div class="form-group row">
+          <div class="col">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name"
+                    name="name"
+                    [(ngModel)]="model.name"
+                    #name="ngModel">
+          </div>
+          <div class="col">
+            <label for="type">Type</label>
+            <input type="text" class="form-control" id="type"
+                    name="type"
+                    [(ngModel)]="model.type"
+                    #type="ngModel">
+          </div>
+        </div>
+
+        <!--  city, state, country -->
+        <div class="form-group row">
+          <div class="col">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city"
+                    [(ngModel)]="model.city" name="city"
+                    #city="ngModel">
+          </div>
+          <div class="col">
+            <label for="state">State</label>
+            <select class="form-control" id="state"
+                    [(ngModel)]="model.state" name="state"
+                    #state="ngModel">
+              <option *ngFor="let state of states | async" [value]="state.name">{{state.name}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="country">Country</label>
+            <select class="form-control" id="country"
+                    [(ngModel)]="model.country" name="country"
+                    #country="ngModel">
+              <option *ngFor="let country of countries | async" [value]="country.name">{{country.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- email, phone, price -->
+        <div class="form-group row">
+          <div class="col">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email"
+                    [(ngModel)]="model.email" name="email"
+                    #email="ngModel">
+          </div>
+          <div class="col">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone"
+                    [(ngModel)]="model.phone" name="phone"
+                    #phone="ngModel">
+          </div>
+          <div class="col">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price"
+                  [(ngModel)]="model.price" name="price"
+                  #price="ngModel">
+          </div>
+        </div>
+
+        <!-- summary -->
+        <div class="form-group row">
+          <div class="col">
+            <label for="summary">Summary</label>
+            <textarea id="summary" class="form-control" rows="4"
+                    name="summary"
+                    [(ngModel)]="model.summary"
+                    placeholder="Summary about your business...">
+            </textarea>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <div dialog-footer>
+      <button type="submit" class="btn btn-primary"
+              [disabled]="!infoForm.form.valid"
+              (click)="infoForm.ngSubmit.emit()">
+        Save
+      </button>
+    </div>
+  </noe-dialog>

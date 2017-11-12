@@ -1,0 +1,25 @@
+.dialog {
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.business-avatar {
+  width: 400px;
+  height: 300px;
+  margin: 0 0 2rem 0;
+  border: solid 1px gray;
+  border-radius: 4px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+#avatar-input, #img-cropper {
+  display: none;
+}
+
+label {
+  font-weight: 600;
+}

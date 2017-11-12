@@ -12,8 +12,11 @@
     </span>
   </button>
 </div>
-<div class="listitems">
-  <noe-business-item *ngFor="let business of businesses; let i = index;"
-    [item]="business" [showDivider]="showDivider(i)">
+<div class="grid">
+  <noe-business-item
+          class="item"
+          *ngFor="let business of businesses; let i = index;"
+          [item]="business"
+          [showDivider]="showDivider(i)">
   </noe-business-item>
 </div>

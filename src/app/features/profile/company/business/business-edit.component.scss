@@ -1,9 +1,11 @@
+$image-width:                     412px;
+
 .top-margin {
   margin-top: 1rem;
 }
 
 .card {
-  padding: 0 0.75rem;
+  padding: 0 0.75rem 0.75rem;
   min-width: 960px;
   max-width: 1280px;
 }
@@ -20,22 +22,28 @@
 .business-info {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-  min-height: 360px;
-  padding: 0.75rem 0 0.75rem 1.5rem;
+  min-height: 275px;
+  padding: 0.5rem 0 0.5rem 1.5rem;
 }
 
 .business-img {
   border: solid 1px gray;
   border-radius: 4px;
+  width: $image-width;
 }
 
 .location {
   font-weight: 500;
+
+  .location-icon {
+    margin-right: 0.5rem;
+  }
 }
 
 .summary {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   color: #29363d;
 }
 
@@ -44,28 +52,45 @@
   flex-direction: row;
   align-items: center;
   background: lightgray;
-  margin: 1rem 0 1.5rem 0;
-  width: 300px;
+  margin-bottom: 0.75rem;
+  width: 250px;
   border-radius: 2px;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0;
 
   .price-title {
-    font-size: 1rem;
+    font-size: 14px;
     font-weight: 500;
-    padding-left: 1rem;
+    padding-left: 2.5rem;
     color: #29363d;
   }
 
   .price {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 500;
-    padding-left: 2rem;
+    padding-left: 2.5rem;
     color: red;
   }
 }
 
 .btn-book {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   width: 8rem;
+}
+
+.edit-content-alert {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: $image-width;
+}
+
+.btn-edit-content {
+  margin-left: 1rem;
+  font-weight: 500;
+}
+
+#ckeditor {
+  padding-bottom: 1rem;
 }

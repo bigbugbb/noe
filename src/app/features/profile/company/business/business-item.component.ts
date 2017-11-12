@@ -19,4 +19,13 @@ export class BusinessItemComponent implements OnInit {
   public itemLink(item) {
     return `businesses/${item._id}`;
   }
+
+  get name() {
+    return `${this.item.name || 'Unknown business name'}`;
+  }
+
+  get price() {
+    // TODO: format currency type based on the location
+    return `$${this.item.price || 'Unknown'}`;
+  }
 }

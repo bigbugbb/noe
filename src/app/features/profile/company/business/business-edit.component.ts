@@ -1,7 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ProfileService, BusinessService, StorageService } from '@app/core';
+import { ProfileService, StorageService } from '@app/core';
+import { BusinessEditService } from './business-edit.service';
+import { BusinessInfoEditDialogComponent } from './business-info-edit-dialog.component';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
@@ -11,23 +13,29 @@ import * as _ from 'lodash';
   styleUrls: ['./business-edit.component.scss']
 })
 export class BusinessEditComponent implements OnInit, OnDestroy {
-  private model: { [key: string]: any } = { content: '' };
+  @ViewChild('infoEditDialog')
+  private infoEditDialog: BusinessInfoEditDialogComponent;
+
+  private model: { [key: string]: any } = {};
 
   private sub: Subscription;
+
+  private editingContent = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private profileService: ProfileService,
-    private businessService: BusinessService
+    private businessEditService: BusinessEditService
   ) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const { id } = params;
-      this.businessService.getById(id).subscribe(result => {
-        this.model = _.get(result, 'business', { content: '' });
-      });
+      if (!_.isEmpty(id)) {
+        this.businessEditService.fetchBusiness(id).subscribe();
+        this.businessEditService.getBusiness().subscribe(business => this.model = business);
+      }
     });
   }
 
@@ -36,11 +44,33 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
   }
 
   get location() {
-    return `${this.model.city}, ${this.model.state}, ${this.model.country}`;
+    const { city, state, country } = this.model;
+    const address = [city, state, country];
+    const location = address.filter(item => !_.isEmpty(item));
+    return location.join(', ');
   }
 
-  onEditCustomContent() {
+  get price() {
+    // TODO: format currency type based on the location
+    return `$${this.model.price}`;
+  }
 
+  get content() {
+    return _.get(this.model, 'content', '');
+  }
+
+  onEditBusinessInfo() {
+    this.infoEditDialog.show();
+  }
+
+  onEditBusinessContent() {
+    this.editingContent = true;
+  }
+
+  onSaveBusinessContent() {
+    this.businessEditService.updateBusiness(this.model).subscribe(() => {
+      this.editingContent = false;
+    });
   }
 
   onChange(event) {
