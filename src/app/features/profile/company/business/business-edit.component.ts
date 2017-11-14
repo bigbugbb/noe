@@ -43,16 +43,23 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  get name() {
+    return _.get(this.model, 'name', 'This is your business name');
+  }
+
   get location() {
     const { city, state, country } = this.model;
     const address = [city, state, country];
-    const location = address.filter(item => !_.isEmpty(item));
-    return location.join(', ');
+    return address.filter(item => !_.isEmpty(item)).join(', ');
+  }
+
+  get summary() {
+    return _.get(this.model, 'summary', 'Here is your business summary.');
   }
 
   get price() {
-    // TODO: format currency type based on the location
-    return `$${this.model.price}`;
+    const price = _.get(this.model, 'price', undefined);
+    return price !== undefined ? '$' + price : 'Undefined';
   }
 
   get content() {

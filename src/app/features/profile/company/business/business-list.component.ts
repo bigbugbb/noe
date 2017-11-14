@@ -24,13 +24,9 @@ export class BusinessListComponent implements OnInit {
 
   public createBusiness() {
     const business: Business = new Business();
-    this.profileService.getProfile().subscribe((profile: Company) => business.ownerId = profile._id);
+    this.profileService.getProfile().subscribe((profile: Company) => business.owner = profile._id);
     this.businessService.create(business).subscribe(model => {
       this.router.navigate(['businesses', `${model._id}`], { relativeTo: this.route });
     });
-  }
-
-  public showDivider(index) {
-    return index !== this.businesses.length - 1;
   }
 }

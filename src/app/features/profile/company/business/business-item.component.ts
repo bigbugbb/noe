@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Business } from '@app/models';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-business-item',
@@ -21,11 +22,11 @@ export class BusinessItemComponent implements OnInit {
   }
 
   get name() {
-    return `${this.item.name || 'Unknown business name'}`;
+    return _.get(this.item, 'name', 'Unknown business name');
   }
 
   get price() {
-    // TODO: format currency type based on the location
-    return `$${this.item.price || 'Unknown'}`;
+    const price = _.get(this.item, 'price', undefined);
+    return price !== undefined ? '$' + price : 'Not specified';
   }
 }
