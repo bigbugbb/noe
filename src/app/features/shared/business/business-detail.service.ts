@@ -5,7 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
 @Injectable()
-export class BusinessEditService {
+export class BusinessDetailService {
   private subject: BehaviorSubject<object>;
 
   constructor(

@@ -11,7 +11,7 @@ import { Business, Company } from '@app/models';
 })
 export class BusinessListComponent implements OnInit {
   @Input()
-  private businesses: Business[] = [];
+  private data: Business[] = [];
 
   constructor(
     private router: Router,

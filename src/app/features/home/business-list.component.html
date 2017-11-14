@@ -1,15 +1,15 @@
-<div style="padding: 1rem">
-  <div class="listitems">
-    <noe-business-item *ngFor="let business of businesses; let i = index;"
-      [item]="business" [showDivider]="showDivider(i)">
-    </noe-business-item>
-  </div>
-  <div>
-    <noe-pagination
-            (select)="selectPage.emit($event)"
-            [total]="totalPages"
-            [page]="currentPage"
-            [window]="10">
-    </noe-pagination>
-  </div>
+<div class="grid">
+  <noe-business-item
+          class="item"
+          *ngFor="let business of businesses; let i = index;"
+          [item]="business">
+  </noe-business-item>
+</div>
+<div>
+  <noe-pagination
+          (select)="selectPage.emit($event)"
+          [total]="totalPages"
+          [page]="currentPage"
+          [window]="10">
+  </noe-pagination>
 </div>

@@ -3,19 +3,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProfileService, StorageService } from '@app/core';
 import { BusinessDetailService } from '@app/features/shared';
-import { BusinessInfoEditDialogComponent } from './business-info-edit-dialog.component';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'noe-business-edit',
-  templateUrl: './business-edit.component.html',
-  styleUrls: ['./business-edit.component.scss']
+  selector: 'noe-business-detail',
+  templateUrl: './business-detail.component.html',
+  styleUrls: ['./business-detail.component.scss']
 })
-export class BusinessEditComponent implements OnInit, OnDestroy {
-  @ViewChild('infoEditDialog')
-  private infoEditDialog: BusinessInfoEditDialogComponent;
-
+export class BusinessDetailComponent implements OnInit, OnDestroy {
   private model: { [key: string]: any } = {};
 
   private sub: Subscription;
@@ -25,7 +21,6 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private profileService: ProfileService,
     private businessDetailService: BusinessDetailService
   ) {}
 
@@ -44,7 +39,7 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
   }
 
   get name() {
-    return _.get(this.model, 'name', 'This is your business name');
+    return _.get(this.model, 'name', 'This is the business name');
   }
 
   get location() {
@@ -54,7 +49,7 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
   }
 
   get summary() {
-    return _.get(this.model, 'summary', 'Here is your business summary.');
+    return _.get(this.model, 'summary', 'This is the business summary');
   }
 
   get price() {
@@ -64,35 +59,5 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
 
   get content() {
     return _.get(this.model, 'content', '');
-  }
-
-  onEditBusinessInfo() {
-    this.infoEditDialog.show();
-  }
-
-  onEditBusinessContent() {
-    this.editingContent = true;
-  }
-
-  onSaveBusinessContent() {
-    this.businessDetailService.updateBusiness(this.model).subscribe(() => {
-      this.editingContent = false;
-    });
-  }
-
-  onChange(event) {
-
-  }
-
-  onReady(event) {
-
-  }
-
-  onFocus(event) {
-
-  }
-
-  onBlur(event) {
-
   }
 }

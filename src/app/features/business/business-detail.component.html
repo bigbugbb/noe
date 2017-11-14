@@ -1,0 +1,36 @@
+<div class="top-margin"></div>
+
+<div class="card">
+  <div class="card-block">
+
+    <hr class="mt-3">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td width="32%" class="td-no-border">
+            <img class="business-img" [src]="model.avatar"/>
+          </td>
+          <td width="68%" class="td-no-border business-info">
+            <div>
+              <h4>{{ name }}</h4>
+              <div *ngIf="location.length > 0" class="location"><i class="fa fa-location-arrow location-icon" aria-hidden="true"></i>{{ location }}</div>
+            </div>
+            <div class="summary">{{ summary }}</div>
+            <div>
+              <div class="business-price-container">
+                <span class="price-title">Price</span>
+                <span class="price">{{ price }}</span>
+              </div>
+              <button class="btn btn-primary btn-book">Book</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="row">
+      <hr class="mt-3">
+      <div [innerHTML]="content | safeHtml"></div>
+    </div>
+  </div>
+</div>

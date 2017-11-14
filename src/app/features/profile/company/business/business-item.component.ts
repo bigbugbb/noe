@@ -12,9 +12,6 @@ export class BusinessItemComponent implements OnInit {
   @Input()
   private item: Business;
 
-  @Input()
-  private showDivider = true;
-
   ngOnInit() {}
 
   public itemLink(item) {

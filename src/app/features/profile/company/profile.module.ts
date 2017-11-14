@@ -6,7 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { ProfileRoutingModule } from './profile.routing';
-import { BusinessEditService } from './business/business-edit.service';
 import { ProfileComponent } from './profile.component';
 import { IntroDialogComponent } from './dialogs/intro-dialog.component';
 import { BusinessListComponent } from './business/business-list.component';
@@ -40,7 +39,6 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     PdfViewerComponent
   ],
   providers: [
-    BusinessEditService
   ]
 })
 export default class ProfileModule {}

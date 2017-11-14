@@ -1,0 +1,79 @@
+$image-width:                     416px;
+
+.top-margin {
+  margin-top: 1rem;
+}
+
+.card {
+  padding: 0 0.75rem 0.75rem;
+  min-width: 960px;
+  max-width: 1280px;
+}
+
+.table {
+  margin-top: 0.5rem;
+}
+
+.td-no-border {
+  padding: 0;
+  border-top: none;
+}
+
+.business-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 275px;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+}
+
+.business-img {
+  border: solid 1px gray;
+  border-radius: 4px;
+  width: $image-width;
+}
+
+.location {
+  font-weight: 500;
+
+  .location-icon {
+    margin-right: 0.5rem;
+  }
+}
+
+.summary {
+  margin: 0.5rem 0;
+  color: #29363d;
+}
+
+.business-price-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: lightgray;
+  margin-bottom: 0.75rem;
+  width: 260px;
+  border-radius: 2px;
+  padding: 0.3rem 0;
+
+  .price-title {
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 2.5rem;
+    color: #29363d;
+  }
+
+  .price {
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding-left: 2.5rem;
+    color: red;
+  }
+}
+
+.btn-book {
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 8rem;
+}

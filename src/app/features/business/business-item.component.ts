@@ -15,11 +15,11 @@ export class BusinessItemComponent implements OnInit {
   ngOnInit() {}
 
   public itemLink(item) {
-    return `/services/${item._id}`;
+    return `${item._id}`;
   }
 
   get name() {
-    return _.get(this.item, 'name', 'Unknown business name');
+    return _.get(this.item, 'name', 'Unknown service name');
   }
 
   get price() {

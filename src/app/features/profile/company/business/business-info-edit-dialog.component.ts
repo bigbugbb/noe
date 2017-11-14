@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { ProfileService, StorageService } from '@app/core';
-import { BusinessEditService } from './business-edit.service';
+import { BusinessDetailService } from '@app/features/shared';
 import { DialogComponent } from '@app/shared';
 import { Observable } from 'rxjs/Observable';
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
@@ -35,7 +35,7 @@ export class BusinessInfoEditDialogComponent implements OnInit {
   constructor(
     private http: Http,
     private profileService: ProfileService,
-    private businessEditService: BusinessEditService
+    private businessDetailService: BusinessDetailService
   ) {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 400;
@@ -55,7 +55,7 @@ export class BusinessInfoEditDialogComponent implements OnInit {
     this.states = this.http.get('@app/../assets/data/us-states.json').map((res: Response) => res.json());
     this.countries = this.http.get('@app/../assets/data/countries.json').map((res: Response) => res.json());
 
-    this.businessEditService.getBusiness().subscribe(business => this.model = business);
+    this.businessDetailService.getBusiness().subscribe(business => this.model = business);
   }
 
   get imageData() {
@@ -71,7 +71,7 @@ export class BusinessInfoEditDialogComponent implements OnInit {
     if (!_.isEmpty(this.data)) {
       this.model.avatar = this.data.image;
     }
-    this.businessEditService.updateBusiness(this.model).subscribe(() => {
+    this.businessDetailService.updateBusiness(this.model).subscribe(() => {
       this.dialog.hide();
     });
   }

@@ -45,12 +45,8 @@ export const routes: Routes = [
         loadChildren: './features/school/school.module#SchoolModule'
       },
       {
-        path: 'companies',
-        loadChildren: './features/company/company.module#CompanyModule'
-      },
-      {
-        path: 'messagings',
-        loadChildren: './features/messaging/messaging.module#MessagingModule'
+        path: 'services',
+        loadChildren: './features/business/business.module.ts#BusinessModule'
       },
       // account sections
       {

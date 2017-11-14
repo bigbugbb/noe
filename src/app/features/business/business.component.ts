@@ -9,11 +9,11 @@ import { Business } from '@app/models';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'noe-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'noe-business',
+  templateUrl: './business.component.html',
+  styleUrls: ['./business.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class BusinessComponent implements OnInit, OnDestroy {
   private filters: { [key: string]: any };
 
   private sub: Subscription;
@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const { page, limit } = this;
     // const params business.simplifyQueryParams(this.filterForm.value);
     const queryParams = { page, limit };
-    this.router.navigate(['/home'], { queryParams });
+    this.router.navigate(['/businesses'], { queryParams });
   }
 }
+
