@@ -9,14 +9,14 @@ import * as _ from 'lodash';
   styleUrls: ['./filter-common-styles.scss'],
   template: `
     <noe-collapse-filter class="item" [filterId]="'gender'" [title]="'Gender'">
-      <div filter-body style="padding-top: 1rem;">
+      <div filter-body class="pt-3">
         <label *ngFor="let genderType of genderTypes" class="w-100 custom-control custom-radio filter-text">
           <input type="radio" class="custom-control-input"
                   name="gender"
                   value="{{ genderType.toLowerCase() }}"
                   (change)="filterChanged.emit()"
                   [ngModel]="getGender()">
-          <span class="custom-control-indicator"></span>
+          <span class="custom-control-indicator border"></span>
           <span class="custom-control-description">{{ genderType }}</span>
         </label>
       </div>

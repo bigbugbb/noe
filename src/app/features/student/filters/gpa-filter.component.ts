@@ -10,16 +10,11 @@ import * as _ from 'lodash';
       display: block;
       width: 1rem;
     }
-
-    .gpa-container {
-      display: flex;
-      flex-direction: row;
-    }
   `],
   template: `
     <noe-collapse-filter ngModelGroup="gpa" class="item" [filterId]="'gpa'" [title]="'GPA'">
       <div filter-body style="padding: 1rem 2rem 0 0;">
-        <div class="gpa-container w-100">
+        <div class="d-flex flex-row w-100">
           <input type="number" class="form-control" id="min"
             name="min"
             value="0"

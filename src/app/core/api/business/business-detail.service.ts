@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { BusinessService } from '@app/core';
+import { BusinessService } from './business.service';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
@@ -15,12 +15,17 @@ export class BusinessDetailService {
   }
 
   public getBusiness() {
-    return this.subject;
+    return this.subject.asObservable();
+  }
+
+  public setBusiness(business) {
+    if (!_.isEmpty(business)) {
+      this.subject.next(business);
+    }
   }
 
   public fetchBusiness(id) {
-    this.businessService.getById(id).subscribe(this.handleResult.bind(this));
-    return this.subject.asObservable();
+    return this.businessService.getById(id).map(this.handleResult.bind(this));
   }
 
   public updateBusiness(business) {
@@ -28,6 +33,6 @@ export class BusinessDetailService {
   }
 
   private handleResult(result) {
-    this.subject.next(_.get(result, 'business', {}));
+    this.setBusiness(_.get(result, 'business', {}));
   }
 }

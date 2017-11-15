@@ -20,7 +20,7 @@ export class BusinessService extends ApiBase {
   constructor(
     private http: Http,
     private profileService: ProfileService,
-    protected storageService: StorageService
+    protected storageService: StorageService,
   ) {
     super(storageService);
   }

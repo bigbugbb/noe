@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ProfileService, StorageService } from '@app/core';
-import { BusinessDetailService } from '@app/features/shared';
+import { ProfileService, StorageService, BusinessDetailService } from '@app/core';
 import { BusinessInfoEditDialogComponent } from './business-info-edit-dialog.component';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';

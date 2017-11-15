@@ -10,14 +10,14 @@ import * as _ from 'lodash';
   styleUrls: ['./filter-common-styles.scss'],
   template: `
     <noe-collapse-filter class="item" [filterId]="'grade'" [title]="'Current grade'">
-      <div filter-body style="padding-top: 1rem;">
+      <div filter-body class="pt-3">
         <label *ngFor="let grade of grades | async" class="w-100 custom-control custom-radio filter-text">
           <input type="radio" class="custom-control-input"
                   name="grade"
                   value="{{ grade }}"
                   (change)="filterChanged.emit()"
                   [ngModel]="getGrade()">
-          <span class="custom-control-indicator"></span>
+          <span class="custom-control-indicator border"></span>
           <span class="custom-control-description">{{ grade }}</span>
         </label>
       </div>

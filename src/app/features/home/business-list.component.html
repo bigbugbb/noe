@@ -1,15 +1,17 @@
-<div class="grid">
-  <noe-business-item
-          class="item"
-          *ngFor="let business of businesses; let i = index;"
-          [item]="business">
-  </noe-business-item>
-</div>
-<div>
-  <noe-pagination
-          (select)="selectPage.emit($event)"
-          [total]="totalPages"
-          [page]="currentPage"
-          [window]="10">
-  </noe-pagination>
+<div style="padding: 1rem 1.5rem;">
+  <div class="grid">
+    <noe-business-item
+            class="d-flex flex-row justify-content-center item"
+            *ngFor="let business of businesses; let i = index;"
+            [item]="business">
+    </noe-business-item>
+  </div>
+  <div>
+    <noe-pagination
+            (select)="selectPage.emit($event)"
+            [total]="totalPages"
+            [page]="currentPage"
+            [window]="10">
+    </noe-pagination>
+  </div>
 </div>

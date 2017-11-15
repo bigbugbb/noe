@@ -1,16 +1,16 @@
-<div class="score-range">
+<div class="d-flex flex-column">
   <input type="checkbox" class="custom-control-input"
           id="{{ stdTest.key }}-checkbox"
           data-toggle="collapse" [attr.data-target]="dataTarget"
           aria-expanded="false" [attr.aria-controls]="stdTest.key"
           (change)="rangeChanged.emit()">
-  <span class="custom-control-indicator checkbox-indicator"></span>
+  <span class="custom-control-indicator border"></span>
   <span class="custom-control-description">{{ stdTest.name }}</span>
 
   <div class="collapse" id="{{ stdTest.key }}">
     <span class="vspace"></span>
 
-    <div class="range-container w-100">
+    <div class="d-flex flex-row w-100">
       <input type="number" class="form-control" id="min"
         name="min"
         placeholder="Min"

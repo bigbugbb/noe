@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ProfileService, StorageService } from '@app/core';
-import { BusinessDetailService } from '@app/features/shared';
+import {
+  StorageService,
+  OrderService,
+  BusinessDetailService
+} from '@app/core';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
@@ -16,11 +19,17 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
 
   private sub: Subscription;
 
+  private ordering = false;
+
+  private ordered = false;
+
   private editingContent = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private orderService: OrderService,
+    private storageService: StorageService,
     private businessDetailService: BusinessDetailService
   ) {}
 
@@ -59,5 +68,21 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
 
   get content() {
     return _.get(this.model, 'content', '');
+  }
+
+  public onOrder() {
+    if (this.ordering) {
+      return;
+    }
+    this.ordering = true;
+
+    const profile = this.storageService.getProfile();
+    const studentId = _.get(profile, '_id', undefined);
+    const businessId = this.model._id;
+
+    this.orderService.create({ studentId, businessId }).subscribe(order => {
+      this.ordering = false;
+      this.ordered = true;
+    });
   }
 }

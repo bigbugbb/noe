@@ -6,9 +6,12 @@ import { ProfileGuard } from './guards/profile.guard';
 import { AlertService } from './alert/alert.service';
 import { UserService } from './api/user/user.service';
 import { StudentService } from './api/student/student.service';
+import { StudentDetailService } from './api/student/student-detail.service';
 import { SchoolService } from './api/school/school.service';
 import { CompanyService } from './api/company/company.service';
 import { BusinessService } from './api/business/business.service';
+import { BusinessDetailService } from './api/business/business-detail.service';
+import { OrderService } from './api/order/order.service';
 import { ProfileService } from './profile/profile.service';
 import { StorageService } from './storage/storage.service';
 import { S3Service } from './s3/s3.service';
@@ -31,9 +34,12 @@ import * as AWS from 'aws-sdk';
     UserService,
     ProfileService,
     StudentService,
+    StudentDetailService,
     SchoolService,
     CompanyService,
     BusinessService,
+    BusinessDetailService,
+    OrderService,
     StorageService,
     S3Service,
     ApplyingFileService,

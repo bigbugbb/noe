@@ -26,4 +26,9 @@ export class BusinessItemComponent implements OnInit {
     const price = _.get(this.item, 'price', undefined);
     return price !== undefined ? '$' + price : 'Not specified';
   }
+
+  get numberOfOrders() {
+    const order = _.get(this.item, 'orders', []);
+    return order.length > 0 ? `${order.length} orders` : '';
+  }
 }

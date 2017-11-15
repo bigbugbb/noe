@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
-import { ProfileService, StorageService } from '@app/core';
-import { BusinessDetailService } from '@app/features/shared';
+import { ProfileService, StorageService, BusinessDetailService } from '@app/core';
 import { DialogComponent } from '@app/shared';
 import { Observable } from 'rxjs/Observable';
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';

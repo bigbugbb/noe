@@ -3,7 +3,10 @@
     <img [src]="item.avatar" class="item-avatar rounded-top" alt="item.email">
   </a>
   <div class="d-flex flex-column justify-content-center rounded-bottom item-info-container">
-    <span class="item-price">{{ price }}</span>
+    <div class="d-inline-block">
+      <span class="item-price">{{ price }}</span>
+      <span class="item-orders-count float-right">{{ numberOfOrders }}</span>
+    </div>
     <a class="item-name" [routerLink]="itemLink(item)">{{ name }}</a>
   </div>
 </div>

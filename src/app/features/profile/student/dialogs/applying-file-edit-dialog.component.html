@@ -5,8 +5,8 @@
   <div dialog-body>
     <div class="row">
       <div class="col-auto">
-        <button class="btn btn-primary" (click)="selectApplyingFiles()">Upload</button>
-        <input #applyingFileInput id="applying-file-input" type="file" multiple accept="accept" (change)="applyingFilesSelected($event)">
+        <button class="btn btn-outline-primary" (click)="selectApplyingFiles()">Upload</button>
+        <input #applyingFileInput class="d-none" type="file" multiple accept="accept" (change)="applyingFilesSelected($event)">
       </div>
     </div>
     <div class="table-responsive">

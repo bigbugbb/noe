@@ -1,6 +1,6 @@
 <div class="item">
   <a class="row filter-head" (click)="toggleCollapse()" data-toggle="collapse" href="#{{ filterId }}" aria-expanded="false" aria-controls="collapse-filter">
-    <div class="col filter-title">{{ title }}</div>
+    <div class="col d-inline">{{ title }}</div>
     <i class="fa filter-title-icon" [ngClass]="{ 'fa-chevron-down': collapse, 'fa-chevron-up': !collapse }" aria-hidden="true"></i>
   </a>
   <div id="{{ filterId }}" #target class="collapse" role="tabpanel">

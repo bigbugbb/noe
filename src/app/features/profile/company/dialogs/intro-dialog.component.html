@@ -1,4 +1,4 @@
-<noe-dialog class="dialog" #dialog [staticModal]="staticModal">
+<noe-dialog #dialog class="dialog" [staticModal]="staticModal">
   <div dialog-title>
     Edit intro
   </div>
@@ -6,8 +6,8 @@
     <form (ngSubmit)="onSubmit()" #introForm="ngForm">
       <div class="row">
         <div class="col">
-          <input #avatarInput id="avatar-input" type="file" accept="image/*" (change)="avatarFileSelected($event)">
-          <img-cropper #cropper id="img-cropper" [image]="data" [settings]="cropperSettings"></img-cropper><br>
+          <input #avatarInput class="d-none" type="file" accept="image/*" (change)="avatarFileSelected($event)">
+          <img-cropper #cropper class="d-none" [image]="data" [settings]="cropperSettings"></img-cropper><br>
           <a class="pointer" (click)="selectImage()">
             <img #avatar class="rounded-circle profile-avatar img-thumbnail mx-auto d-block" [src]="imageData" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
           </a>

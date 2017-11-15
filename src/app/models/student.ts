@@ -1,3 +1,4 @@
+import { Order } from './order';
 import { BasicProfileInfoChecker } from './interfaces/basic-profile-info-checker';
 import * as _ from 'lodash';
 
@@ -39,6 +40,9 @@ export class Student implements BasicProfileInfoChecker {
   // skills and interests
   public skills: Array<string>;
   public interests: Array<string>;
+
+  // orders
+  public orders: Array<Order>;
 
   constructor(student: Student) {
     _.assign(this, student);

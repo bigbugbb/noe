@@ -10,8 +10,6 @@ import { AlertComponent } from './alert/alert.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { ProfileGuidelineLayoutComponent } from './profile-guideline-layout/profile-guideline-layout.component';
 
-import { BusinessDetailService } from './business/business-detail.service';
-
 import { NAV_DROPDOWN_DIRECTIVES } from './app-layout/nav-dropdown.directive';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './app-layout/sidebar.directive';
 import { AsideToggleDirective } from './app-layout/aside.directive';
@@ -39,7 +37,6 @@ import { AsideToggleDirective } from './app-layout/aside.directive';
     ProfileGuidelineLayoutComponent
   ],
   providers: [
-    BusinessDetailService
   ]
 })
 export class FeaturesSharedModule {}

@@ -1,6 +1,6 @@
 .item-avatar {
   border: solid 1px gray;
-  width: 240px;
+  width: 248px;
   height: 180px;
 }
 
@@ -8,19 +8,23 @@
   display: flex;
   flex-direction: column;
   margin-top: 1.5rem;
-  width: 240px;
+  width: 248px;
 }
 
 .item-info-container {
   border: solid 1px gray;
   border-top: none;
-  padding: 0rem 0.75rem;
+  padding: 0.25rem 0.75rem;
 }
 
 .item-price {
   font-size: 1rem;
   color: red;
   padding: 0.25rem 0 0;
+}
+
+.item-orders-count {
+  color: #495057;
 }
 
 .item-name {

@@ -54,6 +54,11 @@ export class AppLayoutComponent implements OnInit {
     }
   }
 
+  get roleIsStudent(): boolean {
+    const user = this.storageService.getUser();
+    return user.role === 'Student';
+  }
+
   public toggled(open: boolean): void {
     console.log('Dropdown is now: ', open);
   }

@@ -94,6 +94,10 @@ td {
 
 .preview-container {
   max-width: 220px;
+
+  .file-name {
+    max-width: 200px;
+  }
 }
 
 .pdf-viewer-container {
