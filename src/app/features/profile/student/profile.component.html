@@ -1,8 +1,9 @@
 <div class="card mt-3">
   <div class="card-block">
-    <noe-section [showAdd]="false" (onEdit)="onEditIntro()">
+    <noe-section [header]="'My Profile'" [showAdd]="false" (onEdit)="onEditIntro()">
+      <hr class="mt-3 pb-2">
       <div class="row">
-        <div class="col-4">
+        <div class="col-4 mb-3">
           <div class="row">
             <div class="col">
               <img class="rounded-circle profile-avatar img-thumbnail mx-auto d-block" [src]="profile.avatar" />
@@ -27,88 +28,75 @@
             </div>
           </div>
         </div>
-        <div class="col-8 pt-3">
+        <div class="col-8">
           <div class="row">
-            <div class="col-md-4 col-lg-3 mb-3">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
               <span class="row property-title">Email:</span>
-              <span class="row py-2 d-block text-truncate" placement="left" triggers="hover"
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
                     [popover]="profile.email">{{ profile.email }}</span>
             </div>
-            <div class="col-md-4 col-lg-3 mb-3">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
               <span class="row property-title">Phone:</span>
-              <span class="row py-2 d-block text-truncate" placement="left" triggers="hover"
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
                     [popover]="profile.phone">{{ profile.phone }}</span>
             </div>
-            <div class="col-md-4 col-lg-3 mb-3">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
               <span class="row property-title">Applying:</span>
-              <span class="row py-2 d-block text-truncate" placement="left" triggers="hover"
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
                     [popover]="profile.applying">{{ profile.applying }}</span>
             </div>
-            <div class="col-md-4 col-lg-3 mb-3">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
               <span class="row property-title">Birthday:</span>
-              <span class="row py-2 d-block text-truncate" placement="left" triggers="hover"
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
                     [popover]="profile.birthday | date:'shortDate'">{{ profile.birthday | date:'shortDate' }}</span>
             </div>
-            <div class="col-md-4 col-lg-3 mb-3">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
               <span class="row property-title">Gender:</span>
-              <span class="row py-2 d-block text-truncate" placement="left" triggers="hover"
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
                     [popover]="profile.gender | capitalize">{{ profile.gender | capitalize }}</span>
             </div>
-            <div class="col-md-4 col-lg-3 mb-3">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
               <span class="row property-title">Country:</span>
-              <span class="row py-2 d-block text-truncate" placement="left" triggers="hover"
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
                     [popover]="profile.country">{{ profile.country }}</span>
             </div>
-            <div class="col-md-4 col-lg-3 mb-3">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
               <span class="row property-title">Annual budget:</span>
-              <span class="row py-2 d-block text-truncate" placement="left" triggers="hover"
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
                     [popover]="'$' + profile.budget">${{ profile.budget }}</span>
             </div>
-            <div class="col-md-4 col-lg-3 mb-3">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
               <span class="row property-title">GPA:</span>
-              <span class="row py-2 d-block text-truncate" placement="left" triggers="hover"
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
                     [popover]="profile.gpa">{{ profile.gpa }}</span>
             </div>
           </div>
-        </div>
-      </div>
-
-      <hr class="mt-3">
-
-      <div class="row">
-        <div class="col">
-          <p>{{ profile.introduction }}</p>
-        </div>
-      </div>
-    </noe-section>
-  </div>
-
-  <noe-intro-dialog #introDialog></noe-intro-dialog>
-</div>
-
-<div class="card">
-  <div class="card-block">
-    <noe-section [header]="'More Self Introduction'" [showAdd]="false" (onEdit)="onEditOptionalMaterial()">
-      <hr class="mt-3">
-
-      <div class="row">
-        <div class="col">
-          <div *ngFor="let optionalMaterial of optionalMaterials">
-            <img [src]="fileUrlFrom(optionalMaterial)" class="passport-scan rounded pull-left" alt="Optional Material">
+          <div class="row mr-2">
+            <div class="col mb-2">
+              <span class="row property-title">Introduction:</span>
+              <span class="row py-1">{{ profile.introduction }}</span>
+            </div>
           </div>
-          <div *ngIf="!hasOptionalMaterials">Add or link media materials for self introduction.</div>
         </div>
       </div>
     </noe-section>
 
-    <noe-applying-file-edit-dialog #optionalMaterialEditDialog
-          [title]="'Edit more materials'"
-          [type]="'optional-materials'">
-    </noe-applying-file-edit-dialog>
+    <noe-intro-dialog #introDialog></noe-intro-dialog>
+
+    <div class="my-4"></div>
+
+    <tabset #staticTabs class="mt-3">
+      <tab *ngFor="let tabName of tabNames; let i = index;" (select)="selectTab(i)">
+        <ng-template tabHeading>
+          <span class="tab-heading">{{ tabName }}</span>
+        </ng-template>
+        <router-outlet></router-outlet>
+      </tab>
+    </tabset>
   </div>
 </div>
 
-<div class="card">
+<!-- <div class="card">
   <div class="card-block">
     <noe-section [header]="'School Preferred'" [showAdd]="false" (onEdit)="onEditSchoolPreferred()">
       <hr class="mt-3">
@@ -355,4 +343,4 @@
             [type]="'supplements'">
     </noe-applying-file-edit-dialog>
   </div>
-</div>
+</div> -->

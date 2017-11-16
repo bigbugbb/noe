@@ -20,6 +20,7 @@ export class Student implements BasicProfileInfoChecker {
   public budget: Number;
   public gpa: Number;
   public introduction: string;
+  public aboutMe: string;
 
   // standardized test scores
   public itep: Number;

@@ -48,10 +48,6 @@ export const routes: Routes = [
         path: 'services',
         loadChildren: './features/business/business.module.ts#BusinessModule'
       },
-      {
-        path: 'orders',
-        loadChildren: './features/order/order.module.ts#OrderModule'
-      },
       // account sections
       {
         path: 'settings',

@@ -1,0 +1,28 @@
+<div>
+  <div *ngIf="!editing" class="alert alert-primary d-flex flex-row align-items-center" role="alert">
+    <span>Add more introduction about yourself.</span>
+    <button class="btn btn-primary ml-3" (click)="onEditAboutMe()">
+      Edit Content
+    </button>
+  </div>
+  <div *ngIf="editing" class="alert alert-primary d-flex flex-row align-items-center" role="alert">
+    <span>To be more successful, you can link pictures and videos describing yourself.</span>
+    <button class="btn btn-primary ml-3" (click)="onSaveAboutMe()">
+      Save Content
+    </button>
+  </div>
+
+  <ckeditor *ngIf="editing"
+    class="pb-3"
+    [(ngModel)]="profile.aboutMe"
+    [config]="{ height: 450 }"
+    [readonly]="false"
+    (change)="onChange($event)"
+    (ready)="onReady($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    debounce="500">
+  </ckeditor>
+
+  <div *ngIf="!editing" [innerHTML]="profile.aboutMe | safeHtml"></div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProfileService, StorageService, ApplyingFileService } from '@app/core';
 import { environment } from '@env/environment';
@@ -61,7 +62,11 @@ export class ProfileComponent implements OnInit {
 
   private fileBaseUrl: string;
 
+  private tabNames = ['About Myself', 'My Orders'];
+
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private profileService: ProfileService,
     private storageService: StorageService,
     private applyingFileService: ApplyingFileService
@@ -105,6 +110,17 @@ export class ProfileComponent implements OnInit {
     this.applyingFileService.getApplyingFiles(Types.OptionalMaterials).subscribe(optionalMaterials => {
       this.optionalMaterials = optionalMaterials;
     });
+  }
+
+  public selectTab(i) {
+    switch (i) {
+      case 0: {
+        this.router.navigate(['./about-myself'], { relativeTo: this.route });
+      } break;
+      case 1: {
+        this.router.navigate(['./my-orders'], { relativeTo: this.route });
+      } break;
+    }
   }
 
   get hasSkills() {
