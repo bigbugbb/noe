@@ -21,8 +21,6 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
 
   private ordering = false;
 
-  private ordered = false;
-
   private editingContent = false;
 
   constructor(
@@ -82,7 +80,6 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
 
     this.orderService.create({ studentId, businessId }).subscribe(order => {
       this.ordering = false;
-      this.ordered = true;
     });
   }
 }

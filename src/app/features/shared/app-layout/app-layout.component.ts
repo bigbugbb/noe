@@ -69,20 +69,19 @@ export class AppLayoutComponent implements OnInit {
     this.status.isopen = !this.status.isopen;
   }
 
-  public navigateToProfile(event) {
+  public navigateToMyProfile(event) {
     event.preventDefault();
-    event.stopPropagation();
 
     const user = this.storageService.getUser();
     switch (user.role) {
       case 'Student': {
-        return this.router.navigate(['/profile/student']);
+        return this.router.navigate(['/profile/student/me']);
       }
       case 'School': {
-        return this.router.navigate(['/profile/school']);
+        return this.router.navigate(['/profile/school/me']);
       }
       case 'Company': {
-        return this.router.navigate(['/profile/company']);
+        return this.router.navigate(['/profile/company/me']);
       }
       default: {
         console.error('Invalid user role', user.role);

@@ -25,15 +25,15 @@ export const routes: Routes = [
         loadChildren: './features/home/home.module#HomeModule'
       },
       {
-        path: 'profile/student',
+        path: 'profile/student/me',
         loadChildren: './features/profile/student/profile.module'
       },
       {
-        path: 'profile/school',
+        path: 'profile/school/me',
         loadChildren: './features/profile/school/profile.module'
       },
       {
-        path: 'profile/company',
+        path: 'profile/company/me',
         loadChildren: './features/profile/company/profile.module'
       },
       {
@@ -47,6 +47,10 @@ export const routes: Routes = [
       {
         path: 'services',
         loadChildren: './features/business/business.module.ts#BusinessModule'
+      },
+      {
+        path: 'orders',
+        loadChildren: './features/order/order.module.ts#OrderModule'
       },
       // account sections
       {

@@ -6,7 +6,6 @@ import { environment } from '@env/environment';
 import { ApiBase } from '../api-base';
 import { ProfileService } from '@app/core/profile/profile.service';
 import { StorageService } from '@app/core/storage/storage.service';
-import { StudentDetailService } from '@app/core/api/student/student-detail.service';
 import { BusinessDetailService } from '@app/core/api/business/business-detail.service';
 import { Observable } from 'rxjs/Rx';
 
@@ -22,7 +21,6 @@ export class OrderService extends ApiBase {
   constructor(
     private http: Http,
     private profileService: ProfileService,
-    private studentDetailService: StudentDetailService,
     private businessDetailService: BusinessDetailService,
     protected storageService: StorageService,
   ) {
@@ -68,7 +66,6 @@ export class OrderService extends ApiBase {
   private updateLocalData(order) {
     const user = this.storageService.getUser();
     this.profileService.fetchProfile(user).subscribe();
-    this.studentDetailService.setStudent(order.student);
     this.businessDetailService.setBusiness(order.business);
     return order;
   }
