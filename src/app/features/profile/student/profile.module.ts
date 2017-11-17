@@ -9,6 +9,8 @@ import { ProfileRoutingModule } from './profile.routing';
 import { ProfileComponent } from './profile.component';
 import { AboutMyselfComponent } from './about-myself.component';
 import { MyOrdersComponent } from './my-orders.component';
+import { OrderListComponent } from './order-list.component';
+import { OrderItemComponent } from './order-item.component';
 import { ModalModule, TabsModule, PopoverModule, ProgressbarModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ImageCropperComponent } from 'ng2-img-cropper';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
@@ -34,6 +36,8 @@ import { ProfileOutletEventsService } from './profile-outlet-events.service';
     ProfileComponent,
     AboutMyselfComponent,
     MyOrdersComponent,
+    OrderListComponent,
+    OrderItemComponent,
     Dialogs.IntroDialogComponent,
     Dialogs.StdTestScoreDialogComponent,
     Dialogs.SchoolPreferredDialogComponent,

@@ -1,0 +1,49 @@
+$item-min-height: 200px;
+
+.item-container {
+  min-height: $item-min-height;
+}
+
+.avatar-container {
+  width: $item-min-height;
+  height: 150px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.business-name {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.business-price {
+  font-size: 17px;
+  font-weight: 500;
+  color: red;
+}
+
+.order-status {
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0.3rem 0.5rem;
+  margin-left: 1.5rem;
+}
+
+.vertical-divider {
+  height: 200px;
+  border: solid 0.5px rgb(200, 200, 200);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  button {
+    width: 80px;
+  }
+}

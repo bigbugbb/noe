@@ -4,7 +4,7 @@
           (click)="selectPage($event, page - 1)">
     <span><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</span>
   </a>
-  <ol class="col-auto">
+  <ol class="col-auto mx-0 my-0">
     <li *ngFor="let page of pages">
       <a class="page-number" [ngClass]="{ 'page-number-selected': isPageSelected(page) }"
               href (click)="selectPage($event, page)">{{ page }}</a>

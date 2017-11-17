@@ -65,6 +65,7 @@ export class ProfileComponent implements OnInit {
 
   private outletNames = ['about', 'orders'];
   private routeNames = ['about-myself', 'my-orders'];
+  private tabNames = ['About Myself', 'My Orders'];
   private selectedTab = 0;
 
   constructor(
@@ -82,6 +83,8 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.selectTab(1);
+
     const user = this.storageService.getUser();
     this.fileBaseUrl = `https://s3.${environment.bucketRegion}.amazonaws.com/${environment.noeFilesUpload}`;
 

@@ -181,7 +181,7 @@ a > img {
 
 .embed-360p
 {
-	max-width: 640px;
+	max-width: 720px;
 	max-height: 360px;
 	margin:0 auto;
 }

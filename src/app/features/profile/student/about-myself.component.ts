@@ -4,7 +4,8 @@ import { ProfileService } from '@app/core';
 
 @Component({
   selector: 'noe-about-myself',
-  templateUrl: './about-myself.component.html'
+  templateUrl: './about-myself.component.html',
+  styleUrls: ['./about-myself.component.scss']
 })
 export class AboutMyselfComponent implements OnInit, OnDestroy {
 
@@ -17,15 +18,12 @@ export class AboutMyselfComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    console.log('OnInit');
     this.profileService.getProfile().subscribe(profile => {
       this.profile = profile;
     });
   }
 
-  ngOnDestroy() {
-    console.log('OnDestroy');
-  }
+  ngOnDestroy() {}
 
   onEditAboutMe() {
     this.editing = true;

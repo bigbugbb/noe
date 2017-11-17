@@ -1,0 +1,36 @@
+<div class="item-container d-flex flex-row mb-4">
+  <a [routerLink]="['/orders', item._id]">
+    <div class="avatar-container">
+      <img [src]="business.avatar" class="rounded" alt="business.name">
+    </div>
+  </a>
+  <div class="d-flex flex-row ml-3">
+    <div class="d-flex flex-column">
+      <a class="business-name" [routerLink]="['/orders', item._id]">
+        {{ businessName }}
+      </a>
+      <span class="d-flex flex-row align-items-center py-1">
+        <div class="business-price">{{ businessPrice }}</div>
+        <div [ngSwitch]="orderStatus">
+          <span *ngSwitchCase="'created'"
+                class="badge badge-success order-status">Ordered</span>
+          <span *ngSwitchCase="'paid'"
+                class="badge badge-primary order-status">Paid</span>
+          <span *ngSwitchCase="'canceled'"
+                class="badge badge-warning order-status">Canceled</span>
+          <span *ngSwitchCase="'refunded'"
+                class="badge badge-info order-status">Refunded</span>
+        </div>
+      </span>
+      <div>{{ businessSummary }}</div>
+    </div>
+    <div class="vertical-divider mx-3"></div>
+    <div class="actions">
+      <button class="btn btn-success">Pay</button>
+      <button class="btn btn-outline-primary mt-2">Contact</button>
+      <button class="btn btn-outline-warning mt-2">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<hr *ngIf="showDivider">

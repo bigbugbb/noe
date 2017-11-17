@@ -7,12 +7,9 @@ $footer-height:                       50px !default;
   min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 2.5rem);
 }
 
-table {
-  table-layout: fixed;
-}
-
-td {
-  width: 33%;
+.card-block {
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-avatar {
@@ -53,15 +50,16 @@ td {
   flex: auto;
 }
 
-.tab-heading {
+.nav-item {
   font-size: 1rem;
   font-weight: 500;
-  padding: 0.25rem 0.5rem;
+  padding: 0 0.5rem;
+  cursor: pointer;
 }
 
-.show-more {
-  text-align: center;
-  text-decoration: none;
+.tab-content {
+  padding: 1rem 0.75rem;
+  flex-grow: 1;
 }
 
 .profile-skill {
