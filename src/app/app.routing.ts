@@ -25,15 +25,15 @@ export const routes: Routes = [
         loadChildren: './features/home/home.module#HomeModule'
       },
       {
-        path: 'profile/student/me',
+        path: 'profile/student',
         loadChildren: './features/profile/student/profile.module'
       },
       {
-        path: 'profile/school/me',
+        path: 'profile/school',
         loadChildren: './features/profile/school/profile.module'
       },
       {
-        path: 'profile/company/me',
+        path: 'profile/company',
         loadChildren: './features/profile/company/profile.module'
       },
       {

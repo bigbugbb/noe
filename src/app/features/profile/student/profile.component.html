@@ -1,4 +1,4 @@
-<div class="card mt-3">
+<div class="card">
   <div class="card-block">
     <noe-section [header]="'My Profile'" [showAdd]="false" (onEdit)="onEditIntro()">
       <hr class="mt-3 pb-2">
@@ -86,11 +86,17 @@
     <div class="my-4"></div>
 
     <tabset #staticTabs class="mt-3">
-      <tab *ngFor="let tabName of tabNames; let i = index;" (select)="selectTab(i)">
+      <tab [active]="isTabSelected(0)" (select)="selectTab(0)">
         <ng-template tabHeading>
-          <span class="tab-heading">{{ tabName }}</span>
+          <span class="tab-heading">About Myself</span>
         </ng-template>
-        <router-outlet></router-outlet>
+        <router-outlet name="about"></router-outlet>
+      </tab>
+      <tab [active]="isTabSelected(1)" (select)="selectTab(1)">
+        <ng-template tabHeading>
+          <span class="tab-heading">My Orders</span>
+        </ng-template>
+        <router-outlet name="orders"></router-outlet>
       </tab>
     </tabset>
   </div>

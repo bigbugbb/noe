@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 import { ProfileService, StorageService, ApplyingFileService } from '@app/core';
+import { ProfileOutletEventsService } from './profile-outlet-events.service';
 import { environment } from '@env/environment';
 import * as Dialogs from './dialogs';
 import * as _ from 'lodash';
@@ -62,15 +63,23 @@ export class ProfileComponent implements OnInit {
 
   private fileBaseUrl: string;
 
-  private tabNames = ['About Myself', 'My Orders'];
+  private outletNames = ['about', 'orders'];
+  private routeNames = ['about-myself', 'my-orders'];
+  private selectedTab = 0;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private profileService: ProfileService,
     private storageService: StorageService,
-    private applyingFileService: ApplyingFileService
-  ) { }
+    private applyingFileService: ApplyingFileService,
+    private profileOutletEventsService: ProfileOutletEventsService
+  ) {
+    this.profileOutletEventsService.outletDestroyed().subscribe(outletName => {
+      console.log(outletName);
+      this.selectTab(0);
+    });
+  }
 
   ngOnInit() {
     const user = this.storageService.getUser();
@@ -112,15 +121,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  public selectTab(i) {
-    switch (i) {
-      case 0: {
-        this.router.navigate(['./about-myself'], { relativeTo: this.route });
-      } break;
-      case 1: {
-        this.router.navigate(['./my-orders'], { relativeTo: this.route });
-      } break;
-    }
+  public selectTab(target: Number | string) {
+    this.selectedTab = Math.max(_.isNumber(target) ? target : _.findIndex(this.routeNames, target), 0);
+    const outlets = {};
+    outlets[this.outletNames[this.selectedTab]] = [this.routeNames[this.selectedTab]];
+    this.router.navigate([{ outlets }], { relativeTo: this.route });
+  }
+
+  public isTabSelected(i) {
+    return this.selectedTab === i;
   }
 
   get hasSkills() {

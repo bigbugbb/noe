@@ -14,6 +14,8 @@ import { ImageCropperComponent } from 'ng2-img-cropper';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import * as Dialogs from './dialogs';
 
+import { ProfileOutletEventsService } from './profile-outlet-events.service';
+
 @NgModule({
   imports: [
     HttpModule,
@@ -42,6 +44,9 @@ import * as Dialogs from './dialogs';
     Dialogs.ApplyingFileEditDialogComponent,
     ImageCropperComponent,
     PdfViewerComponent
+  ],
+  providers: [
+    ProfileOutletEventsService
   ]
 })
 export default class ProfileModule {}

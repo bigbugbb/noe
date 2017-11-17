@@ -1,4 +1,4 @@
-<div class="card my-3">
+<div class="card">
   <div class="card-block">
     <noe-section [showAdd]="false" (onEdit)="onEditIntro()">
       <div class="row">
@@ -39,14 +39,10 @@
           <p>{{ profile.introduction }}</p>
         </div>
       </div>
+
+      <noe-intro-dialog #introDialog></noe-intro-dialog>
     </noe-section>
-  </div>
 
-  <noe-intro-dialog #introDialog></noe-intro-dialog>
-</div>
-
-<div class="card">
-  <div class="card-block">
     <tabset #staticTabs>
       <tab>
         <ng-template tabHeading>
@@ -57,4 +53,3 @@
     </tabset>
   </div>
 </div>
-

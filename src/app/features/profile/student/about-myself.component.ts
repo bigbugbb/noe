@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 
 import { ProfileService } from '@app/core';
 
@@ -6,7 +6,8 @@ import { ProfileService } from '@app/core';
   selector: 'noe-about-myself',
   templateUrl: './about-myself.component.html'
 })
-export class AboutMyselfComponent implements OnInit {
+export class AboutMyselfComponent implements OnInit, OnDestroy {
+
   private profile;
 
   private editing = false;
@@ -16,9 +17,14 @@ export class AboutMyselfComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log('OnInit');
     this.profileService.getProfile().subscribe(profile => {
       this.profile = profile;
     });
+  }
+
+  ngOnDestroy() {
+    console.log('OnDestroy');
   }
 
   onEditAboutMe() {

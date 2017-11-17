@@ -6,12 +6,12 @@ import { AboutMyselfComponent } from './about-myself.component';
 import { MyOrdersComponent } from './my-orders.component';
 
 const routes: Routes = [
-  {
-    path: '', component: ProfileComponent,
+  { path: '', redirectTo: 'me', pathMatch: 'full' },
+  { path: 'me', component: ProfileComponent,
     children: [
-      { path: '', redirectTo: 'about-myself', pathMatch: 'full' },
-      { path: 'about-myself', component: AboutMyselfComponent },
-      { path: 'my-orders', component: MyOrdersComponent }
+      { path: '', redirectTo: 'about-myself', outlet: 'about' },
+      { path: 'about-myself', component: AboutMyselfComponent, outlet: 'about' },
+      { path: 'my-orders', component: MyOrdersComponent, outlet: 'orders' }
     ]
   }
 ];

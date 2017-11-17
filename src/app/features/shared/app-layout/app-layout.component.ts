@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '@app/models';
 import { UserService, ProfileService, StorageService } from '@app/core';
 import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-app-layout',
@@ -56,7 +57,8 @@ export class AppLayoutComponent implements OnInit {
 
   get roleIsStudent(): boolean {
     const user = this.storageService.getUser();
-    return user.role === 'Student';
+    const role: string = _.get(user, 'role', '');
+    return role === 'Student';
   }
 
   public toggled(open: boolean): void {
@@ -75,13 +77,13 @@ export class AppLayoutComponent implements OnInit {
     const user = this.storageService.getUser();
     switch (user.role) {
       case 'Student': {
-        return this.router.navigate(['/profile/student/me']);
+        return this.router.navigate(['/profile/student']);
       }
       case 'School': {
-        return this.router.navigate(['/profile/school/me']);
+        return this.router.navigate(['/profile/school']);
       }
       case 'Company': {
-        return this.router.navigate(['/profile/company/me']);
+        return this.router.navigate(['/profile/company']);
       }
       default: {
         console.error('Invalid user role', user.role);
