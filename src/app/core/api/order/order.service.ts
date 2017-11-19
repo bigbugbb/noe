@@ -4,9 +4,7 @@ import { Http, Headers, RequestOptions, URLSearchParams, Response } from '@angul
 import { Order, Student } from '@app/models';
 import { environment } from '@env/environment';
 import { ApiBase } from '../api-base';
-import { ProfileService } from '@app/core/profile/profile.service';
 import { StorageService } from '@app/core/storage/storage.service';
-import { BusinessDetailService } from '@app/core/api/business/business-detail.service';
 import { Observable } from 'rxjs/Rx';
 
 import * as _ from 'lodash';
@@ -20,8 +18,6 @@ export class OrderService extends ApiBase {
 
   constructor(
     private http: Http,
-    private profileService: ProfileService,
-    private businessDetailService: BusinessDetailService,
     protected storageService: StorageService,
   ) {
     super(storageService);
@@ -51,7 +47,6 @@ export class OrderService extends ApiBase {
   public create(payload) {
     return this.http.post(`${this.apiEndpoint}/orders`, payload, this.optionsWithJWT())
       .map(this.extractData)
-      .map(this.updateLocalData.bind(this))
       .catch(this.handleError);
   }
 
@@ -61,12 +56,15 @@ export class OrderService extends ApiBase {
       .catch(this.handleError);
   }
 
-  // update the associated profile after create or delete operation
+  public pay(id: string, payload) {
+    return this.http.post(`${this.apiEndpoint}/orders/${id}/charges`, payload, this.optionsWithJWT())
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
 
-  private updateLocalData(order) {
-    const user = this.storageService.getUser();
-    this.profileService.fetchProfile(user).subscribe();
-    this.businessDetailService.setBusiness(order.business);
-    return order;
+  public refund(id: string, chargeId: string) {
+    return this.http.post(`${this.apiEndpoint}/orders/${id}/charges/${chargeId}/refunds`, {}, this.optionsWithJWT())
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 }

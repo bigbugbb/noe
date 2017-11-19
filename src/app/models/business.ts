@@ -6,7 +6,7 @@ export class Business {
   public type: string;
   public summary: string;
   public media: string[];
-  public price: Number;
+  public price: number;
   public content: string;
 
   constructor() {}

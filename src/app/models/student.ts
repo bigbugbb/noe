@@ -42,9 +42,6 @@ export class Student implements BasicProfileInfoChecker {
   public skills: Array<string>;
   public interests: Array<string>;
 
-  // orders
-  public orders: Array<Order>;
-
   constructor(student: Student) {
     _.assign(this, student);
   }

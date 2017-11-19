@@ -10,12 +10,12 @@
         {{ businessName }}
       </a>
       <span class="d-flex flex-row align-items-center py-1">
-        <div class="business-price">{{ businessPrice }}</div>
+        <div class="order-price">{{ orderPrice }}</div>
         <div [ngSwitch]="orderStatus">
           <span *ngSwitchCase="'created'"
-                class="badge badge-success order-status">Ordered</span>
+                class="badge badge-primary order-status">Ordered</span>
           <span *ngSwitchCase="'paid'"
-                class="badge badge-primary order-status">Paid</span>
+                class="badge badge-success order-status">Paid</span>
           <span *ngSwitchCase="'canceled'"
                 class="badge badge-warning order-status">Canceled</span>
           <span *ngSwitchCase="'refunded'"
@@ -24,11 +24,27 @@
       </span>
       <div>{{ businessSummary }}</div>
     </div>
-    <div class="vertical-divider mx-3"></div>
+    <div class="vertical-divider mx-3 mb-2"></div>
     <div class="actions">
-      <button class="btn btn-success">Pay</button>
-      <button class="btn btn-outline-primary mt-2">Contact</button>
-      <button class="btn btn-outline-warning mt-2">Cancel</button>
+      <button class="btn btn-success"
+              *ngIf="showPay()"
+              (click)="pay()">
+        Pay
+      </button>
+      <button class="btn btn-outline-primary mb-2"
+              (click)="contact()">
+        Contact
+      </button>
+      <button class="btn btn-default mb-2"
+              *ngIf="showRefund()"
+              (click)="refund()">
+        Refund
+      </button>
+      <button class="btn btn-outline-warning mb-2"
+              *ngIf="showCancel()"
+              (click)="cancel()">
+        Cancel
+      </button>
     </div>
   </div>
 </div>

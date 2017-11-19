@@ -22,7 +22,7 @@
                 <button *ngIf="!ordered"
                         class="btn btn-primary btn-lg btn-order"
                         [disabled]="ordering"
-                        (click)="onOrder()">
+                        (click)="order()">
                   <span *ngIf="ordering"><i class="fa fa-circle-o-notch fa-spin mr-1"></i>Processing Order</span>
                   <span *ngIf="!ordering">Order</span>
                 </button>

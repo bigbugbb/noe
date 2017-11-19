@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { OrderService, ProfileService } from '@app/core';
+import { OrderService, StorageService } from '@app/core';
 import { ProfileOutletEventsService } from './profile-outlet-events.service';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
@@ -30,7 +30,7 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private orderService: OrderService,
-    private profileService: ProfileService,
+    private storageService: StorageService,
     private profileOutletEventsService: ProfileOutletEventsService
   ) {}
 
@@ -44,9 +44,8 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
 
   queryOrdersByPage(page: number) {
     this.page = page;
-    const params = {};
-    this.profileService.getProfile().subscribe(profile => params['student'] = _.get(profile, '_id'));
-    const queryParams = { page, 'params': JSON.stringify([ params ]) };
+    const customer = this.storageService.getUser()._id;
+    const queryParams = { page, 'params': JSON.stringify([ { customer } ]) };
     this.orderService.getAll(queryParams).subscribe(result => this.data = result);
   }
 

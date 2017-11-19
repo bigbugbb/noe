@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Order } from '@app/models';
+import { OrderService, StorageService } from '@app/core';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'noe-order-item',
@@ -8,14 +10,28 @@ import { Order } from '@app/models';
   styleUrls: ['./order-item.component.scss']
 })
 export class OrderItemComponent {
-  @Input()
-  private item: Order;
+
+  private itemValue: Order;
 
   @Input()
   private showDivider = true;
 
-  get student() {
-    return this.item.student;
+  @Output()
+  private itemChange = new EventEmitter();
+
+  constructor(
+    private orderService: OrderService,
+    private storageService: StorageService
+  ) {}
+
+  @Input()
+  get item() {
+    return this.itemValue;
+  }
+
+  set item(value) {
+    this.itemValue = value;
+    this.itemChange.emit(this.itemValue);
   }
 
   get business() {
@@ -26,8 +42,8 @@ export class OrderItemComponent {
     return this.item.business.name;
   }
 
-  get businessPrice() {
-    return `$${this.item.business.price}`;
+  get orderPrice() {
+    return `$${this.item.price}`;
   }
 
   get businessSummary() {
@@ -36,5 +52,57 @@ export class OrderItemComponent {
 
   get orderStatus() {
     return this.item.status;
+  }
+
+  showPay() {
+    return this.orderStatus === 'created';
+  }
+
+  showRefund() {
+    return this.orderStatus === 'paid';
+  }
+
+  showCancel() {
+    return this.orderStatus === 'created';
+  }
+
+  private pay() {
+    const amount = this.item.business.price * 100;
+    const handler = (<any>window).StripeCheckout.configure({
+      key: environment.stripePublishableKey,
+      image: this.business.avatar,
+      locale: 'auto',
+      token: (token) => {
+        const { email } = this.storageService.getUser();
+        const orderId = this.item._id;
+        const payload = { email, source: token.id };
+        this.orderService.pay(orderId, payload).subscribe(result => {
+          this.item = result.order;
+        });
+      }
+    });
+
+    handler.open({
+      name: this.businessName,
+      description: 'Pay for this service',
+      amount
+    });
+  }
+
+  private refund() {
+    this.orderService.refund(this.item._id, this.item.charge).subscribe(result => {
+      this.item = result.order;
+    });
+  }
+
+  private contact() {
+
+  }
+
+  private cancel() {
+    this.item.status = 'canceled';
+    this.orderService.update(this.item).subscribe(result => {
+      this.item = result.order;
+    });
   }
 }

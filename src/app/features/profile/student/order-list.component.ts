@@ -15,8 +15,8 @@ import * as _ from 'lodash';
   `],
   template: `
     <div class="py-3">
-      <noe-order-item *ngFor="let order of orders; let i = index;"
-        [item]="order" [showDivider]="showDivider(i)">
+      <noe-order-item *ngFor="let order of orders; let i = index; trackBy: trackByIndex"
+        [(item)]="orders[i]" [showDivider]="showDivider(i)">
       </noe-order-item>
     </div>
     <div>
@@ -52,6 +52,10 @@ export class OrderListComponent {
 
   get orders(): Order[] {
     return _.get(this.data, 'orders', []);
+  }
+
+  trackByIndex(index: number, obj: any): any {
+    return index;
   }
 
   showDivider(index) {

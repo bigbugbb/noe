@@ -1,11 +1,12 @@
-import { Student, Business } from '@app/models';
+import { User, Business } from '@app/models';
 
 export class Order {
   public _id: string;
 
-  public student: Student;
+  public customer: User;
   public business: Business;
-  public stripeOrder: string;
+  public charge: string;
+  public price: number;
   public status;
 
   constructor() {}

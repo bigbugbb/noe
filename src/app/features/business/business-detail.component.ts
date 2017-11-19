@@ -68,17 +68,18 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
     return _.get(this.model, 'content', '');
   }
 
-  public onOrder() {
+  public order() {
     if (this.ordering) {
       return;
     }
     this.ordering = true;
 
-    const profile = this.storageService.getProfile();
-    const studentId = _.get(profile, '_id', undefined);
+    const customerId = this.storageService.getUser()._id;
     const businessId = this.model._id;
+    const price = this.model.price;
 
-    this.orderService.create({ studentId, businessId }).subscribe(order => {
+    this.orderService.create({ customerId, businessId, price }).subscribe(order => {
+      this.businessDetailService.setBusiness(order.business);
       this.ordering = false;
     });
   }
