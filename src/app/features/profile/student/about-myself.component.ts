@@ -23,7 +23,8 @@ export class AboutMyselfComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+  }
 
   onEditAboutMe() {
     this.editing = true;

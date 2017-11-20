@@ -5,8 +5,29 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'noe-business-list',
-  templateUrl: './business-list.component.html',
-  styleUrls: ['./business-list.component.scss']
+  template: `
+    <div class="row">
+      <noe-business-item
+          class="col-md-12 col-lg-6"
+          *ngFor="let business of businesses; let i = index; trackBy: trackByIndex"
+          [item]="business">
+      </noe-business-item>
+    </div>
+    <noe-pagination
+        (select)="selectPage.emit($event)"
+        [total]="totalPages"
+        [page]="currentPage"
+        [window]="10">
+    </noe-pagination>
+  `,
+  styles: [`
+    :host(noe-business-list) {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+  `]
 })
 export class BusinessListComponent {
   @Input()
@@ -31,6 +52,10 @@ export class BusinessListComponent {
 
   get businesses(): Business[] {
     return _.get(this.data, 'businesses', []);
+  }
+
+  trackByIndex(index: number, obj: any): any {
+    return index;
   }
 
   showDivider(index) {

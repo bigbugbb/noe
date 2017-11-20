@@ -20,7 +20,6 @@ export class BusinessComponent implements OnInit, OnDestroy {
 
   private page = 1;
   private limit = 20;
-
   private data: { [key: string]: any };
 
   constructor(
@@ -42,7 +41,7 @@ export class BusinessComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  onPageSelected(page: number) {
+  onPageSelect(page: number) {
     this.page = page;
     this.triggerActivitiesQuery();
   }

@@ -1,0 +1,16 @@
+<div class="item-container d-flex flex-row mb-5">
+  <a [routerLink]="['/services', item._id]">
+    <div class="avatar-container">
+      <img [src]="item.avatar" class="rounded" alt="name">
+    </div>
+  </a>
+  <div class="d-flex flex-row ml-3">
+    <div class="d-flex flex-column">
+      <a class="business-name" [routerLink]="['/services', item._id]">
+        {{ name }}
+      </a>
+      <div class="business-price">{{ price }}</div>
+      <div class="business-summary">{{ summary }}</div>
+    </div>
+  </div>
+</div>

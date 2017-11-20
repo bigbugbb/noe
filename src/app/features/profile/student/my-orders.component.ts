@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { OrderService, StorageService } from '@app/core';
-import { ProfileOutletEventsService } from './profile-outlet-events.service';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
@@ -31,7 +30,6 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private orderService: OrderService,
     private storageService: StorageService,
-    private profileOutletEventsService: ProfileOutletEventsService
   ) {}
 
   ngOnInit() {
@@ -39,7 +37,6 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.profileOutletEventsService.notifyOutletDestroyed('orders');
   }
 
   queryOrdersByPage(page: number) {

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileComponent } from './profile.component';
-import { BusinessListComponent } from './business/business-list.component';
 import { BusinessEditComponent } from './business/business-edit.component';
 
 const routes: Routes = [

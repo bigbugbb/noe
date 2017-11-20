@@ -1,5 +1,6 @@
-$item-min-height: 200px;
-$summary-line-count: 6;
+$avatar-width: 200px;
+$item-min-height: 150px;
+$summary-line-count: 5;
 $summary-line-height: 20px;
 
 .item-container {
@@ -7,7 +8,7 @@ $summary-line-height: 20px;
 }
 
 .avatar-container {
-  width: $item-min-height;
+  width: $avatar-width;
   height: 150px;
   overflow: hidden;
   img {
@@ -27,9 +28,15 @@ $summary-line-height: 20px;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: $summary-line-count;  /* number of lines to show */
+  -webkit-line-clamp: $summary-line-count; /* number of lines to show */
   line-height: $summary-line-height;        /* fallback */
   max-height: $summary-line-count * $summary-line-height;       /* fallback */
+}
+
+.business-price {
+  font-size: 17px;
+  font-weight: 500;
+  color: red;
 }
 
 .order-price {
@@ -46,7 +53,7 @@ $summary-line-height: 20px;
 }
 
 .vertical-divider {
-  height: 160px;
+  height: 200px;
   border: solid 0.5px rgb(200, 200, 200);
 }
 

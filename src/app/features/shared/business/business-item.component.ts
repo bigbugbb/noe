@@ -22,6 +22,10 @@ export class BusinessItemComponent implements OnInit {
     return _.get(this.item, 'name', 'Unknown business name');
   }
 
+  get summary() {
+    return _.get(this.item, 'summary', '');
+  }
+
   get price() {
     const price = _.get(this.item, 'price', undefined);
     return price !== undefined ? '$' + price : 'Undefined';

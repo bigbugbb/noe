@@ -87,33 +87,35 @@
 
     <ul class="nav nav-tabs">
       <li *ngFor="let i of [0, 1]" class="nav-item">
-        <a class="nav-link" [ngClass]="{ 'active': isTabSelected(i) }" (click)="selectTab(i)">{{ tabNames[i] }}</a>
+        <a class="nav-link"
+           [ngClass]="{ 'active': isTabSelected(i) }"
+           (click)="selectTab(i)">
+          {{ tabNames[i] }}
+        </a>
       </li>
     </ul>
 
-    <!-- <div *ngIf="isTabSelected(0)" class="tab-content"> -->
-    <router-outlet *ngIf="isTabSelected(0)" name="about"></router-outlet>
-    <!-- </div> -->
-    <router-outlet *ngIf="isTabSelected(1)" name="orders"></router-outlet>
+    <noe-about-myself *ngIf="isTabSelected(0)"></noe-about-myself>
+    <noe-my-orders *ngIf="isTabSelected(1)"></noe-my-orders>
 
-      <!-- <tabset #staticTabs>
-        <tab [active]="isTabSelected(0)"
-            (select)="selectTab(0)"
-            [customClass]="'tab'">
-          <ng-template tabHeading>
-            <span class="tab-heading">About Myself</span>
-          </ng-template>
-          <router-outlet name="about"></router-outlet>
-        </tab>
-        <tab [active]="isTabSelected(1)"
-            (select)="selectTab(1)"
-            [customClass]="'tab'">
-          <ng-template tabHeading>
-            <span class="tab-heading">My Orders</span>
-          </ng-template>
+    <!-- <tabset #staticTabs>
+      <tab [active]="isTabSelected(0)"
+          (select)="selectTab(0)"
+          [customClass]="'tab'">
+        <ng-template tabHeading>
+          <span class="tab-heading">About Myself</span>
+        </ng-template>
+        <router-outlet name="about"></router-outlet>
+      </tab>
+      <tab [active]="isTabSelected(1)"
+          (select)="selectTab(1)"
+          [customClass]="'tab'">
+        <ng-template tabHeading>
+          <span class="tab-heading">My Orders</span>
+        </ng-template>
 
-        </tab>
-      </tabset> -->
+      </tab>
+    </tabset> -->
 
   </div>
 </div>

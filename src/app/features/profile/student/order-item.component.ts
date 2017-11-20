@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Order } from '@app/models';
-import { OrderService, StorageService } from '@app/core';
+import { OrderService, OrderDetailService, StorageService } from '@app/core';
 import { environment } from '@env/environment';
 
 @Component({
@@ -20,7 +21,10 @@ export class OrderItemComponent {
   private itemChange = new EventEmitter();
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private orderService: OrderService,
+    private orderDetailService: OrderDetailService,
     private storageService: StorageService
   ) {}
 
@@ -52,6 +56,12 @@ export class OrderItemComponent {
 
   get orderStatus() {
     return this.item.status;
+  }
+
+  navigateToDetail(event) {
+    event.preventDefault();
+    this.orderDetailService.setOrder(this.item);
+    this.router.navigate(['orders', this.item._id], { relativeTo: this.route });
   }
 
   showPay() {

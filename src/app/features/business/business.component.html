@@ -1,5 +1,6 @@
-<div class="d-flex flex-row justify-content-start">
-  <div class="card w-100 my-3">
-    <noe-business-list [data]="data" (selectPage)="onPageSelected($event)"></noe-business-list>
+<div class="card w-100 my-3">
+  <div class="card-block d-flex flex-column">
+    <div><hr class="mb-4"></div>
+    <noe-business-list [data]="data" (selectPage)="onPageSelect($event)"></noe-business-list>
   </div>
 </div>

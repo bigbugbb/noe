@@ -10,6 +10,7 @@ export * from './api/company/company.service';
 export * from './api/business/business.service';
 export * from './api/business/business-detail.service';
 export * from './api/order/order.service';
+export * from './api/order/order-detail.service';
 export * from './storage/storage.service';
 export * from './s3/s3.service';
 export * from './s3/applying-file.service';

@@ -1,12 +1,12 @@
-<div class="item-container d-flex flex-row mb-4">
-  <a [routerLink]="['/orders', item._id]">
+<div class="item-container d-flex flex-row mb-3">
+  <a href (click)="navigateToDetail($event)">
     <div class="avatar-container">
       <img [src]="business.avatar" class="rounded" alt="business.name">
     </div>
   </a>
   <div class="d-flex flex-row ml-3">
     <div class="d-flex flex-column">
-      <a class="business-name" [routerLink]="['/orders', item._id]">
+      <a href class="business-name" (click)="navigateToDetail($event)">
         {{ businessName }}
       </a>
       <span class="d-flex flex-row align-items-center py-1">
@@ -22,11 +22,11 @@
                 class="badge badge-info order-status">Refunded</span>
         </div>
       </span>
-      <div>{{ businessSummary }}</div>
+      <div class="business-summary">{{ businessSummary }}</div>
     </div>
-    <div class="vertical-divider mx-3 mb-2"></div>
+    <div class="vertical-divider mx-3"></div>
     <div class="actions">
-      <button class="btn btn-success"
+      <button class="btn btn-success mb-2"
               *ngIf="showPay()"
               (click)="pay()">
         Pay

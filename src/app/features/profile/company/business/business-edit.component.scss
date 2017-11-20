@@ -1,8 +1,17 @@
-$image-width:                     416px;
+$image-max-width:                 416px;
+$image-min-width:                 360px;
+$navbar-height:                   55px !default;
+$footer-height:                   50px !default;
 
 .card {
-  min-width: 720px;
-  max-width: 1280px;
+  padding: 0 0.75rem;
+  margin-top: 1rem;
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 2.5rem);
+}
+
+.card-block {
+  display: flex;
+  flex-direction: column;
 }
 
 .td-no-border {
@@ -20,7 +29,8 @@ $image-width:                     416px;
 .business-img {
   border: solid 1px gray;
   border-radius: 4px;
-  width: $image-width;
+  max-width: $image-max-width;
+  min-width: $image-min-width;
 }
 
 .location {
@@ -39,24 +49,25 @@ $image-width:                     416px;
 .business-price-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   background: lightgray;
   margin-bottom: 0.75rem;
-  width: 260px;
+  max-width: 200px;
+  min-width: 160px;
   border-radius: 2px;
   padding: 0.3rem 0;
 
   .price-title {
     font-size: 14px;
     font-weight: 500;
-    padding-left: 2.5rem;
     color: #29363d;
   }
 
   .price {
     font-size: 1.6rem;
     font-weight: 500;
-    padding-left: 2.5rem;
+    margin-left: 2rem;
     color: red;
   }
 }
@@ -64,7 +75,7 @@ $image-width:                     416px;
 .btn-order {
   font-size: 1.1rem;
   font-weight: 600;
-  width: 8rem;
+  width: 7rem;
 }
 
 .edit-content-alert {
@@ -72,7 +83,8 @@ $image-width:                     416px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: $image-width;
+  max-width: $image-max-width;
+  min-width: $image-min-width;
 }
 
 .btn-edit-content {
