@@ -12,6 +12,7 @@ import { IntroDialogComponent } from './dialogs/intro-dialog.component';
 import { BusinessEditComponent } from './business/business-edit.component';
 import { BusinessItemComponent } from './business/business-item.component';
 import { BusinessListComponent } from './business/business-list.component';
+import { BusinessPreviewComponent } from './business/business-preview.component';
 import { BusinessInfoEditDialogComponent } from './business/business-info-edit-dialog.component';
 import { ModalModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ImageCropperComponent } from 'ng2-img-cropper';
@@ -35,6 +36,7 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     BusinessEditComponent,
     BusinessItemComponent,
     BusinessListComponent,
+    BusinessPreviewComponent,
     ImageCropperComponent,
     BusinessInfoEditDialogComponent,
     PdfViewerComponent

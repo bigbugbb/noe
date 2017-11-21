@@ -1,11 +1,11 @@
-<div class="card mt-3 px-3">
+<div class="card mt-3">
   <div class="card-block">
     <noe-section [header]="'Business Info'" [showAdd]="false" (onEdit)="onEditBusinessInfo()">
-      <hr class="mb-3">
+      <hr class="mt-2 mb-3">
       <table class="table">
         <tbody>
           <tr>
-            <td class="w-32 p-0 td-no-border">
+            <td class="w-32 td-no-border">
               <img class="business-img" [src]="model.avatar"/>
             </td>
             <td class="w-68 td-no-border business-info">
@@ -14,12 +14,11 @@
                 <div *ngIf="location.length > 0" class="location"><i class="fa fa-location-arrow location-icon" aria-hidden="true"></i>{{ location }}</div>
               </div>
               <div class="summary">{{ summary }}</div>
-              <div>
+              <div class="d-flex flex-row align-items-center">
                 <div class="business-price-container">
                   <span class="price-title">Price</span>
                   <span class="price">{{ price }}</span>
                 </div>
-                <button class="btn btn-primary btn-order">Order</button>
               </div>
             </td>
           </tr>
@@ -31,7 +30,7 @@
 
     <div class="row mt-3">
       <noe-section class="col" [header]="'Business Content'" [showAdd]="false" [showEdit]="false">
-        <hr class="mt-3 mb-3">
+        <hr class="mt-2 mb-3">
         <div *ngIf="!editingContent" class="alert alert-primary edit-content-alert" role="alert">
           <span>Customize your business content!</span>
           <button class="btn btn-primary ml-3 btn-edit-content" (click)="onEditBusinessContent()">
@@ -40,7 +39,7 @@
         </div>
         <div *ngIf="editingContent" class="alert alert-primary edit-content-alert" role="alert">
           <span>Save your customized content!</span>
-          <button class="btn btn-primary ml-3 btn-edit-content" (click)="onSaveBusinessContent()">
+          <button class="btn btn-primary ml-3" (click)="onSaveBusinessContent()">
             Save Content
           </button>
         </div>
@@ -55,8 +54,20 @@
           (blur)="onBlur($event)"
           debounce="500">
         </ckeditor>
-        <div *ngIf="!editingContent" [innerHTML]="content | safeHtml"></div>
+        <div *ngIf="!editingContent" [innerHTML]="content | safeHtml">
+        </div>
       </noe-section>
+    </div>
+
+    <div class="flex-grow d-flex justify-content-center align-items-center">
+      <span *ngIf="contentEmpty && !editingContent" class="empty-content">
+        You haven't added any details about your business.
+      </span>
+    </div>
+
+    <div>
+      <hr class="mt-3">
+      <a class="btn btn-primary pull-right" [routerLink]="['preview']">Preview</a>
     </div>
   </div>
 </div>

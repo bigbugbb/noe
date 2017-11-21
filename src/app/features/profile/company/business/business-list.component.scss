@@ -6,6 +6,17 @@
   font-weight: 500;
 }
 
+.header {
+  align-items: center;
+  padding: 1rem;
+
+  .header-text {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+  }
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;

@@ -7,7 +7,7 @@ import { Business, Company } from '@app/models';
 @Component({
   selector: 'noe-business-list',
   templateUrl: './business-list.component.html',
-  styleUrls: ['./shared-styles.component.scss', './business-list.component.scss']
+  styleUrls: ['./business-list.component.scss']
 })
 export class BusinessListComponent implements OnInit {
   @Input()

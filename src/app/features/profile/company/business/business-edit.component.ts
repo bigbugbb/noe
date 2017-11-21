@@ -9,7 +9,10 @@ import * as _ from 'lodash';
 @Component({
   selector: 'noe-business-edit',
   templateUrl: './business-edit.component.html',
-  styleUrls: ['./business-edit.component.scss']
+  styleUrls: [
+    '../../../shared/business/shared-business-styles.scss',
+    './business-edit.component.scss'
+  ]
 })
 export class BusinessEditComponent implements OnInit, OnDestroy {
   @ViewChild('infoEditDialog')
@@ -63,6 +66,10 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
 
   get content() {
     return _.get(this.model, 'content', '');
+  }
+
+  get contentEmpty() {
+    return _.isEmpty(this.content);
   }
 
   onEditBusinessInfo() {

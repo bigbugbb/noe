@@ -3,10 +3,6 @@ $image-min-width:                 360px;
 $navbar-height:                   55px !default;
 $footer-height:                   50px !default;
 
-.top-margin {
-  margin-top: 1rem;
-}
-
 .card {
   min-width: 800px;
   max-width: 1200px;
@@ -39,13 +35,6 @@ $footer-height:                   50px !default;
   min-width: $image-min-width;
 }
 
-.order-status {
-  font-size: 12px;
-  font-weight: 500;
-  padding: 0.3rem 0.5rem;
-  margin: 0.25rem 0.75rem 0 0;
-}
-
 .location {
   font-weight: 500;
 
@@ -65,7 +54,6 @@ $footer-height:                   50px !default;
   justify-content: center;
   align-items: center;
   background: lightgray;
-  margin-bottom: 0.75rem;
   max-width: 180px;
   min-width: 160px;
   border-radius: 4px;
@@ -80,19 +68,8 @@ $footer-height:                   50px !default;
   .price {
     font-size: 1.6rem;
     font-weight: 500;
-    margin-left: 1.5rem;
+    margin-left: 1.25rem;
     padding-bottom: 0.25rem;
     color: red;
   }
 }
-
-.actions {
-  button {
-    font-size: 1.1rem;
-    margin-right: 1rem;
-    padding: 0.75rem 0.5rem;
-    width: 104px;
-  }
-}
-
-

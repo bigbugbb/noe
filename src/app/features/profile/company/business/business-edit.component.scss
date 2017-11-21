@@ -1,81 +1,21 @@
-$image-max-width:                 416px;
-$image-min-width:                 360px;
-$navbar-height:                   55px !default;
-$footer-height:                   50px !default;
-
-.card {
-  padding: 0 0.75rem;
-  margin-top: 1rem;
-  min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 2.5rem);
-}
-
 .card-block {
   display: flex;
   flex-direction: column;
-}
 
-.td-no-border {
-  border-top: none;
-}
-
-.business-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 280px;
-  padding: 0.5rem 0 0.5rem 1.5rem;
-}
-
-.business-img {
-  border: solid 1px gray;
-  border-radius: 4px;
-  max-width: $image-max-width;
-  min-width: $image-min-width;
-}
-
-.location {
-  font-weight: 500;
-
-  .location-icon {
-    margin-right: 0.5rem;
-  }
-}
-
-.summary {
-  margin: 0.5rem 0;
-  color: #29363d;
-}
-
-.business-price-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background: lightgray;
-  margin-bottom: 0.75rem;
-  max-width: 200px;
-  min-width: 160px;
-  border-radius: 2px;
-  padding: 0.3rem 0;
-
-  .price-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: #29363d;
+  .flex-grow {
+    flex-grow: 1;
   }
 
-  .price {
-    font-size: 1.6rem;
-    font-weight: 500;
-    margin-left: 2rem;
-    color: red;
+  .empty-content {
+    font-size: 1rem;
   }
 }
 
 .btn-order {
   font-size: 1.1rem;
-  font-weight: 600;
-  width: 7rem;
+  margin-left: 1rem;
+  padding: 0.75rem;
+  min-width: 104px;
 }
 
 .edit-content-alert {
@@ -83,10 +23,5 @@ $footer-height:                   50px !default;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  max-width: $image-max-width;
-  min-width: $image-min-width;
-}
-
-.btn-edit-content {
-  font-weight: 500;
+  max-width: 380px;
 }

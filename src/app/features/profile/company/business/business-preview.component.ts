@@ -1,23 +1,19 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import {
-  StorageService,
-  OrderService,
-  BusinessDetailService
-} from '@app/core';
+import { BusinessDetailService } from '@app/core';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'noe-business-detail',
-  templateUrl: './business-detail.component.html',
+  selector: 'noe-business-preview',
+  templateUrl: './business-preview.component.html',
   styleUrls: [
-    '../shared/business/shared-business-styles.scss',
-    './business-detail.component.scss'
+    '../../../shared/business/shared-business-styles.scss',
+    './business-preview.component.scss'
   ]
 })
-export class BusinessDetailComponent implements OnInit, OnDestroy {
+export class BusinessPreviewComponent implements OnInit, OnDestroy {
   private model: { [key: string]: any } = {};
 
   private sub: Subscription;
@@ -29,8 +25,6 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private orderService: OrderService,
-    private storageService: StorageService,
     private businessDetailService: BusinessDetailService
   ) {}
 
@@ -69,23 +63,5 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
 
   get content() {
     return _.get(this.model, 'content', '');
-  }
-
-  public order() {
-    if (this.ordering) {
-      return;
-    }
-    this.ordering = true;
-
-    const customerId = this.storageService.getUser()._id;
-    const businessId = this.model._id;
-    const price = this.model.price;
-
-    this.orderService.create({ customerId, businessId, price }).subscribe(order => {
-      this.businessDetailService.setBusiness(order.business);
-      this.ordering = false;
-      // navigate to order detail page
-      this.router.navigate(['/profile/student/me/orders', order._id]);
-    });
   }
 }

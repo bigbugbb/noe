@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { StorageService, OrderService, OrderDetailService } from '@app/core';
+import { StorageService, OrderDetailService } from '@app/core';
+import { OrderActionService } from './order-action.service';
 import { Order, Business } from '@app/models';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
@@ -23,7 +24,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private orderService: OrderService,
+    private orderActionService: OrderActionService,
     private orderDetailService: OrderDetailService,
     private storageService: StorageService
   ) {}
@@ -57,6 +58,10 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     return _.get(this.business, 'name', 'This is the business name');
   }
 
+  get status() {
+    return _.get(this.order, 'status', '');
+  }
+
   get location() {
     const { city, state, country } = this.business;
     const address = [city, state, country];
@@ -74,5 +79,39 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
   get content() {
     return _.get(this.business, 'content', '');
+  }
+
+  showPay() {
+    return this.status === 'created';
+  }
+
+  showRefund() {
+    return this.status === 'paid';
+  }
+
+  showCancel() {
+    return this.status === 'created';
+  }
+
+  private pay() {
+    this.orderActionService.pay(this.order).then(value => {
+      this.order = value;
+    });
+  }
+
+  private refund() {
+    this.orderActionService.refund(this.order).then(value => {
+      this.order = value;
+    });
+  }
+
+  private contact() {
+
+  }
+
+  private cancel() {
+    this.orderActionService.cancel(this.order).then(value => {
+      this.order = value;
+    });
   }
 }

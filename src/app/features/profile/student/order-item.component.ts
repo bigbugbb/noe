@@ -2,7 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Order } from '@app/models';
-import { OrderService, OrderDetailService, StorageService } from '@app/core';
+import { OrderDetailService, StorageService } from '@app/core';
+import { OrderActionService } from './order-action.service';
 import { environment } from '@env/environment';
 
 @Component({
@@ -23,8 +24,8 @@ export class OrderItemComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private orderService: OrderService,
     private orderDetailService: OrderDetailService,
+    private orderActionService: OrderActionService,
     private storageService: StorageService
   ) {}
 
@@ -77,31 +78,14 @@ export class OrderItemComponent {
   }
 
   private pay() {
-    const amount = this.item.business.price * 100;
-    const handler = (<any>window).StripeCheckout.configure({
-      key: environment.stripePublishableKey,
-      image: this.business.avatar,
-      locale: 'auto',
-      token: (token) => {
-        const { email } = this.storageService.getUser();
-        const orderId = this.item._id;
-        const payload = { email, source: token.id };
-        this.orderService.pay(orderId, payload).subscribe(result => {
-          this.item = result.order;
-        });
-      }
-    });
-
-    handler.open({
-      name: this.businessName,
-      description: 'Pay for this service',
-      amount
+    this.orderActionService.pay(this.item).then(value => {
+      this.item = value;
     });
   }
 
   private refund() {
-    this.orderService.refund(this.item._id, this.item.charge).subscribe(result => {
-      this.item = result.order;
+    this.orderActionService.refund(this.item).then(value => {
+      this.item = value;
     });
   }
 
@@ -110,9 +94,8 @@ export class OrderItemComponent {
   }
 
   private cancel() {
-    this.item.status = 'canceled';
-    this.orderService.update(this.item).subscribe(result => {
-      this.item = result.order;
+    this.orderActionService.cancel(this.item).then(value => {
+      this.item = value;
     });
   }
 }

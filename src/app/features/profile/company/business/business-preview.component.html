@@ -19,12 +19,8 @@
                   <span class="price-title">Price</span>
                   <span class="price">{{ price }}</span>
                 </div>
-                <button *ngIf="!ordered"
-                        class="btn btn-primary btn-lg btn-order"
-                        [disabled]="ordering"
-                        (click)="order()">
-                  <span *ngIf="ordering"><i class="fa fa-circle-o-notch fa-spin mr-1"></i>Processing</span>
-                  <span *ngIf="!ordering">Order</span>
+                <button class="btn btn-primary btn-lg btn-order">
+                  Order
                 </button>
               </div>
             </td>
