@@ -6,7 +6,7 @@ import { environment } from '@env/environment';
 import * as _ from 'lodash';
 
 @Injectable()
-export class OrderActionService {
+export class OrderActionsService {
   constructor(
     private orderService: OrderService,
     private storageService: StorageService

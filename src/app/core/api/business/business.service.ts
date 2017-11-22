@@ -49,7 +49,6 @@ export class BusinessService extends ApiBase {
   public create(business: Business) {
     return this.http.post(`${this.apiEndpoint}/businesses`, business, this.optionsWithJWT())
       .map(this.extractData)
-      .flatMap(this.updateProfile.bind(this))
       .catch(this.handleError);
   }
 
@@ -62,18 +61,7 @@ export class BusinessService extends ApiBase {
   public delete(id: string) {
     return this.http.delete(`${this.apiEndpoint}/businesses/${id}`, this.optionsWithJWT())
       .map(this.extractData)
-      .flatMap(this.updateProfile.bind(this))
       .catch(this.handleError);
-  }
-
-  // update the associated profile after create or delete operation
-
-  private updateProfile(business: Business) {
-    const company: Company = this.storageService.getProfile();
-    company.businesses.push(business);
-    return this.profileService.updateProfile('Company', company).map(() => {
-      return business;
-    });
   }
 
   // utils methods

@@ -1,55 +1,89 @@
 <div class="card">
-  <div class="card-block">
-    <noe-section [showAdd]="false" (onEdit)="onEditIntro()">
+  <div class="card-block d-flex flex-column">
+    <noe-section [header]="'My Profile'" [showAdd]="false" (onEdit)="onEditIntro()">
+      <hr class="mt-2 pb-2">
       <div class="row">
-        <div class="col">
-          <img class="rounded-circle profile-avatar img-thumbnail mx-auto d-block" [src]="profile.avatar" />
+        <div class="col-4 mb-3">
+          <div class="row">
+            <div class="col">
+              <img class="rounded-circle profile-avatar img-thumbnail mx-auto d-block" [src]="profile.avatar" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h4 class="profile-name d-block text-center text-truncate" placement="top" triggers="hover"
+                  [popover]="profile.name">{{ profile.name }}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-2">
+              <span class="row property-title">Email:</span>
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
+                    [popover]="profile.email">{{ email }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-2">
+              <span class="row property-title">Phone:</span>
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
+                    [popover]="profile.phone">{{ phone }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-2">
+              <span class="row property-title">EIN:</span>
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
+                    [popover]="profile.ein">{{ ein }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-2">
+              <span class="row property-title">Street:</span>
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
+                    [popover]="profile.street">{{ street }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-2">
+              <span class="row property-title">City:</span>
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
+                    [popover]="profile.city">{{ city }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-2">
+              <span class="row property-title">State:</span>
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
+                    [popover]="profile.state">{{ state }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-2">
+              <span class="row property-title">Zip code:</span>
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
+                    [popover]="profile.zipcode">{{ zipcode }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-2">
+              <span class="row property-title">Country:</span>
+              <span class="row py-1 d-block text-truncate" placement="left" triggers="hover"
+                    [popover]="profile.country">{{ country }}</span>
+            </div>
+          </div>
+          <div class="row mr-2">
+            <div class="col mb-2">
+              <span class="row property-title">Introduction:</span>
+              <span class="row py-1">{{ profile.introduction }}</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <h4 class="text-center">{{ profile.name }}</h4>
-        </div>
-      </div>
-
-      <hr class="mt-3">
-
-      <div class="table-responsive">
-        <table class="table borderless">
-          <tbody>
-            <tr>
-              <td class="profile-property">
-                <span class="property-title">Email:</span>{{ profile.email }}
-              </td>
-              <td class="profile-property">
-                <span class="property-title">Phone:</span>{{ profile.phone }}
-              </td>
-              <td class="profile-property">
-                <span class="property-title">Country:</span>{{ profile.country }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <hr class="mt-3">
-
-      <div class="row">
-        <div class="col">
-          <p>{{ profile.introduction }}</p>
-        </div>
-      </div>
-
-      <noe-intro-dialog #introDialog></noe-intro-dialog>
     </noe-section>
 
-    <tabset #staticTabs>
-      <tab>
-        <ng-template tabHeading>
-          <span class="tab-heading">Businesses</span>
-        </ng-template>
-        <noe-business-list [data]="profile.businesses"></noe-business-list>
-      </tab>
-    </tabset>
+    <noe-intro-dialog #introDialog></noe-intro-dialog>
+
+    <div class="mt-3"></div>
+
+    <ul class="nav nav-tabs">
+      <li *ngFor="let i of [0, 1]" class="nav-item">
+        <a class="nav-link"
+            [ngClass]="{ 'active': isTabSelected(i) }"
+            (click)="selectTab(i)">
+          {{ tabNames[i] }}
+        </a>
+      </li>
+    </ul>
+
+    <noe-my-businesses *ngIf="isTabSelected(0)"></noe-my-businesses>
+    <noe-order-list *ngIf="isTabSelected(1)"></noe-order-list>
   </div>
 </div>

@@ -14,9 +14,9 @@
         </div>
       </div>
 
-      <!-- firstname and lastname -->
+      <!-- name -->
       <div class="form-group row">
-        <div class="col">
+        <div class="col-12 mb-3">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name"
                   name="name"
@@ -27,11 +27,8 @@
             Company name is required
           </div>
         </div>
-      </div>
 
-      <!-- email, phone, country -->
-      <div class="form-group row">
-        <div class="col">
+        <div class="col-4 mb-3">
           <label for="email">Email</label>
           <input type="text" class="form-control" id="email"
                   required
@@ -41,7 +38,7 @@
             Email is required
           </div>
         </div>
-        <div class="col">
+        <div class="col-4 mb-3">
           <label for="phone">Phone</label>
           <input type="text" class="form-control" id="phone"
                   required
@@ -51,25 +48,70 @@
             Phone is required
           </div>
         </div>
-        <div class="col">
+        <div class="col-4 mb-3">
+          <label for="ein">EIN</label>
+          <input type="text" class="form-control" id="ein"
+                  required
+                  [(ngModel)]="model.ein" name="ein"
+                  #ein="ngModel">
+          <div [hidden]="ein.valid || ein.pristine" class="alert alert-danger">
+            EIN is required
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="street">Street</label>
+          <input type="text" class="form-control" id="street"
+                  required
+                  [(ngModel)]="model.street" name="street"
+                  #street="ngModel">
+          <div [hidden]="street.valid || street.pristine" class="alert alert-danger">
+            Street is required
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city"
+                  required
+                  [(ngModel)]="model.city" name="city"
+                  #city="ngModel">
+          <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+            City is required
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="state">State</label>
+          <input type="text" class="form-control" id="state"
+                  required
+                  [(ngModel)]="model.state" name="state"
+                  #state="ngModel">
+          <div [hidden]="state.valid || state.pristine" class="alert alert-danger">
+            State is required
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="zipcode">Zip code</label>
+          <input type="text" class="form-control" id="zipcode"
+                  required
+                  [(ngModel)]="model.zipcode" name="zipcode"
+                  #zipcode="ngModel">
+          <div [hidden]="zipcode.valid || zipcode.pristine" class="alert alert-danger">
+            Zip code is required
+          </div>
+        </div>
+        <div class="col-4 mb-3">
           <label for="country">Country</label>
-          <select class="form-control" id="country"
+          <input type="text" class="form-control" id="country"
+                  required
                   [(ngModel)]="model.country" name="country"
-                  #country="ngModel"
-                  required>
-            <option *ngFor="let country of countries | async" [value]="country.name">{{country.name}}</option>
-          </select>
+                  #country="ngModel">
           <div [hidden]="country.valid || country.pristine" class="alert alert-danger">
             Country is required
           </div>
         </div>
-      </div>
 
-      <!-- introduction -->
-      <div class="form-group row">
-        <div class="col">
+        <div class="col-12">
           <label for="introduction">Introduction</label>
-          <textarea id="introduction" class="form-control" rows="8"
+          <textarea id="introduction" class="form-control" rows="7"
                   name="introduction"
                   [(ngModel)]="model.introduction"
                   placeholder="Write something to introduce your company..."

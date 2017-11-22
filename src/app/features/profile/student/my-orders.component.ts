@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'noe-my-orders',
   template: `
-    <noe-order-list [data]="data" (selectPage)="onPageSelected($event)">
+    <noe-order-list [data]="data" (selectPage)="onPageSelect($event)">
     </noe-order-list>
   `,
   styles: [`
@@ -46,7 +46,7 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
     this.orderService.getAll(queryParams).subscribe(result => this.data = result);
   }
 
-  onPageSelected(page: number) {
+  onPageSelect(page: number) {
     this.queryOrdersByPage(page);
   }
 }

@@ -8,12 +8,15 @@ export class Company implements BasicProfileInfoChecker {
   // basic info
   public avatar: string;
   public name: string;
-  public introduction: string;
-  public media: string[];
   public email: string;
   public phone: string;
+  public ein: string;
+  public street: string;
+  public city: string;
+  public state: string;
+  public zipcode: string;
   public country: string;
-  public businesses: Business[];
+  public introduction: string;
 
   constructor(company: Company) {
     _.assign(this, company);

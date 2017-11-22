@@ -1,12 +1,12 @@
 <div class="item-container d-flex flex-row mb-5">
-  <a [routerLink]="['/services', item._id]">
+  <a href (click)="selectItem($event)">
     <div class="avatar-container">
       <img [src]="item.avatar" class="rounded" alt="name">
     </div>
   </a>
   <div class="d-flex flex-row ml-3">
     <div class="d-flex flex-column">
-      <a class="business-name" [routerLink]="['/services', item._id]">
+      <a href class="business-name" (click)="selectItem($event)">
         {{ name }}
       </a>
       <div class="business-price">{{ price }}</div>

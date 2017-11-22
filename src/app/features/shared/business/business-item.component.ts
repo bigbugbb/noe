@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Business } from '@app/models';
+import { BusinessActionsService } from './business-actions.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -12,10 +13,15 @@ export class BusinessItemComponent implements OnInit {
   @Input()
   private item: Business;
 
+  constructor(
+    private businessActionService: BusinessActionsService
+  ) {}
+
   ngOnInit() {}
 
-  public itemLink(item) {
-    return `/services/${item._id}`;
+  private selectItem(event) {
+    event.preventDefault();
+    this.businessActionService.selectItem(this.item);
   }
 
   get name() {

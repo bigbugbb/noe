@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { StorageService, OrderDetailService } from '@app/core';
-import { OrderActionService } from './order-action.service';
+import { OrderActionsService } from './order-actions.service';
 import { Order, Business } from '@app/models';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
@@ -24,7 +24,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private orderActionService: OrderActionService,
+    private orderActionsService: OrderActionsService,
     private orderDetailService: OrderDetailService,
     private storageService: StorageService
   ) {}
@@ -94,13 +94,13 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   }
 
   private pay() {
-    this.orderActionService.pay(this.order).then(value => {
+    this.orderActionsService.pay(this.order).then(value => {
       this.order = value;
     });
   }
 
   private refund() {
-    this.orderActionService.refund(this.order).then(value => {
+    this.orderActionsService.refund(this.order).then(value => {
       this.order = value;
     });
   }
@@ -110,7 +110,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   }
 
   private cancel() {
-    this.orderActionService.cancel(this.order).then(value => {
+    this.orderActionsService.cancel(this.order).then(value => {
       this.order = value;
     });
   }

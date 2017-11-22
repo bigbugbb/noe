@@ -1,0 +1,13 @@
+<div class="alert alert-primary d-flex flex-row align-items-center mb-3" role="alert">
+  <span *ngIf="businesses.length === 0">Your company haven't created any business yet.</span>
+  <span *ngIf="businesses.length > 0">Your company have {{ businesses.length }} businesses.</span>
+  <button class="btn btn-primary ml-4" (click)="createBusiness()">
+    <span class="create-text">
+      <i class="fa fa-plus mr-2" aria-hidden="true"></i>Create Business
+    </span>
+  </button>
+</div>
+<noe-business-list *ngIf="businesses.length > 0" [data]="data" (selectPage)="onPageSelect($event)">
+</noe-business-list>
+
+

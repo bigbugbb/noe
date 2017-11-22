@@ -7,6 +7,7 @@ import { SchoolService } from '@app/core/api/school/school.service';
 import { CompanyService } from '@app/core/api/company/company.service';
 import { StorageService } from '@app/core/storage/storage.service';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
+import * as _ from 'lodash';
 
 @Injectable()
 export class ProfileService {
@@ -23,7 +24,7 @@ export class ProfileService {
   }
 
   public getProfile() {
-    return this.subject.asObservable();
+    return this.subject.asObservable().filter(value => !_.isEmpty(value));
   }
 
   public setProfile(profile) {

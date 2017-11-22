@@ -12,6 +12,7 @@ import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { ProfileGuidelineLayoutComponent } from './profile-guideline-layout/profile-guideline-layout.component';
 import { BusinessListComponent } from './business/business-list.component';
 import { BusinessItemComponent } from './business/business-item.component';
+import { BusinessActionsService } from './business/business-actions.service';
 
 import { NAV_DROPDOWN_DIRECTIVES } from './app-layout/nav-dropdown.directive';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './app-layout/sidebar.directive';
@@ -45,6 +46,7 @@ import { AsideToggleDirective } from './app-layout/aside.directive';
     ProfileGuidelineLayoutComponent
   ],
   providers: [
+    BusinessActionsService
   ]
 })
 export class FeaturesSharedModule {}

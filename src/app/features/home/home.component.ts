@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Rx';
 
 import { BusinessService } from '@app/core';
+import { BusinessActionsService, BusinessActions } from '@app/features/shared';
 import { Business } from '@app/models';
 import * as _ from 'lodash';
 
@@ -27,7 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private http: Http,
-    private businessService: BusinessService
+    private businessService: BusinessService,
+    private businessActionsService: BusinessActionsService
   ) {}
 
   ngOnInit() {
@@ -35,6 +37,15 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.page = _.get(queryParams, 'page', 1);
       this.limit = _.get(queryParams, 'limit', 20);
       this.businessService.getAll(queryParams).subscribe(result => this.data = result);
+    });
+
+    this.businessActionsService.getAction().subscribe(action => {
+      const { type, payload } = action;
+      switch (type) {
+        case BusinessActions.SELECT_BUSINESS_ITEM: {
+          this.router.navigate(['/services', payload._id]);
+        } break;
+      }
     });
   }
 

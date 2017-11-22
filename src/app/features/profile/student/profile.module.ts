@@ -12,8 +12,8 @@ import { MyOrdersComponent } from './my-orders.component';
 import { OrderListComponent } from './order-list.component';
 import { OrderItemComponent } from './order-item.component';
 import { OrderDetailComponent } from './order-detail.component';
-import { OrderActionService } from './order-action.service';
-import { ModalModule, TabsModule, PopoverModule, ProgressbarModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { OrderActionsService } from './order-actions.service';
+import { ModalModule, PopoverModule, ProgressbarModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ImageCropperComponent } from 'ng2-img-cropper';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import * as Dialogs from './dialogs';
@@ -27,7 +27,6 @@ import * as Dialogs from './dialogs';
     ReactiveFormsModule,
     ProfileRoutingModule,
     ModalModule.forRoot(),
-    TabsModule.forRoot(),
     PopoverModule.forRoot(),
     ProgressbarModule.forRoot(),
     BsDatepickerModule.forRoot()
@@ -51,7 +50,7 @@ import * as Dialogs from './dialogs';
     PdfViewerComponent
   ],
   providers: [
-    OrderActionService
+    OrderActionsService
   ]
 })
 export default class ProfileModule {}

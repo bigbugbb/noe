@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Order } from '@app/models';
 import { OrderDetailService, StorageService } from '@app/core';
-import { OrderActionService } from './order-action.service';
+import { OrderActionsService } from './order-actions.service';
 import { environment } from '@env/environment';
 
 @Component({
@@ -25,7 +25,7 @@ export class OrderItemComponent {
     private router: Router,
     private route: ActivatedRoute,
     private orderDetailService: OrderDetailService,
-    private orderActionService: OrderActionService,
+    private orderActionsService: OrderActionsService,
     private storageService: StorageService
   ) {}
 
@@ -78,13 +78,13 @@ export class OrderItemComponent {
   }
 
   private pay() {
-    this.orderActionService.pay(this.item).then(value => {
+    this.orderActionsService.pay(this.item).then(value => {
       this.item = value;
     });
   }
 
   private refund() {
-    this.orderActionService.refund(this.item).then(value => {
+    this.orderActionsService.refund(this.item).then(value => {
       this.item = value;
     });
   }
@@ -94,7 +94,7 @@ export class OrderItemComponent {
   }
 
   private cancel() {
-    this.orderActionService.cancel(this.item).then(value => {
+    this.orderActionsService.cancel(this.item).then(value => {
       this.item = value;
     });
   }

@@ -16,7 +16,10 @@ export class ProfileComponent implements OnInit {
   @ViewChild('introDialog')
   private introDialog: Dialogs.IntroDialogComponent;
 
-  public profile = { businesses: [] };
+  public profile;
+
+  private tabNames = ['My Businesses', 'My Orders'];
+  private selectedTab = 0;
 
   private fileBaseUrl: string;
 
@@ -28,29 +31,57 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     const user = this.storageService.getUser();
-    this.fileBaseUrl = `https://s3.${environment.bucketRegion}.amazonaws.com/${environment.noeFilesUpload}`;
-    this.profileService.fetchProfile(user).subscribe(() => this.populateProfile());
+    // this.fileBaseUrl = `https://s3.${environment.bucketRegion}.amazonaws.com/${environment.noeFilesUpload}`;
+    this.profileService.fetchProfile(user).subscribe();
+    this.profileService.getProfile().subscribe(profile => this.profile = profile);
   }
 
-  private populateProfile() {
-    this.profileService.getProfile().subscribe((profile: Company) => {
-      _.assign(this.profile, profile);
-      this.companyService.getById(profile._id).subscribe(result => {
-        this.profile = result.company; // with activities and businesses populated
-      });
-    });
+  public selectTab(target: Number | string) {
+    this.selectedTab = Math.max(_.isNumber(target) ? target : _.findIndex(this.tabNames, target), 0);
   }
 
-  public fileUrlFrom(object) {
-    return this.fileBaseUrl + '/' + object.Key;
+  public isTabSelected(i) {
+    return this.selectedTab === i;
+  }
+
+  get email() {
+    return _.get(this.profile, 'email', 'Not provided');
+  }
+
+  get phone() {
+    return _.get(this.profile, 'phone', 'Not provided');
+  }
+
+  get ein() {
+    return _.get(this.profile, 'ein', 'Not provided');
+  }
+
+  get street() {
+    return _.get(this.profile, 'street', 'Not provided');
+  }
+
+  get city() {
+    return _.get(this.profile, 'city', 'Not provided');
+  }
+
+  get state() {
+    return _.get(this.profile, 'state', 'Not provided');
+  }
+
+  get zipcode() {
+    return _.get(this.profile, 'zipcode', 'Not provided');
+  }
+
+  get country() {
+    return _.get(this.profile, 'country', 'Not provided');
+  }
+
+  get introduction() {
+    return _.get(this.profile, 'introduction', 'Not provided');
   }
 
   public onEditIntro() {
     this.introDialog.show();
-  }
-
-  public trackByKey(index, item) {
-    return item.Key;
   }
 
   // TODO: Remove this when we're done
