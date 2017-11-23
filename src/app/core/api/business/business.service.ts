@@ -68,20 +68,20 @@ export class BusinessService extends ApiBase {
 
   public cacheQueryParams(queryParams) {
     if (!queryParams) {
-      this.storageService.setStudentQueryParams({});
+      this.storageService.setBusinessQueryParams({});
       return;
     }
 
     try {
       const params = _.first(JSON.parse(queryParams));
-      this.storageService.setStudentQueryParams(params);
+      this.storageService.setBusinessQueryParams(params);
     } catch (err) {
       console.log(err);
     }
   }
 
   public filtersFromCachedQueryParams() {
-    const params = this.storageService.getStudentQueryParams() || {};
+    const params = this.storageService.getBusinessQueryParams() || {};
     if (_.isEmpty(this.templateQueryParams)) {
       // TODO: update template json when there are enough businesses
       return this.http.get('@app/../assets/data/businesses-query-params.json').map(res => {

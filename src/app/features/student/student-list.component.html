@@ -1,15 +1,13 @@
-<div class="p-3">
-  <div class="py-3">
-    <noe-student-item *ngFor="let student of students; let i = index;"
-      [item]="student" [showDivider]="showDivider(i)">
-    </noe-student-item>
-  </div>
-  <div>
-    <noe-pagination
-            (select)="selectPage.emit($event)"
-            [total]="totalPages"
-            [page]="currentPage"
-            [window]="10">
-    </noe-pagination>
-  </div>
+<div class="py-3 mb-auto">
+  <noe-student-item *ngFor="let student of students; let i = index;"
+    [item]="student" [showDivider]="showDivider(i)">
+  </noe-student-item>
+</div>
+<div>
+  <noe-pagination
+          (select)="selectPage.emit($event)"
+          [total]="totalPages"
+          [page]="currentPage"
+          [window]="10">
+  </noe-pagination>
 </div>

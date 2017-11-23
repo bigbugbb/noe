@@ -14,17 +14,21 @@ export class BusinessItemComponent implements OnInit {
 
   ngOnInit() {}
 
-  public itemLink(item) {
-    return `businesses/${item._id}`;
-  }
-
   get name() {
     return _.get(this.item, 'name', 'Unknown business name');
   }
 
+  get summary() {
+    return _.get(this.item, 'summary', '');
+  }
+
   get price() {
     const price = _.get(this.item, 'price', undefined);
-    return price !== undefined ? '$' + price : 'Not specified';
+    return price !== undefined ? '$' + price : 'Undefined';
+  }
+
+  get status() {
+    return _.get(this.item, 'status', 'draft');
   }
 
   get numberOfOrders() {

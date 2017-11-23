@@ -50,6 +50,19 @@ $summary-line-height: 20px;
   border: solid 0.5px rgb(200, 200, 200);
 }
 
+.badge-warning {
+  color: white;
+}
+
+.btn-default, .badge-default {
+  color: white;
+  background-color: #999999;
+}
+.btn-default:hover {
+  color: white;
+  background-color: #858585;
+}
+
 .actions {
   display: flex;
   flex-direction: column;

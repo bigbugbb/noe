@@ -67,7 +67,20 @@
 
     <div>
       <hr class="mt-3">
-      <a class="btn btn-primary pull-right" [routerLink]="['preview']">Preview</a>
+      <div [ngSwitch]="status">
+        <div *ngSwitchCase="'draft'">
+          <button class="btn btn-success ml-3 pull-right" (click)="activate()">Activate</button>
+          <button class="btn btn-primary pull-right" [routerLink]="['preview']">Preview</button>
+        </div>
+        <div *ngSwitchCase="'active'">
+          <button class="btn btn-warning pull-right" (click)="deactivate()">Deactivate</button>
+        </div>
+        <div *ngSwitchCase="'inactive'">
+          <button class="btn btn-success ml-3 pull-right" (click)="activate()">Activate</button>
+          <button class="btn btn-primary pull-right" [routerLink]="['preview']">Preview</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

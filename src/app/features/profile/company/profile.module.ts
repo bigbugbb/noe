@@ -11,8 +11,9 @@ import { ProfileComponent } from './profile.component';
 import { IntroDialogComponent } from './dialogs/intro-dialog.component';
 import { MyBusinessesComponent } from './my-businesses.component';
 import { BusinessEditComponent } from './business/business-edit.component';
-import { BusinessItemComponent } from './business/business-item.component';
 import { BusinessPreviewComponent } from './business/business-preview.component';
+import { BusinessItemComponent } from './business/business-item.component';
+import { BusinessListComponent } from './business/business-list.component';
 import { OrderListComponent } from './order/order-list.component';
 import { BusinessInfoEditDialogComponent } from './business/business-info-edit-dialog.component';
 import { ModalModule, TabsModule, PopoverModule, BsDatepickerModule } from 'ngx-bootstrap';
@@ -24,7 +25,6 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     HttpModule,
     CommonModule,
     SharedModule,
-    FeaturesSharedModule,
     CKEditorModule,
     ReactiveFormsModule,
     ProfileRoutingModule,
@@ -38,8 +38,9 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     IntroDialogComponent,
     MyBusinessesComponent,
     BusinessEditComponent,
-    BusinessItemComponent,
     BusinessPreviewComponent,
+    BusinessItemComponent,
+    BusinessListComponent,
     OrderListComponent,
     ImageCropperComponent,
     BusinessInfoEditDialogComponent,

@@ -49,6 +49,14 @@ export class StorageService {
     return this.getItem('students_query_params');
   }
 
+  public setBusinessQueryParams(params) {
+    this.setItem('businesses_query_params', params);
+  }
+
+  public getBusinessQueryParams() {
+    return this.getItem('businesses_query_params');
+  }
+
   public removeStudentQueryParams() {
     this.removeItem('students_query_params');
   }

@@ -35,6 +35,8 @@ export class BusinessComponent implements OnInit, OnDestroy {
     this.sub = this.route.queryParams.subscribe(queryParams => {
       this.page = _.get(queryParams, 'page', 1);
       this.limit = _.get(queryParams, 'limit', 20);
+      this.businessService.cacheQueryParams(_.get(queryParams, 'params'));
+      this.businessService.filtersFromCachedQueryParams().subscribe(filters => this.filters = filters);
       this.businessService.getAll(queryParams).subscribe(result => this.data = result);
     });
 
@@ -59,8 +61,8 @@ export class BusinessComponent implements OnInit, OnDestroy {
 
   triggerActivitiesQuery() {
     const { page, limit } = this;
-    // const params business.simplifyQueryParams(this.filterForm.value);
-    const queryParams = { page, limit };
+    const params = { status: 'active' };
+    const queryParams = { page, limit, params: JSON.stringify([ params ]) };
     this.router.navigate(['/businesses'], { queryParams });
   }
 }

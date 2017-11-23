@@ -40,6 +40,10 @@ export class MyBusinessesComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
+  get total() {
+    return _.get(this.data, 'total', 0);
+  }
+
   get businesses() {
     return _.get(this.data, 'businesses', []);
   }

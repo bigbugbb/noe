@@ -36,13 +36,25 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
       const { id } = params;
       if (!_.isEmpty(id)) {
         this.businessDetailService.fetchBusiness(id).subscribe();
-        this.businessDetailService.getBusiness().subscribe(business => this.model = business);
+        this.businessDetailService.getBusiness().subscribe(value => this.model = value);
       }
     });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  private activate() {
+    const business = _.assign({}, this.model);
+    business.status = 'active';
+    this.businessDetailService.updateBusiness(business).subscribe();
+  }
+
+  private deactivate() {
+    const business = _.assign({}, this.model);
+    business.status = 'inactive';
+    this.businessDetailService.updateBusiness(business).subscribe();
   }
 
   get name() {
@@ -66,6 +78,10 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
 
   get content() {
     return _.get(this.model, 'content', '');
+  }
+
+  get status() {
+    return _.get(this.model, 'status', 'draft');
   }
 
   get contentEmpty() {

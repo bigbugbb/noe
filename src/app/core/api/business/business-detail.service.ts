@@ -33,6 +33,8 @@ export class BusinessDetailService {
   }
 
   private handleResult(result) {
-    this.setBusiness(_.get(result, 'business', {}));
+    const business = _.get(result, 'business', {});
+    this.setBusiness(business);
+    return business;
   }
 }

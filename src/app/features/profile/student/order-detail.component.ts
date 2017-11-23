@@ -65,7 +65,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   get location() {
     const { city, state, country } = this.business;
     const address = [city, state, country];
-    return address.filter(item => !_.isEmpty(item)).join(', ');
+    return address.filter(value => !_.isEmpty(value)).join(', ');
   }
 
   get summary() {

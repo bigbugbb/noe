@@ -10,6 +10,7 @@ export class Business {
   public summary: string;
   public media: string[];
   public price: number;
+  public status: string;
   public content: string;
 
   constructor() {}

@@ -4,5 +4,5 @@ $footer-height:                   50px !default;
 .card {
   padding: 0 0.75rem;
   margin-top: 1rem;
-  min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 2.5rem);
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 2rem);
 }

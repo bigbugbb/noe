@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
 
   public profile;
 
-  private tabNames = ['My Businesses', 'My Orders'];
+  private tabNames = ['My Businesses', 'Customer Orders'];
   private selectedTab = 0;
 
   private fileBaseUrl: string;

@@ -11,7 +11,7 @@ $footer-height:                   50px !default;
   min-width: 800px;
   max-width: 1200px;
   padding: 0 0.75rem 0.75rem;
-  min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 2.5rem);
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 2rem);
 }
 
 .table {
@@ -37,6 +37,18 @@ $footer-height:                   50px !default;
   border-radius: 4px;
   max-width: $image-max-width;
   min-width: $image-min-width;
+}
+
+.badge-warning {
+  color: white;
+}
+.btn-default, .badge-default {
+  color: white;
+  background-color: #999999;
+}
+.btn-default:hover {
+  color: white;
+  background-color: #858585;
 }
 
 .order-status {

@@ -1,12 +1,26 @@
-<div class="item-container">
-  <a [routerLink]="itemLink(item)">
-    <img [src]="item.avatar" class="item-avatar rounded-top" alt="item.email">
+<div class="item-container d-flex flex-row mb-5">
+  <a [routerLink]="['businesses', item._id]">
+    <div class="avatar-container">
+      <img [src]="item.avatar" class="rounded" alt="name">
+    </div>
   </a>
-  <div class="d-flex flex-column justify-content-center rounded-bottom item-info-container">
-      <div class="d-inline-block">
-        <span class="item-price">{{ price }}</span>
-        <span class="item-orders-count float-right">{{ numberOfOrders }}</span>
+  <div class="d-flex flex-row ml-3">
+    <div class="d-flex flex-column">
+      <a class="business-name" [routerLink]="['businesses', item._id]">
+        {{ name }}
+      </a>
+      <div class="d-flex flex-row align-items-center">
+        <div class="business-price">{{ price }}</div>
+        <div [ngSwitch]="status">
+          <span *ngSwitchCase="'draft'"
+                class="badge badge-warning business-status">Draft</span>
+          <span *ngSwitchCase="'active'"
+                class="badge badge-success business-status">Active</span>
+          <span *ngSwitchCase="'inactive'"
+                class="badge badge-default business-status">Inactive</span>
+        </div>
       </div>
-    <a class="item-name" [routerLink]="itemLink(item)">{{ name }}</a>
+      <div class="business-summary">{{ summary }}</div>
+    </div>
   </div>
 </div>
