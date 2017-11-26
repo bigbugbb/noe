@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { OrderService, StorageService } from '@app/core';
+import { OrderService } from './order.service';
+import { StorageService } from '@app/core/storage/storage.service';
 import { Order } from '@app/models';
 import { environment } from '@env/environment';
 import * as _ from 'lodash';

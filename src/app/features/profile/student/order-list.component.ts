@@ -10,11 +10,10 @@ import * as _ from 'lodash';
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      justify-content: space-between;
     }
   `],
   template: `
-    <div class="py-3">
+    <div class="py-3 mb-auto">
       <noe-order-item *ngFor="let order of orders; let i = index; trackBy: trackByIndex"
         [(item)]="orders[i]" [showDivider]="showDivider(i)">
       </noe-order-item>

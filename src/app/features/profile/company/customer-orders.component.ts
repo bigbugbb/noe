@@ -6,13 +6,13 @@ import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'noe-my-orders',
+  selector: 'noe-customer-orders',
   template: `
     <noe-order-list [data]="data" (selectPage)="onPageSelect($event)">
     </noe-order-list>
   `,
   styles: [`
-    :host(noe-my-orders) {
+    :host(noe-customer-orders) {
       padding: 1rem 0.75rem 0rem;
       display: flex;
       flex-direction: column;
@@ -20,7 +20,7 @@ import * as _ from 'lodash';
     }
   `]
 })
-export class MyOrdersComponent implements OnInit, OnDestroy {
+export class CustomerOrdersComponent implements OnInit, OnDestroy {
   private data: { [key: string]: any };
   private page = 1;
   private limit = 20;
@@ -41,9 +41,9 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
 
   queryOrdersByPage(page: number) {
     this.page = page;
-    const customer = this.storageService.getUser()._id;
-    const query = { page, customer };
-    this.orderService.getAll(query).subscribe(result => this.data = result);
+    const owner = this.storageService.getUser()._id;
+    const query = { page, owner };
+    this.orderService.getAll(query).subscribe(value => this.data = value);
   }
 
   onPageSelect(page: number) {

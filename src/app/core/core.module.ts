@@ -12,6 +12,7 @@ import { BusinessService } from './api/business/business.service';
 import { BusinessDetailService } from './api/business/business-detail.service';
 import { OrderService } from './api/order/order.service';
 import { OrderDetailService } from './api/order/order-detail.service';
+import { OrderActionsService } from './api/order/order-actions.service';
 import { ProfileService } from './profile/profile.service';
 import { StorageService } from './storage/storage.service';
 import { S3Service } from './s3/s3.service';
@@ -40,6 +41,7 @@ import * as AWS from 'aws-sdk';
     BusinessDetailService,
     OrderService,
     OrderDetailService,
+    OrderActionsService,
     StorageService,
     S3Service,
     ApplyingFileService,

@@ -1,0 +1,60 @@
+<div class="item-container mb-3">
+  <div class="row order-id pl-3 mb-2">
+    <b class="mr-2">Order ID:</b>
+    <i>{{ item._id }}</i>
+  </div>
+  <div class="row">
+    <a class="col-3 my-auto" href (click)="navigateToCustomerDetail($event)">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="customer-avatar-container">
+          <img [src]="customerAvatar" class="img-thumbnail rounded-circle" alt="customerName">
+        </div>
+        <div class="customer-name mt-1">{{ customerName }}</div>
+      </div>
+    </a>
+    <div class="col my-auto">
+      <div [ngSwitch]="orderStatus">
+        <span *ngSwitchCase="'created'"
+              class="badge badge-primary order-status">Ordered</span>
+        <span *ngSwitchCase="'paid'"
+              class="badge badge-success order-status">Paid</span>
+        <span *ngSwitchCase="'canceled'"
+              class="badge badge-warning order-status">Canceled</span>
+        <span *ngSwitchCase="'refunded'"
+              class="badge badge-default order-status">Refunded</span>
+      </div>
+      <hr class="dash-line">
+    </div>
+    <a class="col-4 my-auto ml-auto" href (click)="navigateToOrderDetail($event)">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="business-avatar-container">
+          <img [src]="business.avatar" class="rounded" alt="business.name">
+        </div>
+        <div class="business-name mt-1">
+          {{ businessName }}
+        </div>
+      </div>
+    </a>
+    <div class="col-auto d-flex flex-row ml-3">
+      <div class="vertical-divider mx-3"></div>
+      <div class="actions">
+        <button class="btn btn-success mb-2"
+                *ngIf="showServed()"
+                (click)="served()">
+          Served
+        </button>
+        <button class="btn btn-outline-primary mb-2"
+                (click)="contact()">
+          Contact
+        </button>
+        <button class="btn btn-outline-warning mb-2"
+                *ngIf="showCancel()"
+                (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr *ngIf="showDivider">

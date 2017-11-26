@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { StorageService, OrderDetailService } from '@app/core';
-import { OrderActionsService } from './order-actions.service';
+import { StorageService, OrderDetailService, OrderActionsService } from '@app/core';
 import { Order, Business } from '@app/models';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';

@@ -12,7 +12,6 @@ import { MyOrdersComponent } from './my-orders.component';
 import { OrderListComponent } from './order-list.component';
 import { OrderItemComponent } from './order-item.component';
 import { OrderDetailComponent } from './order-detail.component';
-import { OrderActionsService } from './order-actions.service';
 import { ModalModule, PopoverModule, ProgressbarModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ImageCropperComponent } from 'ng2-img-cropper';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
@@ -50,7 +49,6 @@ import * as Dialogs from './dialogs';
     PdfViewerComponent
   ],
   providers: [
-    OrderActionsService
   ]
 })
 export default class ProfileModule {}

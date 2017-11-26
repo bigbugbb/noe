@@ -49,7 +49,7 @@ export class StudentComponent implements OnInit, OnDestroy {
     this.triggerStudentsQuery();
   }
 
-  onPageSelected(page: number) {
+  onPageSelect(page: number) {
     this.page = page;
     this.triggerStudentsQuery();
   }

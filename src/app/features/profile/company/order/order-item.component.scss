@@ -1,28 +1,48 @@
-$item-min-height: 200px;
-$summary-line-count: 6;
+$item-height: 130px;
+$summary-line-count: 2;
 $summary-line-height: 20px;
 
 .item-container {
-  min-height: $item-min-height;
+  min-height: $item-height;
 }
 
-.avatar-container {
-  width: $item-min-height;
-  height: 150px;
+.order-id {
+  font-size: 0.75rem;
+  color: rgb(66, 66, 66);
+}
+
+.customer-avatar-container {
+  width: 100px;
+  height: 100px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.customer-name {
+  font-weight: 500;
+}
+
+.dash-line {
+  border: none;
+  border-top: 4px dotted rgb(66, 66, 66);
+  color: white;
+  background-color: white;
+  height: 4px;
+}
+
+.business-avatar-container {
+  height: $item-height;
   overflow: hidden;
   img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
   }
 }
 
 .business-name {
-  font-size: 18px;
   font-weight: 500;
-  text-decoration: none;
-}
-
-.business-summary {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -42,7 +62,6 @@ $summary-line-height: 20px;
   font-size: 12px;
   font-weight: 500;
   padding: 0.3rem 0.5rem;
-  margin-left: 1.5rem;
 }
 
 .vertical-divider {

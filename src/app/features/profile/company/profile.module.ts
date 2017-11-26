@@ -14,6 +14,8 @@ import { BusinessEditComponent } from './business/business-edit.component';
 import { BusinessPreviewComponent } from './business/business-preview.component';
 import { BusinessItemComponent } from './business/business-item.component';
 import { BusinessListComponent } from './business/business-list.component';
+import { CustomerOrdersComponent } from './customer-orders.component';
+import { OrderItemComponent } from './order/order-item.component';
 import { OrderListComponent } from './order/order-list.component';
 import { BusinessInfoEditDialogComponent } from './business/business-info-edit-dialog.component';
 import { ModalModule, TabsModule, PopoverModule, BsDatepickerModule } from 'ngx-bootstrap';
@@ -41,6 +43,8 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     BusinessPreviewComponent,
     BusinessItemComponent,
     BusinessListComponent,
+    CustomerOrdersComponent,
+    OrderItemComponent,
     OrderListComponent,
     ImageCropperComponent,
     BusinessInfoEditDialogComponent,

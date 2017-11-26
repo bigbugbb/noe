@@ -14,7 +14,19 @@ import * as _ from 'lodash';
     }
   `],
   template: `
-    <p>bigbug</p>
+    <div class="py-3 mb-auto">
+      <noe-order-item *ngFor="let order of orders; let i = index; trackBy: trackByIndex"
+        [(item)]="orders[i]" [showDivider]="showDivider(i)">
+      </noe-order-item>
+    </div>
+    <div>
+      <noe-pagination
+              (select)="selectPage.emit($event)"
+              [total]="totalPages"
+              [page]="currentPage"
+              [window]="10">
+      </noe-pagination>
+    </div>
   `
 })
 export class OrderListComponent {

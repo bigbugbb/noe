@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  onPageSelected(page: number) {
+  onPageSelect(page: number) {
     this.page = page;
     this.triggerActivitiesQuery();
   }
