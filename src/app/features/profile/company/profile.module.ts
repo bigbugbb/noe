@@ -17,6 +17,7 @@ import { BusinessListComponent } from './business/business-list.component';
 import { CustomerOrdersComponent } from './customer-orders.component';
 import { OrderItemComponent } from './order/order-item.component';
 import { OrderListComponent } from './order/order-list.component';
+import { OrderDetailComponent } from './order/order-detail.component';
 import { BusinessInfoEditDialogComponent } from './business/business-info-edit-dialog.component';
 import { ModalModule, TabsModule, PopoverModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ImageCropperComponent } from 'ng2-img-cropper';
@@ -46,6 +47,7 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     CustomerOrdersComponent,
     OrderItemComponent,
     OrderListComponent,
+    OrderDetailComponent,
     ImageCropperComponent,
     BusinessInfoEditDialogComponent,
     PdfViewerComponent

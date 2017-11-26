@@ -77,10 +77,6 @@ export class OrderItemComponent {
     return this.item.status;
   }
 
-  navigateToCustomerDetail(event) {
-    event.preventDefault();
-  }
-
   navigateToOrderDetail(event) {
     event.preventDefault();
     this.orderDetailService.setOrder(this.item);
@@ -97,6 +93,11 @@ export class OrderItemComponent {
 
   private served() {
 
+  }
+
+  private details() {
+    this.orderDetailService.setOrder(this.item);
+    this.router.navigate(['orders', this.item._id], { relativeTo: this.route });
   }
 
   private contact() {

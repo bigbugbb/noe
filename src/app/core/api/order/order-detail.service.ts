@@ -15,7 +15,7 @@ export class OrderDetailService {
   }
 
   public getOrder() {
-    return this.subject.asObservable();
+    return this.subject.asObservable().filter(value => !_.isEmpty(value));
   }
 
   public setOrder(order) {

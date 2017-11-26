@@ -12,7 +12,7 @@ import * as _ from 'lodash';
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit, OnDestroy {
-  private order: Order;
+  private order: Order = new Order();
 
   private sub: Subscription;
 

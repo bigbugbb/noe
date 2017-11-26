@@ -1,0 +1,85 @@
+$image-width:                     200px;
+$navbar-height:                   55px !default;
+$footer-height:                   50px !default;
+$summary-line-count: 4;
+$summary-line-height: 20px;
+
+.card {
+  min-width: 800px;
+  max-width: 1200px;
+  padding: 0 0.75rem 0.75rem;
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 2rem);
+}
+
+.property-title {
+  font-weight: 600;
+  flex: auto;
+}
+
+.customer-avatar {
+  width: 112px;
+  height: 112px;
+  margin-bottom: 1.25rem;
+}
+
+.customer-name {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.business-img {
+  border: solid 1px gray;
+  border-radius: 4px;
+  width: $image-width;
+}
+
+.business-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.business-location {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+
+  .location-icon {
+    margin-right: 0.5rem;
+  }
+}
+
+.business-summary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $summary-line-count; /* number of lines to show */
+  line-height: $summary-line-height;        /* fallback */
+  max-height: $summary-line-count * $summary-line-height;       /* fallback */
+}
+
+.vertical-divider {
+  height: 140px;
+  border: solid 0.5px rgb(200, 200, 200);
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-price {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: red;
+}
+
+.btn-edit-price {
+  font-size: 1.2rem;
+  text-decoration: none;
+}

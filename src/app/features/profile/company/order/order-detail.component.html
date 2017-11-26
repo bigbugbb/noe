@@ -1,0 +1,94 @@
+<div class="card mt-3">
+  <div class="card-block">
+    <noe-section header="Customer" [showAdd]="false" [showEdit]="false">
+      <hr class="mt-2 mb-3">
+      <div class="row mb-4">
+        <div class="col-3 mb-3">
+          <div class="row">
+            <div class="col">
+              <img class="rounded-circle customer-avatar img-thumbnail mx-auto d-block mb-1" [src]="customerProfile.avatar" />
+            </div>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
+              <span class="row property-title">Firstname:</span>
+              <span class="row py-1 d-block text-truncate">{{ customerProfile.firstname }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
+              <span class="row property-title">Lastname:</span>
+              <span class="row py-1 d-block text-truncate">{{ customerProfile.lastname }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
+              <span class="row property-title">Email:</span>
+              <a [attr.href]="'mailto:' + customer.email" class="row py-1 d-block text-truncate">{{ customer.email }}</a>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
+              <span class="row property-title">Phone:</span>
+              <span class="row py-1 d-block text-truncate">{{ customerProfile.phone }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
+              <span class="row property-title">Age:</span>
+              <span class="row py-1 d-block text-truncate">{{ customerAge }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
+              <span class="row property-title">Grade:</span>
+              <span class="row py-1 d-block text-truncate">{{ customerProfile.grade }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
+              <span class="row property-title">Gender:</span>
+              <span class="row py-1 d-block text-truncate">{{ customerProfile.gender | capitalize }}</span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
+              <span class="row property-title">Country:</span>
+              <span class="row py-1 d-block text-truncate">{{ customerProfile.country }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </noe-section>
+    <noe-section header="Ordered Business" [showAdd]="false" [showEdit]="false">
+      <hr class="mt-2 mb-3">
+      <div class="row pr-2 mb-4">
+        <div class="col-auto">
+          <img class="business-img" [src]="business.avatar"/>
+        </div>
+        <div class="col">
+          <div class="row business-name">
+            {{ businessName }}
+          </div>
+          <div class="row business-location align-items-center" *ngIf="location.length > 0">
+            <i class="fa fa-location-arrow location-icon" aria-hidden="true"></i>
+            {{ location }}
+          </div>
+          <div class="row business-summary">
+            {{ summary }}
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="row">
+            <div class="col-auto pl-3">
+              <div class="vertical-divider"></div>
+            </div>
+            <div class="col-8 d-flex flex-column">
+              <div class="price-container">
+                <div class="order-price">
+                  {{ price }}
+                </div>
+                <a class="mt-1 btn-edit-price" href (click)="editPrice($event)"
+                  placement="bottom" triggers="hover" [popover]="'Order price change won\'t affect the original business price.'"
+                >
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </noe-section>
+    <noe-section header="Order Events Timeline" [showAdd]="false" [showEdit]="false">
+      <hr class="mt-2 mb-3">
+    </noe-section>
+  </div>
+</div>

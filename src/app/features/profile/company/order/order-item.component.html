@@ -4,7 +4,7 @@
     <i>{{ item._id }}</i>
   </div>
   <div class="row">
-    <a class="col-3 my-auto" href (click)="navigateToCustomerDetail($event)">
+    <a class="col-3 my-auto" href (click)="navigateToOrderDetail($event)">
       <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="customer-avatar-container">
           <img [src]="customerAvatar" class="img-thumbnail rounded-circle" alt="customerName">
@@ -42,6 +42,10 @@
                 *ngIf="showServed()"
                 (click)="served()">
           Served
+        </button>
+        <button class="btn btn-info mb-2"
+                (click)="details()">
+          Details
         </button>
         <button class="btn btn-outline-primary mb-2"
                 (click)="contact()">
