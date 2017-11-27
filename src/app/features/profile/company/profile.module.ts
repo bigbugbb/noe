@@ -9,6 +9,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { ProfileRoutingModule } from './profile.routing';
 import { ProfileComponent } from './profile.component';
 import { IntroDialogComponent } from './dialogs/intro-dialog.component';
+import { OrderPriceEditDialogComponent } from './dialogs/order-price-edit-dialog.component';
 import { MyBusinessesComponent } from './my-businesses.component';
 import { BusinessEditComponent } from './business/business-edit.component';
 import { BusinessPreviewComponent } from './business/business-preview.component';
@@ -39,6 +40,7 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
   declarations: [
     ProfileComponent,
     IntroDialogComponent,
+    OrderPriceEditDialogComponent,
     MyBusinessesComponent,
     BusinessEditComponent,
     BusinessPreviewComponent,

@@ -76,9 +76,7 @@
                 <div class="order-price">
                   {{ price }}
                 </div>
-                <a class="mt-1 btn-edit-price" href (click)="editPrice($event)"
-                  placement="bottom" triggers="hover" [popover]="'Order price change won\'t affect the original business price.'"
-                >
+                <a class="mt-1 btn-edit-price" href (click)="editPrice($event)">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </a>
               </div>
@@ -86,9 +84,12 @@
           </div>
         </div>
       </div>
+
+      <noe-order-price-edit-dialog #priceEditDialog></noe-order-price-edit-dialog>
     </noe-section>
     <noe-section header="Order Events Timeline" [showAdd]="false" [showEdit]="false">
       <hr class="mt-2 mb-3">
+      {{ order.events | json }}
     </noe-section>
   </div>
 </div>

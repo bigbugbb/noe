@@ -35,39 +35,39 @@ export class DialogComponent implements OnInit, OnDestroy {
   constructor(private modalService: BsModalService) {}
 
   ngOnInit(): void {
-		this.onHideSubscription = this.modalService.onHide.subscribe((reason: string) => {
-			if (this.modalsCountOnOpen === this.modalService.getModalsCount()) {
-				this.modalsCountOnOpen = null;
-				this.onHide.emit();
-			}
-		});
-	}
+    this.onHideSubscription = this.modalService.onHide.subscribe((reason: string) => {
+      if (this.modalsCountOnOpen === this.modalService.getModalsCount()) {
+        this.modalsCountOnOpen = null;
+        this.onHide.emit();
+      }
+    });
+  }
 
-	ngOnDestroy(): void {
-		this.onHideSubscription.unsubscribe();
-	}
+  ngOnDestroy(): void {
+    this.onHideSubscription.unsubscribe();
+  }
 
-	public show(): void {
-		this.modalsCountOnOpen = this.modalService.getModalsCount();
+  public show(): void {
+    this.modalsCountOnOpen = this.modalService.getModalsCount();
     this.modalRef = this.modalService.show(this.template, this.getConfig());
-	}
+  }
 
-	public hide(): void {
-		this.modalRef.hide();
-	}
+  public hide(): void {
+    this.modalRef.hide();
+  }
 
   private getConfig() {
-		const config: any = {};
-		if (this.staticModal) {
-			config.backdrop = 'static';
-		}
-		if (this.preventEscape) {
-			config.keyboard = false;
-		}
-		if (this.large) {
-			config.class = 'modal-lg';
+    const config: any = {};
+    if (this.staticModal) {
+      config.backdrop = 'static';
+    }
+    if (this.preventEscape) {
+      config.keyboard = false;
+    }
+    if (this.large) {
+      config.class = 'modal-lg';
     }
     // ignoreBackdropClick
-		return config;
-	}
+    return config;
+  }
 }

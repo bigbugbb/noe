@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { OrderDetailService } from '@app/core';
 import { Order, Business } from '@app/models';
+import { OrderPriceEditDialogComponent } from '../dialogs';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
@@ -12,6 +13,10 @@ import * as _ from 'lodash';
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit, OnDestroy {
+
+  @ViewChild('priceEditDialog')
+  private priceEditDialog: OrderPriceEditDialogComponent;
+
   private order: Order = new Order();
 
   private sub: Subscription;
@@ -32,7 +37,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   }
 
   getOrder(id) {
-    this.orderDetailService.getOrder().subscribe(result => this.order = <Order>result);
+    this.orderDetailService.getOrder().subscribe(result => this.order = <Order>JSON.parse(JSON.stringify(result)));
     if (this.order._id !== id) {
       this.orderDetailService.fetchOrder(id).subscribe();
     }
@@ -76,5 +81,10 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     if (currency === 'usd') {
       return `$${price}`;
     }
+  }
+
+  editPrice(event) {
+    event.preventDefault();
+    this.priceEditDialog.show();
   }
 }

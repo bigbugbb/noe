@@ -1,0 +1,27 @@
+<noe-dialog #dialog class="dialog" [staticModal]="staticModal" [large]="false">
+  <div dialog-title>
+    Edit order price
+  </div>
+  <div dialog-body>
+    <form (ngSubmit)="onSubmit()" #priceForm="ngForm">
+      <!-- price -->
+      <div class="form-group row">
+        <div class="col-12 mb-3">
+          <label for="price">Order price</label>
+          <input type="number" class="form-control" id="price"
+                  name="price"
+                  [(ngModel)]="model.price"
+                  #price="ngModel"
+                  required>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div dialog-footer>
+    <button type="submit" class="btn btn-primary"
+            [disabled]="!priceForm.form.valid"
+            (click)="priceForm.ngSubmit.emit()">
+      Save
+    </button>
+  </div>
+</noe-dialog>
