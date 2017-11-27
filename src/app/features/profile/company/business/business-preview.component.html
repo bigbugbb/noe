@@ -2,7 +2,7 @@
   <div class="card-block">
     <noe-section header="Business Preview" [showAdd]="false" [showEdit]="false">
       <hr class="mt-2 mb-3">
-      <table class="table">
+      <table class="table mb-5">
         <tbody>
           <tr>
             <td class="w-32 td-no-border">
@@ -10,7 +10,7 @@
             </td>
             <td class="w-68 td-no-border business-info">
               <div>
-                <h4>{{ name }}</h4>
+                <div class="name">{{ name }}</div>
                 <div *ngIf="location.length > 0" class="location"><i class="fa fa-location-arrow location-icon" aria-hidden="true"></i>{{ location }}</div>
               </div>
               <div class="summary">{{ summary }}</div>
@@ -30,7 +30,6 @@
     </noe-section>
 
     <noe-section [showAdd]="false" [showEdit]="false">
-      <hr class="mt-4">
       <div [innerHTML]="content | safeHtml"></div>
     </noe-section>
   </div>

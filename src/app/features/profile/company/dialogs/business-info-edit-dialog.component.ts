@@ -54,7 +54,7 @@ export class BusinessInfoEditDialogComponent implements OnInit {
     this.states = this.http.get('@app/../assets/data/us-states.json').map((res: Response) => res.json());
     this.countries = this.http.get('@app/../assets/data/countries.json').map((res: Response) => res.json());
 
-    this.businessDetailService.getBusiness().subscribe(business => this.model = business);
+    this.businessDetailService.getBusiness().subscribe(business => this.model = JSON.parse(JSON.stringify(business)));
   }
 
   get imageData() {

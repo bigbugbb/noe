@@ -78,13 +78,13 @@ export class OrderItemComponent {
 
   private pay() {
     this.orderActionsService.pay(this.item).then(value => {
-      this.item = value;
+      this.item = value['order'];
     });
   }
 
   private refund() {
     this.orderActionsService.refund(this.item).then(value => {
-      this.item = value;
+      this.item = value['order'];
     });
   }
 
@@ -94,7 +94,7 @@ export class OrderItemComponent {
 
   private cancel() {
     this.orderActionsService.cancel(this.item).then(value => {
-      this.item = value;
+      this.item = value['order'];
     });
   }
 }

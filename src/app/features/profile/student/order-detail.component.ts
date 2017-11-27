@@ -62,9 +62,8 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   }
 
   get location() {
-    const { city, state, country } = this.business;
-    const address = [city, state, country];
-    return address.filter(value => !_.isEmpty(value)).join(', ');
+    const { address, country } = this.business;
+    return [ address, country ].filter(value => !_.isEmpty(value)).join(', ');
   }
 
   get summary() {
@@ -94,13 +93,13 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
   private pay() {
     this.orderActionsService.pay(this.order).then(value => {
-      this.order = value;
+      this.order = value['order'];
     });
   }
 
   private refund() {
     this.orderActionsService.refund(this.order).then(value => {
-      this.order = value;
+      this.order = value['order'];
     });
   }
 
@@ -110,7 +109,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
   private cancel() {
     this.orderActionsService.cancel(this.order).then(value => {
-      this.order = value;
+      this.order = value['order'];
     });
   }
 }

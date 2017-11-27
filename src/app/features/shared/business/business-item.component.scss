@@ -18,12 +18,13 @@ $summary-line-height: 20px;
 }
 
 .business-name {
-  font-size: 18px;
+  font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
 }
 
 .business-summary {
+  font-size: 0.75rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -34,15 +35,10 @@ $summary-line-height: 20px;
 }
 
 .business-price {
-  font-size: 17px;
+  font-size: 1rem;
   font-weight: 500;
   color: red;
-}
-
-.order-price {
-  font-size: 17px;
-  font-weight: 500;
-  color: red;
+  margin-bottom: 0.25rem;
 }
 
 .vertical-divider {

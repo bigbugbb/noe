@@ -53,9 +53,8 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
   }
 
   get location() {
-    const { city, state, country } = this.model;
-    const address = [city, state, country];
-    return address.filter(item => !_.isEmpty(item)).join(', ');
+    const { address, country } = this.model;
+    return [ address, country ].filter(item => !_.isEmpty(item)).join(', ');
   }
 
   get summary() {

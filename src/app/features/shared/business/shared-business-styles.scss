@@ -3,6 +3,9 @@ $image-min-width:                 360px;
 $navbar-height:                   55px !default;
 $footer-height:                   50px !default;
 
+$summary-line-count: 7;
+$summary-line-height: 20px;
+
 .card {
   min-width: 800px;
   max-width: 1200px;
@@ -35,7 +38,14 @@ $footer-height:                   50px !default;
   min-width: $image-min-width;
 }
 
+.name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
 .location {
+  font-size: 0.75rem;
   font-weight: 500;
 
   .location-icon {
@@ -46,6 +56,14 @@ $footer-height:                   50px !default;
 .summary {
   margin: 0.5rem 0;
   color: #29363d;
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $summary-line-count; /* number of lines to show */
+  line-height: $summary-line-height;        /* fallback */
+  max-height: $summary-line-count * $summary-line-height;       /* fallback */
 }
 
 .business-price-container {
@@ -57,7 +75,7 @@ $footer-height:                   50px !default;
   max-width: 180px;
   min-width: 160px;
   border-radius: 4px;
-  padding: 0.25rem 0;
+  padding: 0.25rem 3rem;
 
   .price-title {
     font-size: 0.85rem;

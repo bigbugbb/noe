@@ -42,9 +42,11 @@ a {
 }
 
 .business-name {
+  font-size: 0.9rem;
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $summary-line-count;  /* number of lines to show */
@@ -53,19 +55,19 @@ a {
 }
 
 .order-price {
-  font-size: 17px;
+  font-size: 1rem;
   font-weight: 500;
   color: red;
 }
 
 .order-status {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   padding: 0.3rem 0.5rem;
 }
 
 .vertical-divider {
-  height: 160px;
+  height: 180px;
   border: solid 0.5px rgb(200, 200, 200);
 }
 

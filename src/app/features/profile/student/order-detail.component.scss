@@ -54,6 +54,12 @@ $footer-height:                   50px !default;
   margin: 0.25rem 0.75rem 0 0;
 }
 
+.name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
 .location {
   font-weight: 500;
 
@@ -77,7 +83,7 @@ $footer-height:                   50px !default;
   max-width: 180px;
   min-width: 160px;
   border-radius: 4px;
-  padding: 0.25rem 0;
+  padding: 0.25rem 0rem;
 
   .price-title {
     font-size: 0.85rem;

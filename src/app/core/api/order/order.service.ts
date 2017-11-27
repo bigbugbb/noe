@@ -57,13 +57,25 @@ export class OrderService extends ApiBase {
   }
 
   public pay(id: string, payload) {
-    return this.http.post(`${this.apiEndpoint}/orders/${id}/charges`, payload, this.optionsWithJWT())
+    return this.http.post(`${this.apiEndpoint}/orders/${id}/charge`, payload, this.optionsWithJWT())
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   public refund(id: string, chargeId: string) {
-    return this.http.post(`${this.apiEndpoint}/orders/${id}/charges/${chargeId}/refunds`, {}, this.optionsWithJWT())
+    return this.http.post(`${this.apiEndpoint}/orders/${id}/charge/${chargeId}/refund`, {}, this.optionsWithJWT())
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public cancel(id: string, payload) {
+    return this.http.post(`${this.apiEndpoint}/orders/${id}/cancel`, payload, this.optionsWithJWT())
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public serve(id: string) {
+    return this.http.post(`${this.apiEndpoint}/orders/${id}/serve`, {}, this.optionsWithJWT())
       .map(this.extractData)
       .catch(this.handleError);
   }

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProfileService, StorageService, BusinessDetailService } from '@app/core';
-import { BusinessInfoEditDialogComponent } from './business-info-edit-dialog.component';
+import { BusinessInfoEditDialogComponent } from '../dialogs/business-info-edit-dialog.component';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
@@ -62,9 +62,8 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
   }
 
   get location() {
-    const { city, state, country } = this.model;
-    const address = [city, state, country];
-    return address.filter(item => !_.isEmpty(item)).join(', ');
+    const { address, country } = this.model;
+    return [ address, country ].filter(item => !_.isEmpty(item)).join(', ');
   }
 
   get summary() {

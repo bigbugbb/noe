@@ -92,7 +92,10 @@ export class OrderItemComponent {
   }
 
   private served() {
-
+    this.item['event_creator'] = 'business';
+    this.orderActionsService.serve(this.item).then(value => {
+      this.item = value['order'];
+    });
   }
 
   private details() {
@@ -105,8 +108,9 @@ export class OrderItemComponent {
   }
 
   private cancel() {
-    this.orderActionsService.cancel(this.item).then(value => {
-      this.item = value;
+    this.item['event_creator'] = 'business';
+    this.orderActionsService.cancel(this.item, 'business').then(value => {
+      this.item = value['order'];
     });
   }
 }

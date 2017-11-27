@@ -28,7 +28,7 @@ export class OrderActionsService {
         token: (token) => {
           const payload = { email, source: token.id };
           this.orderService.pay(_id, payload).subscribe(value => {
-            resolve(value.order);
+            resolve(value);
           }, error => {
             reject(error);
           });
@@ -38,28 +38,19 @@ export class OrderActionsService {
   }
 
   public refund(order) {
-    return new Promise<Order>((resolve, reject) => {
-      const { _id, charge } = order;
-      this.orderService.refund(_id, charge).subscribe(value => {
-        resolve(value.order);
-      }, error => {
-        reject(error);
-      });
-    });
+    const { _id, charge } = order;
+    return this.orderService.refund(_id, charge).toPromise();
   }
 
   public contact() {
 
   }
 
-  public cancel(order) {
-    return new Promise<Order>((resolve, reject) => {
-      order.status = 'canceled';
-      this.orderService.update(order).subscribe(value => {
-        resolve(value.order);
-      }, error => {
-        reject(error);
-      });
-    });
+  public cancel(order, by = 'customer') {
+    return this.orderService.cancel(order._id, { 'event_creator': by }).toPromise();
+  }
+
+  public serve(order) {
+    return this.orderService.serve(order._id).toPromise();
   }
 }

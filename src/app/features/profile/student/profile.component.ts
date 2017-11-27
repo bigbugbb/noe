@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.selectTab(1);
+    this.selectTab(0);
 
     const user = this.storageService.getUser();
     this.fileBaseUrl = `https://s3.${environment.bucketRegion}.amazonaws.com/${environment.noeFilesUpload}`;

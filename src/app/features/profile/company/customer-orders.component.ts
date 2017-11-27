@@ -49,4 +49,8 @@ export class CustomerOrdersComponent implements OnInit, OnDestroy {
   onPageSelect(page: number) {
     this.queryOrdersByPage(page);
   }
+
+  get emptyData() {
+    return _.isEmpty(this.data);
+  }
 }

@@ -8,7 +8,7 @@ import * as _ from 'lodash';
   template: `
     <div class="row mb-auto">
       <noe-business-item
-          class="col-md-12 col-lg-6"
+          class="col-lg-12 col-xl-6"
           *ngFor="let business of businesses; let i = index; trackBy: trackByIndex"
           [item]="business">
       </noe-business-item>

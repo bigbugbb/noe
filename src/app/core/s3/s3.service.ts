@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { environment } from '@env/environment';
 import * as AWS from 'aws-sdk';
 
