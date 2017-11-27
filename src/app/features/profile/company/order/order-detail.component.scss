@@ -1,3 +1,53 @@
+$white:                           #fff;
+$gray-100:                        #f0f3f5;
+$gray-200:                        #c2cfd6;
+$gray-300:                        #a4b7c1;
+$gray-400:                        #869fac;
+$gray-500:                        #678898;
+$gray-600:                        #536c79;
+$gray-700:                        #3e515b;
+$gray-800:                        #29363d;
+$gray-900:                        #151b1e;
+$black:                           #000 !default;
+
+$blue:                            #20a8d8;
+$indigo:                          #6610f2 !default;
+$purple:                          #6f42c1 !default;
+$pink:                            #e83e8c !default;
+$red:                             #f86c6b;
+$orange:                          #f8cb00;
+$yellow:                          #ffc107 !default;
+$green:                           #4dbd74;
+$teal:                            #20c997 !default;
+$cyan:                            #63c2de;
+
+$colors: (
+  blue:                           $blue,
+  indigo:                         $indigo,
+  purple:                         $purple,
+  pink:                           $pink,
+  red:                            $red,
+  orange:                         $orange,
+  yellow:                         $yellow,
+  green:                          $green,
+  teal:                           $teal,
+  cyan:                           $cyan,
+  white:                          $white,
+  gray:                           $gray-600,
+  gray-dark:                        $gray-800
+);
+
+$theme-colors: (
+  primary:                        $blue,
+  secondary:                      $gray-300,
+  success:                        $green,
+  info:                           $cyan,
+  warning:                        $yellow,
+  danger:                         $red,
+  light:                          $gray-100,
+  dark:                           $gray-800
+);
+
 $image-width:                     200px;
 $navbar-height:                   55px !default;
 $footer-height:                   50px !default;
@@ -82,4 +132,88 @@ $summary-line-height: 20px;
 .btn-edit-price {
   font-size: 1.2rem;
   text-decoration: none;
+}
+
+// TIMELINE
+.timeline {
+  list-style: none;
+  padding: 2rem 0;
+  position: relative;
+
+  > li {
+    margin-bottom: 3rem;
+    position: relative;
+
+    .timeline-panel {
+      width: 50%;
+      float: left;
+      border: 1px solid #d4d4d4;
+      border-radius: 2px;
+      padding: 1.25rem;
+      position: relative;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    }
+
+    .timeline-badge {
+      font-size: 0.85rem;
+      font-family: 'Nunito-Regular';
+      color: #fff;
+      width: 66px;
+      height: 66px;
+      line-height: 66px;
+      text-align: center;
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      margin-left: -33px;
+      background-color: $blue;
+      border-top-right-radius: 50%;
+      border-top-left-radius: 50%;
+      border-bottom-right-radius: 50%;
+      border-bottom-left-radius: 50%;
+    }
+  }
+
+  li:before, li:after {
+    content: "";
+    display: table;
+  }
+
+  li:after {
+    clear: both;
+  }
+
+  p {
+    font-family: 'Nunito-Regular';
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+}
+
+.timeline:before {   /* GREY LINE */
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  content: " ";
+  width: 2px;
+  background-color: #d4d4d4;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timeline {
+  li:not(.timeline-inverted) {
+    padding-right: 112px;
+  }
+  li.timeline-inverted {
+    padding-left: 112px;
+
+    > .timeline-panel {
+      float: right;
+    }
+  }
+}
+
+.fa.fa-clock-o {
+  padding-right: 3px;
 }

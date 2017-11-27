@@ -15,7 +15,7 @@ export class OrderPriceEditDialogComponent implements OnInit {
   @ViewChild('dialog')
   private dialog: DialogComponent;
 
-  public model: any;
+  public model: any = { price: 0 };
 
   constructor(
     private orderDetailService: OrderDetailService

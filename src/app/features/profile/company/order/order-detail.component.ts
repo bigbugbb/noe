@@ -83,8 +83,49 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     }
   }
 
+  get events() {
+    return _.get(this.order, 'events', []);
+  }
+
   editPrice(event) {
     event.preventDefault();
     this.priceEditDialog.show();
+  }
+
+  eventTitle(event) {
+    const { name, creator } = event;
+    switch (name) {
+      case 'created':
+      case 'paid':
+      case 'canceled': {
+        return `Order was ${name} by ${creator}`;
+      }
+      case 'refunded': {
+        return 'Order was refunded to customer';
+      }
+      case 'served': {
+        return 'Order has been served by service provider';
+      }
+      default: {
+        console.error('Invalid order event');
+        return 'Invalid order event';
+      }
+    }
+  }
+
+  colorOfEvent(event) {
+    const { name } = event;
+    const primary = '#20a8d8';
+    const secondary = '#a4b7c1';
+    const warning = '#ffc107';
+    const success = '#4dbd74';
+    const info = '#63c2de';
+    switch (name) {
+      case 'created': return primary;
+      case 'paid': return success;
+      case 'canceled': return warning;
+      case 'refunded': return secondary;
+      case 'served': return success;
+    }
   }
 }
