@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProfileService, StorageService, BusinessDetailService } from '@app/core';
@@ -19,6 +20,7 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
   private infoEditDialog: BusinessInfoEditDialogComponent;
 
   private model: { [key: string]: any } = {};
+  private content = '';
 
   private sub: Subscription;
 
@@ -27,6 +29,7 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private http: Http,
     private profileService: ProfileService,
     private businessDetailService: BusinessDetailService
   ) {}
@@ -36,13 +39,21 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
       const { id } = params;
       if (!_.isEmpty(id)) {
         this.businessDetailService.fetchBusiness(id).subscribe();
-        this.businessDetailService.getBusiness().subscribe(value => this.model = value);
+        this.businessDetailService.getBusiness().subscribe(value => {
+          this.model = value;
+          this.fetchContent(_.get(this.model, 'content', ''));
+        });
       }
     });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  fetchContent(url) {
+    if (_.isEmpty(url) || !url.startsWith('http')) { return; }
+    this.http.get(url).subscribe(value => this.content = _.get(value, '_body', ''));
   }
 
   private activate() {
@@ -75,10 +86,6 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
     return price !== undefined ? '$' + price : 'Undefined';
   }
 
-  get content() {
-    return _.get(this.model, 'content', '');
-  }
-
   get status() {
     return _.get(this.model, 'status', 'draft');
   }
@@ -96,6 +103,7 @@ export class BusinessEditComponent implements OnInit, OnDestroy {
   }
 
   onSaveBusinessContent() {
+    this.model.content = this.content;
     this.businessDetailService.updateBusiness(this.model).subscribe(() => {
       this.editingContent = false;
     });

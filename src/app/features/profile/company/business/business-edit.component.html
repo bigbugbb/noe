@@ -45,8 +45,8 @@
         </div>
         <ckeditor *ngIf="editingContent"
           class="pb-3"
-          [(ngModel)]="model.content"
-          [config]="{ height: 450 }"
+          [(ngModel)]="content"
+          [config]="{ height: 500 }"
           [readonly]="false"
           (change)="onChange($event)"
           (ready)="onReady($event)"
