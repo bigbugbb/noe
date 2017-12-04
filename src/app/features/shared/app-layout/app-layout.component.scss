@@ -1,6 +1,12 @@
 $blue:                              #20a8d8;
 $navbar-height:                       55px !default;
 
+.navbar {
+  -webkit-box-shadow: 0 8px 6px -4px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 8px 6px -4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 6px -4px rgba(0, 0, 0, 0.15);
+}
+
 #search {
   min-width: 96px;
 }
