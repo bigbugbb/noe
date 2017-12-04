@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Http } from '@angular/http';
 
 import {
   StorageService,
@@ -8,6 +9,7 @@ import {
 } from '@app/core';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'noe-business-detail',
@@ -19,6 +21,7 @@ import * as _ from 'lodash';
 })
 export class BusinessDetailComponent implements OnInit, OnDestroy {
   private model: { [key: string]: any } = {};
+  private content = '';
 
   private sub: Subscription;
 
@@ -29,6 +32,7 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private http: Http,
     private orderService: OrderService,
     private storageService: StorageService,
     private businessDetailService: BusinessDetailService
@@ -39,13 +43,21 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
       const { id } = params;
       if (!_.isEmpty(id)) {
         this.businessDetailService.fetchBusiness(id).subscribe();
-        this.businessDetailService.getBusiness().subscribe(business => this.model = business);
+        this.businessDetailService.getBusiness().subscribe(business => {
+          this.model = business;
+          this.fetchContent(_.get(this.model, 'content', ''));
+        });
       }
     });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  fetchContent(url) {
+    if (_.isEmpty(url) || !url.startsWith('http')) { return; }
+    this.http.get(url).subscribe(value => this.content = _.get(value, '_body', ''));
   }
 
   get name() {
@@ -64,10 +76,6 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
   get price() {
     const price = _.get(this.model, 'price', undefined);
     return price !== undefined ? '$' + price : 'Undefined';
-  }
-
-  get content() {
-    return _.get(this.model, 'content', '');
   }
 
   public order() {
