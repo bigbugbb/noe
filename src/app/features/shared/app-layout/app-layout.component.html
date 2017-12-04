@@ -15,21 +15,23 @@
         </div>
       </form>
     </li>
-    <li class="nav-item px-2">
-      <a class="nav-link nav-link-title" [routerLink]="['/home']">Home</a>
-    </li>
-    <li class="nav-item px-2">
-      <a class="nav-link nav-link-title" href (click)="navigateToMyProfile($event)">Profile</a>
-    </li>
-    <li class="nav-item px-2" *ngIf="!roleIsStudent">
-      <a class="nav-link nav-link-title" [routerLink]="['/students']">Student</a>
-    </li>
-    <li class="nav-item px-2">
-      <a class="nav-link nav-link-title" [routerLink]="['/services']">Service</a>
-    </li>
-    <li class="nav-item px-2">
-      <a class="nav-link nav-link-title" [routerLink]="['/about']">About</a>
-    </li>
+    <div class="nav-items">
+      <li class="nav-item">
+        <a class="nav-link nav-link-title" routerLinkActive="active-item" [routerLink]="['/home']">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-link-title" routerLinkActive="active-item" [routerLink]="[profileLink()]">Profile</a>
+      </li>
+      <li class="nav-item" *ngIf="!roleIsStudent">
+        <a class="nav-link nav-link-title" routerLinkActive="active-item" [routerLink]="['/students']">Student</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-link-title" routerLinkActive="active-item" [routerLink]="['/services']">Service</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-link-title" routerLinkActive="active-item" [routerLink]="['/about']">About</a>
+      </li>
+    </div>
   </ul>
   <ul class="navbar-nav navbar-expand ml-auto mr-sm-3">
     <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">

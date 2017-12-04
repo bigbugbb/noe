@@ -1,6 +1,8 @@
-.nav-link-title {
-  font-size: 14px;
-  font-weight: 500;
+$blue:                              #20a8d8;
+$navbar-height:                       55px !default;
+
+#search {
+  min-width: 96px;
 }
 
 .truncate {
@@ -12,5 +14,36 @@
 
 .main-size {
   min-width: 800px;
-  max-width: 1200px;
+  max-width: 1280px;
+}
+
+.nav-items {
+  display: flex;
+  flex-direction: row;
+  height: $navbar-height;
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.5rem;
+
+    .nav-link {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .nav-link:hover {
+      color: $blue;
+    }
+
+    .active-item {
+      color: $blue;
+      padding-top: 4px;
+      border-bottom: 4px solid $blue;
+    }
+  }
 }
