@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'noe-business-list',
   template: `
-    <div class="row mb-auto">
+    <div class="row mb-auto animated fadeIn">
       <noe-business-item
           class="col-lg-12 col-xl-6"
           *ngFor="let business of businesses; let i = index; trackBy: trackByIndex"

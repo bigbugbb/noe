@@ -1,15 +1,17 @@
-<div class="card w-100 my-3">
-  <div class="card-block d-flex flex-column">
-    <div><hr class="mb-4"></div>
-    <div *ngIf="!dataAvailable" class="loading-placeholder">
-      <div class="loading-prompt text-center">
-        <i class='fa fa-spinner fa-spin mr-3'></i>Loading app content...
+<div class="animated fadeIn">
+  <div class="card w-100 my-3">
+    <div class="card-block d-flex flex-column">
+      <div><hr class="mb-4"></div>
+      <div *ngIf="!dataAvailable" class="loading-placeholder">
+        <div class="loading-prompt text-center">
+          <i class='fa fa-spinner fa-spin mr-3'></i>Loading app content...
+        </div>
       </div>
+      <noe-business-list
+        *ngIf="dataAvailable"
+        [data]="data"
+        (selectPage)="onPageSelect($event)">
+      </noe-business-list>
     </div>
-    <noe-business-list
-      *ngIf="dataAvailable"
-      [data]="data"
-      (selectPage)="onPageSelect($event)">
-    </noe-business-list>
   </div>
 </div>

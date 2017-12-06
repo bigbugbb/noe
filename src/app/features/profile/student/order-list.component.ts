@@ -13,7 +13,7 @@ import * as _ from 'lodash';
     }
   `],
   template: `
-    <div class="py-3 mb-auto">
+    <div class="py-3 mb-auto animated fadeIn">
       <noe-order-item *ngFor="let order of orders; let i = index; trackBy: trackByIndex"
         [(item)]="orders[i]" [showDivider]="showDivider(i)">
       </noe-order-item>
