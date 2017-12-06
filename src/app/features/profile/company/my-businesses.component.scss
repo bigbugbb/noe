@@ -4,3 +4,16 @@
   flex-direction: column;
   flex-grow: 1;
 }
+
+.loading-placeholder {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  align-content: center;
+
+  .loading-prompt {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+}

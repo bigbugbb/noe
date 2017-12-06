@@ -9,14 +9,14 @@ import * as _ from 'lodash';
 @Component({
   selector: 'noe-order-detail',
   templateUrl: './order-detail.component.html',
-  styleUrls: ['./order-detail.component.scss']
+  styleUrls: ['./order-detail.component.scss', '../../shared/loading/loading.scss']
 })
 export class OrderDetailComponent implements OnInit, OnDestroy {
   private order: Order = new Order();
 
   private sub: Subscription;
 
-  private ordering = false;
+  private handlingOrderAction = false;
 
   private editingContent = false;
 
@@ -92,14 +92,24 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   }
 
   private pay() {
-    this.orderActionsService.pay(this.order).then(value => {
+    const opened = () => { this.handlingOrderAction = false; };
+    const closed = () => { this.handlingOrderAction = false; };
+    this.handlingOrderAction = true;
+    this.orderActionsService.pay(this.order, opened, closed).then(value => {
       this.order = value['order'];
+      this.handlingOrderAction = false;
+    }).catch (() => {
+      this.handlingOrderAction = false;
     });
   }
 
   private refund() {
+    this.handlingOrderAction = true;
     this.orderActionsService.refund(this.order).then(value => {
       this.order = value['order'];
+      this.handlingOrderAction = false;
+    }).catch (() => {
+      this.handlingOrderAction = false;
     });
   }
 
@@ -108,8 +118,12 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   }
 
   private cancel() {
+    this.handlingOrderAction = true;
     this.orderActionsService.cancel(this.order).then(value => {
       this.order = value['order'];
+      this.handlingOrderAction = false;
+    }).catch (() => {
+      this.handlingOrderAction = false;
     });
   }
 }

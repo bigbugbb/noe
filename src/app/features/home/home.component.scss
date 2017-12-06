@@ -2,3 +2,16 @@
   padding: 0.5rem 0.75rem 0;
   margin-top: 1rem;
 }
+
+.loading-placeholder {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  align-content: center;
+
+  .loading-prompt {
+    font-size: 1rem;
+    margin: 2.5rem;
+  }
+}

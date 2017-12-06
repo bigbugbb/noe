@@ -13,11 +13,11 @@ export class OrderActionsService {
     private storageService: StorageService
   ) {}
 
-  public pay(order) {
+  public pay(order, opened?, closed?) {
     return new Promise<Order>((resolve, reject) => {
       const { email } = this.storageService.getUser();
       const { _id, price, business } = order;
-      (<any>window).StripeCheckout.configure({
+      const handler = (<any>window).StripeCheckout.configure({
         key: environment.stripePublishableKey,
         email,
         image: business.avatar,
@@ -31,9 +31,18 @@ export class OrderActionsService {
             resolve(value);
           }, error => {
             reject(error);
+          }, () => {
+            console.log('bbb');
           });
-        }
-      }).open();
+        },
+        opened,
+        closed
+      });
+      handler.open();
+
+      window.addEventListener('popstate', () => {
+        handler.close();
+      });
     });
   }
 

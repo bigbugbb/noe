@@ -47,6 +47,10 @@
       </button>
     </div>
   </div>
+
+  <div *ngIf="handlingOrderAction" class="loading">
+    <i class="fa fa-spinner fa-spin"></i>
+  </div>
 </div>
 
 <hr *ngIf="showDivider">

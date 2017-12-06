@@ -8,11 +8,13 @@ import { environment } from '@env/environment';
 @Component({
   selector: 'noe-order-item',
   templateUrl: './order-item.component.html',
-  styleUrls: ['./order-item.component.scss']
+  styleUrls: ['./order-item.component.scss', '../../shared/loading/loading.scss']
 })
 export class OrderItemComponent {
 
   private itemValue: Order;
+
+  private handlingOrderAction = false;
 
   @Input()
   private showDivider = true;
@@ -77,14 +79,24 @@ export class OrderItemComponent {
   }
 
   private pay() {
-    this.orderActionsService.pay(this.item).then(value => {
+    const opened = () => { this.handlingOrderAction = false; };
+    const closed = () => { this.handlingOrderAction = false; };
+    this.handlingOrderAction = true;
+    this.orderActionsService.pay(this.item, opened, closed).then(value => {
       this.item = value['order'];
+      this.handlingOrderAction = false;
+    }).catch (() => {
+      this.handlingOrderAction = false;
     });
   }
 
   private refund() {
+    this.handlingOrderAction = true;
     this.orderActionsService.refund(this.item).then(value => {
       this.item = value['order'];
+      this.handlingOrderAction = false;
+    }).catch (() => {
+      this.handlingOrderAction = false;
     });
   }
 
@@ -93,8 +105,12 @@ export class OrderItemComponent {
   }
 
   private cancel() {
+    this.handlingOrderAction = true;
     this.orderActionsService.cancel(this.item).then(value => {
       this.item = value['order'];
+      this.handlingOrderAction = false;
+    }).catch (() => {
+      this.handlingOrderAction = false;
     });
   }
 }

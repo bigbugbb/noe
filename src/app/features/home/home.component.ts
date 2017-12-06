@@ -53,6 +53,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  get dataAvailable() {
+    return !_.isEmpty(this.data);
+  }
+
   onPageSelect(page: number) {
     this.page = page;
     this.triggerActivitiesQuery();
