@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TabsModule } from 'ngx-bootstrap/tabs';
 
-// Routing
 import { AppRoutingModule } from './app.routing';
 
 import { CoreModule } from './core';
@@ -13,10 +11,12 @@ import { SharedModule } from './shared';
 import { FeaturesSharedModule } from '@app/features/shared';
 
 import { AppComponent } from './app.component';
+import { AsideToggleDirective } from './shared/aside/aside.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AsideToggleDirective
   ],
   imports: [
     BrowserModule,
@@ -27,11 +27,10 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     CoreModule,
     SharedModule,
-    FeaturesSharedModule,
-    TabsModule.forRoot()
+    FeaturesSharedModule
   ],
   providers: [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

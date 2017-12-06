@@ -97,26 +97,6 @@
 
     <noe-about-myself *ngIf="isTabSelected(0)"></noe-about-myself>
     <noe-my-orders *ngIf="isTabSelected(1)"></noe-my-orders>
-
-    <!-- <tabset #staticTabs>
-      <tab [active]="isTabSelected(0)"
-          (select)="selectTab(0)"
-          [customClass]="'tab'">
-        <ng-template tabHeading>
-          <span class="tab-heading">About Myself</span>
-        </ng-template>
-        <router-outlet name="about"></router-outlet>
-      </tab>
-      <tab [active]="isTabSelected(1)"
-          (select)="selectTab(1)"
-          [customClass]="'tab'">
-        <ng-template tabHeading>
-          <span class="tab-heading">My Orders</span>
-        </ng-template>
-
-      </tab>
-    </tabset> -->
-
   </div>
 </div>
 

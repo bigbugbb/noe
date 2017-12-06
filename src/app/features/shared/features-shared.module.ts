@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '@app/shared';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs'
 
 /* our own custom components */
 import { AlertComponent } from './alert/alert.component';
@@ -25,7 +26,8 @@ import { AsideToggleDirective } from './app-layout/aside.directive';
     FormsModule,
     RouterModule,
     SharedModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot()
   ],
   declarations: [
     AlertComponent,
