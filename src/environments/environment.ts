@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   apiEndpoint: 'http://localhost:3000/api/v1',
+  chatServerEndpoint: 'http://localhost:3001',
   stripePublishableKey: 'pk_test_d0Xi57r8Y91cX2PKwJ0dMIM7',
   noeFilesUpload: 'noe-file-upload-ireland',
   bucketRegion: 'eu-west-1',

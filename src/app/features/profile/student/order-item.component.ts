@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Order } from '@app/models';
-import { OrderDetailService, OrderActionsService, StorageService } from '@app/core';
+import { OrderDetailService, OrderActionsService, ChatService, StorageService } from '@app/core';
 import { environment } from '@env/environment';
 
 @Component({
@@ -27,6 +27,7 @@ export class OrderItemComponent {
     private route: ActivatedRoute,
     private orderDetailService: OrderDetailService,
     private orderActionsService: OrderActionsService,
+    private chatService: ChatService,
     private storageService: StorageService
   ) {}
 

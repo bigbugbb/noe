@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   apiEndpoint: 'https://fast-ocean-42635.herokuapp.com/api/v1',
+  chatServerEndpoint: 'http://localhost:3001',
   stripePublishableKey: 'pk_test_d0Xi57r8Y91cX2PKwJ0dMIM7', // TODO: update
   noeFilesUpload: 'noe-file-upload-ireland',
   bucketRegion: 'eu-west-1',

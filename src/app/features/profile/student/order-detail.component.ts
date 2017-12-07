@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { StorageService, OrderDetailService, OrderActionsService } from '@app/core';
+import { StorageService, ChatService, OrderDetailService, OrderActionsService } from '@app/core';
 import { Order, Business } from '@app/models';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
@@ -20,11 +20,15 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
   private editingContent = false;
 
+  private messages = [];
+  private connection;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private orderActionsService: OrderActionsService,
     private orderDetailService: OrderDetailService,
+    private chatService: ChatService,
     private storageService: StorageService
   ) {}
 
@@ -32,10 +36,15 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.updateOrder(params.id);
     });
+
+    this.connection = this.chatService.getMessages().subscribe(message => {
+      this.messages.push(message);
+    });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.connection.unsubscribe();
   }
 
   updateOrder(id) {
