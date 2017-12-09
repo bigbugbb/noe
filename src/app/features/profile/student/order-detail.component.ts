@@ -36,19 +36,19 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.updateOrder(params.id);
     });
-
-    this.connection = this.chatService.getMessages().subscribe(message => {
-      this.messages.push(message);
-    });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.connection.unsubscribe();
   }
 
   updateOrder(id) {
-    this.orderDetailService.getOrder().subscribe(result => this.order = <Order>result);
+    this.orderDetailService.getOrder().subscribe(result => {
+      this.order = <Order>result;
+      const { customer, business } = this.order;
+      const room = `${customer._id}-${business.owner}`;
+      this.chatService.join(room);
+    });
     if (this.order._id !== id) {
       this.orderDetailService.fetchOrder(id).subscribe();
     }
@@ -123,7 +123,9 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   }
 
   private contact() {
-
+    const { customer, business } = this.order;
+    const room = `${customer._id}-${business.owner}`;
+    this.chatService.sendMessage(customer._id, room, 'test message');
   }
 
   private cancel() {

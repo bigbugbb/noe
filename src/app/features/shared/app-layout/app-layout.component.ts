@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from '@app/models';
-import { UserService, ProfileService, StorageService } from '@app/core';
+import { UserService, ProfileService, ChatService, StorageService } from '@app/core';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
@@ -11,20 +11,31 @@ import * as _ from 'lodash';
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.scss']
 })
-export class AppLayoutComponent implements OnInit {
-  public profile;
-  public disabled = false;
-  public status: {isopen: boolean} = {isopen: false};
+export class AppLayoutComponent implements OnInit, OnDestroy {
+  private profile;
+  private subProfile;
+  private subMessage;
+  private disabled = false;
+  private status: {isopen: boolean} = {isopen: false};
 
   constructor(
     private userService: UserService,
     private profileService: ProfileService,
     private storageService: StorageService,
+    private chatService: ChatService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.profileService.getProfile().subscribe(profile => this.profile = profile);
+  ngOnInit() {
+    this.chatService.connect();
+    this.subMessage = this.chatService.getMessages().subscribe();
+    this.subProfile = this.profileService.getProfile().subscribe(value => this.profile = value);
+  }
+
+  ngOnDestroy() {
+    this.subProfile.unsubscribe();
+    this.subMessage.unsubscribe();
+    this.chatService.disconnect();
   }
 
   public signout(event): void {
