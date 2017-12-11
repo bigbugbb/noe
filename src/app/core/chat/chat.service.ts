@@ -6,12 +6,16 @@ import * as _ from 'lodash';
 
 import { StorageService } from '@app/core/storage/storage.service';
 import { environment } from '@env/environment';
+import { Message, Thread } from '@app/models';
 import { setTimeout } from 'timers';
 
 @Injectable()
 export class ChatService {
   private url = environment.chatServerEndpoint + '/contact';
   private socket;
+
+  public messageAdded = new Subject<Message>();
+  public threadUpdated = new Subject<Thread>();
 
   constructor(
     private storageService: StorageService
@@ -20,6 +24,18 @@ export class ChatService {
   connect() {
     this.socket = io(this.url);
     this.join();
+
+    this.socket.on('message-added', (message) => {
+      this.messageAdded.next(message);
+    });
+
+    this.socket.on('thread-updated', (thread) => {
+      this.threadUpdated.next(thread);
+    });
+
+    this.socket.on('error', () => {
+      console.log('some error');
+    });
   }
 
   join(room?) {
@@ -31,16 +47,8 @@ export class ChatService {
     this.socket.disconnect();
   }
 
-  sendMessage(from, to, message) {
-    this.socket.emit('message', from, to, message);
-  }
-
-  getMessages() {
-    const observable = new Observable(observer => {
-      this.socket.on('message', (from, message) => {
-        observer.next(message);
-      });
-    });
-    return observable;
+  sendMessage(room, author, target, text) {
+    const token = this.storageService.getToken();
+    this.socket.emit('add-message', room, token, author, target, text);
   }
 }

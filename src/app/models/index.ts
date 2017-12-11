@@ -4,4 +4,6 @@ export * from './school';
 export * from './company';
 export * from './business';
 export * from './order';
+export * from './message';
+export * from './thread';
 export * from './interfaces/basic-profile-info-checker';

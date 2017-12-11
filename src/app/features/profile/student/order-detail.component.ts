@@ -46,8 +46,8 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     this.orderDetailService.getOrder().subscribe(result => {
       this.order = <Order>result;
       const { customer, business } = this.order;
-      const room = `${customer._id}-${business.owner}`;
-      this.chatService.join(room);
+      this.chatService.join(`${customer._id}-${business.owner}`);
+      this.chatService.join(`${business.owner}-${customer._id}`);
     });
     if (this.order._id !== id) {
       this.orderDetailService.fetchOrder(id).subscribe();
@@ -125,7 +125,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   private contact() {
     const { customer, business } = this.order;
     const room = `${customer._id}-${business.owner}`;
-    this.chatService.sendMessage(customer._id, room, 'test message');
+    this.chatService.sendMessage(room, customer._id, business.owner, 'test message');
   }
 
   private cancel() {
