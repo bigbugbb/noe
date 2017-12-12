@@ -36,19 +36,31 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.updateOrder(params.id);
     });
+
+    this.chatService.socket.on('connect', () => {
+      this.prepareToContact();
+    });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
+  prepareToContact() {
+    setTimeout(() => {
+      if (!_.isEmpty(this.order)) {
+        const { customer, business } = this.order;
+        this.chatService.join(`${customer._id}-${business.owner}`);
+        this.chatService.join(`${business.owner}-${customer._id}`);
+      }
+    }, 0);
+  }
+
   updateOrder(id) {
     this.orderDetailService.getOrder().subscribe(result => {
       this.order = <Order>result;
-      const { customer, business } = this.order;
-      this.chatService.join(`${customer._id}-${business.owner}`);
-      this.chatService.join(`${business.owner}-${customer._id}`);
     });
+    this.prepareToContact();
     if (this.order._id !== id) {
       this.orderDetailService.fetchOrder(id).subscribe();
     }
