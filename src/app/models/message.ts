@@ -9,7 +9,7 @@ export class Message {
   public target: User;
   public text: string;
   public sentAt: Date;
-  public read: boolean;
+  public thread: string;
 
   constructor() {}
 }
