@@ -12,6 +12,8 @@ export * from './api/business/business-detail.service';
 export * from './api/order/order.service';
 export * from './api/order/order-detail.service';
 export * from './api/order/order-actions.service';
+export * from './api/thread/thread.service';
+export * from './api/message/message.service';
 export * from './chat/chat.service';
 export * from './storage/storage.service';
 export * from './s3/s3.service';

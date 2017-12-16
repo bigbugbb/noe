@@ -1,19 +1,17 @@
-import { User } from './user';
-
-export class ThreadState {
-  public state: string;
-  public messagesNotRead: number;
+export class Jabber {
+  public id: string;
+  public name: string;
+  public avatar: string;
+  public lastAccess: Date;
 
   constructor() {}
 }
 
 export class Thread {
   public _id: string;
-  public author: User;
-  public target: User;
+  public author: Jabber;
+  public target: Jabber;
   public lastMessage: string;
-  public authorState: ThreadState;
-  public targetState: ThreadState;
 
   constructor() {}
 }

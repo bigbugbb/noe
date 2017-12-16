@@ -33,9 +33,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.updateOrder(params.id);
-    });
+    this.sub = this.route.params.subscribe(params => this.updateOrder(params.id));
 
     this.chatService.socket.on('connect', () => {
       this.prepareToContact();

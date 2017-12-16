@@ -14,7 +14,6 @@ import * as _ from 'lodash';
 export class AppLayoutComponent implements OnInit, OnDestroy {
   private profile;
   private subProfile;
-  private subMessage;
   private disabled = false;
   private status: {isopen: boolean} = {isopen: false};
 
@@ -28,13 +27,11 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.chatService.connect();
-    this.subMessage = this.chatService.messageAdded.subscribe();
     this.subProfile = this.profileService.getProfile().subscribe(value => this.profile = value);
   }
 
   ngOnDestroy() {
     this.subProfile.unsubscribe();
-    this.subMessage.unsubscribe();
     this.chatService.disconnect();
   }
 

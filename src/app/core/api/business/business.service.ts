@@ -31,9 +31,7 @@ export class BusinessService extends ApiBase {
     const options = this.optionsWithJWT();
 
     options.params = new URLSearchParams();
-    _.forOwn(params, (val, param) => {
-      options.params.set(param, val);
-    });
+    _.forOwn(params, (val, param) => options.params.set(param, val));
 
     return this.http.get(`${this.apiEndpoint}/businesses`, options)
       .map(this.extractData)

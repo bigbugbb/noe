@@ -13,6 +13,8 @@ import { BusinessDetailService } from './api/business/business-detail.service';
 import { OrderService } from './api/order/order.service';
 import { OrderDetailService } from './api/order/order-detail.service';
 import { OrderActionsService } from './api/order/order-actions.service';
+import { ThreadService } from './api/thread/thread.service';
+import { MessageService } from './api/message/message.service';
 import { ChatService } from './chat/chat.service';
 import { ProfileService } from './profile/profile.service';
 import { StorageService } from './storage/storage.service';
@@ -43,6 +45,8 @@ import * as AWS from 'aws-sdk';
     OrderService,
     OrderDetailService,
     OrderActionsService,
+    ThreadService,
+    MessageService,
     ChatService,
     StorageService,
     S3Service,
