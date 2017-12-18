@@ -5,12 +5,13 @@ import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '@app/shared';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs'
+import { TabsModule } from 'ngx-bootstrap';
 
 /* our own custom components */
 import { AlertComponent } from './alert/alert.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { ThreadListComponent } from './app-layout/thread-list.component';
+import { ThreadItemComponent } from './app-layout/thread-item.component';
 import { ProfileGuidelineLayoutComponent } from './profile-guideline-layout/profile-guideline-layout.component';
 import { BusinessListComponent } from './business/business-list.component';
 import { BusinessItemComponent } from './business/business-item.component';
@@ -34,6 +35,7 @@ import { AsideToggleDirective } from './app-layout/aside.directive';
     AlertComponent,
     AppLayoutComponent,
     ThreadListComponent,
+    ThreadItemComponent,
     BusinessListComponent,
     BusinessItemComponent,
     ProfileGuidelineLayoutComponent,

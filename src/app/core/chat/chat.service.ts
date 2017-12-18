@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs/Rx';
+import { Subject, ReplaySubject, Observable } from 'rxjs/Rx';
 import * as io from 'socket.io-client';
 import * as _ from 'lodash';
 
@@ -19,15 +19,21 @@ export class ChatService {
   private url = environment.chatServerEndpoint + '/contact';
   public socket;
 
-  public threads: Observable<Thread[]> = new Observable<Thread[]>();
-  public messages: Subject<Message[]> = new Subject();
+  // `threads` is a stream that emits an array of the most up to date threads
+  public threads: Observable<Thread[]>;
+  public messagesNotRead: Observable<Number>;
 
   public messageAdded = new Subject<Message>();
   public threadUpdated = new Subject<Thread>();
 
-  private threadsUpdates: Subject<any> = new Subject<any>();
+  // `threadsUpdates` receives _operations_ to be applied to our `threads`
+  // it's a way we can perform changes on *all* threads (that are currently
+  // stored in `threads`)
+  public threadsUpdates: Subject<any> = new Subject<any>();
 
-  private populateLocalThreads: Subject<Thread[]> = new Subject<Thread[]>();
+  // action streams
+  public accessThread: Subject<any> = new Subject<any>();
+  public populateLocalThreads: Subject<Thread[]> = new Subject<Thread[]>();
 
   constructor(
     private threadService: ThreadService,
@@ -36,11 +42,9 @@ export class ChatService {
   ) {
     this.threads = this.threadsUpdates
       // watch the updates and accumulate operations on the threads
-      .scan((threads: Thread[],
-             operation: IThreadsOperation) => {
-               return operation(threads);
-             },
-            initialThreads)
+      .scan((threads: Thread[], operation: IThreadsOperation) => {
+        return operation(threads);
+      }, initialThreads)
       // make sure we can share the most recent list of threads across anyone
       // who's interested in subscribing and cache the last known list of threads
       .publishReplay(1)
@@ -54,9 +58,31 @@ export class ChatService {
       })
       .subscribe(this.threadsUpdates);
 
-    this.threadService.getAll()
-      .map(result => result.threads)
-      .subscribe(this.populateLocalThreads);
+    this.accessThread
+      .map(function(threadAccessed: Thread): IThreadsOperation {
+        return (threads: Thread[]) => {
+          return threads.map((thread: Thread) => {
+            if (thread._id === threadAccessed._id) {
+              thread.messagesNotRead = 0;
+            }
+            return thread;
+          });
+        };
+      })
+      .subscribe(this.threadsUpdates);
+
+    this.messagesNotRead = this.threads
+      .map((threads: Thread[]) => {
+        return _.chain(threads)
+          .map(thread => thread.messagesNotRead)
+          .reduce(_.add)
+          .value();
+      });
+
+    this.threadService.getAll().subscribe(result => {
+      const threads: Thread[] = result.threads;
+      this.populateLocalThreads.next(threads);
+    });
   }
 
   connect() {

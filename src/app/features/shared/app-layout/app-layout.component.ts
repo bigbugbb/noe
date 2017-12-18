@@ -13,7 +13,7 @@ import * as _ from 'lodash';
 })
 export class AppLayoutComponent implements OnInit, OnDestroy {
   private profile;
-  private subProfile;
+  private messagesNotRead: Number = 0;
   private disabled = false;
   private status: {isopen: boolean} = {isopen: false};
 
@@ -27,11 +27,11 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.chatService.connect();
-    this.subProfile = this.profileService.getProfile().subscribe(value => this.profile = value);
+    this.chatService.messagesNotRead.subscribe(value => this.messagesNotRead = value);
+    this.profileService.getProfile().subscribe(value => this.profile = value);
   }
 
   ngOnDestroy() {
-    this.subProfile.unsubscribe();
     this.chatService.disconnect();
   }
 

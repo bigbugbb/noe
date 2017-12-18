@@ -23,6 +23,9 @@ $navbar-height:                       55px !default;
   color: gray;
 
   .badge {
+    min-width: 14px;
+    min-height: 14px;
+    border-radius: 50%;
     font-size: 0.6rem;
     font-weight: 400;
   }
