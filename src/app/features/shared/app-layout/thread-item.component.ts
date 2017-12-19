@@ -26,7 +26,7 @@ export class ThreadItemComponent implements OnInit {
   private access: Subject<Thread> = new Subject<Thread>();
 
   constructor(
-    private chatService: ChatService
+    private chatService: ChatService,
   ) {}
 
   ngOnInit() {

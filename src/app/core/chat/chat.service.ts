@@ -21,6 +21,8 @@ export class ChatService {
 
   // `threads` is a stream that emits an array of the most up to date threads
   public threads: Observable<Thread[]>;
+
+  public openedThreads: Observable<Thread[]>;
   public messagesNotRead: Observable<Number>;
 
   public messageAdded = new Subject<Message>();
@@ -32,7 +34,9 @@ export class ChatService {
   public threadsUpdates: Subject<any> = new Subject<any>();
 
   // action streams
-  public accessThread: Subject<any> = new Subject<any>();
+  public accessThread: Subject<Thread> = new Subject<Thread>();
+  public closeThread: Subject<Thread> = new Subject<Thread>();
+  public updateThread: Subject<Thread> = new Subject<Thread>();
   public populateLocalThreads: Subject<Thread[]> = new Subject<Thread[]>();
 
   constructor(
@@ -58,12 +62,49 @@ export class ChatService {
       })
       .subscribe(this.threadsUpdates);
 
+    const updateThreadRemote = (thread) => {
+      const { _id, lastMessage } = thread;
+      this.threadService.update(_id, lastMessage)
+        .subscribe(data => this.updateThread.next(data.thread));
+      return thread;
+    };
+
     this.accessThread
-      .map(function(threadAccessed: Thread): IThreadsOperation {
+      .map(updateThreadRemote)
+      .map((accessing: Thread): IThreadsOperation => {
         return (threads: Thread[]) => {
           return threads.map((thread: Thread) => {
-            if (thread._id === threadAccessed._id) {
+            if (thread._id === accessing._id) {
+              thread.opened = true;
               thread.messagesNotRead = 0;
+            }
+            return thread;
+          });
+        };
+      })
+      .subscribe(this.threadsUpdates);
+
+    this.closeThread
+      .map(updateThreadRemote)
+      .map((closing: Thread): IThreadsOperation => {
+        return (threads: Thread[]) => {
+          return threads.map((thread: Thread) => {
+            if (thread._id === closing._id) {
+              thread.opened = false;
+              thread.messagesNotRead = 0;
+            }
+            return thread;
+          });
+        };
+      })
+      .subscribe(this.threadsUpdates);
+
+    this.updateThread
+      .map(function(updating: Thread): IThreadsOperation {
+        return (threads: Thread[]) => {
+          return threads.map((thread: Thread) => {
+            if (thread._id === updating._id) {
+              _.assign(thread, updating);
             }
             return thread;
           });
@@ -78,6 +119,9 @@ export class ChatService {
           .reduce(_.add)
           .value();
       });
+
+    this.openedThreads = this.threads
+      .map((threads: Thread[]) => _.filter(threads, 'opened'));
 
     this.threadService.getAll().subscribe(result => {
       const threads: Thread[] = result.threads;

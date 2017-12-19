@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from '@app/models';
-import { UserService, ProfileService, ChatService, StorageService } from '@app/core';
+import { UserService, ProfileService, ChatService, StorageService, ChatUIService } from '@app/core';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
@@ -22,6 +22,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     private profileService: ProfileService,
     private storageService: StorageService,
     private chatService: ChatService,
+    private chatUIService: ChatUIService,
     private router: Router
   ) {}
 
@@ -77,6 +78,11 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     $event.preventDefault();
     $event.stopPropagation();
     this.status.isopen = !this.status.isopen;
+  }
+
+  public toggleThreadList(event) {
+    this.chatUIService.toggleThreadList();
+    event.preventDefault();
   }
 
   public profileLink() {

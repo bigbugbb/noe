@@ -16,6 +16,7 @@ import { OrderActionsService } from './api/order/order-actions.service';
 import { ThreadService } from './api/thread/thread.service';
 import { MessageService } from './api/message/message.service';
 import { ChatService } from './chat/chat.service';
+import { ChatUIService } from './chat/chat-ui.service';
 import { ProfileService } from './profile/profile.service';
 import { StorageService } from './storage/storage.service';
 import { S3Service } from './s3/s3.service';
@@ -48,6 +49,7 @@ import * as AWS from 'aws-sdk';
     ThreadService,
     MessageService,
     ChatService,
+    ChatUIService,
     StorageService,
     S3Service,
     ApplyingFileService,

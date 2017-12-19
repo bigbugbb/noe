@@ -35,7 +35,7 @@
   </ul>
   <ul class="navbar-nav navbar-expand ml-auto mr-sm-3">
     <li class="nav-item">
-      <a href class="chat-toggle" appAsideMenuToggler>
+      <a href class="chat-toggle" (click)="toggleThreadList($event)" appAsideMenuToggler>
         <i class="fa fa-comments"></i><span *ngIf="messagesNotRead > 0" class="badge badge-danger">{{ messagesNotRead }}</span>
       </a>
     </li>
@@ -62,6 +62,8 @@
       <router-outlet></router-outlet>
     </div>
   </main>
+
+  <noe-chatbox-list></noe-chatbox-list>
 
   <aside class="aside-menu">
     <tabset>

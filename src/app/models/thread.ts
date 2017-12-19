@@ -12,6 +12,7 @@ export class Thread {
   public author: Jabber;
   public target: Jabber;
   public lastMessage: string;
+  public opened: boolean;
   public messagesNotRead: number;
 
   constructor() {}

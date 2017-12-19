@@ -15,6 +15,7 @@ export * from './api/order/order-actions.service';
 export * from './api/thread/thread.service';
 export * from './api/message/message.service';
 export * from './chat/chat.service';
+export * from './chat/chat-ui.service';
 export * from './storage/storage.service';
 export * from './s3/s3.service';
 export * from './s3/applying-file.service';
