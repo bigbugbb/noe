@@ -1,0 +1,18 @@
+<div class="popup-box" [ngStyle]="{ 'right': rightOffset() }">
+  <div class="popup-head">
+    <div class="popup-head-left">{{ target.name }}</div>
+    <div class="popup-head-right">
+      <a href (click)="close($event)">&#10005;</a>
+    </div>
+    <div style="clear: both">
+    </div>
+  </div>
+  <div class="popup-messages">
+    <noe-chat-message *ngFor="let message of messages; let i = index"
+      [index]="i"
+      [message]="message"
+      [jabber]="chooseJabber(message)"
+      [isSentToMe]="isSentToMe(message)">
+    </noe-chat-message>
+  </div>
+</div>

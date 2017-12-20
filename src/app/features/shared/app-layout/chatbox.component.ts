@@ -1,38 +1,59 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs/Rx';
 
-import { ChatService, ChatUIService } from '@app/core';
-import { Thread, Message } from '@app/models';
+import { ChatService, ChatUIService, StorageService } from '@app/core';
+import { User, Thread, Message, Jabber } from '@app/models';
 
 @Component({
   selector: 'noe-chatbox',
-  template: `
-    <div class="popup-box" [ngStyle]="{ 'right': rightOffset() }">
-      <div class="popup-head">
-        <div class="popup-head-left">test</div>
-        <div class="popup-head-right">
-          <a href (click)="close($event)">&#10005;</a>
-        </div>
-        <div style="clear: both">
-        </div>
-      </div>
-      <div class="popup-messages"></div>
-    </div>
-  `,
+  templateUrl: './chatbox.component.html',
   styleUrls: ['./chatbox.component.scss']
 })
-export class ChatboxComponent implements OnInit {
+export class ChatboxComponent implements OnInit, OnDestroy {
   @Input()
   private thread: Thread;
 
   @Input()
   private index: number;
 
+  private user: User;
+  private messages: Message[];
+
+  private subMessages: Subscription;
+
   constructor(
     private chatService: ChatService,
-    private chatUIService: ChatUIService
+    private chatUIService: ChatUIService,
+    private storageService: StorageService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = this.storageService.getUser();
+    this.subMessages = this.chatService.messagesOfThread(this.thread._id)
+      .subscribe(messages => this.messages = messages || []);
+  }
+
+  ngOnDestroy() {
+    this.subMessages.unsubscribe();
+  }
+
+  get author(): Jabber {
+    const { author, target } = this.thread;
+    return author.id === this.user._id ? author : target;
+  }
+
+  get target(): Jabber {
+    const { author, target } = this.thread;
+    return author.id === this.user._id ? target : author;
+  }
+
+  isSentToMe(message: Message): boolean {
+    return message.target === this.user._id;
+  }
+
+  chooseJabber(message: Message): Jabber {
+    return this.isSentToMe(message) ? this.target : this.author;
+  }
 
   rightOffset() {
     const isThreadListOpened = this.chatUIService.isThreadListOpened();

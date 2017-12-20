@@ -5,8 +5,8 @@ import { User } from './user';
  */
 export class Message {
   public _id: string;
-  public author: User;
-  public target: User;
+  public author: string;
+  public target: string;
   public text: string;
   public sentAt: Date;
   public thread: string;

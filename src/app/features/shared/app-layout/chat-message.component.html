@@ -1,0 +1,42 @@
+<div class="container my-2">
+  <hr *ngIf="index > 0" class="my-2">
+  <div class="row" *ngIf="isSentToMe else sentByMe">
+    <div class="col-auto">
+      <img class="rounded-circle message-avatar" [src]="jabber.avatar"/>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col px-0 jabber-name text-muted">
+          <strong>{{ jabber.name }}</strong>
+        </div>
+        <div class="col-auto sent-at my-auto ml-auto">
+          {{ message.sentAt | date: 'M/d/yy, h:mm a' }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col pl-0 message-text">{{ message.text }}</div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #sentByMe>
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col sent-at my-auto mr-auto">
+            {{ message.sentAt | date: 'M/d/yy, h:mm a' }}
+          </div>
+          <div class="col-auto px-0 jabber-name text-muted">
+            <strong>{{ jabber.name }}</strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col pr-0 message-text">{{ message.text }}</div>
+        </div>
+      </div>
+      <div *ngIf="!isSentToMe" class="col-auto">
+        <img class="rounded-circle message-avatar" [src]="jabber.avatar"/>
+      </div>
+    </div>
+  </ng-template>
+</div>

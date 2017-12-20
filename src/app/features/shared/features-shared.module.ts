@@ -14,6 +14,7 @@ import { ThreadListComponent } from './app-layout/thread-list.component';
 import { ThreadItemComponent } from './app-layout/thread-item.component';
 import { ChatboxComponent } from './app-layout/chatbox.component';
 import { ChatboxListComponent } from './app-layout/chatbox-list.component';
+import { ChatMessageComponent } from './app-layout/chat-message.component';
 import { ProfileGuidelineLayoutComponent } from './profile-guideline-layout/profile-guideline-layout.component';
 import { BusinessListComponent } from './business/business-list.component';
 import { BusinessItemComponent } from './business/business-item.component';
@@ -40,6 +41,7 @@ import { AsideToggleDirective } from './app-layout/aside.directive';
     ThreadItemComponent,
     ChatboxComponent,
     ChatboxListComponent,
+    ChatMessageComponent,
     BusinessListComponent,
     BusinessItemComponent,
     ProfileGuidelineLayoutComponent,

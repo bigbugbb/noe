@@ -10,9 +10,12 @@ import { ThreadService } from '../api/thread/thread.service';
 import { MessageService } from '../api/message/message.service';
 import { setTimeout } from 'timers';
 
-const initialThreads: Thread[] = [];
-
+type MessagesOfThreads = {[threadId: string]: Message[]};
 type IThreadsOperation = (threads: Thread[]) => Thread[];
+type IMessagesOperation = (messages: MessagesOfThreads) => MessagesOfThreads;
+
+const initialThreads: Thread[] = [];
+const initialMessages: MessagesOfThreads = {};
 
 @Injectable()
 export class ChatService {
@@ -22,28 +25,44 @@ export class ChatService {
   // `threads` is a stream that emits an array of the most up to date threads
   public threads: Observable<Thread[]>;
 
-  public openedThreads: Observable<Thread[]>;
-  public messagesNotRead: Observable<Number>;
-
-  public messageAdded = new Subject<Message>();
-  public threadUpdated = new Subject<Thread>();
+  // `messagesOfThreads` is a stream that emits an array of the most up to date messages of threads
+  public messagesOfThreads: Observable<MessagesOfThreads>;
 
   // `threadsUpdates` receives _operations_ to be applied to our `threads`
   // it's a way we can perform changes on *all* threads (that are currently
   // stored in `threads`)
-  public threadsUpdates: Subject<any> = new Subject<any>();
+  private threadsUpdates: Subject<any> = new Subject<any>();
 
-  // action streams
+  // `messagesUpdates` receives _operations_ to be applied to our `messages`
+  // it's a way we can perform changes on *all* messages (that are currently
+  // stored in `messages`)
+  private messagesUpdates: Subject<any> = new Subject<any>();
+
+  // action streams for thread
   public accessThread: Subject<Thread> = new Subject<Thread>();
   public closeThread: Subject<Thread> = new Subject<Thread>();
   public updateThread: Subject<Thread> = new Subject<Thread>();
-  public populateLocalThreads: Subject<Thread[]> = new Subject<Thread[]>();
+  public populateThreads: Subject<Thread[]> = new Subject<Thread[]>();
+
+  // action streams for message
+  public populateMessagesOfThread: Subject<any> = new Subject<any>();
+
+  // action streams for socket.io
+  public messageAdded: Subject<Message> = new Subject<Message>();
+  public threadUpdated: Subject<Thread> = new Subject<Thread>();
+
+  // observables
+  public openedThreads: Observable<Thread[]>;
+  public messagesNotRead: Observable<Number>;
 
   constructor(
     private threadService: ThreadService,
     private messageService: MessageService,
     private storageService: StorageService
   ) {
+    /**
+     * `threads` stream related stuff
+     */
     this.threads = this.threadsUpdates
       // watch the updates and accumulate operations on the threads
       .scan((threads: Thread[], operation: IThreadsOperation) => {
@@ -54,7 +73,7 @@ export class ChatService {
       .publishReplay(1)
       .refCount();
 
-    this.populateLocalThreads
+    this.populateThreads
       .map(function(threadsToPopulate: Thread[]): IThreadsOperation {
         return (threads: Thread[]) => {
           return _.concat(threads, threadsToPopulate);
@@ -72,6 +91,7 @@ export class ChatService {
     this.accessThread
       .map(updateThreadRemote)
       .map((accessing: Thread): IThreadsOperation => {
+        this.fetchRemoteMessagesOfThread(accessing._id);
         return (threads: Thread[]) => {
           return threads.map((thread: Thread) => {
             if (thread._id === accessing._id) {
@@ -123,10 +143,47 @@ export class ChatService {
     this.openedThreads = this.threads
       .map((threads: Thread[]) => _.filter(threads, 'opened'));
 
-    this.threadService.getAll().subscribe(result => {
-      const threads: Thread[] = result.threads;
-      this.populateLocalThreads.next(threads);
-    });
+    /**
+     * `messagesOfThreads` stream related stuff
+     */
+    this.messagesOfThreads = this.messagesUpdates
+      .scan((messagesOfThreads: MessagesOfThreads, operation: IMessagesOperation) => {
+        return operation(messagesOfThreads);
+      }, initialMessages)
+      .publishReplay(1)
+      .refCount();
+
+    this.populateMessagesOfThread
+      .map(function({ threadId, messagesOfThread }): IMessagesOperation {
+        return (messagesOfThreads: MessagesOfThreads) => {
+          return _.set(messagesOfThreads, `${threadId}`, messagesOfThread) as MessagesOfThreads;
+        };
+      })
+      .subscribe(this.messagesUpdates);
+
+    // prepare data
+    this.fetchRemoteThreads();
+  }
+
+  fetchRemoteThreads() {
+    this.threadService.getAll()
+      .subscribe(result => {
+        this.populateThreads.next(result.threads);
+      });
+  }
+
+  fetchRemoteMessagesOfThread(threadId: string, limit: number = 30, lastTime: number = _.now()) {
+    this.messageService.getAll(threadId, { limit, lastTime })
+      .subscribe(result => {
+        const messagesOfThread = result.messages;
+        this.populateMessagesOfThread.next({ threadId, messagesOfThread });
+      });
+  }
+
+  messagesOfThread(threadId): Observable<Message[]> {
+    return this.messagesOfThreads
+      .map(messagesOfThreads => messagesOfThreads[threadId])
+      .distinctUntilChanged();
   }
 
   connect() {

@@ -8,7 +8,7 @@ import { Thread } from '@app/models';
   selector: 'noe-chatbox-list',
   template: `
     <noe-chatbox
-      *ngFor="let thread of threads | async; let i = index; trackBy: trackByIndex"
+      *ngFor="let thread of threads | async; let i = index; "
       class="animated fadeIn"
       [thread]="thread"
       [index]="i">
