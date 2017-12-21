@@ -15,4 +15,13 @@
       [isSentToMe]="isSentToMe(message)">
     </noe-chat-message>
   </div>
+  <div class="popup-input">
+    <input type="text"
+      class="message-input"
+      placeholder="Write your message here..."
+      (keydown.enter)="onEnter($event)"
+      [(ngModel)]="inputText"
+    />
+    <button class="btn btn-primary btn-send" (click)="onEnter($event)">Send</button>
+  </div>
 </div>

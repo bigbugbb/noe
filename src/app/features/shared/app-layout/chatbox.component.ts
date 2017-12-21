@@ -17,6 +17,7 @@ export class ChatboxComponent implements OnInit, OnDestroy {
   private index: number;
 
   private user: User;
+  private inputText: string;
   private messages: Message[];
 
   private subMessages: Subscription;
@@ -60,6 +61,11 @@ export class ChatboxComponent implements OnInit, OnDestroy {
     const offset = isThreadListOpened ? 250 : 0;
     const margin = 16;
     return `${offset + this.index * 300 + (this.index + 1) * margin}px`;
+  }
+
+  onEnter(event) {
+    console.log(this.inputText);
+    this.inputText = '';
   }
 
   close(event) {

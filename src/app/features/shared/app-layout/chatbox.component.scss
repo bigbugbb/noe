@@ -1,16 +1,18 @@
 $blue:                              #20a8d8;
 $footer-height:                       50px !default;
+$border-color:                        rgba(29, 49, 91, .3);
 
 .popup-box {
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: fixed;
   bottom: $footer-height;
   right: 16px;
-  height: 300px;
+  height: 316px;
   width: 300px;
   margin-left: 1rem;
   background-color: rgb(237, 239, 244);
-  border: 1px solid rgba(29, 49, 91, .3);
+  border: 1px solid $border-color;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   overflow: hidden;
@@ -22,6 +24,7 @@ $footer-height:                       50px !default;
   .popup-head {
     background-color: $blue;
     padding: 4px 12px;
+    height: 29px;
     color: white;
     font-weight: bold;
     font-size: 14px;
@@ -43,7 +46,27 @@ $footer-height:                       50px !default;
   }
 
   .popup-messages {
-    height: 90%;
+    display: flex;
+    flex-direction: column;
+    height: 249px;
     overflow-y: scroll;
+  }
+
+  .popup-input {
+    display: flex;
+    flex-direction: row;
+    height: 38px;
+    border-top: 0.5px solid $border-color;
+    padding: 0.3rem 0.3rem;
+
+    .message-input {
+      flex-grow: 1;
+    }
+
+    .btn-send {
+      margin-left: 0.3rem;
+      font-size: 0.8rem;
+      line-height: 100%
+    }
   }
 }
