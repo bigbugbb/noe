@@ -1,19 +1,21 @@
 export class Jabber {
-  public id: string;
-  public name: string;
-  public avatar: string;
   public lastAccess: Date;
 
-  constructor() {}
+  constructor(
+    public id: string,
+    public name: string,
+    public avatar: string
+  ) {}
 }
 
 export class Thread {
-  public _id: string;
-  public author: Jabber;
-  public target: Jabber;
   public lastMessage: string;
   public opened: boolean;
   public messagesNotRead: number;
 
-  constructor() {}
+  constructor(
+    public _id: string,
+    public author: Jabber,
+    public target: Jabber
+  ) {}
 }

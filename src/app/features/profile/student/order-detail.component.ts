@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { StorageService, ChatService, OrderDetailService, OrderActionsService } from '@app/core';
-import { Order, Business } from '@app/models';
+import { Order, Business, User, Jabber, Message } from '@app/models';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
@@ -133,9 +133,13 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   }
 
   private contact() {
-    const { customer, business } = this.order;
-    const room = `${customer._id}-${business.owner}`;
-    this.chatService.sendMessage(room, customer._id, business.owner, 'test message');
+    const customer: User = this.order.customer;
+    const business: Business = this.order.business;
+    const thread = this.chatService.createLocalThread(
+      new Jabber(customer._id, customer.profile['name'], customer.profile['avatar']),
+      new Jabber(business.owner, business.name, business.avatar)
+    );
+    this.chatService.accessThread.next(thread);
   }
 
   private cancel() {

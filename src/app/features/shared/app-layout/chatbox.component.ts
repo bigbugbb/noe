@@ -1,4 +1,9 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
 
 import { ChatService, ChatUIService, StorageService } from '@app/core';
@@ -31,7 +36,10 @@ export class ChatboxComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user = this.storageService.getUser();
     this.subMessages = this.chatService.messagesOfThread(this.thread._id)
-      .subscribe(messages => this.messages = messages || []);
+      .subscribe(messages => {
+        this.messages = messages || [];
+        console.log(this.messages);
+      });
   }
 
   ngOnDestroy() {
@@ -64,7 +72,11 @@ export class ChatboxComponent implements OnInit, OnDestroy {
   }
 
   onEnter(event) {
-    console.log(this.inputText);
+    const room = this.author.id;
+    const message = new Message(
+      this.author.id, this.target.id, this.thread._id, this.inputText
+    );
+    this.chatService.sendMessage(room, message);
     this.inputText = '';
   }
 

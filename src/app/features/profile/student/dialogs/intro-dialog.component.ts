@@ -74,6 +74,7 @@ export class IntroDialogComponent implements OnInit {
     if (!_.isEmpty(this.data)) {
       this.model.avatar = this.data.image;
     }
+    this.model.name = `${this.model.firstname} ${this.model.lastname}`;
     const user = this.storageService.getUser();
     this.profileService.updateProfile(user.role, this.model).subscribe(() => {
       this.dialog.hide();
