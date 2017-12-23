@@ -17,6 +17,8 @@ export class MyBusinessesComponent implements OnInit, OnDestroy {
   private page = 1;
   private limit = 20;
 
+  private profile: {[key: string]: any};
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -27,6 +29,7 @@ export class MyBusinessesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.queryOrdersByPage(1);
+    this.profile = this.storageService.getProfile();
     this.businessActionsService.getAction().subscribe(action => {
       const { type, payload } = action;
       switch (type) {
@@ -51,6 +54,7 @@ export class MyBusinessesComponent implements OnInit, OnDestroy {
   public createBusiness() {
     const business: Business = new Business();
     business.owner = this.storageService.getUser()._id;
+    business.ownerName = this.profile.name;
     this.businessService.create(business).subscribe(model => {
       this.router.navigate(['businesses', model._id], { relativeTo: this.route });
     });

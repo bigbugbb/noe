@@ -1,17 +1,27 @@
 import { Injectable } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
 
 import { OrderService } from './order.service';
+import { ChatService } from '@app/core/chat/chat.service';
 import { StorageService } from '@app/core/storage/storage.service';
-import { Order } from '@app/models';
+import { Order, Business, User, Jabber, Message, Thread } from '@app/models';
 import { environment } from '@env/environment';
 import * as _ from 'lodash';
 
 @Injectable()
 export class OrderActionsService {
+  private threads: Thread[] = [];
+  private subThreads: Subscription;
+
   constructor(
     private orderService: OrderService,
+    private chatService: ChatService,
     private storageService: StorageService
-  ) {}
+  ) {
+    this.chatService.threads$.subscribe((threads: Thread[]) => {
+      this.threads = threads;
+    });
+  }
 
   public pay(order, opened?, closed?) {
     return new Promise<Order>((resolve, reject) => {
@@ -31,8 +41,6 @@ export class OrderActionsService {
             resolve(value);
           }, error => {
             reject(error);
-          }, () => {
-            console.log('bbb');
           });
         },
         opened,
@@ -51,8 +59,20 @@ export class OrderActionsService {
     return this.orderService.refund(_id, charge).toPromise();
   }
 
-  public contact() {
-
+  public contact(order) {
+    const customer: User = order.customer;
+    const business: Business = order.business;
+    let thread = _.find(this.threads, (t) => {
+      return (t.author.id === customer._id && t.target.id === business.owner) ||
+             (t.target.id === customer._id && t.author.id === business.owner);
+    });
+    if (_.isEmpty(thread)) {
+      thread = this.chatService.createLocalThread(
+        new Jabber(customer._id, customer.profile['name'], customer.profile['avatar']),
+        new Jabber(business.owner, business.ownerName, business.avatar)
+      );
+    }
+    this.chatService.accessThread.next(thread);
   }
 
   public cancel(order, by = 'customer') {

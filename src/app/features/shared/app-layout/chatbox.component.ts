@@ -89,9 +89,9 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   onEnter(event) {
-    const room = this.author.id;
+    // send a message from the author to the target
     const message = new Message(this.author.id, this.target.id, this.thread, this.inputText);
-    this.chatService.sendMessage(room, message);
+    this.chatService.sendMessage(message);
     this.inputText = '';
   }
 

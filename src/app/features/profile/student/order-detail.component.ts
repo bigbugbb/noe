@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { StorageService, ChatService, OrderDetailService, OrderActionsService } from '@app/core';
-import { Order, Business, User, Jabber, Message, Thread } from '@app/models';
+import { Order, Business } from '@app/models';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
@@ -23,28 +23,20 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   private messages = [];
   private connection;
 
-  private threads: Thread[] = [];
-  private subThreads: Subscription;
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private orderActionsService: OrderActionsService,
     private orderDetailService: OrderDetailService,
-    private chatService: ChatService,
     private storageService: StorageService
   ) {}
 
   ngOnInit() {
     this.subParams = this.route.params.subscribe(params => this.updateOrder(params.id));
-    this.subThreads = this.chatService.threads$.subscribe((threads: Thread[]) => {
-      this.threads = threads;
-    });
   }
 
   ngOnDestroy() {
     this.subParams.unsubscribe();
-    this.subThreads.unsubscribe();
   }
 
   updateOrder(id) {
@@ -125,19 +117,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   }
 
   private contact() {
-    const customer: User = this.order.customer;
-    const business: Business = this.order.business;
-    let thread = _.find(this.threads, (t) => {
-      return (t.author.id === customer._id && t.target.id === business.owner) ||
-             (t.target.id === customer._id && t.author.id === business.owner);
-    });
-    if (_.isEmpty(thread)) {
-      thread = this.chatService.createLocalThread(
-        new Jabber(customer._id, customer.profile['name'], customer.profile['avatar']),
-        new Jabber(business.owner, business.name, business.avatar)
-      );
-    }
-    this.chatService.accessThread.next(thread);
+    this.orderActionsService.contact(this.order);
   }
 
   private cancel() {

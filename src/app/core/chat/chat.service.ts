@@ -46,6 +46,7 @@ export class ChatService {
   public updateThread: Subject<Thread> = new Subject<Thread>();
   public prependThread: Subject<Thread> = new Subject<Thread>();
   public populateThreads: Subject<Thread[]> = new Subject<Thread[]>();
+  public increaseMessagesNotRead: Subject<Thread> = new Subject<Thread>();
 
   // action streams for message
   public appendMessage: Subject<Message> = new Subject<Message>();
@@ -72,10 +73,12 @@ export class ChatService {
 
     const updateRemoteThread = (thread: Thread) => {
       const { _id, lastMessage } = thread;
-      this.threadService.update(_id, lastMessage)
-        .subscribe(data => {
-          this.updateThread.next(data.thread);
-        });
+      if (!_.isEmpty(_id)) {
+        this.threadService.update(_id, lastMessage)
+          .subscribe(data => {
+            this.updateThread.next(data.thread);
+          });
+      }
       return thread;
     };
 
@@ -160,6 +163,19 @@ export class ChatService {
       })
       .subscribe(this.threadsUpdates);
 
+    this.increaseMessagesNotRead
+      .map((increasing: Thread): IThreadsOperation => {
+        return (threads: Thread[]) => {
+          const thread = _.find(threads, (t) => isSameThread(t, increasing));
+          if (!thread.opened) {
+            if (!thread.messagesNotRead) { thread.messagesNotRead = 0; }
+            thread.messagesNotRead++;
+          }
+          return threads;
+        };
+      })
+      .subscribe(this.threadsUpdates);
+
     this.messagesNotRead$ = this.threads$
       .map((threads: Thread[]) => _.chain(threads)
         .map(thread => thread.messagesNotRead)
@@ -219,7 +235,7 @@ export class ChatService {
     return thread;
   }
 
-  sendMessage(room: string, message: Message) {
+  sendMessage(message: Message) {
     const { author, target, text, uuid } = message;
 
     // The message sent was created locally and will be appended to the cache.
@@ -227,7 +243,7 @@ export class ChatService {
 
     // send the message and wait for 'message-added' event to update the local one
     const token = this.storageService.getToken();
-    this.socket.emit('add-message', room, token, author, target, text, uuid);
+    this.socket.emit('add-message', token, author, target, text, uuid);
   }
 
   connect() {
@@ -235,6 +251,7 @@ export class ChatService {
 
     this.socket.on('message-added', (message) => {
       this.appendMessage.next(message);
+      this.increaseMessagesNotRead.next(message.thread);
     });
 
     this.socket.on('thread-created', (thread) => {
@@ -250,7 +267,7 @@ export class ChatService {
     });
 
     this.socket.on('connect', () => {
-      setTimeout(() => this.join(), 0);
+      setTimeout(() => this.join(this.user._id), 0);
       console.log('connect');
     });
 

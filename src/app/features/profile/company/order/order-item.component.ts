@@ -104,7 +104,7 @@ export class OrderItemComponent {
   }
 
   private contact() {
-
+    this.orderActionsService.contact(this.item);
   }
 
   private cancel() {

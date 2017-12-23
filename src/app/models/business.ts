@@ -1,6 +1,7 @@
 export class Business {
   public _id: string;
   public owner: string;
+  public ownerName: string;
   public avatar: string;
   public name: string;
   public type: string;

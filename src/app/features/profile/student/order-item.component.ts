@@ -117,19 +117,7 @@ export class OrderItemComponent implements OnInit, OnDestroy {
   }
 
   private contact() {
-    const customer: User = this.item.customer;
-    const business: Business = this.item.business;
-    let thread = _.find(this.threads, (t) => {
-      return (t.author.id === customer._id && t.target.id === business.owner) ||
-             (t.target.id === customer._id && t.author.id === business.owner);
-    });
-    if (_.isEmpty(thread)) {
-      thread = this.chatService.createLocalThread(
-        new Jabber(customer._id, customer.profile['name'], customer.profile['avatar']),
-        new Jabber(business.owner, business.name, business.avatar)
-      );
-    }
-    this.chatService.accessThread.next(thread);
+    this.orderActionsService.contact(this.item);
   }
 
   private cancel() {

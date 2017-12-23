@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Rx';
 
 import { Thread } from '@app/models';
-import { ThreadService, ChatService } from '@app/core';
+import { ThreadService, ChatService, StorageService } from '@app/core';
+import { Jabber, User } from '@app/models';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -23,13 +24,16 @@ export class ThreadItemComponent implements OnInit {
   @Input()
   private thread: Thread;
 
+  private user: User;
   private access: Subject<Thread> = new Subject<Thread>();
 
   constructor(
     private chatService: ChatService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit() {
+    this.user = this.storageService.getUser();
     this.access.subscribe(this.chatService.accessThread);
   }
 
@@ -37,12 +41,22 @@ export class ThreadItemComponent implements OnInit {
     this.access.next(this.thread);
   }
 
+  get author(): Jabber {
+    const { author, target } = this.thread;
+    return author.id === this.user._id ? author : target;
+  }
+
+  get target(): Jabber {
+    const { author, target } = this.thread;
+    return author.id === this.user._id ? target : author;
+  }
+
   get avatar() {
-    return this.thread.target.avatar;
+    return this.target.avatar;
   }
 
   get name() {
-    return this.thread.target.name;
+    return this.target.name;
   }
 
   get lastMessage() {
