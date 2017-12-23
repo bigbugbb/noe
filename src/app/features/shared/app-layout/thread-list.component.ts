@@ -23,6 +23,6 @@ export class ThreadListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.threads = this.chatService.threads;
+    this.threads = this.chatService.threads$;
   }
 }

@@ -9,12 +9,12 @@ export class Jabber {
 }
 
 export class Thread {
+  public _id: string;
   public lastMessage: string;
   public opened: boolean;
   public messagesNotRead: number;
 
   constructor(
-    public _id: string,
     public author: Jabber,
     public target: Jabber
   ) {}

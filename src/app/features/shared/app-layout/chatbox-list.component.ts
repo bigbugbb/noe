@@ -24,7 +24,7 @@ export class ChatboxListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.threads = this.chatService.openedThreads;
+    this.threads = this.chatService.openedThreads$;
   }
 
   trackByIndex(index: number, obj: any): any {

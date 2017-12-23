@@ -10,7 +10,7 @@ import { ThreadService } from '../api/thread/thread.service';
 import { MessageService } from '../api/message/message.service';
 import { setTimeout } from 'timers';
 
-type MessagesOfThreads = {[threadId: string]: Message[]};
+type MessagesOfThreads = {[key: string]: Message[]};
 type IThreadsOperation = (threads: Thread[]) => Thread[];
 type IMessagesOperation = (messages: MessagesOfThreads) => MessagesOfThreads;
 
@@ -25,10 +25,10 @@ export class ChatService {
   public user: User;
 
   // `threads` is a stream that emits an array of the most up to date threads
-  public threads: Observable<Thread[]>;
+  public threads$: Observable<Thread[]>;
 
   // `messagesOfThreads` is a stream that emits an array of the most up to date messages of threads
-  public messagesOfThreads: Observable<MessagesOfThreads>;
+  public messagesOfThreads$: Observable<MessagesOfThreads>;
 
   // `threadsUpdates` receives _operations_ to be applied to our `threads`
   // it's a way we can perform changes on *all* threads (that are currently
@@ -44,18 +44,16 @@ export class ChatService {
   public accessThread: Subject<Thread> = new Subject<Thread>();
   public closeThread: Subject<Thread> = new Subject<Thread>();
   public updateThread: Subject<Thread> = new Subject<Thread>();
-  public preappendThread: Subject<Thread> = new Subject<Thread>();
+  public prependThread: Subject<Thread> = new Subject<Thread>();
   public populateThreads: Subject<Thread[]> = new Subject<Thread[]>();
 
   // action streams for message
   public appendMessage: Subject<Message> = new Subject<Message>();
-  public syncMessage: Subject<Message> = new Subject<Message>();
-  public populateMessagesOfThread: Subject<any> = new Subject<any>();
-  public updateKeyForMessagesOfThread: Subject<any> = new Subject<any>();
+  public populateMoTs: Subject<any> = new Subject<any>();
 
   // observables
-  public openedThreads: Observable<Thread[]>;
-  public messagesNotRead: Observable<Number>;
+  public openedThreads$: Observable<Thread[]>;
+  public messagesNotRead$: Observable<Number>;
 
   constructor(
     private threadService: ThreadService,
@@ -64,196 +62,160 @@ export class ChatService {
   ) {
     this.user = this.storageService.getUser();
 
+    const isSameThread = (t1: Thread, t2: Thread): boolean => {
+      return t1.author.id === t2.author.id && t1.target.id === t2.target.id;
+    };
+
+    const keyOfMoT = (thread: Thread) => {
+      return `${thread.author.id}-${thread.target.id}`;
+    };
+
+    const updateRemoteThread = (thread: Thread) => {
+      const { _id, lastMessage } = thread;
+      this.threadService.update(_id, lastMessage)
+        .subscribe(data => {
+          this.updateThread.next(data.thread);
+        });
+      return thread;
+    };
+
+    const fetchRemoteThreads = () => {
+      this.threadService.getAll()
+        .subscribe(result => this.populateThreads.next(result.threads));
+    };
+
+    const fetchRemoteMessagesOfThread = (thread: Thread, limit: number = 999, lastTime: number = _.now()) => {
+      const threadId = thread._id;
+      if (!_.isEmpty(threadId)) {
+        this.messageService.getAll(threadId, { limit, lastTime })
+          .subscribe(result => {
+            const key = keyOfMoT(thread);
+            const mot: Message[] = result.messages;
+            this.populateMoTs.next({ key, mot });
+          });
+      }
+    };
+
     /**
      * `threads` stream related stuff
      */
-    this.threads = this.threadsUpdates
+    this.threads$ = this.threadsUpdates
       // watch the updates and accumulate operations on the threads
-      .scan((threads: Thread[], operation: IThreadsOperation) => {
-        return operation(threads);
-      }, initialThreads)
+      .scan((threads: Thread[], operation: IThreadsOperation) => operation(threads), initialThreads)
       // make sure we can share the most recent list of threads across anyone
       // who's interested in subscribing and cache the last known list of threads
       .publishReplay(1)
       .refCount();
 
-    const isSameThread = function (t1: Thread, t2: Thread): boolean {
-      return t1.author.id === t2.author.id && t1.target.id === t2.target.id;
-    };
-
-    this.preappendThread
-      .map(function(threadToPreappend: Thread): IThreadsOperation {
+    this.prependThread
+      .map((prepending: Thread): IThreadsOperation => {
         return (threads: Thread[]) => {
-          const thread = _.find(threads, (t) => isSameThread(t, threadToPreappend));
-          if (!_.isEmpty(thread)) {
-            _.assign(thread, threadToPreappend);
-            return threads;
-          }
-          return [threadToPreappend, ...threads];
+          const thread = _.find(threads, (t) => isSameThread(t, prepending));
+          return thread ? threads : [prepending, ...threads];
         };
       })
       .subscribe(this.threadsUpdates);
 
     this.populateThreads
-      .map(function(threadsToPopulate: Thread[]): IThreadsOperation {
-        return (threads: Thread[]) => {
-          return _.concat(threads, threadsToPopulate);
-        };
+      .map((threadsToPopulate: Thread[]): IThreadsOperation => {
+        return (threads: Thread[]) => _.concat(threads, threadsToPopulate);
       })
       .subscribe(this.threadsUpdates);
 
-    const updateThreadRemote = (thread) => {
-      const { _id, lastMessage } = thread;
-      this.threadService.update(_id, lastMessage)
-        .subscribe(data => this.updateThread.next(data.thread));
-      return thread;
-    };
-
     this.accessThread
-      .map(updateThreadRemote)
+      .map(updateRemoteThread)
       .map((accessing: Thread): IThreadsOperation => {
-        this.fetchRemoteMessagesOfThread(accessing._id);
+        fetchRemoteMessagesOfThread(accessing);
         return (threads: Thread[]) => {
-          return threads.map((t: Thread) => {
-            if (isSameThread(t, accessing)) {
-              t.opened = true;
-              t.messagesNotRead = 0;
-            }
-            return t;
-          });
+          _.remove(threads, (t) => isSameThread(t, accessing));
+          accessing.opened = true;
+          accessing.messagesNotRead = 0;
+          threads.unshift(accessing);
+          return threads;
         };
       })
       .subscribe(this.threadsUpdates);
 
     this.updateThread
-      .map(function(updating: Thread): IThreadsOperation {
-        return (threads: Thread[]) => {
-          return threads.map((t: Thread) => {
-            if (isSameThread(t, updating)) {
-              _.assign(t, updating);
-            }
-            return t;
-          });
-        };
+      .map((updating: Thread): IThreadsOperation => {
+        return (threads: Thread[]) => threads.map((t: Thread) => {
+          if (isSameThread(t, updating)) {
+            _.assign(t, updating);
+          }
+          return t;
+        });
       })
       .subscribe(this.threadsUpdates);
 
     this.closeThread
-      .map(updateThreadRemote)
+      .map(updateRemoteThread)
       .map((closing: Thread): IThreadsOperation => {
-        return (threads: Thread[]) => {
-          return threads.map((t: Thread) => {
-            if (isSameThread(t, closing)) {
-              t.opened = false;
-              t.messagesNotRead = 0;
-            }
-            return t;
-          });
-        };
+        return (threads: Thread[]) => threads.map((t: Thread) => {
+          if (isSameThread(t, closing)) {
+            t.opened = false;
+            t.messagesNotRead = 0;
+          }
+          return t;
+        });
       })
       .subscribe(this.threadsUpdates);
 
-    this.messagesNotRead = this.threads
-      .map((threads: Thread[]) => {
-        return _.chain(threads)
-          .map(thread => thread.messagesNotRead)
-          .reduce(_.add)
-          .value();
-      });
+    this.messagesNotRead$ = this.threads$
+      .map((threads: Thread[]) => _.chain(threads)
+        .map(thread => thread.messagesNotRead)
+        .reduce(_.add)
+        .value()
+      );
 
-    this.openedThreads = this.threads
+    this.openedThreads$ = this.threads$
       .map((threads: Thread[]) => _.filter(threads, 'opened'));
 
     /**
      * `messagesOfThreads` stream related stuff
      */
-    this.messagesOfThreads = this.messagesUpdates
-      .scan((messagesOfThreads: MessagesOfThreads, operation: IMessagesOperation) => {
-        return operation(messagesOfThreads);
-      }, initialMessages)
+    this.messagesOfThreads$ = this.messagesUpdates
+      .scan((mots: MessagesOfThreads, operation: IMessagesOperation) => operation(mots), initialMessages)
       .publishReplay(1)
       .refCount();
 
-    this.populateMessagesOfThread
-      .map(function({ threadId, messagesOfThread }): IMessagesOperation {
-        return (messagesOfThreads: MessagesOfThreads) => {
-          return _.set(messagesOfThreads, `${threadId}`, messagesOfThread) as MessagesOfThreads;
-        };
-      })
-      .subscribe(this.messagesUpdates);
-
-    this.updateKeyForMessagesOfThread
-      .map(function(thread: Thread): IMessagesOperation {
-        return (messagesOfThreads: MessagesOfThreads) => {
-          const newKey = thread._id;
-          const oldKey = `${thread.author.id}-${thread.target.id}`;
-          const messages = _.get(messagesOfThreads, oldKey);
-          messagesOfThreads = _.omit(messagesOfThreads, [oldKey]) as MessagesOfThreads;
-          return _.set(messagesOfThreads, newKey, messages) as MessagesOfThreads;
-        };
+    this.populateMoTs
+      .map(({ key, mot }): IMessagesOperation => {
+        return (mots: MessagesOfThreads) => <MessagesOfThreads>_.set(mots, key, mot);
       })
       .subscribe(this.messagesUpdates);
 
     this.appendMessage
-      .map(function(message): IMessagesOperation {
-        const threadId = message.thread;
-        return (messagesOfThreads: MessagesOfThreads) => {
-          const messagesOfThread = _.get(messagesOfThreads, `${threadId}`) as Message[];
-          if (_.isEmpty(messagesOfThread)) {
-            _.set(messagesOfThreads, `${threadId}`, [ message ]);
+      .map((message): IMessagesOperation => {
+        return (mots: MessagesOfThreads) => {
+          const key = keyOfMoT(message.thread);
+          const mot = _.get(mots, key) as Message[];
+          if (_.isEmpty(mot)) {
+            _.set(mots, key, [ message ]);
           } else {
-            messagesOfThread.push(message);
+            const sync = _.findLast(
+              mot, (m: Message) => _.isEmpty(m._id) && m.uuid === message.uuid
+            );
+            _.isEmpty(sync) ? mot.push(message) : _.assign(sync, message);
           }
-          return messagesOfThreads;
-        };
-      })
-      .subscribe(this.messagesUpdates);
-
-    this.syncMessage
-      .map(function(message: Message): IMessagesOperation {
-        const threadId = message.thread;
-        return (messagesOfThreads: MessagesOfThreads) => {
-          const messagesOfThread = _.get(messagesOfThreads, `${threadId}`) as Message[];
-          if (!_.isEmpty(messagesOfThread)) {
-            const messageToSync = _.findLast(messagesOfThread, (m: Message) => {
-              return _.isEmpty(m._id) && m.uuid === message.uuid;
-            });
-            _.isEmpty(messageToSync) ?
-              messagesOfThread.push(message) : _.assign(messageToSync, message);
-          }
-          return messagesOfThreads;
+          return mots;
         };
       })
       .subscribe(this.messagesUpdates);
 
     // prepare data
-    this.fetchRemoteThreads();
+    fetchRemoteThreads();
   }
 
-  fetchRemoteThreads() {
-    this.threadService.getAll()
-      .subscribe(result => {
-        this.populateThreads.next(result.threads);
-      });
-  }
-
-  fetchRemoteMessagesOfThread(threadId: string, limit: number = 999, lastTime: number = _.now()) {
-    this.messageService.getAll(threadId, { limit, lastTime })
-      .subscribe(result => {
-        const messagesOfThread: Message[] = result.messages;
-        this.populateMessagesOfThread.next({ threadId, messagesOfThread });
-      });
-  }
-
-  messagesOfThread(threadId): Observable<Message[]> {
-    return this.messagesOfThreads
-      .map(messagesOfThreads => messagesOfThreads[threadId])
+  messagesOfThread(thread: Thread): Observable<Message[]> {
+    const key = `${thread.author.id}-${thread.target.id}`;
+    return this.messagesOfThreads$
+      .map(mots => mots[key])
       .distinctUntilChanged();
   }
 
   createLocalThread(author: Jabber, target: Jabber): Thread {
-    const thread = new Thread(`${author.id}-${target.id}`, author, target);
-    this.preappendThread.next(thread);
+    const thread = new Thread(author, target);
+    this.prependThread.next(thread);
     return thread;
   }
 
@@ -261,7 +223,6 @@ export class ChatService {
     const { author, target, text, uuid } = message;
 
     // The message sent was created locally and will be appended to the cache.
-    // Wait for 'message-added' event to update the message properties.
     this.appendMessage.next(message);
 
     // send the message and wait for 'message-added' event to update the local one
@@ -273,12 +234,15 @@ export class ChatService {
     this.socket = io(this.url);
 
     this.socket.on('message-added', (message) => {
-      this.syncMessage.next(message);
+      this.appendMessage.next(message);
     });
 
     this.socket.on('thread-created', (thread) => {
-      this.updateThread.next(thread);
-      this.updateKeyForMessagesOfThread.next(thread);
+      if (thread.author.id === this.user._id) {
+        this.updateThread.next(thread);
+      } else {
+        this.prependThread.next(thread);
+      }
     });
 
     this.socket.on('thread-updated', (thread) => {

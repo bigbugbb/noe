@@ -1,7 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Rx';
 
-import { Order } from '@app/models';
+import * as _ from 'lodash';
+import { Order, Business, User, Jabber, Thread } from '@app/models';
 import { OrderDetailService, OrderActionsService, ChatService, StorageService } from '@app/core';
 import { environment } from '@env/environment';
 
@@ -10,7 +12,7 @@ import { environment } from '@env/environment';
   templateUrl: './order-item.component.html',
   styleUrls: ['./order-item.component.scss', '../../shared/loading/loading.scss']
 })
-export class OrderItemComponent {
+export class OrderItemComponent implements OnInit, OnDestroy {
 
   private itemValue: Order;
 
@@ -22,6 +24,9 @@ export class OrderItemComponent {
   @Output()
   private itemChange = new EventEmitter();
 
+  private threads: Thread[] = [];
+  private subThreads: Subscription;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -30,6 +35,16 @@ export class OrderItemComponent {
     private chatService: ChatService,
     private storageService: StorageService
   ) {}
+
+  ngOnInit() {
+    this.subThreads = this.chatService.threads$.subscribe((threads: Thread[]) => {
+      this.threads = threads;
+    });
+  }
+
+  ngOnDestroy() {
+    this.subThreads.unsubscribe();
+  }
 
   @Input()
   get item() {
@@ -102,7 +117,19 @@ export class OrderItemComponent {
   }
 
   private contact() {
-
+    const customer: User = this.item.customer;
+    const business: Business = this.item.business;
+    let thread = _.find(this.threads, (t) => {
+      return (t.author.id === customer._id && t.target.id === business.owner) ||
+             (t.target.id === customer._id && t.author.id === business.owner);
+    });
+    if (_.isEmpty(thread)) {
+      thread = this.chatService.createLocalThread(
+        new Jabber(customer._id, customer.profile['name'], customer.profile['avatar']),
+        new Jabber(business.owner, business.name, business.avatar)
+      );
+    }
+    this.chatService.accessThread.next(thread);
   }
 
   private cancel() {

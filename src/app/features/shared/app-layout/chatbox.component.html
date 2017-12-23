@@ -7,7 +7,7 @@
     <div style="clear: both">
     </div>
   </div>
-  <div #scrollMessages class="popup-messages" [scrollTop]="scrollMessages.scrollHeight">
+  <div #scrollMessages class="popup-messages">
     <noe-chat-message *ngFor="let message of messages; let i = index"
       [index]="i"
       [message]="message"

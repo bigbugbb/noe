@@ -2,7 +2,10 @@ import {
   Component,
   Input,
   OnInit,
-  OnDestroy
+  OnDestroy,
+  AfterViewChecked,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
 
@@ -14,12 +17,15 @@ import { User, Thread, Message, Jabber } from '@app/models';
   templateUrl: './chatbox.component.html',
   styleUrls: ['./chatbox.component.scss']
 })
-export class ChatboxComponent implements OnInit, OnDestroy {
+export class ChatboxComponent implements OnInit, OnDestroy, AfterViewChecked {
   @Input()
   private thread: Thread;
 
   @Input()
   private index: number;
+
+  @ViewChild('scrollMessages')
+  private scrollMessages: ElementRef;
 
   private user: User;
   private inputText: string;
@@ -35,15 +41,26 @@ export class ChatboxComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this.storageService.getUser();
-    this.subMessages = this.chatService.messagesOfThread(this.thread._id)
-      .subscribe(messages => {
-        this.messages = messages || [];
-        console.log(this.messages);
-      });
+    this.subMessages = this.chatService.messagesOfThread(this.thread)
+      .subscribe(messages => this.messages = messages || []);
+
+    this.scrollToBottom();
   }
 
   ngOnDestroy() {
     this.subMessages.unsubscribe();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.scrollMessages.nativeElement.scrollTop = this.scrollMessages.nativeElement.scrollHeight;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   get author(): Jabber {
@@ -73,9 +90,7 @@ export class ChatboxComponent implements OnInit, OnDestroy {
 
   onEnter(event) {
     const room = this.author.id;
-    const message = new Message(
-      this.author.id, this.target.id, this.thread._id, this.inputText
-    );
+    const message = new Message(this.author.id, this.target.id, this.thread, this.inputText);
     this.chatService.sendMessage(room, message);
     this.inputText = '';
   }

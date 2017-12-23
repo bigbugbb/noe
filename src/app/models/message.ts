@@ -1,4 +1,5 @@
 import { User } from './user';
+import { Thread } from './thread';
 
 const uuidv4 = require('uuid/v4');
 
@@ -13,7 +14,7 @@ export class Message {
   constructor(
     public author: string,
     public target: string,
-    public thread: string,
+    public thread: Thread,
     public text: string
   ) {
     this.uuid = uuidv4();

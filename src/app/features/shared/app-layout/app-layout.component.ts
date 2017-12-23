@@ -28,7 +28,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.chatService.connect();
-    this.chatService.messagesNotRead.subscribe(value => this.messagesNotRead = value);
+    this.chatService.messagesNotRead$.subscribe(value => this.messagesNotRead = value);
     this.profileService.getProfile().subscribe(value => this.profile = value);
   }
 

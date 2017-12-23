@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { StorageService, ChatService, OrderDetailService, OrderActionsService } from '@app/core';
-import { Order, Business, User, Jabber, Message } from '@app/models';
+import { Order, Business, User, Jabber, Message, Thread } from '@app/models';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
 
@@ -14,7 +14,7 @@ import * as _ from 'lodash';
 export class OrderDetailComponent implements OnInit, OnDestroy {
   private order: Order = new Order();
 
-  private sub: Subscription;
+  private subParams: Subscription;
 
   private handlingOrderAction = false;
 
@@ -22,6 +22,9 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
   private messages = [];
   private connection;
+
+  private threads: Thread[] = [];
+  private subThreads: Subscription;
 
   constructor(
     private router: Router,
@@ -33,32 +36,21 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => this.updateOrder(params.id));
-
-    this.chatService.socket.on('connect', () => {
-      this.prepareToContact();
+    this.subParams = this.route.params.subscribe(params => this.updateOrder(params.id));
+    this.subThreads = this.chatService.threads$.subscribe((threads: Thread[]) => {
+      this.threads = threads;
     });
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
-
-  prepareToContact() {
-    setTimeout(() => {
-      if (!_.isEmpty(this.order)) {
-        const { customer, business } = this.order;
-        this.chatService.join(`${customer._id}-${business.owner}`);
-        this.chatService.join(`${business.owner}-${customer._id}`);
-      }
-    }, 0);
+    this.subParams.unsubscribe();
+    this.subThreads.unsubscribe();
   }
 
   updateOrder(id) {
     this.orderDetailService.getOrder().subscribe(result => {
       this.order = <Order>result;
     });
-    this.prepareToContact();
     if (this.order._id !== id) {
       this.orderDetailService.fetchOrder(id).subscribe();
     }
@@ -135,10 +127,16 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   private contact() {
     const customer: User = this.order.customer;
     const business: Business = this.order.business;
-    const thread = this.chatService.createLocalThread(
-      new Jabber(customer._id, customer.profile['name'], customer.profile['avatar']),
-      new Jabber(business.owner, business.name, business.avatar)
-    );
+    let thread = _.find(this.threads, (t) => {
+      return (t.author.id === customer._id && t.target.id === business.owner) ||
+             (t.target.id === customer._id && t.author.id === business.owner);
+    });
+    if (_.isEmpty(thread)) {
+      thread = this.chatService.createLocalThread(
+        new Jabber(customer._id, customer.profile['name'], customer.profile['avatar']),
+        new Jabber(business.owner, business.name, business.avatar)
+      );
+    }
     this.chatService.accessThread.next(thread);
   }
 
