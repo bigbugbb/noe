@@ -92,7 +92,7 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
       this.businessDetailService.setBusiness(order.business);
       this.ordering = false;
       // navigate to order detail page
-      this.router.navigate(['/profile/student/me/orders', order._id]);
+      this.router.navigate(['/profile/student', order._id]);
     });
   }
 }

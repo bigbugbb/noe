@@ -67,10 +67,6 @@ export class ChatService {
       return t1.author.id === t2.author.id && t1.target.id === t2.target.id;
     };
 
-    const keyOfMoT = (thread: Thread) => {
-      return `${thread.author.id}-${thread.target.id}`;
-    };
-
     const updateRemoteThread = (thread: Thread) => {
       const { _id, lastMessage } = thread;
       if (!_.isEmpty(_id)) {
@@ -80,23 +76,6 @@ export class ChatService {
           });
       }
       return thread;
-    };
-
-    const fetchRemoteThreads = () => {
-      this.threadService.getAll()
-        .subscribe(result => this.populateThreads.next(result.threads));
-    };
-
-    const fetchRemoteMessagesOfThread = (thread: Thread, limit: number = 999, lastTime: number = _.now()) => {
-      const threadId = thread._id;
-      if (!_.isEmpty(threadId)) {
-        this.messageService.getAll(threadId, { limit, lastTime })
-          .subscribe(result => {
-            const key = keyOfMoT(thread);
-            const mot: Message[] = result.messages;
-            this.populateMoTs.next({ key, mot });
-          });
-      }
     };
 
     /**
@@ -128,7 +107,7 @@ export class ChatService {
     this.accessThread
       .map(updateRemoteThread)
       .map((accessing: Thread): IThreadsOperation => {
-        fetchRemoteMessagesOfThread(accessing);
+        this.fetchRemoteMessagesOfThread(accessing);
         return (threads: Thread[]) => {
           _.remove(threads, (t) => isSameThread(t, accessing));
           accessing.opened = true;
@@ -195,15 +174,26 @@ export class ChatService {
       .refCount();
 
     this.populateMoTs
-      .map(({ key, mot }): IMessagesOperation => {
-        return (mots: MessagesOfThreads) => <MessagesOfThreads>_.set(mots, key, mot);
+      .map(({ key, mot, prepend }): IMessagesOperation => {
+        return (mots: MessagesOfThreads) => {
+          let populating = <Message[]>_.get(mots, key);
+          if (_.isEmpty(populating)) {
+            populating = mot;
+          } else {
+            const start = _.first(populating).sentAt,
+                  end = _.last(populating).sentAt;
+            mot = _.filter(mot, (m: Message) => m.sentAt < start || m.sentAt > end);
+            populating = prepend ? _.concat(mot, populating) : _.concat(populating, mot);
+          }
+          return <MessagesOfThreads>_.set(mots, key, populating);
+        };
       })
       .subscribe(this.messagesUpdates);
 
     this.appendMessage
       .map((message): IMessagesOperation => {
         return (mots: MessagesOfThreads) => {
-          const key = keyOfMoT(message.thread);
+          const key = this.keyOfMoT(message.thread);
           const mot = _.get(mots, key) as Message[];
           if (_.isEmpty(mot)) {
             _.set(mots, key, [ message ]);
@@ -219,14 +209,40 @@ export class ChatService {
       .subscribe(this.messagesUpdates);
 
     // prepare data
-    fetchRemoteThreads();
+    this.fetchRemoteThreads();
+  }
+
+  fetchRemoteThreads() {
+    this.threadService.getAll()
+      .subscribe(result => this.populateThreads.next(result.threads));
+  }
+
+  fetchRemoteMessagesOfThread(thread: Thread, limit: number = 30, lastTime: number = _.now(), prepend: boolean = true) {
+    const threadId = thread._id;
+    if (!_.isEmpty(threadId)) {
+      this.messageService.getAll(threadId, { limit, lastTime })
+        .subscribe(result => {
+          const key = this.keyOfMoT(thread);
+          const mot: Message[] = result.messages;
+          this.populateMoTs.next({ key, mot, prepend });
+        });
+    }
+  }
+
+  keyOfMoT(thread: Thread) {
+    return `${thread.author.id}-${thread.target.id}`;
   }
 
   messagesOfThread(thread: Thread): Observable<Message[]> {
-    const key = `${thread.author.id}-${thread.target.id}`;
+    const key = this.keyOfMoT(thread);
     return this.messagesOfThreads$
-      .map(mots => mots[key])
+      .map((mots: MessagesOfThreads) => mots[key])
       .distinctUntilChanged();
+  }
+
+  startingMessageSentAtOfThread(thread: Thread): Observable<Date> {
+    return this.messagesOfThread(thread)
+      .map((mot: Message[]) => _.isEmpty(mot) ? null : new Date(mot[0].sentAt));
   }
 
   createLocalThread(author: Jabber, target: Jabber): Thread {

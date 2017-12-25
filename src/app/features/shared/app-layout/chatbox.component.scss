@@ -45,6 +45,19 @@ $border-color:                        rgba(29, 49, 91, .3);
     }
   }
 
+  .popup-loading {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-content: center;
+
+    .loading-prompt {
+      font-size: 0.7rem;
+      color: $blue;
+    }
+  }
+
   .popup-messages {
     display: flex;
     flex-direction: column;

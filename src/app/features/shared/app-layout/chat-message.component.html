@@ -6,9 +6,9 @@
     </div>
     <div class="col">
       <div class="row">
-        <div class="col px-0 jabber-name text-muted">
+        <a class="col px-0 jabber-name text-muted" (click)="navigateToJabber($event)">
           <strong>{{ jabber.name }}</strong>
-        </div>
+        </a>
         <div class="col-auto sent-at my-auto ml-auto">
           {{ message.sentAt | date: 'M/d/yy, h:mm a' }}
         </div>
@@ -26,9 +26,9 @@
           <div class="col sent-at my-auto mr-auto">
             {{ message.sentAt | date: 'M/d/yy, h:mm a' }}
           </div>
-          <div class="col-auto px-0 jabber-name text-muted">
+          <a class="col-auto px-0 jabber-name text-muted" (click)="navigateToJabber($event)">
             <strong>{{ jabber.name }}</strong>
-          </div>
+          </a>
         </div>
         <div class="row">
           <div class="col pr-0 message-text">{{ message.text }}</div>

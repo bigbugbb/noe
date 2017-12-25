@@ -68,8 +68,8 @@ export class OrderActionsService {
     });
     if (_.isEmpty(thread)) {
       thread = this.chatService.createLocalThread(
-        new Jabber(customer._id, customer.profile['name'], customer.profile['avatar']),
-        new Jabber(business.owner, business.ownerName, business.avatar)
+        new Jabber(customer._id, customer.profile['name'], 'Student', customer.profile['avatar']),
+        new Jabber(business.owner, business.ownerName, 'Company', business.avatar)
       );
     }
     this.chatService.accessThread.next(thread);

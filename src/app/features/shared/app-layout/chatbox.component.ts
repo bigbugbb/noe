@@ -4,6 +4,7 @@ import {
   OnInit,
   OnDestroy,
   AfterViewChecked,
+  HostListener,
   ViewChild,
   ElementRef
 } from '@angular/core';
@@ -11,6 +12,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 
 import { ChatService, ChatUIService, StorageService } from '@app/core';
 import { User, Thread, Message, Jabber } from '@app/models';
+import { setTimeout } from 'timers';
 
 @Component({
   selector: 'noe-chatbox',
@@ -30,8 +32,13 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewChecked {
   private user: User;
   private inputText: string;
   private messages: Message[];
+  private lastTime: number;
+
+  private toBottom = true;
+  private loading = false;
 
   private subMessages: Subscription;
+  private subMessageSentAt: Subscription;
 
   constructor(
     private chatService: ChatService,
@@ -42,22 +49,33 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewChecked {
   ngOnInit() {
     this.user = this.storageService.getUser();
     this.subMessages = this.chatService.messagesOfThread(this.thread)
-      .subscribe(messages => this.messages = messages || []);
+      .subscribe(messages => {
+        this.loading = false;
+        this.messages = messages || [];
+      });
+    this.subMessageSentAt = this.chatService.startingMessageSentAtOfThread(this.thread)
+      .subscribe(sentAt => this.lastTime = sentAt.getTime());
 
-    this.scrollToBottom();
+    this.chatService.socket.on('message-added', (message) => {
+      setTimeout(() => this.scrollToBottom(), 1);
+    });
   }
 
   ngOnDestroy() {
     this.subMessages.unsubscribe();
+    this.subMessageSentAt.unsubscribe();
   }
 
   ngAfterViewChecked() {
-    this.scrollToBottom();
+    if (this.toBottom) {
+      this.scrollToBottom();
+    }
   }
 
   scrollToBottom(): void {
     try {
-      this.scrollMessages.nativeElement.scrollTop = this.scrollMessages.nativeElement.scrollHeight;
+      const element = this.scrollMessages.nativeElement;
+      element.scrollTop = element.scrollHeight - element.clientHeight;
     } catch (e) {
       console.log(e);
     }
@@ -93,6 +111,21 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewChecked {
     const message = new Message(this.author.id, this.target.id, this.thread, this.inputText);
     this.chatService.sendMessage(message);
     this.inputText = '';
+    this.toBottom = true;
+  }
+
+  // @HostListener('scroll', ['$event'])
+  onScroll(event) {
+    // console.debug("Scroll Event", document.body.scrollTop);
+    // see András Szepesházi's comment below
+    const scrollTop = this.scrollMessages.nativeElement.scrollTop;
+    if (scrollTop === 0) {
+      this.loading = true;
+      this.chatService.fetchRemoteMessagesOfThread(this.thread, 10, this.lastTime);
+    }
+    // prevent scollToBottom from being called because scroll event
+    // triggers ngAfterViewChecked, otherwise the view won't be scrollable.
+    this.toBottom = false;
   }
 
   close(event) {
