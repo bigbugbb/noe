@@ -1,12 +1,11 @@
 $blue:                              #20a8d8;
-$footer-height:                       50px !default;
-$border-color:                        rgba(29, 49, 91, .3);
+$border-color:                      rgba(29, 49, 91, .3);
 
 .popup-box {
   display: flex;
   flex-direction: column;
   position: fixed;
-  bottom: $footer-height;
+  bottom: 0;
   right: 16px;
   height: 316px;
   width: 300px;
@@ -20,6 +19,8 @@ $border-color:                        rgba(29, 49, 91, .3);
   -webkit-box-shadow: 4px 0 4px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 4px 0 4px 0px rgba(0, 0, 0, 0.15);
   box-shadow: 4px 0 4px 0px rgba(0, 0, 0, 0.15);
+
+  transition: 0.25s;
 
   .popup-head {
     background-color: $blue;
@@ -36,11 +37,17 @@ $border-color:                        rgba(29, 49, 91, .3);
 
     .popup-head-right {
       float: right;
-      opacity: 0.5;
 
       > a {
         text-decoration: none;
-        color: inherit;
+        opacity: 0.75;
+        color: white;
+      }
+
+      > a:hover {
+        opacity: 1;
+        color: white;
+        transition: 0.5s;
       }
     }
   }
@@ -83,4 +90,9 @@ $border-color:                        rgba(29, 49, 91, .3);
       line-height: 100%
     }
   }
+}
+
+.popup-box-minimized {
+  bottom: -287px;
+  transition: 0.25s;
 }

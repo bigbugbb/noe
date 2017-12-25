@@ -63,8 +63,6 @@
     </div>
   </main>
 
-  <noe-chatbox-list></noe-chatbox-list>
-
   <aside class="aside-menu">
     <tabset>
       <tab>
@@ -75,7 +73,65 @@
   </aside>
 </div>
 
-<footer class="app-footer">
-  <a href="#">Network Of Education</a> &copy; 2017 NOE.
+<div class="app-footer mx-0 px-4">
+  <!-- <a href="#">Network Of Education</a> &copy; 2017 NOE.
   <span class="float-right">Powered by <a href="#">NOE</a></span>
-</footer>
+  My primary concern at this point is, have I created a dependency on the browser’s window object? I don’t know the answer to that. If and when I do find out, I’ll be sure to post an update. But, this was a lot easier than injecting the window from a service. -->
+  <div class="row">
+    <div class="col-3">
+
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <ul>
+            <li class="footer-menu-title">Information</li>
+            <li class="fonter-menu">
+              <a href>About</a>
+            </li>
+            <li class="fonter-menu">
+              <a href>Terms & Conditions</a>
+            </li>
+            <li class="fonter-menu">
+              <a href>Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <ul>
+            <li class="footer-menu-title">Work With Us</li>
+            <li class="fonter-menu">
+              <a href>Service Partners</a>
+            </li>
+            <li class="fonter-menu">
+              <a href>Schools</a>
+            </li>
+            <li class="fonter-menu">
+              <a href>Advertise</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <ul>
+            <li class="footer-menu-title">Support & Help</li>
+            <li class="fonter-menu">
+              <a href>FAQ</a>
+            </li>
+            <li class="fonter-menu">
+              <a href>Blog</a>
+            </li>
+            <li class="fonter-menu">
+              <a href>Feedback Forum</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="mt-3 mb-0">
+      <div class="copyright">
+        <div>© 2017 Network Of Education. All rights reserved.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<noe-chatbox-list></noe-chatbox-list>

@@ -1,8 +1,19 @@
-<div class="popup-box" [ngStyle]="{ 'right': rightOffset() }">
+<div class="popup-box"
+  [ngClass]="{ 'popup-box-minimized': !maximized }"
+  [ngStyle]="{ 'right': rightOffset(), 'transition': '0.5s' }"
+>
   <div class="popup-head">
     <div class="popup-head-left">{{ target.name }}</div>
     <div class="popup-head-right">
-      <a href (click)="close($event)">&#10005;</a>
+      <a href (click)="minimize($event)" *ngIf="maximized else minimized">
+        <i class="fa fa-window-minimize" aria-hidden="true"></i>
+      </a>
+      <ng-template #minimized>
+        <a href (click)="maximize($event)">
+          <i class="fa fa-window-maximize" aria-hidden="true"></i>
+        </a>
+      </ng-template>
+      <a href class="ml-2" (click)="close($event)">&#10005;</a>
     </div>
     <div style="clear: both">
     </div>
@@ -22,7 +33,7 @@
   </div>
   <div class="popup-input">
     <input type="text"
-      class="message-input"
+      class="message-input px-1"
       placeholder="Write your message here..."
       (keydown.enter)="onEnter($event)"
       [(ngModel)]="inputText"

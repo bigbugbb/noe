@@ -1,13 +1,12 @@
 $image-max-width:                 360px;
 $image-min-width:                 360px;
 $navbar-height:                   55px !default;
-$footer-height:                   50px !default;
 
 .card {
-  min-width: 800px;
+  min-width: 860px;
   max-width: 1280px;
   padding: 0 0.75rem 0.75rem;
-  min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 2rem);
+  min-height: calc(100vh - #{$navbar-height} - 2rem);
 }
 
 .table {

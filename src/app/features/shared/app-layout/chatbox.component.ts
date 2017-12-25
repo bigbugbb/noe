@@ -34,6 +34,7 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewChecked {
   private messages: Message[];
   private lastTime: number;
 
+  private maximized = true;
   private toBottom = true;
   private loading = false;
 
@@ -54,7 +55,7 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.messages = messages || [];
       });
     this.subMessageSentAt = this.chatService.startingMessageSentAtOfThread(this.thread)
-      .subscribe(sentAt => this.lastTime = sentAt.getTime());
+      .subscribe(sentAt => this.lastTime = sentAt ? sentAt.getTime() : new Date().getTime());
 
     this.chatService.socket.on('message-added', (message) => {
       setTimeout(() => this.scrollToBottom(), 1);
@@ -126,6 +127,16 @@ export class ChatboxComponent implements OnInit, OnDestroy, AfterViewChecked {
     // prevent scollToBottom from being called because scroll event
     // triggers ngAfterViewChecked, otherwise the view won't be scrollable.
     this.toBottom = false;
+  }
+
+  minimize(event) {
+    this.maximized = false;
+    event.preventDefault();
+  }
+
+  maximize(event) {
+    this.maximized = true;
+    event.preventDefault();
   }
 
   close(event) {
