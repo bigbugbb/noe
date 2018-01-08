@@ -1,11 +1,12 @@
 $navbar-height:                       55px !default;
 
 .card {
-  min-height: calc(100vh - #{$navbar-height} - 2rem);
+  margin: 12px 0;
+  min-height: calc(100vh - #{$navbar-height} - 24px);
 }
 
 .list-container {
-  width: 70%;
+  width: 75%;
 }
 
 .filter-container {

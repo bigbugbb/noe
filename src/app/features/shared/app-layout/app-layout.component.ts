@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { User } from '@app/models';
 import { UserService, ProfileService, ChatService, StorageService, ChatUIService } from '@app/core';
@@ -30,6 +30,10 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     this.chatService.connect();
     this.chatService.messagesNotRead$.subscribe(value => this.messagesNotRead = value);
     this.profileService.getProfile().subscribe(value => this.profile = value);
+    this.router.events.subscribe(e => {
+      if (!(e instanceof NavigationEnd)) { return; }
+      window.scrollTo(0, 0);
+    });
   }
 
   ngOnDestroy() {

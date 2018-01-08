@@ -22,9 +22,9 @@
       <li class="nav-item">
         <a class="nav-link nav-link-title" routerLinkActive="active-item" [routerLink]="[profileLink()]">Profile</a>
       </li>
-      <li class="nav-item" *ngIf="!roleIsStudent">
+      <!-- <li class="nav-item" *ngIf="!roleIsStudent">
         <a class="nav-link nav-link-title" routerLinkActive="active-item" [routerLink]="['/students']">Student</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link nav-link-title" routerLinkActive="active-item" [routerLink]="['/services']">Service</a>
       </li>
@@ -74,12 +74,8 @@
 </div>
 
 <div class="app-footer mx-0 px-4">
-  <!-- <a href="#">Network Of Education</a> &copy; 2017 NOE.
-  <span class="float-right">Powered by <a href="#">NOE</a></span>
-  My primary concern at this point is, have I created a dependency on the browser’s window object? I don’t know the answer to that. If and when I do find out, I’ll be sure to post an update. But, this was a lot easier than injecting the window from a service. -->
   <div class="row">
     <div class="col-3">
-
     </div>
     <div class="col">
       <div class="row">
@@ -128,7 +124,7 @@
       </div>
       <hr class="mt-3 mb-0">
       <div class="copyright">
-        <div>© 2017 Network Of Education. All rights reserved.</div>
+        <div>© 2018 Network Of Education. All rights reserved.</div>
       </div>
     </div>
   </div>

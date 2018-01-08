@@ -33,6 +33,10 @@ $navbar-height:                     55px !default;
   font-size: 1.3rem;
   color: gray;
 
+  &:hover {
+    color: $blue;
+  }
+
   .badge {
     min-width: 14px;
     min-height: 14px;
@@ -40,9 +44,6 @@ $navbar-height:                     55px !default;
     font-size: 0.6rem;
     font-weight: 400;
   }
-}
-.chat-toggle:hover {
-  color: $blue;
 }
 
 .main-size {
@@ -67,10 +68,10 @@ $navbar-height:                     55px !default;
       flex-grow: 1;
       font-size: 0.9rem;
       font-weight: 600;
-    }
 
-    .nav-link:hover {
-      color: $blue;
+      &:hover {
+        color: $blue;
+      }
     }
 
     .active-item {

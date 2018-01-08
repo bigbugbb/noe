@@ -9,11 +9,11 @@
   color: rgb(168, 167, 167);
   text-decoration: none;
   vertical-align: middle;
-}
 
-.remove-btn:hover {
-  color: gray;
-  transition: 0.75s;
+  &:hover {
+    color: gray;
+    transition: 0.75s;
+  }
 }
 
 .profile-interest {

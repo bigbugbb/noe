@@ -22,11 +22,11 @@
   margin-left: 0.75rem;
   text-decoration: none;
   vertical-align: middle;
-}
 
-.new-btn:hover {
-  color: rgb(1, 189, 247);
-  transition: 0.75s;
+  &:hover {
+    color: rgb(1, 189, 247);
+    transition: 0.75s;
+  }
 }
 
 .profile-interest {
