@@ -18,8 +18,8 @@ $navbar-height:                     55px !default;
   box-shadow: 0 6px 6px 0px rgba(0, 0, 0, 0.15);
 }
 
-#search {
-  min-width: 96px;
+.main .container-fluid {
+  padding: 0;
 }
 
 .truncate {
@@ -47,8 +47,7 @@ $navbar-height:                     55px !default;
 }
 
 .main-size {
-  min-width: 860px;
-  max-width: 1280px;
+  min-width: 960px;
 }
 
 .nav-items {
@@ -80,6 +79,55 @@ $navbar-height:                     55px !default;
       border-bottom: 4px solid $blue;
     }
   }
+}
+
+/* BUTTONS */
+#sign-up-hint {
+  font-size: 10px;
+  margin: 0 0 0 0;
+}
+
+#sign-up-label {
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.sign-up-btn {
+  background-color: transparent;
+  border: 0px;
+  margin: 4px 0;
+  color: $gray-600;
+  text-align: right;
+  transition: 0.5s;
+}
+
+.sign-up-btn:hover,
+.sign-up-btn:focus,
+.sign-up-btn:active {
+  background-color: rgb(230, 230, 230);
+  color: $blue;
+  transition: 0.5s;
+}
+
+.btn-lg {
+  border: 0px;
+  border-radius: 4px;
+}
+
+.log-in-btn {
+  background-color: white;
+  color: $blue;
+  margin: 0px auto 0 4px;
+  font-size: 13px;
+  transition: 0.5s;
+}
+
+.log-in-btn:hover,
+.log-in-btn:focus,
+.log-in-btn:active {
+  background-color: rgb(230, 230, 230);
+  transition: 0.5s;
 }
 
 .app-body {

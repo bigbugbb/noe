@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: 'auth.component.html',
-  styleUrls: ['./auth.component.scss'],
+  templateUrl: 'work-with-us.component.html',
+  styleUrls: ['./work-with-us.component.scss'],
 })
-export class AuthComponent implements OnInit {
+export class WorkWithUsComponent implements OnInit {
   public returnUrl: string;
 
   constructor(

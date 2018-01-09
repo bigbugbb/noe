@@ -15,7 +15,7 @@ export class SignupComponent {
   @ViewChild('f')
   private form: NgForm;
 
-  private roles = ['Student', 'School', 'Company'];
+  private roles = ['School', 'Company'];
   private loading = false;
 
   constructor(

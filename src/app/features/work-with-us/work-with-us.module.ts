@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@app/shared';
-import { AuthRoutingModule } from './auth.routing';
+import { AuthRoutingModule } from './work-with-us.routing';
 
-import { AuthComponent } from './auth.component';
+import { WorkWithUsComponent } from './work-with-us.component';
 import { SigninComponent } from './signin.component';
 import { SignupComponent } from './signup.component';
 import { ForgotPasswordComponent } from './forgot-password.component';
@@ -20,11 +20,11 @@ import { ResetPasswordComponent } from './reset-password.component';
     AuthRoutingModule
   ],
   declarations: [
-    AuthComponent,
+    WorkWithUsComponent,
     SigninComponent,
     SignupComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent
   ]
 })
-export class AuthModule { }
+export class WorkWithUsModule { }

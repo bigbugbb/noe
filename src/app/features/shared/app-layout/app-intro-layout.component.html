@@ -1,0 +1,49 @@
+<header class="app-header nav navbar navbar-expand sticky-top">
+  <ul class="navbar-nav navbar-expand">
+    <a class="navbar-brand" href="#"></a>
+    <div class="nav-items">
+      <li class="nav-item">
+        <a class="nav-link" href="#cover">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#features">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#guides">Guides</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="#apps">Apps</a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" href="#testimonials">Testimonials</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact">Contact</a>
+      </li>
+    </div>
+  </ul>
+
+  <ul class="navbar-nav navbar-expand ml-auto mr-3">
+    <li class="nav-item">
+      <button class="btn btn-lg btn-default sign-up-btn" (click)="signup()">
+        <p id="sign-up-hint">New to Noe?</p>
+        <p id="sign-up-label">Sign Up</p>
+      </button>
+    </li>
+    <li class="mr-1"></li>
+    <li class="nav-item">
+      <button class="btn btn-lg btn-default log-in-btn" (click)="login()">Log In</button>
+    </li>
+  </ul>
+</header>
+
+<div class="app-body">
+  <!-- Main content -->
+  <main class="main">
+    <div class="container-fluid main-size">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
+
+<noe-app-footer></noe-app-footer>
