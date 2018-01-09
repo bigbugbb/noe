@@ -2,17 +2,22 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard, ProfileGuard } from '@app/core';
-import { AppLayoutComponent, ProfileGuidelineLayoutComponent } from '@app/features/shared';
+import {
+  AppLayoutComponent,
+  AppIntroLayoutComponent,
+  ProfileGuidelineLayoutComponent
+} from '@app/features/shared';
 
 export const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: './features/auth/auth.module#AuthModule'
-  },
-  {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    component: AppIntroLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './features/app-intro/app-intro.module#AppIntroModule'
+      }
+    ]
   },
   {
     path: '',
@@ -69,14 +74,18 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'work-with-us',
+    loadChildren: './features/work-with-us/work-with-us.module#WorkWithUsModule'
+  },
+  {
     path: 'profile-guideline',
     component: ProfileGuidelineLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      {
-        path: 'student',
-        loadChildren: './features/profile-guideline/student/profile-guideline.module'
-      },
+      // {
+      //   path: 'student',
+      //   loadChildren: './features/profile-guideline/student/profile-guideline.module'
+      // },
       {
         path: 'school',
         loadChildren: './features/profile-guideline/school/profile-guideline.module'

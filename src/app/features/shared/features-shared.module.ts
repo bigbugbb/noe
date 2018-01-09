@@ -10,6 +10,8 @@ import { TabsModule } from 'ngx-bootstrap';
 /* our own custom components */
 import { AlertComponent } from './alert/alert.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
+import { AppFooterComponent } from './app-layout/app-footer.component';
+import { AppIntroLayoutComponent } from './app-layout/app-intro-layout.component';
 import { ThreadListComponent } from './app-layout/thread-list.component';
 import { ThreadItemComponent } from './app-layout/thread-item.component';
 import { ChatboxComponent } from './app-layout/chatbox.component';
@@ -23,6 +25,7 @@ import { BusinessActionsService } from './business/business-actions.service';
 import { NAV_DROPDOWN_DIRECTIVES } from './app-layout/nav-dropdown.directive';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './app-layout/sidebar.directive';
 import { AsideToggleDirective } from './app-layout/aside.directive';
+import { AppIntroComponent } from '@app/features/app-intro/app-intro.component';
 
 @NgModule({
   imports: [
@@ -37,6 +40,8 @@ import { AsideToggleDirective } from './app-layout/aside.directive';
   declarations: [
     AlertComponent,
     AppLayoutComponent,
+    AppIntroLayoutComponent,
+    AppFooterComponent,
     ThreadListComponent,
     ThreadItemComponent,
     ChatboxComponent,
@@ -53,6 +58,7 @@ import { AsideToggleDirective } from './app-layout/aside.directive';
     /* our own custom components */
     AlertComponent,
     AppLayoutComponent,
+    AppIntroLayoutComponent,
     BusinessListComponent,
     BusinessItemComponent,
     ProfileGuidelineLayoutComponent
