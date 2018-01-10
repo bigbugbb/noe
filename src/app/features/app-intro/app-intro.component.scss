@@ -17,18 +17,18 @@ $navbar-height:                     55px !default;
 .nav-item {
   font-size: 14px;
   padding-top: 13px;
-}
 
-.nav-item a {
-  color: rgb(225, 225, 225);
-  border-bottom: 1px solid transparent;
-  transition: 0.5s;
-}
+  a {
+    color: rgb(225, 225, 225);
+    border-bottom: 1px solid transparent;
+    transition: 0.5s;
 
-.nav-item a:hover {
-  color: white;
-  border-bottom: 1px solid white;
-  transition: 0.5s;
+    &:hover {
+      color: white;
+      border-bottom: 1px solid white;
+      transition: 0.5s;
+    }
+  }
 }
 
 .navbar-toggler {
@@ -102,7 +102,7 @@ $navbar-height:                     55px !default;
     font-family: 'Nunito-Bold';
     text-align: center;
     color: $gray-700;
-    margin-top: 28%;
+    margin-top: 25%;
     padding: 1rem 0;
   }
 
@@ -443,9 +443,3 @@ blockquote {
   width: 100%;
   background-color: $blue;
 }
-
-
-
-
-
-

@@ -25,17 +25,121 @@
 
   <ul class="navbar-nav navbar-expand ml-auto mr-3">
     <li class="nav-item">
-      <button class="btn btn-lg btn-default sign-up-btn" (click)="signup()">
+      <a href class="btn btn-lg btn-default sign-up-btn" (click)="openModal($event, signupTemplate)">
         <p id="sign-up-hint">New to Noe?</p>
         <p id="sign-up-label">Sign Up</p>
-      </button>
+      </a>
     </li>
     <li class="mr-1"></li>
     <li class="nav-item">
-      <button class="btn btn-lg btn-default log-in-btn" (click)="login()">Log In</button>
+      <a href class="btn btn-lg btn-default log-in-btn" (click)="openModal($event, signinTemplate)">Log In</a>
     </li>
   </ul>
 </header>
+
+<ng-template #signupTemplate>
+  <div class="modal-body">
+    <div class="modal-title mb-2 text-center">NOE</div>
+    <div class="card">
+      <div class="row">
+        <hr class="col-4 ml-4 my-3">
+        <div class="col-auto mt-1">or</div>
+        <hr class="col-4 mr-4 my-3">
+      </div>
+      <h5 class="my-3 mx-auto">Signup With Your Email</h5>
+      <form class="form animated fadeIn" name="form" (ngSubmit)="signup(f)" #f="ngForm" novalidate>
+        <div class="form-group row">
+          <div class="col" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <input class="form-control min-input-text"
+                    type="text"
+                    placeholder="Your Email Address"
+                    aria-label="Email"
+                    name="email"
+                    ngModel
+                    #email="ngModel"
+                    required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <input class="form-control min-input-text"
+                    type="password"
+                    placeholder="Password"
+                    aria-label="Password"
+                    name="password"
+                    ngModel
+                    #password="ngModel"
+                    required>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button"
+                  *ngIf="!loading"
+                  class="btn btn-primary d-block w-100"
+                  [disabled]="!f.form.valid"
+                  (click)="f.ngSubmit.emit()">
+            Sign Up Free
+          </button>
+          <img class="mx-auto d-block" *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        </div>
+      </form>
+    </div>
+    <div class="bottom-info pt-2">
+      <span>
+        <a href>Terms of Service</a> - <a href>Privacy Policy</a>
+      </span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #signinTemplate>
+  <div class="modal-body">
+    <div class="modal-title mb-2 text-center">NOE</div>
+    <div class="card">
+      <div class="row">
+        <hr class="col-4 ml-4 my-3">
+        <div class="col-auto mt-1">or</div>
+        <hr class="col-4 mr-4 my-3">
+      </div>
+      <h5 class="my-3 mx-auto">Login With Your Email</h5>
+      <form class="form animated fadeIn" name="form" (ngSubmit)="signin(f)" #f="ngForm" novalidate>
+        <div class="form-group row">
+          <div class="col" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <input class="form-control min-input-text"
+                    type="text"
+                    placeholder="Your Email Address"
+                    aria-label="Email"
+                    name="email"
+                    ngModel
+                    #email="ngModel"
+                    required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <input class="form-control min-input-text"
+                    type="password"
+                    placeholder="Password"
+                    aria-label="Password"
+                    name="password"
+                    ngModel
+                    #password="ngModel"
+                    required>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button"
+                  class="btn btn-primary d-block w-100"
+                  [disabled]="!f.form.valid"
+                  (click)="f.ngSubmit.emit()">
+            Log In
+          </button>
+          <img class="mx-auto d-block" *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
 
 <div class="app-body">
   <!-- Main content -->

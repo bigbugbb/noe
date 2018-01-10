@@ -130,6 +130,46 @@ $navbar-height:                     55px !default;
   transition: 0.5s;
 }
 
+.modal-body {
+  justify-content: center;
+
+  .modal-title {
+    color: $blue;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .card {
+    padding: 1rem;
+    margin-bottom: 0;
+
+    > .left-divider {
+      width: 45%;
+      height: 1px;
+      padding-left: 2rem;
+      border: 1px solid $gray-400;
+    }
+
+    > .right-divider {
+      width: 45%;
+      height: 1px;
+      padding-right: 2rem;
+      border: 1px solid $gray-400;
+    }
+  }
+
+  .bottom-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    a {
+      font-size: 10px;
+      color: $gray-600
+    }
+  }
+}
+
 .app-body {
   margin-bottom: 0;
 }

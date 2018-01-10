@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { ApiBase } from '../api-base';

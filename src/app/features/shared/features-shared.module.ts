@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '@app/shared';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap';
 
@@ -34,6 +35,7 @@ import { AppIntroComponent } from '@app/features/app-intro/app-intro.component';
     FormsModule,
     RouterModule,
     SharedModule,
+    ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     TabsModule.forRoot()
   ],
