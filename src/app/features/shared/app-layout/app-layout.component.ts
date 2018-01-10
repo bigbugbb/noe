@@ -47,7 +47,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.storageService.clear();
         // use the old way to avoid ngx-bootstrap refreshing bug
-        window.location.href = '/auth';
+        window.location.href = '/';
       });
   }
 
