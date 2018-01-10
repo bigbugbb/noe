@@ -118,8 +118,8 @@ $navbar-height:                     55px !default;
 .log-in-btn {
   background-color: white;
   color: $blue;
-  margin: 0px auto 0 4px;
   font-size: 13px;
+  font-weight: 600;
   transition: 0.5s;
 }
 
@@ -142,20 +142,6 @@ $navbar-height:                     55px !default;
   .card {
     padding: 1rem;
     margin-bottom: 0;
-
-    > .left-divider {
-      width: 45%;
-      height: 1px;
-      padding-left: 2rem;
-      border: 1px solid $gray-400;
-    }
-
-    > .right-divider {
-      width: 45%;
-      height: 1px;
-      padding-right: 2rem;
-      border: 1px solid $gray-400;
-    }
   }
 
   .bottom-info {

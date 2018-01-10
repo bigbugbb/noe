@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard, ProfileGuard } from '@app/core';
+import { AuthGuard, UnauthGuard, ProfileGuard } from '@app/core';
 import {
   AppLayoutComponent,
   AppIntroLayoutComponent,
@@ -12,6 +12,7 @@ export const routes: Routes = [
   {
     path: '',
     component: AppIntroLayoutComponent,
+    canActivate: [UnauthGuard],
     children: [
       {
         path: '',

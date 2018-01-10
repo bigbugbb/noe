@@ -53,8 +53,20 @@ export class UserService extends ApiBase {
       .catch(this.handleError);
   }
 
+  public signinWithFacebook(userID: string) {
+    return this.http.post(`${this.apiEndpoint}/users/facebook-login`, { userID }, this.defaultOptions())
+      .map(this.handleAuthorized.bind(this))
+      .catch(this.handleError);
+  }
+
   public signup(user: User) {
     return this.http.post(`${this.apiEndpoint}/users`, user, this.defaultOptions())
+      .map(this.handleAuthorized.bind(this))
+      .catch(this.handleError);
+  }
+
+  public signupWithFacebook(data: {[key: string]: string}) {
+    return this.http.post(`${this.apiEndpoint}/users/facebook-signup`, data, this.defaultOptions())
       .map(this.handleAuthorized.bind(this))
       .catch(this.handleError);
   }

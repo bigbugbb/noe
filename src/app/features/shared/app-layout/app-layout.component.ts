@@ -6,6 +6,8 @@ import { UserService, ProfileService, ChatService, StorageService, ChatUIService
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
+declare var FB;
+
 @Component({
   selector: 'noe-app-layout',
   templateUrl: './app-layout.component.html',
@@ -42,13 +44,11 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
 
   public signout(event): void {
     event.preventDefault();
-    event.stopPropagation();
-    this.userService.signout()
-      .subscribe(() => {
-        this.storageService.clear();
-        // use the old way to avoid ngx-bootstrap refreshing bug
-        window.location.href = '/';
-      });
+    this.userService.signout().subscribe(() => {
+      FB.logout();
+      this.storageService.clear();
+      setTimeout(() => window.location.href = '/', 0);
+    });
   }
 
   get username(): string {
