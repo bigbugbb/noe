@@ -19,9 +19,6 @@
     "lib": [
       "es2017",
       "dom"
-    ],
-    "types": [
-      "node", "jasmine", "facebook-js-sdk"
     ]
   }
 }

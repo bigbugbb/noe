@@ -13,7 +13,7 @@ import * as _ from 'lodash';
   styleUrls: ['./my-businesses.component.scss']
 })
 export class MyBusinessesComponent implements OnInit, OnDestroy {
-  private data: { [key: string]: any };
+  private data: {[key: string]: any};
   private page = 1;
   private limit = 20;
 

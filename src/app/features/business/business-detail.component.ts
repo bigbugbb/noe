@@ -5,6 +5,7 @@ import { Http } from '@angular/http';
 import {
   StorageService,
   OrderService,
+  UserService,
   BusinessDetailService
 } from '@app/core';
 import { Subscription } from 'rxjs/Rx';
@@ -22,12 +23,9 @@ import { Observable } from 'rxjs/Observable';
 export class BusinessDetailComponent implements OnInit, OnDestroy {
   private model: { [key: string]: any } = {};
   private content = '';
-
-  private sub: Subscription;
-
   private ordering = false;
-
   private editingContent = false;
+  private sub: Subscription;
 
   constructor(
     private router: Router,
@@ -92,7 +90,12 @@ export class BusinessDetailComponent implements OnInit, OnDestroy {
       this.businessDetailService.setBusiness(order.business);
       this.ordering = false;
       // navigate to order detail page
-      this.router.navigate(['/profile/student', order._id]);
+      const user = this.storageService.getUser();
+      if (user.role === 'Student') {
+        this.router.navigate(['/profile/student/orders', order._id]);
+      } else {
+        this.router.navigate(['/profile/company/orders', order._id]);
+      }
     });
   }
 }

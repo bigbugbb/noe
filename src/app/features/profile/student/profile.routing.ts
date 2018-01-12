@@ -7,9 +7,8 @@ import { MyOrdersComponent } from './my-orders.component';
 import { OrderDetailComponent } from './order-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'me', pathMatch: 'full' },
-  { path: 'me', component: ProfileComponent },
-  { path: 'me/orders/:id', component: OrderDetailComponent }
+  { path: '', component: ProfileComponent },
+  { path: 'orders/:id', component: OrderDetailComponent }
 ];
 
 @NgModule({
