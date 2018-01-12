@@ -48,7 +48,7 @@
         <div class="dropdown-header text-left"><strong>Account</strong></div>
 
         <a class="dropdown-item" [routerLink]="['/settings']"><i class="fa fa-wrench" aria-hidden="true"></i>Settings</a>
-        <a class="dropdown-item" href="#" (click)="signout($event)"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+        <a class="dropdown-item" href (click)="signout($event)"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
       </div>
     </li>
   </ul>

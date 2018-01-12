@@ -6,7 +6,7 @@
     <div class="popup-head-left">{{ target.name }}</div>
     <div class="popup-head-right">
       <a href (click)="minimize($event)" *ngIf="maximized else minimized">
-        <i class="fa fa-window-minimize" aria-hidden="true"></i>
+        <i class="fa fa-minus" aria-hidden="true"></i>
       </a>
       <ng-template #minimized>
         <a href (click)="maximize($event)">

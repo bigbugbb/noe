@@ -12,9 +12,13 @@ export class ProfileGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const user = this.storageService.getUser();
-    const RoleClass = { Student, School, Company };
-    const profile = new RoleClass[user.role](this.storageService.getProfile());
+    const RoleClass = { School, Company };
 
+    if (user.role === 'Student') {
+      return true;
+    }
+
+    const profile = new RoleClass[user.role](this.storageService.getProfile());
     if (profile.hasBasicProfileInfo()) {
       return true;
     }

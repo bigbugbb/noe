@@ -28,8 +28,8 @@ export class SignupComponent {
   signup() {
     this.loading = true;
     this.userService.signup(this.form.value).subscribe((user: User) => {
-      this.profileService.setProfile(user.profile);
-      this.router.navigate(['/']);
+      this.profileService.setProfile(JSON.stringify(user.profile));
+      window.location.href = '/home';
     }, error => {
       this.alertService.error(error);
       this.loading = false;

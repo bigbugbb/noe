@@ -3,7 +3,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from '@app/app.module';
 import { environment } from '@env/environment';
-import './getFBSDK';
+// import './getFBSDK';
 
 if (environment.production) {
   enableProdMode();

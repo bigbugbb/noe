@@ -6,6 +6,9 @@ import { UserService, ProfileService, ChatService, StorageService, ChatUIService
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
 declare var FB;
 
 @Component({
@@ -25,6 +28,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     private storageService: StorageService,
     private chatService: ChatService,
     private chatUIService: ChatUIService,
+    private afAuth: AngularFireAuth,
     private router: Router
   ) {}
 
@@ -45,7 +49,8 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
   public signout(event): void {
     event.preventDefault();
     this.userService.signout().subscribe(() => {
-      FB.logout();
+      // FB.logout();
+      this.afAuth.auth.signOut();
       this.storageService.clear();
       setTimeout(() => window.location.href = '/', 0);
     });
@@ -57,7 +62,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
       case 'Student': {
         const firstname = this.profile.firstname || 'New';
         const lastname = this.profile.lastname || 'User';
-        return `${firstname} ${lastname}`;
+        return this.profile.name || `${firstname} ${lastname}`;
       }
       case 'School': {
         return this.profile.name || 'New school';

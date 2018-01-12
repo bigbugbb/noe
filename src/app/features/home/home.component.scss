@@ -3,6 +3,12 @@
   margin: 12px 0;
 }
 
+#carouselMain {
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  overflow: hidden;
+}
+
 .loading-placeholder {
   display: flex;
   flex-direction: column;

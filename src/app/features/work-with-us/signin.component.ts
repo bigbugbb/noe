@@ -32,8 +32,7 @@ export class SigninComponent {
     const { email, password } = this.form.value;
     this.userService.signin(email, password).subscribe((user: User) => {
       this.profileService.setProfile(user.profile);
-      // redirect to the wanted page
-      this.router.navigate([this.returnUrl]);
+      window.location.href = this.returnUrl;
     }, error => {
       this.alertService.error(error);
       this.loading = false;

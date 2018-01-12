@@ -16,7 +16,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './features/app-intro/app-intro.module#AppIntroModule'
+        loadChildren: '@app/features/app-intro/app-intro.module#AppIntroModule'
       }
     ]
   },
@@ -28,55 +28,55 @@ export const routes: Routes = [
       // main sections
       {
         path: 'home',
-        loadChildren: './features/home/home.module#HomeModule'
+        loadChildren: '@app/features/home/home.module#HomeModule'
       },
       {
         path: 'profile/student',
-        loadChildren: './features/profile/student/profile.module'
+        loadChildren: '@app/features/profile/student/profile.module'
       },
       {
         path: 'profile/school',
-        loadChildren: './features/profile/school/profile.module'
+        loadChildren: '@app/features/profile/school/profile.module'
       },
       {
         path: 'profile/company',
-        loadChildren: './features/profile/company/profile.module'
+        loadChildren: '@app/features/profile/company/profile.module'
       },
       {
         path: 'students',
-        loadChildren: './features/student/student.module#StudentModule'
+        loadChildren: '@app/features/student/student.module#StudentModule'
       },
       {
         path: 'schools',
-        loadChildren: './features/school/school.module#SchoolModule'
+        loadChildren: '@app/features/school/school.module#SchoolModule'
       },
       {
         path: 'services',
-        loadChildren: './features/business/business.module.ts#BusinessModule'
+        loadChildren: '@app/features/business/business.module.ts#BusinessModule'
       },
       // account sections
       {
         path: 'settings',
-        loadChildren: './features/settings/settings.module#SettingsModule'
+        loadChildren: '@app/features/settings/settings.module#SettingsModule'
       },
       {
         path: 'notifications',
-        loadChildren: './features/notifications/notifications.module#NotificationsModule'
+        loadChildren: '@app/features/notifications/notifications.module#NotificationsModule'
       },
       {
         path: 'questions',
-        loadChildren: './features/questions/questions.module#QuestionsModule'
+        loadChildren: '@app/features/questions/questions.module#QuestionsModule'
       },
       // manage sections
       {
         path: 'payments',
-        loadChildren: './features/payments/payments.module#PaymentsModule'
+        loadChildren: '@app/features/payments/payments.module#PaymentsModule'
       }
     ]
   },
   {
     path: 'work-with-us',
-    loadChildren: './features/work-with-us/work-with-us.module#WorkWithUsModule'
+    loadChildren: '@app/features/work-with-us/work-with-us.module#WorkWithUsModule'
   },
   {
     path: 'profile-guideline',
@@ -85,15 +85,15 @@ export const routes: Routes = [
     children: [
       // {
       //   path: 'student',
-      //   loadChildren: './features/profile-guideline/student/profile-guideline.module'
+      //   loadChildren: '@app/features/profile-guideline/student/profile-guideline.module'
       // },
       {
         path: 'school',
-        loadChildren: './features/profile-guideline/school/profile-guideline.module'
+        loadChildren: '@app/features/profile-guideline/school/profile-guideline.module'
       },
       {
         path: 'company',
-        loadChildren: './features/profile-guideline/company/profile-guideline.module'
+        loadChildren: '@app/features/profile-guideline/company/profile-guideline.module'
       },
     ]
   },
